@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>Barangay_Tunasan_Management_System</RootNamespace>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>Barangay_Tunasan_Management_System.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
   </PropertyGroup>
