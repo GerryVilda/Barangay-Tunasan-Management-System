@@ -6,6 +6,15 @@ Public Class Form1
     Dim cmd As MySqlCommand
     Dim dr As MySqlDataReader
 
+    Public Sub ResetLoginForm()
+        tmrlogin.Stop()
+        ProgressBar1.Value = 0
+        ProgressBar1.Visible = False
+        txtusername.Clear()
+        txtpassword.Clear()
+        txtusername.Focus()
+    End Sub
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ProgressBar1.Value = 0
         ProgressBar1.Visible = False
