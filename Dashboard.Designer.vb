@@ -241,7 +241,7 @@ Partial Class Dashboard
         ' lbltime
         ' 
         lbltime.AutoSize = True
-        lbltime.Location = New Point(78, 997)
+        lbltime.Location = New Point(78, 1012)
         lbltime.Name = "lbltime"
         lbltime.Size = New Size(63, 25)
         lbltime.TabIndex = 3
@@ -251,7 +251,7 @@ Partial Class Dashboard
         ' lbldate
         ' 
         lbldate.AutoSize = True
-        lbldate.Location = New Point(46, 957)
+        lbldate.Location = New Point(46, 972)
         lbldate.Name = "lbldate"
         lbldate.Size = New Size(63, 25)
         lbldate.TabIndex = 2
@@ -261,10 +261,10 @@ Partial Class Dashboard
         ' lblgreet
         ' 
         lblgreet.AutoSize = True
-        lblgreet.Font = New Font("Segoe UI Semibold", 14F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        lblgreet.Location = New Point(37, 897)
+        lblgreet.Font = New Font("Segoe UI Black", 16F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblgreet.Location = New Point(19, 912)
         lblgreet.Name = "lblgreet"
-        lblgreet.Size = New Size(99, 38)
+        lblgreet.Size = New Size(123, 45)
         lblgreet.TabIndex = 1
         lblgreet.Text = "Label2"
         lblgreet.TextAlign = ContentAlignment.MiddleCenter
@@ -287,7 +287,7 @@ Partial Class Dashboard
         Panel2.Dock = DockStyle.Top
         Panel2.Location = New Point(262, 0)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(1572, 70)
+        Panel2.Size = New Size(1640, 70)
         Panel2.TabIndex = 1
         ' 
         ' Label1
@@ -309,16 +309,16 @@ Partial Class Dashboard
         PanelMain.BackColor = SystemColors.AppWorkspace
         PanelMain.BackgroundImage = CType(resources.GetObject("PanelMain.BackgroundImage"), Image)
         PanelMain.BackgroundImageLayout = ImageLayout.Stretch
-        PanelMain.Location = New Point(271, 78)
+        PanelMain.Location = New Point(262, 65)
         PanelMain.Name = "PanelMain"
-        PanelMain.Size = New Size(1555, 1074)
+        PanelMain.Size = New Size(1628, 1087)
         PanelMain.TabIndex = 2
         ' 
         ' Dashboard
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1834, 1161)
+        ClientSize = New Size(1902, 1161)
         Controls.Add(PanelMain)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
