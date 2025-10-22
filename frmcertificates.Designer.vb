@@ -36,6 +36,7 @@ Partial Class frmcertificates
         ' 
         ' Panel1
         ' 
+        Panel1.AutoScroll = True
         Panel1.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         Panel1.Controls.Add(Label2)
         Panel1.Controls.Add(CboCertificatesSearchBy)
