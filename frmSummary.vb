@@ -3,10 +3,6 @@ Imports MySql.Data.MySqlClient
 
 Public Class frmSummary
 
-    Private Sub frmSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadResidentsByGender()
-    End Sub
-
     Private Sub LoadResidentsByGender()
         Try
             Call koneksyon()
@@ -15,7 +11,7 @@ Public Class frmSummary
             Dim cmd As New MySqlCommand(query, cn)
             Dim dr As MySqlDataReader = cmd.ExecuteReader()
 
-            ' Clear previous data
+            ' Clear previous chart data
             Chart1.Series.Clear()
             Chart1.Titles.Clear()
             Chart1.ChartAreas.Clear()
@@ -27,23 +23,36 @@ Public Class frmSummary
             area.AxisX.Interval = 1
             Chart1.ChartAreas.Add(area)
 
-            ' Create a single series
-            Dim series As New Series("Residents")
-            series.ChartType = SeriesChartType.Column
-            series.IsValueShownAsLabel = True
-            series("PointWidth") = "0.5" ' Prevent overlap
-            Chart1.Series.Add(series)
+            ' Create series for Male and Female
+            Dim seriesMale As New Series("Male")
+            seriesMale.ChartType = SeriesChartType.Column
+            seriesMale.Color = Color.Blue
+            seriesMale.IsValueShownAsLabel = True
+            seriesMale("PointWidth") = "0.4"
+            Chart1.Series.Add(seriesMale)
+
+            Dim seriesFemale As New Series("Female")
+            seriesFemale.ChartType = SeriesChartType.Column
+            seriesFemale.Color = Color.Pink
+            seriesFemale.IsValueShownAsLabel = True
+            seriesFemale("PointWidth") = "0.4"
+            Chart1.Series.Add(seriesFemale)
 
             ' Add data points
             While dr.Read()
                 Dim gender As String = dr("gender").ToString().Trim()
                 Dim total As Integer = Convert.ToInt32(dr("total"))
-                If gender <> "" Then
-                    Chart1.Series("Residents").Points.AddXY(gender, total)
+
+                If gender = "Male" Then
+                    seriesMale.Points.AddXY("Male", total)
+                    seriesFemale.Points.AddXY("Male", 0) ' keep alignment
+                ElseIf gender = "Female" Then
+                    seriesFemale.Points.AddXY("Female", total)
+                    seriesMale.Points.AddXY("Female", 0) ' keep alignment
                 End If
             End While
 
-            ' Title
+            ' Chart title
             Chart1.Titles.Add("Residents by Gender")
 
         Catch ex As Exception
@@ -52,5 +61,6 @@ Public Class frmSummary
             cn.Close()
         End Try
     End Sub
+
 
 End Class

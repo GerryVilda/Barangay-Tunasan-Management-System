@@ -22,6 +22,7 @@ Partial Class frmblotter
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmblotter))
         Label1 = New Label()
         Panel1 = New Panel()
@@ -125,6 +126,8 @@ Partial Class frmblotter
         ' 
         ' dgvblotters
         ' 
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
+        dgvblotters.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         dgvblotters.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvblotters.Location = New Point(18, 609)
         dgvblotters.Name = "dgvblotters"
