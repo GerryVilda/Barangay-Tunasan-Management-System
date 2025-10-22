@@ -22,9 +22,15 @@ Partial Class frmcertificates
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Text = "frmcertificates"
+        SuspendLayout()
+        ' 
+        ' frmcertificates
+        ' 
+        AutoScaleDimensions = New SizeF(10F, 25F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(1434, 978)
+        Name = "frmcertificates"
+        Text = "frmcertificates"
+        ResumeLayout(False)
     End Sub
 End Class

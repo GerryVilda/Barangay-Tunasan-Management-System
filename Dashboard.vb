@@ -55,32 +55,32 @@ Public Class Dashboard
 
     ' 🧾 Blotter
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnincidents.Click
-        LoadFormIntoPanel(New frmBlotter())
+        LoadFormIntoPanel(New frmincident())
     End Sub
 
     ' ⚠️ Incident Reports
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles btnblotter.Click
-        LoadFormIntoPanel(New frmIncident())
+        LoadFormIntoPanel(New frmblotter())
     End Sub
 
     ' 🪪 Certifications
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles btnrecords.Click
-        LoadFormIntoPanel(New frmcertificates())
+        LoadFormIntoPanel(New frmRecords())
     End Sub
 
     ' 👴 Senior Records
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles btncertifications.Click
-        LoadFormIntoPanel(New frmRecords())
+        LoadFormIntoPanel(New frmcertificates())
     End Sub
 
     ' 📍 Sitio Problems
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles btnsummary.Click
-        LoadFormIntoPanel(New frmSitio())
+        LoadFormIntoPanel(New frmSummary())
     End Sub
 
     ' 📊 Reports Summary
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles btnsito.Click
-        LoadFormIntoPanel(New frmSummary())
+        LoadFormIntoPanel(New frmSitio())
     End Sub
 
     ' 🧑‍💼 Officials

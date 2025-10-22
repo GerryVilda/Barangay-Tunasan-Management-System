@@ -56,13 +56,13 @@ Partial Class frmresidents
         DataGridView1.Location = New Point(12, 259)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 62
-        DataGridView1.Size = New Size(1410, 707)
+        DataGridView1.Size = New Size(1389, 707)
         DataGridView1.TabIndex = 0
         ' 
         ' txtresidentid
         ' 
         txtresidentid.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtresidentid.Location = New Point(391, 12)
+        txtresidentid.Location = New Point(389, 4)
         txtresidentid.Name = "txtresidentid"
         txtresidentid.Size = New Size(332, 39)
         txtresidentid.TabIndex = 1
@@ -70,7 +70,7 @@ Partial Class frmresidents
         ' txtfirstname
         ' 
         txtfirstname.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtfirstname.Location = New Point(391, 63)
+        txtfirstname.Location = New Point(389, 55)
         txtfirstname.Name = "txtfirstname"
         txtfirstname.Size = New Size(332, 39)
         txtfirstname.TabIndex = 2
@@ -78,7 +78,7 @@ Partial Class frmresidents
         ' txtlastname
         ' 
         txtlastname.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtlastname.Location = New Point(391, 113)
+        txtlastname.Location = New Point(389, 105)
         txtlastname.Name = "txtlastname"
         txtlastname.Size = New Size(332, 39)
         txtlastname.TabIndex = 3
@@ -86,7 +86,7 @@ Partial Class frmresidents
         ' txtage
         ' 
         txtage.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtage.Location = New Point(391, 164)
+        txtage.Location = New Point(389, 156)
         txtage.Name = "txtage"
         txtage.Size = New Size(332, 39)
         txtage.TabIndex = 4
@@ -94,7 +94,7 @@ Partial Class frmresidents
         ' txtsitio
         ' 
         txtsitio.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtsitio.Location = New Point(866, 117)
+        txtsitio.Location = New Point(864, 109)
         txtsitio.Name = "txtsitio"
         txtsitio.Size = New Size(337, 39)
         txtsitio.TabIndex = 7
@@ -103,7 +103,7 @@ Partial Class frmresidents
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label1.Location = New Point(240, 20)
+        Label1.Location = New Point(238, 12)
         Label1.Name = "Label1"
         Label1.Size = New Size(138, 32)
         Label1.TabIndex = 9
@@ -113,7 +113,7 @@ Partial Class frmresidents
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label2.Location = New Point(238, 70)
+        Label2.Location = New Point(236, 62)
         Label2.Name = "Label2"
         Label2.Size = New Size(132, 32)
         Label2.TabIndex = 10
@@ -123,7 +123,7 @@ Partial Class frmresidents
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label3.Location = New Point(240, 120)
+        Label3.Location = New Point(238, 112)
         Label3.Name = "Label3"
         Label3.Size = New Size(130, 32)
         Label3.TabIndex = 11
@@ -133,7 +133,7 @@ Partial Class frmresidents
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label4.Location = New Point(240, 172)
+        Label4.Location = New Point(238, 164)
         Label4.Name = "Label4"
         Label4.Size = New Size(57, 32)
         Label4.TabIndex = 12
@@ -143,7 +143,7 @@ Partial Class frmresidents
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label5.Location = New Point(743, 180)
+        Label5.Location = New Point(741, 172)
         Label5.Name = "Label5"
         Label5.Size = New Size(81, 32)
         Label5.TabIndex = 16
@@ -153,7 +153,7 @@ Partial Class frmresidents
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label6.Location = New Point(743, 120)
+        Label6.Location = New Point(741, 112)
         Label6.Name = "Label6"
         Label6.Size = New Size(62, 32)
         Label6.TabIndex = 15
@@ -163,7 +163,7 @@ Partial Class frmresidents
         ' 
         Label7.AutoSize = True
         Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label7.Location = New Point(743, 68)
+        Label7.Location = New Point(741, 60)
         Label7.Name = "Label7"
         Label7.Size = New Size(117, 32)
         Label7.TabIndex = 14
@@ -173,7 +173,7 @@ Partial Class frmresidents
         ' 
         Label8.AutoSize = True
         Label8.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label8.Location = New Point(743, 18)
+        Label8.Location = New Point(741, 10)
         Label8.Name = "Label8"
         Label8.Size = New Size(94, 32)
         Label8.TabIndex = 13
@@ -182,7 +182,7 @@ Partial Class frmresidents
         ' dtpbirthdate
         ' 
         dtpbirthdate.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpbirthdate.Location = New Point(866, 63)
+        dtpbirthdate.Location = New Point(864, 55)
         dtpbirthdate.Name = "dtpbirthdate"
         dtpbirthdate.Size = New Size(337, 39)
         dtpbirthdate.TabIndex = 17
@@ -191,7 +191,8 @@ Partial Class frmresidents
         ' 
         cbostatus.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         cbostatus.FormattingEnabled = True
-        cbostatus.Location = New Point(866, 169)
+        cbostatus.Items.AddRange(New Object() {"Single ", "Married", "Widowed", "Separated", "Annulled", "Divorced", "Live-in / Common-law"})
+        cbostatus.Location = New Point(864, 161)
         cbostatus.Name = "cbostatus"
         cbostatus.Size = New Size(337, 40)
         cbostatus.TabIndex = 18
@@ -201,7 +202,7 @@ Partial Class frmresidents
         cbogender.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         cbogender.FormattingEnabled = True
         cbogender.Items.AddRange(New Object() {"Male", "Female"})
-        cbogender.Location = New Point(866, 12)
+        cbogender.Location = New Point(864, 4)
         cbogender.Name = "cbogender"
         cbogender.Size = New Size(337, 40)
         cbogender.TabIndex = 19
@@ -235,7 +236,7 @@ Partial Class frmresidents
         ' 
         ' btnadd
         ' 
-        btnadd.Location = New Point(1244, 20)
+        btnadd.Location = New Point(1242, 12)
         btnadd.Name = "btnadd"
         btnadd.Size = New Size(159, 62)
         btnadd.TabIndex = 23
@@ -244,7 +245,7 @@ Partial Class frmresidents
         ' 
         ' btnupdate
         ' 
-        btnupdate.Location = New Point(1244, 86)
+        btnupdate.Location = New Point(1242, 78)
         btnupdate.Name = "btnupdate"
         btnupdate.Size = New Size(159, 62)
         btnupdate.TabIndex = 24
@@ -253,7 +254,7 @@ Partial Class frmresidents
         ' 
         ' btndelete
         ' 
-        btndelete.Location = New Point(1244, 158)
+        btndelete.Location = New Point(1242, 150)
         btndelete.Name = "btndelete"
         btndelete.Size = New Size(159, 62)
         btndelete.TabIndex = 25
@@ -265,7 +266,7 @@ Partial Class frmresidents
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
-        ClientSize = New Size(1434, 978)
+        ClientSize = New Size(1412, 978)
         Controls.Add(btndelete)
         Controls.Add(btnupdate)
         Controls.Add(btnadd)
@@ -289,6 +290,8 @@ Partial Class frmresidents
         Controls.Add(txtfirstname)
         Controls.Add(txtresidentid)
         Controls.Add(DataGridView1)
+        FormBorderStyle = FormBorderStyle.FixedDialog
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "frmresidents"
         StartPosition = FormStartPosition.CenterScreen
         Text = "frmresidents"
