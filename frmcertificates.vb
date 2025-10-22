@@ -35,9 +35,10 @@ Public Class FrmCertificates
         Try
             cn.Open()
 
+            ' Use alias cert_type instead of type to avoid reserved word issues
             Dim query As String = "SELECT c.id, c.resident_id, " &
                                   "CONCAT(r.First_Name, ' ', r.Last_Name) AS resident_name, " &
-                                  "COALESCE(c.type,'') AS type, " &
+                                  "COALESCE(c.type,'') AS cert_type, " &
                                   "COALESCE(o.Full_name,'') AS issued_by_name, " &
                                   "COALESCE(c.issue_date,'1900-01-01') AS issue_date, " &
                                   "COALESCE(c.remarks,'') AS remarks " &
@@ -57,16 +58,21 @@ Public Class FrmCertificates
             End Using
 
         Catch ex As Exception
-            ' Optional: log the exception somewhere for debugging
+            ' Optional: log the exception somewhere
         Finally
             cn.Close()
         End Try
 
-        ' Bind DataGridView safely outside Try/Catch
+        ' Bind DataGridView safely
         dgvcertifications.DataSource = dt
         dgvcertifications.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgvcertifications.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgvcertifications.MultiSelect = False
+
+        ' Optional: rename headers
+        If dgvcertifications.Columns.Contains("cert_type") Then
+            dgvcertifications.Columns("cert_type").HeaderText = "Certificate Type"
+        End If
     End Sub
 
     ' --- ComboBox Filter ---
@@ -83,7 +89,7 @@ Public Class FrmCertificates
 
         Dim row As DataGridViewRow = dgvcertifications.SelectedRows(0)
         Dim residentName As String = If(row.Cells("resident_name").Value, "").ToString()
-        Dim certType As String = If(row.Cells("type").Value, "").ToString()
+        Dim certType As String = If(row.Cells("cert_type").Value, "").ToString()
         Dim issuedBy As String = If(row.Cells("issued_by_name").Value, "").ToString()
         Dim issueDate As String = ""
         Try
@@ -109,7 +115,7 @@ Public Class FrmCertificates
                 Dim headerTable As New PdfPTable(2) With {.WidthPercentage = 100}
                 headerTable.SetWidths(New Single() {1.0F, 3.0F})
 
-                ' Logo path (update with your path)
+                ' Logo path
                 Dim logoPath As String = "C:\Users\Gerry Vilda\Downloads\tunasanlogo.jpg"
                 If File.Exists(logoPath) Then
                     Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(logoPath)

@@ -51,7 +51,7 @@ Partial Class frmcertificates
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(16, 121)
+        Label2.Location = New Point(16, 109)
         Label2.Name = "Label2"
         Label2.Size = New Size(147, 38)
         Label2.TabIndex = 25
@@ -61,7 +61,7 @@ Partial Class frmcertificates
         ' 
         CboCertificatesSearchBy.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         CboCertificatesSearchBy.FormattingEnabled = True
-        CboCertificatesSearchBy.Location = New Point(169, 119)
+        CboCertificatesSearchBy.Location = New Point(169, 107)
         CboCertificatesSearchBy.Name = "CboCertificatesSearchBy"
         CboCertificatesSearchBy.Size = New Size(470, 40)
         CboCertificatesSearchBy.TabIndex = 24
