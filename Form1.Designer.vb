@@ -180,6 +180,7 @@ Partial Class Form1
         ClientSize = New Size(1253, 889)
         Controls.Add(Panel1)
         DoubleBuffered = True
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen

@@ -330,6 +330,7 @@ Partial Class frmblotter
         Controls.Add(Panel1)
         DoubleBuffered = True
         Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "frmblotter"
         Text = "frmblotter"
         Panel1.ResumeLayout(False)
