@@ -28,7 +28,6 @@ Partial Class frmcomplaints
         lblSearch = New Label()
         txtSearch = New TextBox()
         btnAdd = New Button()
-        DataGridView1 = New DataGridView()
         panelPending = New Panel()
         lblPendingCount = New Label()
         lblPending = New Label()
@@ -38,8 +37,24 @@ Partial Class frmcomplaints
         panelTotal = New Panel()
         lblTotalCount = New Label()
         lblTotalComplaints = New Label()
+        Label1 = New Label()
+        Label2 = New Label()
+        Label3 = New Label()
+        Label4 = New Label()
+        Label5 = New Label()
+        Label6 = New Label()
+        Label7 = New Label()
+        btnSaveDb = New Button()
+        btnClear = New Button()
+        btnCancel = New Button()
+        txtComplaintID = New TextBox()
+        txtResidentID = New TextBox()
+        txtSubject = New TextBox()
+        txtDetails = New TextBox()
+        txtActionTaken = New TextBox()
+        dtpComplaintDate = New DateTimePicker()
+        cmbStatus = New ComboBox()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         panelPending.SuspendLayout()
         panelResolved.SuspendLayout()
         panelTotal.SuspendLayout()
@@ -60,11 +75,11 @@ Partial Class frmcomplaints
         ' 
         lblTitle.AutoSize = True
         lblTitle.Font = New Font("Segoe UI Black", 19.8000011F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        lblTitle.Location = New Point(443, 9)
+        lblTitle.Location = New Point(179, 9)
         lblTitle.Name = "lblTitle"
-        lblTitle.Size = New Size(421, 46)
+        lblTitle.Size = New Size(207, 46)
         lblTitle.TabIndex = 22
-        lblTitle.Text = "Complaint Management"
+        lblTitle.Text = "Complaints"
         ' 
         ' lblSearch
         ' 
@@ -86,26 +101,16 @@ Partial Class frmcomplaints
         ' 
         ' btnAdd
         ' 
+        btnAdd.BackColor = Color.Khaki
+        btnAdd.FlatAppearance.BorderSize = 0
+        btnAdd.FlatStyle = FlatStyle.Popup
         btnAdd.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnAdd.Location = New Point(926, 60)
+        btnAdd.Location = New Point(191, 645)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(162, 39)
         btnAdd.TabIndex = 26
         btnAdd.Text = "Add Complaint"
-        btnAdd.UseVisualStyleBackColor = True
-        ' 
-        ' DataGridView1
-        ' 
-        DataGridView1.AllowUserToAddRows = False
-        DataGridView1.AllowUserToDeleteRows = False
-        DataGridView1.BackgroundColor = Color.White
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(12, 257)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.ReadOnly = True
-        DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(1123, 513)
-        DataGridView1.TabIndex = 27
+        btnAdd.UseVisualStyleBackColor = False
         ' 
         ' panelPending
         ' 
@@ -197,16 +202,204 @@ Partial Class frmcomplaints
         lblTotalComplaints.TabIndex = 2
         lblTotalComplaints.Text = "Total Complaints"
         ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(191, 310)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(136, 28)
+        Label1.TabIndex = 31
+        Label1.Text = "Complaint ID:"
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Location = New Point(191, 357)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(121, 28)
+        Label2.TabIndex = 32
+        Label2.Text = "Resident ID:"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.Location = New Point(191, 401)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(183, 28)
+        Label3.TabIndex = 33
+        Label3.Text = "Complaint Subject:"
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.Location = New Point(191, 446)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(177, 28)
+        Label4.TabIndex = 34
+        Label4.Text = "Complaint Details:"
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label5.Location = New Point(191, 494)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(158, 28)
+        Label5.TabIndex = 35
+        Label5.Text = "Complaint Date:"
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.Location = New Point(191, 540)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(72, 28)
+        Label6.TabIndex = 36
+        Label6.Text = "Status:"
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label7.Location = New Point(191, 583)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(134, 28)
+        Label7.TabIndex = 37
+        Label7.Text = "Action Taken:"
+        ' 
+        ' btnSaveDb
+        ' 
+        btnSaveDb.BackColor = Color.Khaki
+        btnSaveDb.FlatAppearance.BorderSize = 0
+        btnSaveDb.FlatStyle = FlatStyle.Popup
+        btnSaveDb.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnSaveDb.Location = New Point(359, 645)
+        btnSaveDb.Name = "btnSaveDb"
+        btnSaveDb.Size = New Size(186, 39)
+        btnSaveDb.TabIndex = 38
+        btnSaveDb.Text = "Save to Database"
+        btnSaveDb.UseVisualStyleBackColor = False
+        ' 
+        ' btnClear
+        ' 
+        btnClear.BackColor = Color.Khaki
+        btnClear.FlatAppearance.BorderSize = 0
+        btnClear.FlatStyle = FlatStyle.Popup
+        btnClear.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnClear.Location = New Point(551, 645)
+        btnClear.Name = "btnClear"
+        btnClear.Size = New Size(87, 39)
+        btnClear.TabIndex = 39
+        btnClear.Text = "Clear"
+        btnClear.UseVisualStyleBackColor = False
+        ' 
+        ' btnCancel
+        ' 
+        btnCancel.BackColor = Color.Khaki
+        btnCancel.FlatAppearance.BorderSize = 0
+        btnCancel.FlatStyle = FlatStyle.Popup
+        btnCancel.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnCancel.Location = New Point(644, 645)
+        btnCancel.Name = "btnCancel"
+        btnCancel.Size = New Size(98, 39)
+        btnCancel.TabIndex = 40
+        btnCancel.Text = "Cancel"
+        btnCancel.UseVisualStyleBackColor = False
+        ' 
+        ' txtComplaintID
+        ' 
+        txtComplaintID.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtComplaintID.Location = New Point(399, 304)
+        txtComplaintID.Margin = New Padding(2)
+        txtComplaintID.Name = "txtComplaintID"
+        txtComplaintID.Size = New Size(343, 34)
+        txtComplaintID.TabIndex = 41
+        ' 
+        ' txtResidentID
+        ' 
+        txtResidentID.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtResidentID.Location = New Point(399, 351)
+        txtResidentID.Margin = New Padding(2)
+        txtResidentID.Name = "txtResidentID"
+        txtResidentID.Size = New Size(343, 34)
+        txtResidentID.TabIndex = 42
+        ' 
+        ' txtSubject
+        ' 
+        txtSubject.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtSubject.Location = New Point(399, 395)
+        txtSubject.Margin = New Padding(2)
+        txtSubject.Name = "txtSubject"
+        txtSubject.Size = New Size(343, 34)
+        txtSubject.TabIndex = 43
+        ' 
+        ' txtDetails
+        ' 
+        txtDetails.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtDetails.Location = New Point(399, 440)
+        txtDetails.Margin = New Padding(2)
+        txtDetails.Name = "txtDetails"
+        txtDetails.Size = New Size(343, 34)
+        txtDetails.TabIndex = 44
+        ' 
+        ' txtActionTaken
+        ' 
+        txtActionTaken.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtActionTaken.Location = New Point(399, 577)
+        txtActionTaken.Margin = New Padding(2)
+        txtActionTaken.Name = "txtActionTaken"
+        txtActionTaken.Size = New Size(343, 34)
+        txtActionTaken.TabIndex = 45
+        ' 
+        ' dtpComplaintDate
+        ' 
+        dtpComplaintDate.CalendarFont = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        dtpComplaintDate.Location = New Point(399, 496)
+        dtpComplaintDate.Name = "dtpComplaintDate"
+        dtpComplaintDate.Size = New Size(343, 27)
+        dtpComplaintDate.TabIndex = 46
+        ' 
+        ' cmbStatus
+        ' 
+        cmbStatus.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmbStatus.FormattingEnabled = True
+        cmbStatus.Items.AddRange(New Object() {"Pending", "Resolved"})
+        cmbStatus.Location = New Point(399, 532)
+        cmbStatus.Name = "cmbStatus"
+        cmbStatus.Size = New Size(343, 36)
+        cmbStatus.TabIndex = 47
+        ' 
         ' frmcomplaints
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         ClientSize = New Size(1147, 782)
+        Controls.Add(cmbStatus)
+        Controls.Add(dtpComplaintDate)
+        Controls.Add(txtActionTaken)
+        Controls.Add(txtDetails)
+        Controls.Add(txtSubject)
+        Controls.Add(txtResidentID)
+        Controls.Add(txtComplaintID)
+        Controls.Add(btnCancel)
+        Controls.Add(btnClear)
+        Controls.Add(btnSaveDb)
+        Controls.Add(Label7)
+        Controls.Add(Label6)
+        Controls.Add(Label5)
+        Controls.Add(Label4)
+        Controls.Add(Label3)
+        Controls.Add(Label2)
+        Controls.Add(Label1)
         Controls.Add(panelTotal)
         Controls.Add(panelResolved)
         Controls.Add(panelPending)
-        Controls.Add(DataGridView1)
         Controls.Add(btnAdd)
         Controls.Add(txtSearch)
         Controls.Add(lblSearch)
@@ -218,7 +411,6 @@ Partial Class frmcomplaints
         StartPosition = FormStartPosition.CenterScreen
         Text = "frmcomplaints"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         panelPending.ResumeLayout(False)
         panelPending.PerformLayout()
         panelResolved.ResumeLayout(False)
@@ -234,7 +426,6 @@ Partial Class frmcomplaints
     Friend WithEvents lblSearch As Label
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents btnAdd As Button
-    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents panelPending As Panel
     Friend WithEvents panelResolved As Panel
     Friend WithEvents panelTotal As Panel
@@ -244,4 +435,21 @@ Partial Class frmcomplaints
     Friend WithEvents lblPendingCount As Label
     Friend WithEvents lblResolvedCount As Label
     Friend WithEvents lblTotalCount As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents btnSaveDb As Button
+    Friend WithEvents btnClear As Button
+    Friend WithEvents btnCancel As Button
+    Friend WithEvents txtComplaintID As TextBox
+    Friend WithEvents txtResidentID As TextBox
+    Friend WithEvents txtSubject As TextBox
+    Friend WithEvents txtDetails As TextBox
+    Friend WithEvents txtActionTaken As TextBox
+    Friend WithEvents dtpComplaintDate As DateTimePicker
+    Friend WithEvents cmbStatus As ComboBox
 End Class
