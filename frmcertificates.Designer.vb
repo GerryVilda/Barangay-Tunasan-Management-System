@@ -25,6 +25,9 @@ Partial Class frmcertificates
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCertificates))
         Panel1 = New Panel()
+        btnadd = New Button()
+        btnupdate = New Button()
+        btndelete = New Button()
         txtcertificatetype = New ComboBox()
         Label9 = New Label()
         Label8 = New Label()
@@ -40,9 +43,6 @@ Partial Class frmcertificates
         btnGeneratePDF = New Button()
         dgvcertifications = New DataGridView()
         Label1 = New Label()
-        btndelete = New Button()
-        btnupdate = New Button()
-        btnadd = New Button()
         Panel1.SuspendLayout()
         CType(dgvcertifications, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -73,6 +73,33 @@ Partial Class frmcertificates
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(1369, 903)
         Panel1.TabIndex = 4
+        ' 
+        ' btnadd
+        ' 
+        btnadd.Location = New Point(674, 346)
+        btnadd.Name = "btnadd"
+        btnadd.Size = New Size(203, 73)
+        btnadd.TabIndex = 44
+        btnadd.Text = "Add"
+        btnadd.UseVisualStyleBackColor = True
+        ' 
+        ' btnupdate
+        ' 
+        btnupdate.Location = New Point(883, 344)
+        btnupdate.Name = "btnupdate"
+        btnupdate.Size = New Size(203, 73)
+        btnupdate.TabIndex = 43
+        btnupdate.Text = "Update"
+        btnupdate.UseVisualStyleBackColor = True
+        ' 
+        ' btndelete
+        ' 
+        btndelete.Location = New Point(1092, 344)
+        btndelete.Name = "btndelete"
+        btndelete.Size = New Size(203, 73)
+        btndelete.TabIndex = 42
+        btndelete.Text = "Delete"
+        btndelete.UseVisualStyleBackColor = True
         ' 
         ' txtcertificatetype
         ' 
@@ -216,33 +243,6 @@ Partial Class frmcertificates
         Label1.Size = New Size(329, 65)
         Label1.TabIndex = 0
         Label1.Text = "Certifications"
-        ' 
-        ' btndelete
-        ' 
-        btndelete.Location = New Point(1092, 344)
-        btndelete.Name = "btndelete"
-        btndelete.Size = New Size(203, 73)
-        btndelete.TabIndex = 42
-        btndelete.Text = "Delete"
-        btndelete.UseVisualStyleBackColor = True
-        ' 
-        ' btnupdate
-        ' 
-        btnupdate.Location = New Point(883, 344)
-        btnupdate.Name = "btnupdate"
-        btnupdate.Size = New Size(203, 73)
-        btnupdate.TabIndex = 43
-        btnupdate.Text = "Update"
-        btnupdate.UseVisualStyleBackColor = True
-        ' 
-        ' btnadd
-        ' 
-        btnadd.Location = New Point(674, 346)
-        btnadd.Name = "btnadd"
-        btnadd.Size = New Size(203, 73)
-        btnadd.TabIndex = 44
-        btnadd.Text = "Add"
-        btnadd.UseVisualStyleBackColor = True
         ' 
         ' FrmCertificates
         ' 
