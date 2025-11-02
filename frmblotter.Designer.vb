@@ -225,9 +225,9 @@ Partial Class frmblotter
         Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label7.Location = New Point(17, 518)
         Label7.Name = "Label7"
-        Label7.Size = New Size(138, 32)
+        Label7.Size = New Size(145, 32)
         Label7.TabIndex = 9
-        Label7.Text = "Created At:"
+        Label7.Text = "Created A t:"
         ' 
         ' Label8
         ' 
