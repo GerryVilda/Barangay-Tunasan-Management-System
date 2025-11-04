@@ -45,7 +45,7 @@ Public Class Dashboard
 
     ' 👨‍👩‍👧‍👦 Residents
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnresidents.Click
-        LoadFormIntoPanel(New frmResidents())
+        LoadFormIntoPanel(New frmresidents)
     End Sub
 
     ' 💬 Complaints

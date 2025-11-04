@@ -159,4 +159,19 @@ Public Class frmresidents
         dtpbirthdate.Value = DateTime.Now
     End Sub
 
+    ' ✅ Auto compute age based on selected birthdate
+    Private Sub dtpbirthdate_ValueChanged(sender As Object, e As EventArgs) Handles dtpbirthdate.ValueChanged
+        Dim birthdate As DateTime = dtpbirthdate.Value
+        Dim age As Integer = CalculateAge(birthdate)
+        txtage.Text = age.ToString()
+    End Sub
+
+    ' ✅ Calculate age based on birthdate
+    Private Function CalculateAge(birthdate As DateTime) As Integer
+        Dim today As DateTime = DateTime.Today
+        Dim age As Integer = today.Year - birthdate.Year
+        If (birthdate > today.AddYears(-age)) Then age -= 1
+        Return age
+    End Function
+
 End Class
