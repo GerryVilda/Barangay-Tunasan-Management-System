@@ -54,12 +54,12 @@ Partial Class frmcomplaints
         txtActionTaken = New TextBox()
         dtpComplaintDate = New DateTimePicker()
         cmbStatus = New ComboBox()
-        DataGridView1 = New DataGridView()
+        dgvComplaints = New DataGridView()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         panelPending.SuspendLayout()
         panelResolved.SuspendLayout()
         panelTotal.SuspendLayout()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgvComplaints, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -376,18 +376,18 @@ Partial Class frmcomplaints
         cmbStatus.Size = New Size(343, 36)
         cmbStatus.TabIndex = 47
         ' 
-        ' DataGridView1
+        ' dgvComplaints
         ' 
-        DataGridView1.AllowUserToAddRows = False
-        DataGridView1.AllowUserToDeleteRows = False
-        DataGridView1.BackgroundColor = Color.White
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(634, 309)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.ReadOnly = True
-        DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(479, 380)
-        DataGridView1.TabIndex = 48
+        dgvComplaints.AllowUserToAddRows = False
+        dgvComplaints.AllowUserToDeleteRows = False
+        dgvComplaints.BackgroundColor = Color.White
+        dgvComplaints.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgvComplaints.Location = New Point(634, 309)
+        dgvComplaints.Name = "dgvComplaints"
+        dgvComplaints.ReadOnly = True
+        dgvComplaints.RowHeadersWidth = 51
+        dgvComplaints.Size = New Size(479, 380)
+        dgvComplaints.TabIndex = 48
         ' 
         ' frmcomplaints
         ' 
@@ -395,7 +395,7 @@ Partial Class frmcomplaints
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         ClientSize = New Size(1147, 782)
-        Controls.Add(DataGridView1)
+        Controls.Add(dgvComplaints)
         Controls.Add(cmbStatus)
         Controls.Add(dtpComplaintDate)
         Controls.Add(txtActionTaken)
@@ -433,7 +433,7 @@ Partial Class frmcomplaints
         panelResolved.PerformLayout()
         panelTotal.ResumeLayout(False)
         panelTotal.PerformLayout()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgvComplaints, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -469,5 +469,5 @@ Partial Class frmcomplaints
     Friend WithEvents txtActionTaken As TextBox
     Friend WithEvents dtpComplaintDate As DateTimePicker
     Friend WithEvents cmbStatus As ComboBox
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dgvComplaints As DataGridView
 End Class

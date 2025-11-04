@@ -25,7 +25,7 @@ Public Class frmblotter
     Private Sub btnsaveblotter_Click(sender As Object, e As EventArgs) Handles btnsaveblotter.Click
         Try
             koneksyon()
-            cmd = New MySqlCommand("INSERT INTO blotter (Complainant_ID, Respondent_ID, Incident_Type, Incident_Date, Location, Details, Status, Remarks)
+            cmd = New MySqlCommand("INSERT INTO blotter_reports (Complainant_ID, Respondent_ID, Incident_Type, Incident_Date, Location, Details, Status, Remarks)
                                     VALUES (@complainant, @respondent, @type, @date, @location, @details, @status, @remarks)", cn)
             cmd.Parameters.AddWithValue("@complainant", txtcomplaint.Text)
             cmd.Parameters.AddWithValue("@respondent", txtrespondent.Text)
@@ -130,4 +130,7 @@ Public Class frmblotter
         txtincidentdate.Value = Date.Now
     End Sub
 
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
 End Class

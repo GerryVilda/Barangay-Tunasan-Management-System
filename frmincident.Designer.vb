@@ -31,38 +31,38 @@ Partial Class frmincident
         Label1 = New Label()
         PictureBox1 = New PictureBox()
         Panel2 = New Panel()
-        Label9 = New Label()
+        lblTotal = New Label()
         Label8 = New Label()
-        Label7 = New Label()
+        lblResolved = New Label()
         Label6 = New Label()
-        Label5 = New Label()
+        lblPending = New Label()
         Label4 = New Label()
         btnSearch = New Button()
-        TextBox1 = New TextBox()
+        txtSearch = New TextBox()
         Label3 = New Label()
-        ComboBox1 = New ComboBox()
+        cmbFilterStatus = New ComboBox()
         Label2 = New Label()
         Panel3 = New Panel()
-        DataGridView1 = New DataGridView()
+        dgvIncidents = New DataGridView()
         Panel4 = New Panel()
-        Button1 = New Button()
+        txtIncidentType = New TextBox()
+        btnCancel = New Button()
         btnSave = New Button()
-        ComboBox3 = New ComboBox()
+        cmbStatus = New ComboBox()
         Label15 = New Label()
-        ComboBox2 = New ComboBox()
         Label14 = New Label()
-        TextBox3 = New TextBox()
+        txtRespondent = New TextBox()
         Label13 = New Label()
-        TextBox2 = New TextBox()
+        txtComplainant = New TextBox()
         Label12 = New Label()
-        DateTimePicker1 = New DateTimePicker()
+        dtpIncidents = New DateTimePicker()
         Label11 = New Label()
         Label10 = New Label()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel2.SuspendLayout()
         Panel3.SuspendLayout()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgvIncidents, ComponentModel.ISupportInitialize).BeginInit()
         Panel4.SuspendLayout()
         SuspendLayout()
         ' 
@@ -157,31 +157,31 @@ Partial Class frmincident
         ' 
         ' Panel2
         ' 
-        Panel2.Controls.Add(Label9)
+        Panel2.Controls.Add(lblTotal)
         Panel2.Controls.Add(Label8)
-        Panel2.Controls.Add(Label7)
+        Panel2.Controls.Add(lblResolved)
         Panel2.Controls.Add(Label6)
-        Panel2.Controls.Add(Label5)
+        Panel2.Controls.Add(lblPending)
         Panel2.Controls.Add(Label4)
         Panel2.Controls.Add(btnSearch)
-        Panel2.Controls.Add(TextBox1)
+        Panel2.Controls.Add(txtSearch)
         Panel2.Controls.Add(Label3)
-        Panel2.Controls.Add(ComboBox1)
+        Panel2.Controls.Add(cmbFilterStatus)
         Panel2.Controls.Add(Label2)
         Panel2.Location = New Point(195, 61)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(923, 74)
         Panel2.TabIndex = 22
         ' 
-        ' Label9
+        ' lblTotal
         ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(436, 41)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(22, 25)
-        Label9.TabIndex = 10
-        Label9.Text = "0"
+        lblTotal.AutoSize = True
+        lblTotal.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblTotal.Location = New Point(436, 41)
+        lblTotal.Name = "lblTotal"
+        lblTotal.Size = New Size(22, 25)
+        lblTotal.TabIndex = 10
+        lblTotal.Text = "0"
         ' 
         ' Label8
         ' 
@@ -193,15 +193,15 @@ Partial Class frmincident
         Label8.TabIndex = 9
         Label8.Text = "Total:"
         ' 
-        ' Label7
+        ' lblResolved
         ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(323, 41)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(22, 25)
-        Label7.TabIndex = 8
-        Label7.Text = "0"
+        lblResolved.AutoSize = True
+        lblResolved.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblResolved.Location = New Point(323, 41)
+        lblResolved.Name = "lblResolved"
+        lblResolved.Size = New Size(22, 25)
+        lblResolved.TabIndex = 8
+        lblResolved.Text = "0"
         ' 
         ' Label6
         ' 
@@ -213,15 +213,15 @@ Partial Class frmincident
         Label6.TabIndex = 7
         Label6.Text = "Resolved:"
         ' 
-        ' Label5
+        ' lblPending
         ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(160, 41)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(22, 25)
-        Label5.TabIndex = 6
-        Label5.Text = "0"
+        lblPending.AutoSize = True
+        lblPending.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblPending.Location = New Point(160, 41)
+        lblPending.Name = "lblPending"
+        lblPending.Size = New Size(22, 25)
+        lblPending.TabIndex = 6
+        lblPending.Text = "0"
         ' 
         ' Label4
         ' 
@@ -244,14 +244,14 @@ Partial Class frmincident
         btnSearch.TabIndex = 4
         btnSearch.UseVisualStyleBackColor = True
         ' 
-        ' TextBox1
+        ' txtSearch
         ' 
-        TextBox1.Font = New Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TextBox1.Location = New Point(428, 3)
-        TextBox1.Name = "TextBox1"
-        TextBox1.PlaceholderText = "Search by complainant/respondent"
-        TextBox1.Size = New Size(239, 30)
-        TextBox1.TabIndex = 3
+        txtSearch.Font = New Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtSearch.Location = New Point(428, 3)
+        txtSearch.Name = "txtSearch"
+        txtSearch.PlaceholderText = "Search by complainant/respondent"
+        txtSearch.Size = New Size(239, 30)
+        txtSearch.TabIndex = 3
         ' 
         ' Label3
         ' 
@@ -263,15 +263,15 @@ Partial Class frmincident
         Label3.TabIndex = 2
         Label3.Text = "Search:"
         ' 
-        ' ComboBox1
+        ' cmbFilterStatus
         ' 
-        ComboBox1.Font = New Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Items.AddRange(New Object() {"All", "Pending" & vbTab, "Resolved", "On Hold"})
-        ComboBox1.Location = New Point(160, 3)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(151, 31)
-        ComboBox1.TabIndex = 1
+        cmbFilterStatus.Font = New Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmbFilterStatus.FormattingEnabled = True
+        cmbFilterStatus.Items.AddRange(New Object() {"All", "Pending" & vbTab, "Resolved"})
+        cmbFilterStatus.Location = New Point(160, 3)
+        cmbFilterStatus.Name = "cmbFilterStatus"
+        cmbFilterStatus.Size = New Size(151, 31)
+        cmbFilterStatus.TabIndex = 1
         ' 
         ' Label2
         ' 
@@ -285,38 +285,38 @@ Partial Class frmincident
         ' 
         ' Panel3
         ' 
-        Panel3.Controls.Add(DataGridView1)
+        Panel3.Controls.Add(dgvIncidents)
         Panel3.Location = New Point(12, 159)
         Panel3.Name = "Panel3"
         Panel3.Size = New Size(792, 611)
         Panel3.TabIndex = 23
         ' 
-        ' DataGridView1
+        ' dgvIncidents
         ' 
-        DataGridView1.AllowUserToAddRows = False
-        DataGridView1.AllowUserToDeleteRows = False
-        DataGridView1.BackgroundColor = Color.White
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(3, 3)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.ReadOnly = True
-        DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(786, 605)
-        DataGridView1.TabIndex = 0
+        dgvIncidents.AllowUserToAddRows = False
+        dgvIncidents.AllowUserToDeleteRows = False
+        dgvIncidents.BackgroundColor = Color.White
+        dgvIncidents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgvIncidents.Location = New Point(3, 3)
+        dgvIncidents.Name = "dgvIncidents"
+        dgvIncidents.ReadOnly = True
+        dgvIncidents.RowHeadersWidth = 51
+        dgvIncidents.Size = New Size(786, 605)
+        dgvIncidents.TabIndex = 0
         ' 
         ' Panel4
         ' 
-        Panel4.Controls.Add(Button1)
+        Panel4.Controls.Add(txtIncidentType)
+        Panel4.Controls.Add(btnCancel)
         Panel4.Controls.Add(btnSave)
-        Panel4.Controls.Add(ComboBox3)
+        Panel4.Controls.Add(cmbStatus)
         Panel4.Controls.Add(Label15)
-        Panel4.Controls.Add(ComboBox2)
         Panel4.Controls.Add(Label14)
-        Panel4.Controls.Add(TextBox3)
+        Panel4.Controls.Add(txtRespondent)
         Panel4.Controls.Add(Label13)
-        Panel4.Controls.Add(TextBox2)
+        Panel4.Controls.Add(txtComplainant)
         Panel4.Controls.Add(Label12)
-        Panel4.Controls.Add(DateTimePicker1)
+        Panel4.Controls.Add(dtpIncidents)
         Panel4.Controls.Add(Label11)
         Panel4.Controls.Add(Label10)
         Panel4.Location = New Point(810, 162)
@@ -324,19 +324,27 @@ Partial Class frmincident
         Panel4.Size = New Size(308, 608)
         Panel4.TabIndex = 24
         ' 
-        ' Button1
+        ' txtIncidentType
         ' 
-        Button1.BackColor = Color.Gray
-        Button1.FlatAppearance.BorderSize = 0
-        Button1.FlatStyle = FlatStyle.Flat
-        Button1.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Button1.ForeColor = Color.Transparent
-        Button1.Location = New Point(156, 503)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(93, 39)
-        Button1.TabIndex = 22
-        Button1.Text = "Cancel"
-        Button1.UseVisualStyleBackColor = False
+        txtIncidentType.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtIncidentType.Location = New Point(3, 341)
+        txtIncidentType.Name = "txtIncidentType"
+        txtIncidentType.Size = New Size(302, 34)
+        txtIncidentType.TabIndex = 23
+        ' 
+        ' btnCancel
+        ' 
+        btnCancel.BackColor = Color.Gray
+        btnCancel.FlatAppearance.BorderSize = 0
+        btnCancel.FlatStyle = FlatStyle.Flat
+        btnCancel.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        btnCancel.ForeColor = Color.Transparent
+        btnCancel.Location = New Point(156, 503)
+        btnCancel.Name = "btnCancel"
+        btnCancel.Size = New Size(93, 39)
+        btnCancel.TabIndex = 22
+        btnCancel.Text = "Cancel"
+        btnCancel.UseVisualStyleBackColor = False
         ' 
         ' btnSave
         ' 
@@ -351,15 +359,15 @@ Partial Class frmincident
         btnSave.Text = "Save"
         btnSave.UseVisualStyleBackColor = False
         ' 
-        ' ComboBox3
+        ' cmbStatus
         ' 
-        ComboBox3.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        ComboBox3.FormattingEnabled = True
-        ComboBox3.Items.AddRange(New Object() {"All", "Pending" & vbTab, "Resolved", "On Hold"})
-        ComboBox3.Location = New Point(3, 423)
-        ComboBox3.Name = "ComboBox3"
-        ComboBox3.Size = New Size(302, 36)
-        ComboBox3.TabIndex = 20
+        cmbStatus.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmbStatus.FormattingEnabled = True
+        cmbStatus.Items.AddRange(New Object() {"All", "Pending" & vbTab, "Resolved"})
+        cmbStatus.Location = New Point(3, 423)
+        cmbStatus.Name = "cmbStatus"
+        cmbStatus.Size = New Size(302, 36)
+        cmbStatus.TabIndex = 20
         ' 
         ' Label15
         ' 
@@ -371,16 +379,6 @@ Partial Class frmincident
         Label15.TabIndex = 19
         Label15.Text = "Status"
         ' 
-        ' ComboBox2
-        ' 
-        ComboBox2.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        ComboBox2.FormattingEnabled = True
-        ComboBox2.Items.AddRange(New Object() {"All", "Pending" & vbTab, "Resolved", "On Hold"})
-        ComboBox2.Location = New Point(3, 341)
-        ComboBox2.Name = "ComboBox2"
-        ComboBox2.Size = New Size(302, 36)
-        ComboBox2.TabIndex = 11
-        ' 
         ' Label14
         ' 
         Label14.AutoSize = True
@@ -391,13 +389,13 @@ Partial Class frmincident
         Label14.TabIndex = 18
         Label14.Text = "Incident Type"
         ' 
-        ' TextBox3
+        ' txtRespondent
         ' 
-        TextBox3.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TextBox3.Location = New Point(3, 258)
-        TextBox3.Name = "TextBox3"
-        TextBox3.Size = New Size(302, 34)
-        TextBox3.TabIndex = 17
+        txtRespondent.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtRespondent.Location = New Point(3, 258)
+        txtRespondent.Name = "txtRespondent"
+        txtRespondent.Size = New Size(302, 34)
+        txtRespondent.TabIndex = 17
         ' 
         ' Label13
         ' 
@@ -409,13 +407,13 @@ Partial Class frmincident
         Label13.TabIndex = 16
         Label13.Text = "Respondent"
         ' 
-        ' TextBox2
+        ' txtComplainant
         ' 
-        TextBox2.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TextBox2.Location = New Point(3, 177)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(302, 34)
-        TextBox2.TabIndex = 15
+        txtComplainant.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtComplainant.Location = New Point(3, 177)
+        txtComplainant.Name = "txtComplainant"
+        txtComplainant.Size = New Size(302, 34)
+        txtComplainant.TabIndex = 15
         ' 
         ' Label12
         ' 
@@ -427,13 +425,13 @@ Partial Class frmincident
         Label12.TabIndex = 14
         Label12.Text = "Complainant"
         ' 
-        ' DateTimePicker1
+        ' dtpIncidents
         ' 
-        DateTimePicker1.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DateTimePicker1.Location = New Point(3, 97)
-        DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(302, 34)
-        DateTimePicker1.TabIndex = 13
+        dtpIncidents.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        dtpIncidents.Location = New Point(3, 97)
+        dtpIncidents.Name = "dtpIncidents"
+        dtpIncidents.Size = New Size(302, 34)
+        dtpIncidents.TabIndex = 13
         ' 
         ' Label11
         ' 
@@ -475,7 +473,7 @@ Partial Class frmincident
         Panel2.ResumeLayout(False)
         Panel2.PerformLayout()
         Panel3.ResumeLayout(False)
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgvIncidents, ComponentModel.ISupportInitialize).EndInit()
         Panel4.ResumeLayout(False)
         Panel4.PerformLayout()
         ResumeLayout(False)
@@ -490,30 +488,30 @@ Partial Class frmincident
     Friend WithEvents btnEdit As Button
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtSearch As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmbFilterStatus As ComboBox
     Friend WithEvents Label4 As Label
     Friend WithEvents btnSearch As Button
-    Friend WithEvents Label9 As Label
+    Friend WithEvents lblTotal As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents Label7 As Label
+    Friend WithEvents lblResolved As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents Label5 As Label
+    Friend WithEvents lblPending As Label
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dgvIncidents As DataGridView
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents txtRespondent As TextBox
     Friend WithEvents Label13 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtComplainant As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents Button1 As Button
+    Friend WithEvents dtpIncidents As DateTimePicker
+    Friend WithEvents btnCancel As Button
     Friend WithEvents btnSave As Button
-    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents cmbStatus As ComboBox
     Friend WithEvents Label15 As Label
-    Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents Label14 As Label
+    Friend WithEvents txtIncidentType As TextBox
 End Class

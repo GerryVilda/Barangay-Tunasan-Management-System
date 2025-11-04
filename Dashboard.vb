@@ -63,11 +63,6 @@ Public Class Dashboard
         LoadFormIntoPanel(New frmblotter())
     End Sub
 
-    ' 🪪 Certifications
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles btnrecords.Click
-        LoadFormIntoPanel(New frmRecords())
-    End Sub
-
     ' 👴 Senior Records
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles btncertifications.Click
         LoadFormIntoPanel(New frmcertificates())

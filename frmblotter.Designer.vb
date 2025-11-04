@@ -61,7 +61,7 @@ Partial Class frmblotter
         Label1.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
         Label1.Location = New Point(17, 15)
         Label1.Name = "Label1"
-        Label1.Size = New Size(365, 65)
+        Label1.Size = New Size(306, 54)
         Label1.TabIndex = 0
         Label1.Text = "Blotter Reports"
         ' 
@@ -148,7 +148,7 @@ Partial Class frmblotter
         txtincidentdate.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         txtincidentdate.Location = New Point(190, 330)
         txtincidentdate.Name = "txtincidentdate"
-        txtincidentdate.Size = New Size(337, 39)
+        txtincidentdate.Size = New Size(337, 34)
         txtincidentdate.TabIndex = 18
         ' 
         ' dtpcreatedat
@@ -156,7 +156,7 @@ Partial Class frmblotter
         dtpcreatedat.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         dtpcreatedat.Location = New Point(190, 513)
         dtpcreatedat.Name = "dtpcreatedat"
-        dtpcreatedat.Size = New Size(337, 39)
+        dtpcreatedat.Size = New Size(337, 34)
         dtpcreatedat.TabIndex = 17
         ' 
         ' txtremarks
@@ -173,7 +173,7 @@ Partial Class frmblotter
         txtlocation.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         txtlocation.Location = New Point(190, 390)
         txtlocation.Name = "txtlocation"
-        txtlocation.Size = New Size(337, 39)
+        txtlocation.Size = New Size(337, 34)
         txtlocation.TabIndex = 15
         ' 
         ' txtincidentype
@@ -181,7 +181,7 @@ Partial Class frmblotter
         txtincidentype.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         txtincidentype.Location = New Point(190, 276)
         txtincidentype.Name = "txtincidentype"
-        txtincidentype.Size = New Size(337, 39)
+        txtincidentype.Size = New Size(337, 34)
         txtincidentype.TabIndex = 14
         ' 
         ' txtrespondent
@@ -189,7 +189,7 @@ Partial Class frmblotter
         txtrespondent.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         txtrespondent.Location = New Point(190, 222)
         txtrespondent.Name = "txtrespondent"
-        txtrespondent.Size = New Size(337, 39)
+        txtrespondent.Size = New Size(337, 34)
         txtrespondent.TabIndex = 13
         ' 
         ' txtcomplaint
@@ -197,7 +197,7 @@ Partial Class frmblotter
         txtcomplaint.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         txtcomplaint.Location = New Point(190, 168)
         txtcomplaint.Name = "txtcomplaint"
-        txtcomplaint.Size = New Size(337, 39)
+        txtcomplaint.Size = New Size(337, 34)
         txtcomplaint.TabIndex = 12
         ' 
         ' txtblotterid
@@ -206,7 +206,7 @@ Partial Class frmblotter
         txtblotterid.Location = New Point(190, 113)
         txtblotterid.Name = "txtblotterid"
         txtblotterid.ReadOnly = True
-        txtblotterid.Size = New Size(337, 39)
+        txtblotterid.Size = New Size(337, 34)
         txtblotterid.TabIndex = 11
         ' 
         ' cbostatus
@@ -216,7 +216,7 @@ Partial Class frmblotter
         cbostatus.Items.AddRange(New Object() {"Pending", "Under Investigation", "Resolved"})
         cbostatus.Location = New Point(190, 448)
         cbostatus.Name = "cbostatus"
-        cbostatus.Size = New Size(337, 40)
+        cbostatus.Size = New Size(337, 36)
         cbostatus.TabIndex = 10
         ' 
         ' Label7
@@ -225,7 +225,7 @@ Partial Class frmblotter
         Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label7.Location = New Point(17, 518)
         Label7.Name = "Label7"
-        Label7.Size = New Size(145, 32)
+        Label7.Size = New Size(119, 28)
         Label7.TabIndex = 9
         Label7.Text = "Created A t:"
         ' 
@@ -235,7 +235,7 @@ Partial Class frmblotter
         Label8.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label8.Location = New Point(535, 321)
         Label8.Name = "Label8"
-        Label8.Size = New Size(113, 32)
+        Label8.Size = New Size(94, 28)
         Label8.TabIndex = 8
         Label8.Text = "Remarks:"
         ' 
@@ -245,7 +245,7 @@ Partial Class frmblotter
         Label9.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label9.Location = New Point(17, 448)
         Label9.Name = "Label9"
-        Label9.Size = New Size(87, 32)
+        Label9.Size = New Size(72, 28)
         Label9.TabIndex = 7
         Label9.Text = "Status:"
         ' 
@@ -255,7 +255,7 @@ Partial Class frmblotter
         Label10.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label10.Location = New Point(17, 335)
         Label10.Name = "Label10"
-        Label10.Size = New Size(167, 32)
+        Label10.Size = New Size(139, 28)
         Label10.TabIndex = 6
         Label10.Text = "Incident Date:"
         ' 
@@ -265,7 +265,7 @@ Partial Class frmblotter
         Label11.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label11.Location = New Point(17, 171)
         Label11.Name = "Label11"
-        Label11.Size = New Size(132, 32)
+        Label11.Size = New Size(110, 28)
         Label11.TabIndex = 5
         Label11.Text = "Complaint:"
         ' 
@@ -275,7 +275,7 @@ Partial Class frmblotter
         Label6.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label6.Location = New Point(532, 15)
         Label6.Name = "Label6"
-        Label6.Size = New Size(94, 32)
+        Label6.Size = New Size(78, 28)
         Label6.TabIndex = 4
         Label6.Text = "Details:"
         ' 
@@ -285,7 +285,7 @@ Partial Class frmblotter
         Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label5.Location = New Point(17, 390)
         Label5.Name = "Label5"
-        Label5.Size = New Size(113, 32)
+        Label5.Size = New Size(94, 28)
         Label5.TabIndex = 3
         Label5.Text = "Location:"
         ' 
@@ -295,7 +295,7 @@ Partial Class frmblotter
         Label4.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label4.Location = New Point(18, 279)
         Label4.Name = "Label4"
-        Label4.Size = New Size(166, 32)
+        Label4.Size = New Size(140, 28)
         Label4.TabIndex = 2
         Label4.Text = "Incident Type:"
         ' 
@@ -305,7 +305,7 @@ Partial Class frmblotter
         Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label3.Location = New Point(18, 225)
         Label3.Name = "Label3"
-        Label3.Size = New Size(149, 32)
+        Label3.Size = New Size(126, 28)
         Label3.TabIndex = 1
         Label3.Text = "Respondent:"
         ' 
@@ -315,18 +315,18 @@ Partial Class frmblotter
         Label2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label2.Location = New Point(17, 116)
         Label2.Name = "Label2"
-        Label2.Size = New Size(126, 32)
+        Label2.Size = New Size(104, 28)
         Label2.TabIndex = 0
         Label2.Text = "Blotter ID:"
         ' 
         ' frmblotter
         ' 
-        AutoScaleDimensions = New SizeF(10F, 25F)
+        AutoScaleDimensions = New SizeF(9F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
         BackgroundImageLayout = ImageLayout.Stretch
-        ClientSize = New Size(1434, 978)
+        ClientSize = New Size(1777, 1055)
         Controls.Add(Panel1)
         DoubleBuffered = True
         Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))

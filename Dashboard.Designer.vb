@@ -30,7 +30,6 @@ Partial Class Dashboard
         btnofficials = New Button()
         btnsummary = New Button()
         btnsito = New Button()
-        btnrecords = New Button()
         btncertifications = New Button()
         btnincidents = New Button()
         btnblotter = New Button()
@@ -57,7 +56,6 @@ Partial Class Dashboard
         Panel1.Controls.Add(btnofficials)
         Panel1.Controls.Add(btnsummary)
         Panel1.Controls.Add(btnsito)
-        Panel1.Controls.Add(btnrecords)
         Panel1.Controls.Add(btncertifications)
         Panel1.Controls.Add(btnincidents)
         Panel1.Controls.Add(btnblotter)
@@ -69,8 +67,9 @@ Partial Class Dashboard
         Panel1.Controls.Add(PictureBox1)
         Panel1.Dock = DockStyle.Left
         Panel1.Location = New Point(0, 0)
+        Panel1.Margin = New Padding(2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(276, 1037)
+        Panel1.Size = New Size(221, 1051)
         Panel1.TabIndex = 0
         ' 
         ' btnlogout
@@ -82,9 +81,10 @@ Partial Class Dashboard
         btnlogout.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btnlogout.FlatStyle = FlatStyle.Flat
         btnlogout.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnlogout.Location = New Point(0, 806)
+        btnlogout.Location = New Point(0, 848)
+        btnlogout.Margin = New Padding(2)
         btnlogout.Name = "btnlogout"
-        btnlogout.Size = New Size(276, 59)
+        btnlogout.Size = New Size(221, 75)
         btnlogout.TabIndex = 14
         btnlogout.Text = "🚪 Logout / Exit"
         btnlogout.UseVisualStyleBackColor = False
@@ -97,10 +97,11 @@ Partial Class Dashboard
         btnusers.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
         btnusers.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btnusers.FlatStyle = FlatStyle.Flat
-        btnusers.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnusers.Location = New Point(0, 747)
+        btnusers.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnusers.Location = New Point(0, 773)
+        btnusers.Margin = New Padding(2)
         btnusers.Name = "btnusers"
-        btnusers.Size = New Size(276, 59)
+        btnusers.Size = New Size(221, 75)
         btnusers.TabIndex = 13
         btnusers.Text = "🔑 Users / Accounts"
         btnusers.UseVisualStyleBackColor = False
@@ -113,10 +114,11 @@ Partial Class Dashboard
         btnofficials.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
         btnofficials.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btnofficials.FlatStyle = FlatStyle.Flat
-        btnofficials.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnofficials.Location = New Point(0, 688)
+        btnofficials.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnofficials.Location = New Point(0, 698)
+        btnofficials.Margin = New Padding(2)
         btnofficials.Name = "btnofficials"
-        btnofficials.Size = New Size(276, 59)
+        btnofficials.Size = New Size(221, 75)
         btnofficials.TabIndex = 12
         btnofficials.Text = ChrW(55358) & ChrW(56785) & "‍💼 Officials"
         btnofficials.UseVisualStyleBackColor = False
@@ -129,10 +131,11 @@ Partial Class Dashboard
         btnsummary.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
         btnsummary.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btnsummary.FlatStyle = FlatStyle.Flat
-        btnsummary.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnsummary.Location = New Point(0, 608)
+        btnsummary.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnsummary.Location = New Point(0, 606)
+        btnsummary.Margin = New Padding(2)
         btnsummary.Name = "btnsummary"
-        btnsummary.Size = New Size(276, 80)
+        btnsummary.Size = New Size(221, 92)
         btnsummary.TabIndex = 11
         btnsummary.Text = "📊 Reports Summary"
         btnsummary.UseVisualStyleBackColor = False
@@ -145,29 +148,14 @@ Partial Class Dashboard
         btnsito.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
         btnsito.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btnsito.FlatStyle = FlatStyle.Flat
-        btnsito.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnsito.Location = New Point(0, 549)
+        btnsito.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnsito.Location = New Point(0, 531)
+        btnsito.Margin = New Padding(2)
         btnsito.Name = "btnsito"
-        btnsito.Size = New Size(276, 59)
+        btnsito.Size = New Size(221, 75)
         btnsito.TabIndex = 10
         btnsito.Text = "📍 Sitio Problems"
         btnsito.UseVisualStyleBackColor = False
-        ' 
-        ' btnrecords
-        ' 
-        btnrecords.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        btnrecords.Dock = DockStyle.Top
-        btnrecords.FlatAppearance.BorderSize = 0
-        btnrecords.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
-        btnrecords.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
-        btnrecords.FlatStyle = FlatStyle.Flat
-        btnrecords.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnrecords.Location = New Point(0, 490)
-        btnrecords.Name = "btnrecords"
-        btnrecords.Size = New Size(276, 59)
-        btnrecords.TabIndex = 9
-        btnrecords.Text = "👴 Senior / Records"
-        btnrecords.UseVisualStyleBackColor = False
         ' 
         ' btncertifications
         ' 
@@ -177,10 +165,11 @@ Partial Class Dashboard
         btncertifications.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
         btncertifications.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btncertifications.FlatStyle = FlatStyle.Flat
-        btncertifications.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btncertifications.Location = New Point(0, 431)
+        btncertifications.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btncertifications.Location = New Point(0, 456)
+        btncertifications.Margin = New Padding(2)
         btncertifications.Name = "btncertifications"
-        btncertifications.Size = New Size(276, 59)
+        btncertifications.Size = New Size(221, 75)
         btncertifications.TabIndex = 8
         btncertifications.Text = ChrW(55358) & ChrW(57002) & " Certifications"
         btncertifications.UseVisualStyleBackColor = False
@@ -193,10 +182,11 @@ Partial Class Dashboard
         btnincidents.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
         btnincidents.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btnincidents.FlatStyle = FlatStyle.Flat
-        btnincidents.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnincidents.Location = New Point(0, 372)
+        btnincidents.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnincidents.Location = New Point(0, 381)
+        btnincidents.Margin = New Padding(2)
         btnincidents.Name = "btnincidents"
-        btnincidents.Size = New Size(276, 59)
+        btnincidents.Size = New Size(221, 75)
         btnincidents.TabIndex = 7
         btnincidents.Text = "⚠️ Incident Reports"
         btnincidents.UseVisualStyleBackColor = False
@@ -209,10 +199,11 @@ Partial Class Dashboard
         btnblotter.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
         btnblotter.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btnblotter.FlatStyle = FlatStyle.Flat
-        btnblotter.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnblotter.Location = New Point(0, 313)
+        btnblotter.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnblotter.Location = New Point(0, 306)
+        btnblotter.Margin = New Padding(2)
         btnblotter.Name = "btnblotter"
-        btnblotter.Size = New Size(276, 59)
+        btnblotter.Size = New Size(221, 75)
         btnblotter.TabIndex = 6
         btnblotter.Text = ChrW(55358) & ChrW(56830) & " Blotter Reports"
         btnblotter.UseVisualStyleBackColor = False
@@ -225,10 +216,11 @@ Partial Class Dashboard
         btncomplaints.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
         btncomplaints.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btncomplaints.FlatStyle = FlatStyle.Flat
-        btncomplaints.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btncomplaints.Location = New Point(0, 254)
+        btncomplaints.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btncomplaints.Location = New Point(0, 231)
+        btncomplaints.Margin = New Padding(2)
         btncomplaints.Name = "btncomplaints"
-        btncomplaints.Size = New Size(276, 59)
+        btncomplaints.Size = New Size(221, 75)
         btncomplaints.TabIndex = 5
         btncomplaints.Text = "💬 Complaints"
         btncomplaints.UseVisualStyleBackColor = False
@@ -241,10 +233,11 @@ Partial Class Dashboard
         btnresidents.FlatAppearance.MouseDownBackColor = Color.FromArgb(CByte(230), CByte(149), CByte(0))
         btnresidents.FlatAppearance.MouseOverBackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         btnresidents.FlatStyle = FlatStyle.Flat
-        btnresidents.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnresidents.Location = New Point(0, 195)
+        btnresidents.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold)
+        btnresidents.Location = New Point(0, 156)
+        btnresidents.Margin = New Padding(2)
         btnresidents.Name = "btnresidents"
-        btnresidents.Size = New Size(276, 59)
+        btnresidents.Size = New Size(221, 75)
         btnresidents.TabIndex = 4
         btnresidents.Text = "👨‍👩‍👧‍👦 Residents"
         btnresidents.UseVisualStyleBackColor = False
@@ -253,9 +246,10 @@ Partial Class Dashboard
         ' 
         lbltime.AutoSize = True
         lbltime.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        lbltime.Location = New Point(76, 979)
+        lbltime.Location = New Point(61, 1026)
+        lbltime.Margin = New Padding(2, 0, 2, 0)
         lbltime.Name = "lbltime"
-        lbltime.Size = New Size(63, 25)
+        lbltime.Size = New Size(53, 20)
         lbltime.TabIndex = 3
         lbltime.Text = "Label2"
         lbltime.TextAlign = ContentAlignment.MiddleCenter
@@ -264,9 +258,10 @@ Partial Class Dashboard
         ' 
         lbldate.AutoSize = True
         lbldate.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        lbldate.Location = New Point(38, 939)
+        lbldate.Location = New Point(30, 994)
+        lbldate.Margin = New Padding(2, 0, 2, 0)
         lbldate.Name = "lbldate"
-        lbldate.Size = New Size(63, 25)
+        lbldate.Size = New Size(53, 20)
         lbldate.TabIndex = 2
         lbldate.Text = "Label3"
         lbldate.TextAlign = ContentAlignment.MiddleCenter
@@ -274,11 +269,12 @@ Partial Class Dashboard
         ' lblgreet
         ' 
         lblgreet.AutoSize = True
-        lblgreet.Font = New Font("Segoe UI Black", 16F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblgreet.Font = New Font("Segoe UI Black", 16.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblgreet.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        lblgreet.Location = New Point(12, 879)
+        lblgreet.Location = New Point(10, 946)
+        lblgreet.Margin = New Padding(2, 0, 2, 0)
         lblgreet.Name = "lblgreet"
-        lblgreet.Size = New Size(123, 45)
+        lblgreet.Size = New Size(103, 37)
         lblgreet.TabIndex = 1
         lblgreet.Text = "Label2"
         lblgreet.TextAlign = ContentAlignment.MiddleCenter
@@ -289,8 +285,9 @@ Partial Class Dashboard
         PictureBox1.Dock = DockStyle.Top
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
         PictureBox1.Location = New Point(0, 0)
+        PictureBox1.Margin = New Padding(2)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(276, 195)
+        PictureBox1.Size = New Size(221, 156)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 0
         PictureBox1.TabStop = False
@@ -300,9 +297,10 @@ Partial Class Dashboard
         Panel2.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         Panel2.Controls.Add(Label1)
         Panel2.Dock = DockStyle.Top
-        Panel2.Location = New Point(276, 0)
+        Panel2.Location = New Point(221, 0)
+        Panel2.Margin = New Padding(2)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(1486, 70)
+        Panel2.Size = New Size(1612, 56)
         Panel2.TabIndex = 1
         ' 
         ' Label1
@@ -310,9 +308,10 @@ Partial Class Dashboard
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        Label1.Location = New Point(11, 14)
+        Label1.Location = New Point(9, 11)
+        Label1.Margin = New Padding(2, 0, 2, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(656, 48)
+        Label1.Size = New Size(546, 41)
         Label1.TabIndex = 0
         Label1.Text = "Barangay Tunasan Management Sytem"
         ' 
@@ -324,25 +323,28 @@ Partial Class Dashboard
         PanelMain.BackColor = SystemColors.AppWorkspace
         PanelMain.BackgroundImage = CType(resources.GetObject("PanelMain.BackgroundImage"), Image)
         PanelMain.BackgroundImageLayout = ImageLayout.Stretch
-        PanelMain.Location = New Point(276, 65)
+        PanelMain.Location = New Point(221, 52)
+        PanelMain.Margin = New Padding(2)
         PanelMain.Name = "PanelMain"
-        PanelMain.Size = New Size(1801, 1087)
+        PanelMain.Size = New Size(1612, 1015)
         PanelMain.TabIndex = 2
         ' 
         ' Dashboard
         ' 
-        AutoScaleDimensions = New SizeF(10F, 25F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         AutoSizeMode = AutoSizeMode.GrowAndShrink
-        ClientSize = New Size(1762, 1037)
+        ClientSize = New Size(1833, 1051)
         Controls.Add(PanelMain)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
         FormBorderStyle = FormBorderStyle.Fixed3D
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Margin = New Padding(2)
         Name = "Dashboard"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Dashboard"
+        WindowState = FormWindowState.Maximized
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
@@ -361,7 +363,6 @@ Partial Class Dashboard
     Friend WithEvents Timer1 As Timer
     Friend WithEvents btnsummary As Button
     Friend WithEvents btnsito As Button
-    Friend WithEvents btnrecords As Button
     Friend WithEvents btncertifications As Button
     Friend WithEvents btnincidents As Button
     Friend WithEvents btnblotter As Button
