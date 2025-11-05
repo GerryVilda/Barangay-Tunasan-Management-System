@@ -63,7 +63,7 @@ Public Class frmincident
 
     'Save New Incident
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        If txtComplainant.Text.Trim() = "" Or txtRespondent.Text.Trim() = "" Or txtIncidentType.Text.Trim() = "" Then
+        If txtComplainant.Text.Trim() = "" Or txtRespondent.Text.Trim() = "" Or cboincident.Text.Trim() = "" Then
             MessageBox.Show("Please fill in all required fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
@@ -74,7 +74,7 @@ Public Class frmincident
 
             cmd.Parameters.AddWithValue("@complainant", txtComplainant.Text)
             cmd.Parameters.AddWithValue("@respondent", txtRespondent.Text)
-            cmd.Parameters.AddWithValue("@type", txtIncidentType.Text)
+            cmd.Parameters.AddWithValue("@type", cboincident.Text)
             cmd.Parameters.AddWithValue("@date", dtpIncidents.Value.ToString("yyyy-MM-dd"))
             cmd.Parameters.AddWithValue("@status", cmbStatus.Text)
 
@@ -101,7 +101,7 @@ Public Class frmincident
 
             cmd.Parameters.AddWithValue("@complainant", txtComplainant.Text)
             cmd.Parameters.AddWithValue("@respondent", txtRespondent.Text)
-            cmd.Parameters.AddWithValue("@type", txtIncidentType.Text)
+            cmd.Parameters.AddWithValue("@type", cboincident.Text)
             cmd.Parameters.AddWithValue("@date", dtpIncidents.Value.ToString("yyyy-MM-dd"))
             cmd.Parameters.AddWithValue("@status", cmbStatus.Text)
 
@@ -171,7 +171,7 @@ Public Class frmincident
     Private Sub ClearFields()
         txtComplainant.Clear()
         txtRespondent.Clear()
-        txtIncidentType.Clear()
+        cboincident.SelectedIndex = -1
         cmbStatus.SelectedIndex = 0
         dtpIncidents.Value = DateTime.Now
     End Sub

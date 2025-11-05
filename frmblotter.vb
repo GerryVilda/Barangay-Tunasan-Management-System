@@ -3,7 +3,16 @@
 Public Class frmblotter
 
     Private Sub frmblotter_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' ✅ Load blotter records on form load
         LoadBlotters()
+
+        ' ✅ Make DataGridView read-only
+        dgvblotters.ReadOnly = True
+
+        ' ✅ Auto-size columns based on content
+        dgvblotters.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        dgvblotters.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+        dgvblotters.DefaultCellStyle.WrapMode = DataGridViewTriState.True
     End Sub
 
     ' ===== LOAD BLOTTERR RECORDS =====
@@ -14,6 +23,10 @@ Public Class frmblotter
             dt = New DataTable
             da.Fill(dt)
             dgvblotters.DataSource = dt
+
+            ' ✅ Adjust columns automatically after loading data
+            dgvblotters.AutoResizeColumns()
+            dgvblotters.AutoResizeRows()
         Catch ex As Exception
             MessageBox.Show("Error loading blotters: " & ex.Message)
         Finally
@@ -77,30 +90,6 @@ Public Class frmblotter
         End Try
     End Sub
 
-    ' ===== DELETE BLOTTERR =====
-    Private Sub btndeleteblotter_Click(sender As Object, e As EventArgs) Handles btndeleteblotter.Click
-        If txtblotterid.Text = "" Then
-            MessageBox.Show("Select a record to delete.")
-            Exit Sub
-        End If
-
-        If MessageBox.Show("Are you sure you want to delete this record?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            Try
-                koneksyon()
-                cmd = New MySqlCommand("DELETE FROM blotter_reports WHERE Blotter_ID=@id", cn)
-                cmd.Parameters.AddWithValue("@id", txtblotterid.Text)
-                cmd.ExecuteNonQuery()
-                MessageBox.Show("🗑 Blotter record deleted.")
-                LoadBlotters()
-                ClearFields()
-            Catch ex As Exception
-                MessageBox.Show("Error deleting blotter: " & ex.Message)
-            Finally
-                cn.Close()
-            End Try
-        End If
-    End Sub
-
     ' ===== SELECT FROM DATAGRIDVIEW =====
     Private Sub dgvblotters_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvblotters.CellClick
         If e.RowIndex >= 0 Then
@@ -131,6 +120,8 @@ Public Class frmblotter
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+    End Sub
 
+    Private Sub dgvblotters_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvblotters.CellContentClick
     End Sub
 End Class

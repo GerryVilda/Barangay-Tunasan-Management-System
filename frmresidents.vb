@@ -7,6 +7,12 @@ Public Class frmresidents
         dtpbirthdate.MinDate = New Date(1900, 1, 1)
         dtpbirthdate.MaxDate = DateTime.Today
 
+        ' ✅ Make DataGridView read-only and auto-adjust columns
+        DataGridView1.ReadOnly = True
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        DataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+        DataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True
+
         ' ✅ Load residents into the grid
         LoadResidents()
     End Sub
@@ -20,7 +26,10 @@ Public Class frmresidents
             Dim dt As New DataTable()
             da.Fill(dt)
             DataGridView1.DataSource = dt
-            DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+
+            ' ✅ Adjust columns automatically after loading data
+            DataGridView1.AutoResizeColumns()
+            DataGridView1.AutoResizeRows()
         Catch ex As Exception
             MessageBox.Show("Error loading residents: " & ex.Message)
         Finally
@@ -149,6 +158,8 @@ Public Class frmresidents
             Dim dt As New DataTable()
             da.Fill(dt)
             DataGridView1.DataSource = dt
+            DataGridView1.AutoResizeColumns()
+            DataGridView1.AutoResizeRows()
         Catch ex As Exception
             MessageBox.Show("Error searching: " & ex.Message)
         Finally
@@ -173,7 +184,7 @@ Public Class frmresidents
             If Not IsDBNull(row.Cells("Birthdate").Value) Then
                 dtpbirthdate.Value = Convert.ToDateTime(row.Cells("Birthdate").Value)
             Else
-                dtpbirthdate.Value = DateTime.Now
+                dtpbirthdate.Value = DateTime.Today
             End If
         End If
     End Sub
@@ -210,4 +221,6 @@ Public Class frmresidents
         ' You can add logic here if Sitio selection affects other fields
     End Sub
 
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+    End Sub
 End Class

@@ -42,8 +42,6 @@ Partial Class frmincident
         Label3 = New Label()
         cmbFilterStatus = New ComboBox()
         Label2 = New Label()
-        Panel3 = New Panel()
-        dgvIncidents = New DataGridView()
         Panel4 = New Panel()
         btnCancel = New Button()
         btnSave = New Button()
@@ -57,13 +55,15 @@ Partial Class frmincident
         dtpIncidents = New DateTimePicker()
         Label11 = New Label()
         Label10 = New Label()
-        ComboBox1 = New ComboBox()
+        cboincident = New ComboBox()
+        txtid = New TextBox()
+        Label5 = New Label()
+        dgvIncidents = New DataGridView()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel2.SuspendLayout()
-        Panel3.SuspendLayout()
-        CType(dgvIncidents, ComponentModel.ISupportInitialize).BeginInit()
         Panel4.SuspendLayout()
+        CType(dgvIncidents, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Panel1
@@ -301,32 +301,11 @@ Partial Class frmincident
         Label2.TabIndex = 0
         Label2.Text = "Filter by Status:"
         ' 
-        ' Panel3
-        ' 
-        Panel3.Controls.Add(dgvIncidents)
-        Panel3.Location = New Point(15, 199)
-        Panel3.Margin = New Padding(4)
-        Panel3.Name = "Panel3"
-        Panel3.Size = New Size(990, 764)
-        Panel3.TabIndex = 23
-        ' 
-        ' dgvIncidents
-        ' 
-        dgvIncidents.AllowUserToAddRows = False
-        dgvIncidents.AllowUserToDeleteRows = False
-        dgvIncidents.BackgroundColor = Color.White
-        dgvIncidents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvIncidents.Location = New Point(4, 4)
-        dgvIncidents.Margin = New Padding(4)
-        dgvIncidents.Name = "dgvIncidents"
-        dgvIncidents.ReadOnly = True
-        dgvIncidents.RowHeadersWidth = 51
-        dgvIncidents.Size = New Size(982, 756)
-        dgvIncidents.TabIndex = 0
-        ' 
         ' Panel4
         ' 
-        Panel4.Controls.Add(ComboBox1)
+        Panel4.Controls.Add(txtid)
+        Panel4.Controls.Add(Label5)
+        Panel4.Controls.Add(cboincident)
         Panel4.Controls.Add(btnCancel)
         Panel4.Controls.Add(btnSave)
         Panel4.Controls.Add(cmbStatus)
@@ -339,7 +318,7 @@ Partial Class frmincident
         Panel4.Controls.Add(dtpIncidents)
         Panel4.Controls.Add(Label11)
         Panel4.Controls.Add(Label10)
-        Panel4.Location = New Point(1012, 202)
+        Panel4.Location = New Point(1551, 199)
         Panel4.Margin = New Padding(4)
         Panel4.Name = "Panel4"
         Panel4.Size = New Size(613, 1024)
@@ -352,7 +331,7 @@ Partial Class frmincident
         btnCancel.FlatStyle = FlatStyle.Flat
         btnCancel.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         btnCancel.ForeColor = Color.Transparent
-        btnCancel.Location = New Point(314, 629)
+        btnCancel.Location = New Point(311, 885)
         btnCancel.Margin = New Padding(4)
         btnCancel.Name = "btnCancel"
         btnCancel.Size = New Size(218, 91)
@@ -366,7 +345,7 @@ Partial Class frmincident
         btnSave.FlatAppearance.BorderSize = 0
         btnSave.FlatStyle = FlatStyle.Flat
         btnSave.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        btnSave.Location = New Point(71, 629)
+        btnSave.Location = New Point(68, 885)
         btnSave.Margin = New Padding(4)
         btnSave.Name = "btnSave"
         btnSave.Size = New Size(214, 91)
@@ -379,7 +358,7 @@ Partial Class frmincident
         cmbStatus.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         cmbStatus.FormattingEnabled = True
         cmbStatus.Items.AddRange(New Object() {"All", "Pending" & vbTab, "Resolved"})
-        cmbStatus.Location = New Point(4, 529)
+        cmbStatus.Location = New Point(4, 810)
         cmbStatus.Margin = New Padding(4)
         cmbStatus.Name = "cmbStatus"
         cmbStatus.Size = New Size(605, 40)
@@ -389,7 +368,7 @@ Partial Class frmincident
         ' 
         Label15.AutoSize = True
         Label15.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label15.Location = New Point(4, 490)
+        Label15.Location = New Point(4, 771)
         Label15.Margin = New Padding(4, 0, 4, 0)
         Label15.Name = "Label15"
         Label15.Size = New Size(78, 32)
@@ -400,7 +379,7 @@ Partial Class frmincident
         ' 
         Label14.AutoSize = True
         Label14.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label14.Location = New Point(4, 388)
+        Label14.Location = New Point(4, 633)
         Label14.Margin = New Padding(4, 0, 4, 0)
         Label14.Name = "Label14"
         Label14.Size = New Size(158, 32)
@@ -410,7 +389,7 @@ Partial Class frmincident
         ' txtRespondent
         ' 
         txtRespondent.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtRespondent.Location = New Point(4, 322)
+        txtRespondent.Location = New Point(4, 544)
         txtRespondent.Margin = New Padding(4)
         txtRespondent.Multiline = True
         txtRespondent.Name = "txtRespondent"
@@ -421,7 +400,7 @@ Partial Class frmincident
         ' 
         Label13.AutoSize = True
         Label13.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label13.Location = New Point(4, 284)
+        Label13.Location = New Point(4, 506)
         Label13.Margin = New Padding(4, 0, 4, 0)
         Label13.Name = "Label13"
         Label13.Size = New Size(141, 32)
@@ -431,18 +410,18 @@ Partial Class frmincident
         ' txtComplainant
         ' 
         txtComplainant.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtComplainant.Location = New Point(4, 221)
+        txtComplainant.Location = New Point(4, 306)
         txtComplainant.Margin = New Padding(4)
         txtComplainant.Multiline = True
         txtComplainant.Name = "txtComplainant"
-        txtComplainant.Size = New Size(605, 31)
+        txtComplainant.Size = New Size(605, 182)
         txtComplainant.TabIndex = 15
         ' 
         ' Label12
         ' 
         Label12.AutoSize = True
         Label12.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label12.Location = New Point(4, 182)
+        Label12.Location = New Point(4, 267)
         Label12.Margin = New Padding(4, 0, 4, 0)
         Label12.Name = "Label12"
         Label12.Size = New Size(150, 32)
@@ -452,7 +431,7 @@ Partial Class frmincident
         ' dtpIncidents
         ' 
         dtpIncidents.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        dtpIncidents.Location = New Point(4, 121)
+        dtpIncidents.Location = New Point(4, 206)
         dtpIncidents.Margin = New Padding(4)
         dtpIncidents.Name = "dtpIncidents"
         dtpIncidents.Size = New Size(605, 39)
@@ -462,7 +441,7 @@ Partial Class frmincident
         ' 
         Label11.AutoSize = True
         Label11.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label11.Location = New Point(4, 82)
+        Label11.Location = New Point(4, 167)
         Label11.Margin = New Padding(4, 0, 4, 0)
         Label11.Name = "Label11"
         Label11.Size = New Size(141, 32)
@@ -480,16 +459,51 @@ Partial Class frmincident
         Label10.TabIndex = 11
         Label10.Text = "Incident Details"
         ' 
-        ' ComboBox1
+        ' cboincident
         ' 
-        ComboBox1.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Items.AddRange(New Object() {"All", "Pending" & vbTab, "Resolved"})
-        ComboBox1.Location = New Point(4, 424)
-        ComboBox1.Margin = New Padding(4)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(605, 40)
-        ComboBox1.TabIndex = 23
+        cboincident.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cboincident.FormattingEnabled = True
+        cboincident.Items.AddRange(New Object() {"All", "Pending" & vbTab, "Resolved"})
+        cboincident.Location = New Point(4, 669)
+        cboincident.Margin = New Padding(4)
+        cboincident.Name = "cboincident"
+        cboincident.Size = New Size(605, 40)
+        cboincident.TabIndex = 23
+        ' 
+        ' txtid
+        ' 
+        txtid.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtid.Location = New Point(4, 118)
+        txtid.Margin = New Padding(4)
+        txtid.Multiline = True
+        txtid.Name = "txtid"
+        txtid.Size = New Size(605, 31)
+        txtid.TabIndex = 25
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label5.Location = New Point(4, 80)
+        Label5.Margin = New Padding(4, 0, 4, 0)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(154, 32)
+        Label5.TabIndex = 24
+        Label5.Text = "Complaint ID"
+        ' 
+        ' dgvIncidents
+        ' 
+        dgvIncidents.AllowUserToAddRows = False
+        dgvIncidents.AllowUserToDeleteRows = False
+        dgvIncidents.BackgroundColor = Color.White
+        dgvIncidents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgvIncidents.Location = New Point(4, 199)
+        dgvIncidents.Margin = New Padding(4)
+        dgvIncidents.Name = "dgvIncidents"
+        dgvIncidents.ReadOnly = True
+        dgvIncidents.RowHeadersWidth = 51
+        dgvIncidents.Size = New Size(1539, 1264)
+        dgvIncidents.TabIndex = 0
         ' 
         ' frmincident
         ' 
@@ -497,8 +511,8 @@ Partial Class frmincident
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         ClientSize = New Size(2262, 1476)
+        Controls.Add(dgvIncidents)
         Controls.Add(Panel4)
-        Controls.Add(Panel3)
         Controls.Add(Panel2)
         Controls.Add(PictureBox1)
         Controls.Add(Panel1)
@@ -511,10 +525,9 @@ Partial Class frmincident
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         Panel2.ResumeLayout(False)
         Panel2.PerformLayout()
-        Panel3.ResumeLayout(False)
-        CType(dgvIncidents, ComponentModel.ISupportInitialize).EndInit()
         Panel4.ResumeLayout(False)
         Panel4.PerformLayout()
+        CType(dgvIncidents, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -537,8 +550,6 @@ Partial Class frmincident
     Friend WithEvents lblResolved As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents lblPending As Label
-    Friend WithEvents Panel3 As Panel
-    Friend WithEvents dgvIncidents As DataGridView
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label
@@ -552,5 +563,8 @@ Partial Class frmincident
     Friend WithEvents cmbStatus As ComboBox
     Friend WithEvents Label15 As Label
     Friend WithEvents Label14 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cboincident As ComboBox
+    Friend WithEvents txtid As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents dgvIncidents As DataGridView
 End Class
