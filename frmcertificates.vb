@@ -74,10 +74,13 @@ Public Class FrmCertificates
             If cn.State = ConnectionState.Open Then cn.Close()
         End Try
 
+        ' --- Setup DataGridView ---
         dgvcertifications.DataSource = dt
-        dgvcertifications.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgvcertifications.ReadOnly = True
         dgvcertifications.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgvcertifications.MultiSelect = False
+        dgvcertifications.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        dgvcertifications.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
 
         ' Ensure no row is selected by default
         If dgvcertifications.Rows.Count > 0 Then
@@ -123,7 +126,6 @@ Public Class FrmCertificates
     End Sub
 
     ' --- Add New Certificate ---
-    ' --- Add New Certificate ---
     Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
         If txtresident_name.Text = "" Or txtcertificatetype.Text = "" Or txtissuedby.Text = "" Then
             MessageBox.Show("Please fill in all required fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -136,6 +138,20 @@ Public Class FrmCertificates
         If residentID = 0 Or officialID = 0 Then
             MessageBox.Show("Resident or official not found in the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
+        End If
+
+        ' --- Check for Barangay Clearance restrictions ---
+        If txtcertificatetype.Text = "Barangay Clearance" Then
+            ' Check if resident has a blotter
+            If HasBlotterReport(residentID) Then
+                MessageBox.Show("Resident has an active blotter report and cannot request a Barangay Clearance.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+            ' Check if 6 months have passed since last clearance
+            If Not CanRequestAgain(residentID, "Barangay Clearance") Then
+                MessageBox.Show("Resident can only request a Barangay Clearance once every 6 months.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
         End If
 
         Try
@@ -163,8 +179,6 @@ Public Class FrmCertificates
         End Try
     End Sub
 
-
-    ' --- Update Selected Certificate ---
     ' --- Update Selected Certificate ---
     Private Sub btnupdate_Click(sender As Object, e As EventArgs) Handles btnupdate.Click
         If dgvcertifications.SelectedRows.Count = 0 Then
@@ -205,7 +219,6 @@ Public Class FrmCertificates
             If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then cn.Close()
         End Try
     End Sub
-
 
     ' --- Delete Selected Certificate ---
     Private Sub btndelete_Click(sender As Object, e As EventArgs) Handles btndelete.Click
@@ -277,6 +290,50 @@ Public Class FrmCertificates
         Return id
     End Function
 
+    ' --- Check if resident has an active blotter report ---
+    Private Function HasBlotterReport(residentID As Integer) As Boolean
+        Dim hasBlotter As Boolean = False
+        Try
+            If cn.State = ConnectionState.Closed Then cn.Open()
+            Dim query As String = "SELECT COUNT(*) FROM blotters WHERE resident_id=@resident_id AND status='Active'"
+            Using cmd As New MySqlCommand(query, cn)
+                cmd.Parameters.AddWithValue("@resident_id", residentID)
+                Dim result = cmd.ExecuteScalar()
+                If Convert.ToInt32(result) > 0 Then hasBlotter = True
+            End Using
+        Catch
+        Finally
+            If cn.State = ConnectionState.Open Then cn.Close()
+        End Try
+        Return hasBlotter
+    End Function
+
+    ' --- Check 6-month restriction ---
+    Private Function CanRequestAgain(residentID As Integer, certType As String) As Boolean
+        Dim canRequest As Boolean = True
+        Try
+            If cn.State = ConnectionState.Closed Then cn.Open()
+            Dim query As String = "SELECT issue_date FROM certifications WHERE resident_id=@resident_id AND type=@type ORDER BY issue_date DESC LIMIT 1"
+            Using cmd As New MySqlCommand(query, cn)
+                cmd.Parameters.AddWithValue("@resident_id", residentID)
+                cmd.Parameters.AddWithValue("@type", certType)
+                Dim lastIssue = cmd.ExecuteScalar()
+                If lastIssue IsNot Nothing Then
+                    Dim lastDate As DateTime = Convert.ToDateTime(lastIssue)
+                    If DateTime.Now < lastDate.AddMonths(6) Then
+                        canRequest = False
+                    End If
+                End If
+            End Using
+        Catch
+        Finally
+            If cn.State = ConnectionState.Open Then cn.Close()
+        End Try
+        Return canRequest
+    End Function
+
+    ' --- Generate PDF Certificate ---
+    ' --- Generate PDF Certificate (Landscape with Logo and Signature Line) ---
     Private Sub btnGeneratePDF_Click(sender As Object, e As EventArgs) Handles btnGeneratePDF.Click
         If dgvcertifications.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select a certificate first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -284,73 +341,85 @@ Public Class FrmCertificates
         End If
 
         Dim row As DataGridViewRow = dgvcertifications.SelectedRows(0)
-        Dim residentName As String = If(row.Cells("resident_name").Value, "").ToString()
-        Dim certType As String = If(row.Cells("cert_type").Value, "").ToString()
-        Dim issuedBy As String = If(row.Cells("issued_by_name").Value, "").ToString()
-        Dim issueDate As String = ""
+        Dim residentName As String = row.Cells("resident_name").Value.ToString()
+        Dim certType As String = row.Cells("cert_type").Value.ToString()
+        Dim issuedBy As String = row.Cells("issued_by_name").Value.ToString()
+        Dim issueDate As DateTime = Convert.ToDateTime(row.Cells("issue_date").Value)
+        Dim remarks As String = row.Cells("remarks").Value.ToString()
+
+        ' --- PDF generation ---
+        Dim doc As New Document(PageSize.LETTER.Rotate(), 50, 50, 50, 50) ' Landscape orientation
         Try
-            issueDate = Convert.ToDateTime(row.Cells("issue_date").Value).ToString("MMMM dd, yyyy")
-        Catch
-            issueDate = "N/A"
-        End Try
-        Dim remarks As String = If(row.Cells("remarks").Value, "").ToString()
+            Using saveFile As New SaveFileDialog()
+                saveFile.Filter = "PDF Files|*.pdf"
+                saveFile.FileName = certType.Replace(" ", "_") & "_" & residentName.Replace(" ", "_") & ".pdf"
+                If saveFile.ShowDialog() = DialogResult.OK Then
+                    Dim writer As PdfWriter = PdfWriter.GetInstance(doc, New FileStream(saveFile.FileName, FileMode.Create))
+                    doc.Open()
 
-        ' Ask where to save PDF
-        Dim sfd As New SaveFileDialog() With {
-            .Filter = "PDF files (*.pdf)|*.pdf",
-            .FileName = residentName.Replace(" ", "_") & "_" & certType.Replace(" ", "_") & ".pdf"
-        }
+                    ' Fonts
+                    Dim titleFont As iTextSharp.text.Font = FontFactory.GetFont("Helvetica", 20, iTextSharp.text.Font.BOLD)
+                    Dim subTitleFont As iTextSharp.text.Font = FontFactory.GetFont("Helvetica", 14, iTextSharp.text.Font.BOLD)
+                    Dim bodyFont As iTextSharp.text.Font = FontFactory.GetFont("Helvetica", 12, iTextSharp.text.Font.NORMAL)
 
-        If sfd.ShowDialog() = DialogResult.OK Then
-            Try
-                Dim doc As New Document(PageSize.A4, 50, 50, 50, 50)
-                PdfWriter.GetInstance(doc, New FileStream(sfd.FileName, FileMode.Create))
-                doc.Open()
+                    ' --- Logo ---
+                    Try
+                        ' Change path to your logo image file
+                        Dim logoPath As String = "C:\Users\Gerry Vilda\Downloads\374261351_690019176364048_2445723814474494763_n-removebg-preview.png"
+                        If File.Exists(logoPath) Then
+                            Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(logoPath)
+                            logo.ScaleToFit(100, 100) ' Adjust logo size
+                            logo.Alignment = Element.ALIGN_LEFT
+                            doc.Add(logo)
+                        End If
+                    Catch exLogo As Exception
+                        MessageBox.Show("Logo could not be loaded: " & exLogo.Message)
+                    End Try
 
-                ' --- Header with logo ---
-                Dim headerTable As New PdfPTable(2) With {.WidthPercentage = 100}
-                headerTable.SetWidths(New Single() {1.0F, 3.0F})
+                    ' --- Header ---
+                    Dim header As New Paragraph("Republic of the Philippines", bodyFont)
+                    header.Alignment = Element.ALIGN_CENTER
+                    doc.Add(header)
 
-                ' Logo path
-                Dim logoPath As String = "C:\Users\Gerry Vilda\Downloads\tunasanlogo.jpg"
-                If File.Exists(logoPath) Then
-                    Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(logoPath)
-                    logo.ScaleToFit(80, 80)
-                    Dim logoCell As New PdfPCell(logo) With {.Border = Rectangle.NO_BORDER, .HorizontalAlignment = Element.ALIGN_LEFT}
-                    headerTable.AddCell(logoCell)
-                Else
-                    ' Empty cell if logo missing
-                    headerTable.AddCell(New PdfPCell(New Phrase("")) With {.Border = Rectangle.NO_BORDER})
+                    Dim brgyHeader As New Paragraph("Barangay Tunasan", bodyFont)
+                    brgyHeader.Alignment = Element.ALIGN_CENTER
+                    doc.Add(brgyHeader)
+
+                    Dim title As New Paragraph("OFFICIAL CERTIFICATE", titleFont)
+                    title.Alignment = Element.ALIGN_CENTER
+                    title.SpacingBefore = 20
+                    title.SpacingAfter = 20
+                    doc.Add(title)
+
+                    ' --- Body ---
+                    Dim bodyText As String = $"This is to certify that {residentName} has requested and been issued a {certType}." &
+                                             $" This certificate is issued for official purposes and is valid as of {issueDate:MMMM dd, yyyy}." &
+                                             $"{If(remarks <> "", Environment.NewLine & "Remarks: " & remarks, "")}"
+
+                    Dim bodyPara As New Paragraph(bodyText, bodyFont)
+                    bodyPara.Alignment = Element.ALIGN_JUSTIFIED
+                    bodyPara.SpacingBefore = 20
+                    bodyPara.SpacingAfter = 40
+                    doc.Add(bodyPara)
+
+                    ' --- Signature line ---
+                    Dim sigLine As New Paragraph("______________________________", bodyFont)
+                    sigLine.Alignment = Element.ALIGN_RIGHT
+                    doc.Add(sigLine)
+
+                    Dim sigName As New Paragraph($"Issued By: {issuedBy}", subTitleFont)
+                    sigName.Alignment = Element.ALIGN_RIGHT
+                    doc.Add(sigName)
+
+                    MessageBox.Show("PDF generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
-
-                ' Header Text
-                Dim headerText As New Phrase("BARANGAY CERTIFICATE" & vbCrLf & "Barangay Tunasan, Muntinlupa City", FontFactory.GetFont("Helvetica", 14, iTextSharp.text.Font.BOLD))
-                Dim textCell As New PdfPCell(headerText) With {.Border = Rectangle.NO_BORDER, .VerticalAlignment = Element.ALIGN_MIDDLE}
-                headerTable.AddCell(textCell)
-
-                doc.Add(headerTable)
-                doc.Add(New Paragraph(" "))
-
-                ' --- Body ---
-                Dim bodyFont As iTextSharp.text.Font = FontFactory.GetFont("Helvetica", 12, iTextSharp.text.Font.NORMAL)
-                Dim nameFont As iTextSharp.text.Font = FontFactory.GetFont("Helvetica", 14, iTextSharp.text.Font.BOLD)
-
-                doc.Add(New Paragraph("This is to certify that", bodyFont))
-                doc.Add(New Paragraph(residentName, nameFont))
-                doc.Add(New Paragraph("has been issued a " & certType & " on " & issueDate & ".", bodyFont))
-                doc.Add(New Paragraph("Remarks: " & remarks, bodyFont))
-                doc.Add(New Paragraph(" "))
-
-                ' --- Issuer ---
-                doc.Add(New Paragraph("Issued By:", bodyFont))
-                doc.Add(New Paragraph(issuedBy, nameFont))
-
-                doc.Close()
-                MessageBox.Show("PDF generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            Catch ex As Exception
-                MessageBox.Show("Error generating PDF: " & ex.Message)
-            End Try
-        End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error generating PDF: " & ex.Message)
+        Finally
+            doc.Close()
+        End Try
     End Sub
+
+
 End Class

@@ -72,12 +72,12 @@ Partial Class frmcertificates
         Panel1.Location = New Point(32, 38)
         Panel1.Margin = New Padding(2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(2000, 1281)
+        Panel1.Size = New Size(2219, 1427)
         Panel1.TabIndex = 4
         ' 
         ' btnadd
         ' 
-        btnadd.Location = New Point(674, 346)
+        btnadd.Location = New Point(706, 331)
         btnadd.Margin = New Padding(2)
         btnadd.Name = "btnadd"
         btnadd.Size = New Size(202, 72)
@@ -87,7 +87,7 @@ Partial Class frmcertificates
         ' 
         ' btnupdate
         ' 
-        btnupdate.Location = New Point(882, 344)
+        btnupdate.Location = New Point(1081, 331)
         btnupdate.Margin = New Padding(2)
         btnupdate.Name = "btnupdate"
         btnupdate.Size = New Size(202, 72)
@@ -97,7 +97,7 @@ Partial Class frmcertificates
         ' 
         ' btndelete
         ' 
-        btndelete.Location = New Point(1092, 344)
+        btndelete.Location = New Point(1427, 331)
         btndelete.Margin = New Padding(2)
         btndelete.Name = "btndelete"
         btndelete.Size = New Size(202, 72)
@@ -195,7 +195,7 @@ Partial Class frmcertificates
         txtremarks.Margin = New Padding(2)
         txtremarks.Multiline = True
         txtremarks.Name = "txtremarks"
-        txtremarks.Size = New Size(600, 203)
+        txtremarks.Size = New Size(934, 203)
         txtremarks.TabIndex = 31
         ' 
         ' txtresident_name
@@ -231,10 +231,10 @@ Partial Class frmcertificates
         ' btnGeneratePDF
         ' 
         btnGeneratePDF.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnGeneratePDF.Location = New Point(1650, 315)
+        btnGeneratePDF.Location = New Point(1650, 120)
         btnGeneratePDF.Margin = New Padding(2)
         btnGeneratePDF.Name = "btnGeneratePDF"
-        btnGeneratePDF.Size = New Size(222, 101)
+        btnGeneratePDF.Size = New Size(222, 296)
         btnGeneratePDF.TabIndex = 23
         btnGeneratePDF.Text = "📄 Generate PDF"
         btnGeneratePDF.UseVisualStyleBackColor = True
@@ -252,7 +252,7 @@ Partial Class frmcertificates
         dgvcertifications.Name = "dgvcertifications"
         dgvcertifications.ReadOnly = True
         dgvcertifications.RowHeadersWidth = 62
-        dgvcertifications.Size = New Size(1855, 842)
+        dgvcertifications.Size = New Size(2152, 984)
         dgvcertifications.TabIndex = 20
         ' 
         ' Label1

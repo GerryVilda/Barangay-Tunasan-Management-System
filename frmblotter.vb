@@ -6,10 +6,14 @@ Public Class frmblotter
         ' ✅ Load blotter records on form load
         LoadBlotters()
 
+        ' ✅ Restrict incident date (no future blotters)
+        txtincidentdate.MaxDate = DateTime.Today
+        txtincidentdate.MinDate = New Date(2000, 1, 1)
+
         ' ✅ Make DataGridView read-only
         dgvblotters.ReadOnly = True
 
-        ' ✅ Auto-size columns based on content
+        ' ✅ Auto-size columns and rows based on content
         dgvblotters.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
         dgvblotters.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
         dgvblotters.DefaultCellStyle.WrapMode = DataGridViewTriState.True
@@ -36,6 +40,12 @@ Public Class frmblotter
 
     ' ===== SAVE BLOTTERR =====
     Private Sub btnsaveblotter_Click(sender As Object, e As EventArgs) Handles btnsaveblotter.Click
+        ' ✅ Validate that no future date is selected
+        If txtincidentdate.Value.Date > DateTime.Today Then
+            MessageBox.Show("⚠️ Incident date cannot be in the future.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
         Try
             koneksyon()
             cmd = New MySqlCommand("INSERT INTO blotter_reports (Complainant_ID, Respondent_ID, Incident_Type, Incident_Date, Location, Details, Status, Remarks)
@@ -63,6 +73,12 @@ Public Class frmblotter
     Private Sub btnupdateblotter_Click(sender As Object, e As EventArgs) Handles btnupdateblotter.Click
         If txtblotterid.Text = "" Then
             MessageBox.Show("Select a record to update.")
+            Exit Sub
+        End If
+
+        ' ✅ Validate that no future date is selected
+        If txtincidentdate.Value.Date > DateTime.Today Then
+            MessageBox.Show("⚠️ Incident date cannot be in the future.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
@@ -98,7 +114,14 @@ Public Class frmblotter
             txtcomplaint.Text = row.Cells("Complainant_ID").Value.ToString()
             txtrespondent.Text = row.Cells("Respondent_ID").Value.ToString()
             txtincidentype.Text = row.Cells("Incident_Type").Value.ToString()
-            txtincidentdate.Value = Convert.ToDateTime(row.Cells("Incident_Date").Value)
+
+            ' ✅ Ensure date value is valid before assigning
+            If Not IsDBNull(row.Cells("Incident_Date").Value) Then
+                txtincidentdate.Value = Convert.ToDateTime(row.Cells("Incident_Date").Value)
+            Else
+                txtincidentdate.Value = DateTime.Today
+            End If
+
             txtlocation.Text = row.Cells("Location").Value.ToString()
             txtdetails.Text = row.Cells("Details").Value.ToString()
             cbostatus.Text = row.Cells("Status").Value.ToString()
@@ -116,7 +139,7 @@ Public Class frmblotter
         txtdetails.Clear()
         txtremarks.Clear()
         cbostatus.SelectedIndex = -1
-        txtincidentdate.Value = Date.Now
+        txtincidentdate.Value = Date.Today
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
@@ -124,4 +147,5 @@ Public Class frmblotter
 
     Private Sub dgvblotters_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvblotters.CellContentClick
     End Sub
+
 End Class
