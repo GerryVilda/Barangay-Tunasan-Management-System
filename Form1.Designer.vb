@@ -28,6 +28,7 @@ Partial Class Form1
         lblpercent = New Label()
         ProgressBar1 = New ProgressBar()
         btnlogin = New Button()
+        LinkLabel1 = New LinkLabel()
         PictureBox3 = New PictureBox()
         PictureBox2 = New PictureBox()
         txtpassword = New TextBox()
@@ -36,7 +37,6 @@ Partial Class Form1
         PictureBox1 = New PictureBox()
         tmrlogin = New Timer(components)
         Label2 = New Label()
-        LinkLabel1 = New LinkLabel()
         Panel1.SuspendLayout()
         CType(PictureBox3, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
@@ -56,28 +56,28 @@ Partial Class Form1
         Panel1.Controls.Add(txtusername)
         Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(PictureBox1)
-        Panel1.Location = New Point(216, 40)
-        Panel1.Margin = New Padding(2)
+        Panel1.Location = New Point(247, 53)
+        Panel1.Margin = New Padding(2, 3, 2, 3)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(441, 443)
+        Panel1.Size = New Size(504, 591)
         Panel1.TabIndex = 0
         ' 
         ' lblpercent
         ' 
         lblpercent.AutoSize = True
-        lblpercent.Location = New Point(206, 368)
+        lblpercent.Location = New Point(235, 491)
         lblpercent.Margin = New Padding(2, 0, 2, 0)
         lblpercent.Name = "lblpercent"
-        lblpercent.Size = New Size(0, 15)
+        lblpercent.Size = New Size(0, 20)
         lblpercent.TabIndex = 8
         lblpercent.Visible = False
         ' 
         ' ProgressBar1
         ' 
-        ProgressBar1.Location = New Point(107, 356)
-        ProgressBar1.Margin = New Padding(2)
+        ProgressBar1.Location = New Point(122, 475)
+        ProgressBar1.Margin = New Padding(2, 3, 2, 3)
         ProgressBar1.Name = "ProgressBar1"
-        ProgressBar1.Size = New Size(246, 32)
+        ProgressBar1.Size = New Size(281, 43)
         ProgressBar1.Style = ProgressBarStyle.Continuous
         ProgressBar1.TabIndex = 7
         ProgressBar1.Visible = False
@@ -90,22 +90,34 @@ Partial Class Form1
         btnlogin.FlatStyle = FlatStyle.Flat
         btnlogin.Font = New Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnlogin.ForeColor = Color.FromArgb(CByte(31), CByte(41), CByte(55))
-        btnlogin.Location = New Point(107, 356)
-        btnlogin.Margin = New Padding(2)
+        btnlogin.Location = New Point(122, 475)
+        btnlogin.Margin = New Padding(2, 3, 2, 3)
         btnlogin.Name = "btnlogin"
-        btnlogin.Size = New Size(246, 32)
+        btnlogin.Size = New Size(281, 43)
         btnlogin.TabIndex = 6
         btnlogin.Text = "Login"
         btnlogin.UseVisualStyleBackColor = False
+        ' 
+        ' LinkLabel1
+        ' 
+        LinkLabel1.AutoSize = True
+        LinkLabel1.LinkColor = Color.FromArgb(CByte(37), CByte(99), CByte(235))
+        LinkLabel1.Location = New Point(350, 433)
+        LinkLabel1.Margin = New Padding(2, 0, 2, 0)
+        LinkLabel1.Name = "LinkLabel1"
+        LinkLabel1.Size = New Size(125, 60)
+        LinkLabel1.TabIndex = 5
+        LinkLabel1.TabStop = True
+        LinkLabel1.Text = "May Reklamo ka?" & vbCrLf & " Submit a Ticket" & vbCrLf & vbCrLf
         ' 
         ' PictureBox3
         ' 
         PictureBox3.BackColor = SystemColors.ActiveCaption
         PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), Image)
-        PictureBox3.Location = New Point(43, 287)
-        PictureBox3.Margin = New Padding(2)
+        PictureBox3.Location = New Point(49, 383)
+        PictureBox3.Margin = New Padding(2, 3, 2, 3)
         PictureBox3.Name = "PictureBox3"
-        PictureBox3.Size = New Size(38, 30)
+        PictureBox3.Size = New Size(43, 40)
         PictureBox3.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox3.TabIndex = 4
         PictureBox3.TabStop = False
@@ -114,10 +126,10 @@ Partial Class Form1
         ' 
         PictureBox2.BackColor = SystemColors.ButtonHighlight
         PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), Image)
-        PictureBox2.Location = New Point(43, 240)
-        PictureBox2.Margin = New Padding(2)
+        PictureBox2.Location = New Point(49, 320)
+        PictureBox2.Margin = New Padding(2, 3, 2, 3)
         PictureBox2.Name = "PictureBox2"
-        PictureBox2.Size = New Size(38, 30)
+        PictureBox2.Size = New Size(43, 40)
         PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox2.TabIndex = 1
         PictureBox2.TabStop = False
@@ -126,10 +138,10 @@ Partial Class Form1
         ' 
         txtpassword.BackColor = Color.WhiteSmoke
         txtpassword.Font = New Font("Segoe UI Semibold", 16F, FontStyle.Bold Or FontStyle.Italic)
-        txtpassword.Location = New Point(82, 287)
-        txtpassword.Margin = New Padding(2)
+        txtpassword.Location = New Point(94, 383)
+        txtpassword.Margin = New Padding(2, 3, 2, 3)
         txtpassword.Name = "txtpassword"
-        txtpassword.Size = New Size(323, 36)
+        txtpassword.Size = New Size(369, 43)
         txtpassword.TabIndex = 3
         txtpassword.UseSystemPasswordChar = True
         ' 
@@ -137,32 +149,32 @@ Partial Class Form1
         ' 
         txtusername.BackColor = Color.WhiteSmoke
         txtusername.Font = New Font("Segoe UI Semibold", 16F, FontStyle.Bold Or FontStyle.Italic)
-        txtusername.Location = New Point(82, 240)
-        txtusername.Margin = New Padding(2)
+        txtusername.Location = New Point(94, 320)
+        txtusername.Margin = New Padding(2, 3, 2, 3)
         txtusername.Name = "txtusername"
-        txtusername.Size = New Size(323, 36)
+        txtusername.Size = New Size(369, 43)
         txtusername.TabIndex = 2
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Engravers MT", 20F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(27, 175)
+        Label1.Font = New Font("Engravers MT", 19.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(23, 232)
         Label1.Margin = New Padding(2, 0, 2, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(387, 31)
+        Label1.Size = New Size(485, 37)
         Label1.TabIndex = 1
-        Label1.Text = "BARANGAY PORTAL"
+        Label1.Text = "BARANGAY TUNASAN"
         ' 
         ' PictureBox1
         ' 
         PictureBox1.BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
         PictureBox1.ErrorImage = Nothing
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(136, 38)
-        PictureBox1.Margin = New Padding(2)
+        PictureBox1.Location = New Point(155, 51)
+        PictureBox1.Margin = New Padding(2, 3, 2, 3)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(165, 119)
+        PictureBox1.Size = New Size(189, 159)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 0
         PictureBox1.TabStop = False
@@ -176,38 +188,26 @@ Partial Class Form1
         Label2.BackColor = Color.Transparent
         Label2.Font = New Font("Segoe UI Semibold", 36F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label2.ForeColor = Color.Red
-        Label2.Location = New Point(819, -2)
+        Label2.Location = New Point(936, -3)
         Label2.Name = "Label2"
-        Label2.Size = New Size(58, 65)
+        Label2.Size = New Size(72, 81)
         Label2.TabIndex = 1
         Label2.Text = "X"
         ' 
-        ' LinkLabel1
-        ' 
-        LinkLabel1.AutoSize = True
-        LinkLabel1.LinkColor = Color.FromArgb(CByte(37), CByte(99), CByte(235))
-        LinkLabel1.Location = New Point(306, 325)
-        LinkLabel1.Margin = New Padding(2, 0, 2, 0)
-        LinkLabel1.Name = "LinkLabel1"
-        LinkLabel1.Size = New Size(99, 45)
-        LinkLabel1.TabIndex = 5
-        LinkLabel1.TabStop = True
-        LinkLabel1.Text = "May Reklamo ka?" & vbCrLf & " Submit a Ticket" & vbCrLf & vbCrLf
-        ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.ButtonFace
         BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
         BackgroundImageLayout = ImageLayout.Stretch
-        ClientSize = New Size(877, 533)
+        ClientSize = New Size(1002, 711)
         Controls.Add(Label2)
         Controls.Add(Panel1)
         DoubleBuffered = True
         FormBorderStyle = FormBorderStyle.None
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        Margin = New Padding(2)
+        Margin = New Padding(2, 3, 2, 3)
         MaximizeBox = False
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen

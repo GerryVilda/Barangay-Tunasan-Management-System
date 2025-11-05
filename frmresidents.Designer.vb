@@ -47,6 +47,7 @@ Partial Class frmresidents
         btnupdate = New Button()
         btndelete = New Button()
         cbositio = New ComboBox()
+        Label10 = New Label()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -289,12 +290,24 @@ Partial Class frmresidents
         cbositio.Size = New Size(395, 36)
         cbositio.TabIndex = 26
         ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label10.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        Label10.Location = New Point(188, 10)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(203, 54)
+        Label10.TabIndex = 45
+        Label10.Text = "Residents"
+        ' 
         ' frmresidents
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
+        BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(1539, 844)
+        Controls.Add(Label10)
         Controls.Add(cbositio)
         Controls.Add(btndelete)
         Controls.Add(btnupdate)
@@ -354,4 +367,5 @@ Partial Class frmresidents
     Friend WithEvents btnupdate As Button
     Friend WithEvents btndelete As Button
     Friend WithEvents cbositio As ComboBox
+    Friend WithEvents Label10 As Label
 End Class

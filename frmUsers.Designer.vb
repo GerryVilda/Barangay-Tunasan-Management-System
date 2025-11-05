@@ -59,6 +59,7 @@ Partial Class frmUsers
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label1.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
         Label1.Location = New Point(201, 57)
         Label1.Name = "Label1"
         Label1.Size = New Size(700, 54)
@@ -227,7 +228,7 @@ Partial Class frmUsers
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
+        BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(1777, 1055)
         Controls.Add(Panel1)
         Controls.Add(DataGridView1)

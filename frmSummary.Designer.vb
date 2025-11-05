@@ -23,15 +23,15 @@ Partial Class frmSummary
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSummary))
-        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
-        Dim Legend4 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
-        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
-        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
-        Dim Legend5 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
-        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
-        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
-        Dim Legend6 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
-        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend3 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
         PictureBox1 = New PictureBox()
         lblTitle = New Label()
         Panel1 = New Panel()
@@ -39,25 +39,25 @@ Partial Class frmSummary
         Label1 = New Label()
         cmbSitio = New ComboBox()
         Panel2 = New Panel()
+        chrtSitio = New DataVisualization.Charting.Chart()
         Label5 = New Label()
+        dtpSitioInfo = New DateTimePicker()
         MySqlCommand1 = New MySql.Data.MySqlClient.MySqlCommand()
         Panel3 = New Panel()
+        Chart2 = New DataVisualization.Charting.Chart()
         Label12 = New Label()
-        dtpSitioInfo = New DateTimePicker()
         dtpResidentInfo = New DateTimePicker()
         Panel4 = New Panel()
-        Label22 = New Label()
-        chrtSitio = New DataVisualization.Charting.Chart()
-        Chart2 = New DataVisualization.Charting.Chart()
-        Chart3 = New DataVisualization.Charting.Chart()
         dtpSitioIncident = New DateTimePicker()
+        Chart3 = New DataVisualization.Charting.Chart()
+        Label22 = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
-        Panel3.SuspendLayout()
-        Panel4.SuspendLayout()
         CType(chrtSitio, ComponentModel.ISupportInitialize).BeginInit()
+        Panel3.SuspendLayout()
         CType(Chart2, ComponentModel.ISupportInitialize).BeginInit()
+        Panel4.SuspendLayout()
         CType(Chart3, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -85,7 +85,7 @@ Partial Class frmSummary
         ' 
         ' Panel1
         ' 
-        Panel1.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(128))
+        Panel1.BackColor = Color.Transparent
         Panel1.Controls.Add(btnGenerate)
         Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(cmbSitio)
@@ -97,7 +97,7 @@ Partial Class frmSummary
         ' 
         ' btnGenerate
         ' 
-        btnGenerate.BackColor = Color.SandyBrown
+        btnGenerate.BackColor = Color.PeachPuff
         btnGenerate.FlatAppearance.BorderSize = 0
         btnGenerate.FlatStyle = FlatStyle.Flat
         btnGenerate.Font = New Font("Segoe UI", 12F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
@@ -133,15 +133,31 @@ Partial Class frmSummary
         ' 
         ' Panel2
         ' 
-        Panel2.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(128))
+        Panel2.BackColor = Color.Transparent
         Panel2.Controls.Add(chrtSitio)
         Panel2.Controls.Add(Label5)
         Panel2.Controls.Add(dtpSitioInfo)
         Panel2.Location = New Point(12, 179)
         Panel2.Margin = New Padding(3, 2, 3, 2)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(500, 640)
+        Panel2.Size = New Size(500, 668)
         Panel2.TabIndex = 46
+        ' 
+        ' chrtSitio
+        ' 
+        ChartArea1.Name = "ChartArea1"
+        chrtSitio.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        chrtSitio.Legends.Add(Legend1)
+        chrtSitio.Location = New Point(3, 89)
+        chrtSitio.Name = "chrtSitio"
+        Series1.ChartArea = "ChartArea1"
+        Series1.Legend = "Legend1"
+        Series1.Name = "Series1"
+        chrtSitio.Series.Add(Series1)
+        chrtSitio.Size = New Size(494, 576)
+        chrtSitio.TabIndex = 63
+        chrtSitio.Text = "Chart1"
         ' 
         ' Label5
         ' 
@@ -153,6 +169,15 @@ Partial Class frmSummary
         Label5.TabIndex = 47
         Label5.Text = "Sitio Information"
         ' 
+        ' dtpSitioInfo
+        ' 
+        dtpSitioInfo.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        dtpSitioInfo.Location = New Point(85, 50)
+        dtpSitioInfo.Margin = New Padding(2)
+        dtpSitioInfo.Name = "dtpSitioInfo"
+        dtpSitioInfo.Size = New Size(322, 34)
+        dtpSitioInfo.TabIndex = 57
+        ' 
         ' MySqlCommand1
         ' 
         MySqlCommand1.CacheAge = 0
@@ -162,15 +187,31 @@ Partial Class frmSummary
         ' 
         ' Panel3
         ' 
-        Panel3.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(128))
+        Panel3.BackColor = Color.Transparent
         Panel3.Controls.Add(Chart2)
         Panel3.Controls.Add(Label12)
         Panel3.Controls.Add(dtpResidentInfo)
         Panel3.Location = New Point(520, 179)
         Panel3.Margin = New Padding(3, 2, 3, 2)
         Panel3.Name = "Panel3"
-        Panel3.Size = New Size(500, 640)
+        Panel3.Size = New Size(500, 665)
         Panel3.TabIndex = 55
+        ' 
+        ' Chart2
+        ' 
+        ChartArea2.Name = "ChartArea1"
+        Chart2.ChartAreas.Add(ChartArea2)
+        Legend2.Name = "Legend1"
+        Chart2.Legends.Add(Legend2)
+        Chart2.Location = New Point(3, 89)
+        Chart2.Name = "Chart2"
+        Series2.ChartArea = "ChartArea1"
+        Series2.Legend = "Legend1"
+        Series2.Name = "Series1"
+        Chart2.Series.Add(Series2)
+        Chart2.Size = New Size(494, 579)
+        Chart2.TabIndex = 48
+        Chart2.Text = "Chart2"
         ' 
         ' Label12
         ' 
@@ -181,15 +222,6 @@ Partial Class frmSummary
         Label12.Size = New Size(316, 41)
         Label12.TabIndex = 47
         Label12.Text = "Resident Information"
-        ' 
-        ' dtpSitioInfo
-        ' 
-        dtpSitioInfo.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpSitioInfo.Location = New Point(85, 50)
-        dtpSitioInfo.Margin = New Padding(2)
-        dtpSitioInfo.Name = "dtpSitioInfo"
-        dtpSitioInfo.Size = New Size(322, 34)
-        dtpSitioInfo.TabIndex = 57
         ' 
         ' dtpResidentInfo
         ' 
@@ -202,15 +234,40 @@ Partial Class frmSummary
         ' 
         ' Panel4
         ' 
-        Panel4.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(128))
+        Panel4.BackColor = Color.Transparent
         Panel4.Controls.Add(dtpSitioIncident)
         Panel4.Controls.Add(Chart3)
         Panel4.Controls.Add(Label22)
         Panel4.Location = New Point(1027, 179)
         Panel4.Margin = New Padding(3, 2, 3, 2)
         Panel4.Name = "Panel4"
-        Panel4.Size = New Size(500, 640)
+        Panel4.Size = New Size(500, 668)
         Panel4.TabIndex = 62
+        ' 
+        ' dtpSitioIncident
+        ' 
+        dtpSitioIncident.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        dtpSitioIncident.Location = New Point(95, 50)
+        dtpSitioIncident.Margin = New Padding(2)
+        dtpSitioIncident.Name = "dtpSitioIncident"
+        dtpSitioIncident.Size = New Size(322, 34)
+        dtpSitioIncident.TabIndex = 59
+        ' 
+        ' Chart3
+        ' 
+        ChartArea3.Name = "ChartArea1"
+        Chart3.ChartAreas.Add(ChartArea3)
+        Legend3.Name = "Legend1"
+        Chart3.Legends.Add(Legend3)
+        Chart3.Location = New Point(3, 89)
+        Chart3.Name = "Chart3"
+        Series3.ChartArea = "ChartArea1"
+        Series3.Legend = "Legend1"
+        Series3.Name = "Series1"
+        Chart3.Series.Add(Series3)
+        Chart3.Size = New Size(494, 579)
+        Chart3.TabIndex = 48
+        Chart3.Text = "Chart3"
         ' 
         ' Label22
         ' 
@@ -222,68 +279,11 @@ Partial Class frmSummary
         Label22.TabIndex = 47
         Label22.Text = "Sitio Incident Reports"
         ' 
-        ' chrtSitio
-        ' 
-        ChartArea4.Name = "ChartArea1"
-        chrtSitio.ChartAreas.Add(ChartArea4)
-        Legend4.Name = "Legend1"
-        chrtSitio.Legends.Add(Legend4)
-        chrtSitio.Location = New Point(3, 89)
-        chrtSitio.Name = "chrtSitio"
-        Series4.ChartArea = "ChartArea1"
-        Series4.Legend = "Legend1"
-        Series4.Name = "Series1"
-        chrtSitio.Series.Add(Series4)
-        chrtSitio.Size = New Size(494, 548)
-        chrtSitio.TabIndex = 63
-        chrtSitio.Text = "Chart1"
-        ' 
-        ' Chart2
-        ' 
-        ChartArea5.Name = "ChartArea1"
-        Chart2.ChartAreas.Add(ChartArea5)
-        Legend5.Name = "Legend1"
-        Chart2.Legends.Add(Legend5)
-        Chart2.Location = New Point(3, 89)
-        Chart2.Name = "Chart2"
-        Series5.ChartArea = "ChartArea1"
-        Series5.Legend = "Legend1"
-        Series5.Name = "Series1"
-        Chart2.Series.Add(Series5)
-        Chart2.Size = New Size(494, 548)
-        Chart2.TabIndex = 48
-        Chart2.Text = "Chart2"
-        ' 
-        ' Chart3
-        ' 
-        ChartArea6.Name = "ChartArea1"
-        Chart3.ChartAreas.Add(ChartArea6)
-        Legend6.Name = "Legend1"
-        Chart3.Legends.Add(Legend6)
-        Chart3.Location = New Point(3, 89)
-        Chart3.Name = "Chart3"
-        Series6.ChartArea = "ChartArea1"
-        Series6.Legend = "Legend1"
-        Series6.Name = "Series1"
-        Chart3.Series.Add(Series6)
-        Chart3.Size = New Size(494, 548)
-        Chart3.TabIndex = 48
-        Chart3.Text = "Chart3"
-        ' 
-        ' dtpSitioIncident
-        ' 
-        dtpSitioIncident.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpSitioIncident.Location = New Point(95, 50)
-        dtpSitioIncident.Margin = New Padding(2)
-        dtpSitioIncident.Name = "dtpSitioIncident"
-        dtpSitioIncident.Size = New Size(322, 34)
-        dtpSitioIncident.TabIndex = 59
-        ' 
         ' frmSummary
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
+        BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(1539, 844)
         Controls.Add(Panel4)
         Controls.Add(Panel3)
@@ -301,12 +301,12 @@ Partial Class frmSummary
         Panel1.PerformLayout()
         Panel2.ResumeLayout(False)
         Panel2.PerformLayout()
+        CType(chrtSitio, ComponentModel.ISupportInitialize).EndInit()
         Panel3.ResumeLayout(False)
         Panel3.PerformLayout()
+        CType(Chart2, ComponentModel.ISupportInitialize).EndInit()
         Panel4.ResumeLayout(False)
         Panel4.PerformLayout()
-        CType(chrtSitio, ComponentModel.ISupportInitialize).EndInit()
-        CType(Chart2, ComponentModel.ISupportInitialize).EndInit()
         CType(Chart3, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()

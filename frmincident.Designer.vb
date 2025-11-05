@@ -43,6 +43,8 @@ Partial Class frmincident
         cmbFilterStatus = New ComboBox()
         Label2 = New Label()
         Panel4 = New Panel()
+        txtDescription = New TextBox()
+        Label7 = New Label()
         txtid = New TextBox()
         Label5 = New Label()
         cmbincident = New ComboBox()
@@ -59,8 +61,6 @@ Partial Class frmincident
         Label11 = New Label()
         Label10 = New Label()
         dgvIncidents = New DataGridView()
-        Label7 = New Label()
-        txtDescription = New TextBox()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel2.SuspendLayout()
@@ -70,7 +70,7 @@ Partial Class frmincident
         ' 
         ' Panel1
         ' 
-        Panel1.BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
+        Panel1.BackColor = Color.Transparent
         Panel1.Controls.Add(btnRefresh)
         Panel1.Controls.Add(btnDelete)
         Panel1.Controls.Add(btnEdit)
@@ -111,7 +111,7 @@ Partial Class frmincident
         ' 
         ' btnEdit
         ' 
-        btnEdit.BackColor = Color.Yellow
+        btnEdit.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(128))
         btnEdit.FlatAppearance.BorderSize = 0
         btnEdit.FlatStyle = FlatStyle.Flat
         btnEdit.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
@@ -310,6 +310,25 @@ Partial Class frmincident
         Panel4.Size = New Size(490, 819)
         Panel4.TabIndex = 24
         ' 
+        ' txtDescription
+        ' 
+        txtDescription.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtDescription.Location = New Point(2, 577)
+        txtDescription.Multiline = True
+        txtDescription.Name = "txtDescription"
+        txtDescription.Size = New Size(485, 26)
+        txtDescription.TabIndex = 27
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label7.Location = New Point(3, 546)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(112, 28)
+        Label7.TabIndex = 26
+        Label7.Text = "Description"
+        ' 
         ' txtid
         ' 
         txtid.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -476,30 +495,11 @@ Partial Class frmincident
         dgvIncidents.Size = New Size(1231, 1011)
         dgvIncidents.TabIndex = 0
         ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(3, 546)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(112, 28)
-        Label7.TabIndex = 26
-        Label7.Text = "Description"
-        ' 
-        ' txtDescription
-        ' 
-        txtDescription.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtDescription.Location = New Point(2, 577)
-        txtDescription.Multiline = True
-        txtDescription.Name = "txtDescription"
-        txtDescription.Size = New Size(485, 26)
-        txtDescription.TabIndex = 27
-        ' 
         ' frmincident
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
+        BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(1539, 844)
         Controls.Add(dgvIncidents)
         Controls.Add(Panel4)

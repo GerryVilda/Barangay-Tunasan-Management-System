@@ -117,7 +117,7 @@ Partial Class frmcomplaints
         ' 
         ' panelPending
         ' 
-        panelPending.BackColor = Color.FromArgb(CByte(255), CByte(193), CByte(7))
+        panelPending.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(128))
         panelPending.Controls.Add(lblPendingCount)
         panelPending.Controls.Add(lblPending)
         panelPending.Location = New Point(191, 114)
@@ -394,7 +394,7 @@ Partial Class frmcomplaints
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
+        BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(1539, 844)
         Controls.Add(dgvComplaints)
         Controls.Add(cmbStatus)
