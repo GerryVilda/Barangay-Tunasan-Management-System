@@ -23,6 +23,15 @@ Partial Class frmSummary
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSummary))
+        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend4 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend5 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend6 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
         PictureBox1 = New PictureBox()
         lblTitle = New Label()
         Panel1 = New Panel()
@@ -30,47 +39,35 @@ Partial Class frmSummary
         Label1 = New Label()
         cmbSitio = New ComboBox()
         Panel2 = New Panel()
-        lblHouseholds = New Label()
-        lblTotalResidents = New Label()
-        lblSitioName = New Label()
-        Label7 = New Label()
-        Label6 = New Label()
         Label5 = New Label()
-        Label4 = New Label()
         MySqlCommand1 = New MySql.Data.MySqlClient.MySqlCommand()
         Panel3 = New Panel()
-        lblSenior = New Label()
-        lblAdulthood = New Label()
-        lblChildhood = New Label()
-        lblFemale = New Label()
-        lblMale = New Label()
-        Label16 = New Label()
-        Label15 = New Label()
-        Label14 = New Label()
         Label12 = New Label()
-        Label11 = New Label()
-        Label13 = New Label()
-        Label10 = New Label()
-        Label9 = New Label()
-        dtpfrom = New DateTimePicker()
-        dtpto = New DateTimePicker()
-        btnfilter = New Button()
-        btnpdf = New Button()
+        dtpSitioInfo = New DateTimePicker()
+        dtpResidentInfo = New DateTimePicker()
         Panel4 = New Panel()
         Label22 = New Label()
+        chrtSitio = New DataVisualization.Charting.Chart()
+        Chart2 = New DataVisualization.Charting.Chart()
+        Chart3 = New DataVisualization.Charting.Chart()
+        dtpSitioIncident = New DateTimePicker()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
         Panel3.SuspendLayout()
         Panel4.SuspendLayout()
+        CType(chrtSitio, ComponentModel.ISupportInitialize).BeginInit()
+        CType(Chart2, ComponentModel.ISupportInitialize).BeginInit()
+        CType(Chart3, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
         ' 
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(3, 0)
+        PictureBox1.Location = New Point(2, 0)
+        PictureBox1.Margin = New Padding(2)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(216, 188)
+        PictureBox1.Size = New Size(173, 150)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 43
         PictureBox1.TabStop = False
@@ -79,10 +76,10 @@ Partial Class frmSummary
         ' 
         lblTitle.AutoSize = True
         lblTitle.Font = New Font("Segoe UI Black", 19.8000011F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        lblTitle.Location = New Point(226, 23)
-        lblTitle.Margin = New Padding(4, 0, 4, 0)
+        lblTitle.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        lblTitle.Location = New Point(181, 18)
         lblTitle.Name = "lblTitle"
-        lblTitle.Size = New Size(374, 54)
+        lblTitle.Size = New Size(318, 46)
         lblTitle.TabIndex = 44
         lblTitle.Text = "Reports Summary"
         ' 
@@ -92,10 +89,10 @@ Partial Class frmSummary
         Panel1.Controls.Add(btnGenerate)
         Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(cmbSitio)
-        Panel1.Location = New Point(226, 90)
-        Panel1.Margin = New Padding(4, 3, 4, 3)
+        Panel1.Location = New Point(181, 72)
+        Panel1.Margin = New Padding(3, 2, 3, 2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(733, 125)
+        Panel1.Size = New Size(532, 62)
         Panel1.TabIndex = 45
         ' 
         ' btnGenerate
@@ -105,10 +102,10 @@ Partial Class frmSummary
         btnGenerate.FlatStyle = FlatStyle.Flat
         btnGenerate.Font = New Font("Segoe UI", 12F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         btnGenerate.ForeColor = Color.Black
-        btnGenerate.Location = New Point(566, 13)
-        btnGenerate.Margin = New Padding(4, 3, 4, 3)
+        btnGenerate.Location = New Point(410, 16)
+        btnGenerate.Margin = New Padding(3, 2, 3, 2)
         btnGenerate.Name = "btnGenerate"
-        btnGenerate.Size = New Size(137, 45)
+        btnGenerate.Size = New Size(110, 36)
         btnGenerate.TabIndex = 6
         btnGenerate.Text = "Generate"
         btnGenerate.UseVisualStyleBackColor = False
@@ -117,10 +114,9 @@ Partial Class frmSummary
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(4, 23)
-        Label1.Margin = New Padding(4, 0, 4, 0)
+        Label1.Location = New Point(3, 18)
         Label1.Name = "Label1"
-        Label1.Size = New Size(85, 38)
+        Label1.Size = New Size(70, 31)
         Label1.TabIndex = 1
         Label1.Text = "Sitio:"
         ' 
@@ -129,104 +125,33 @@ Partial Class frmSummary
         cmbSitio.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         cmbSitio.FormattingEnabled = True
         cmbSitio.Items.AddRange(New Object() {"Camella Homes III", "Lake Shore Subdivision", "Lindenwood Residences", "Midland II Subdivision", "Parkhomes Subdivision", "Planas", "Sto. Niño Village", "Susana Heights Subdivision", "Villa Carolina I", "Villa Carolina II"})
-        cmbSitio.Location = New Point(99, 17)
-        cmbSitio.Margin = New Padding(4, 3, 4, 3)
+        cmbSitio.Location = New Point(79, 14)
+        cmbSitio.Margin = New Padding(3, 2, 3, 2)
         cmbSitio.Name = "cmbSitio"
-        cmbSitio.Size = New Size(405, 40)
+        cmbSitio.Size = New Size(325, 36)
         cmbSitio.TabIndex = 0
         ' 
         ' Panel2
         ' 
         Panel2.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(128))
-        Panel2.Controls.Add(lblHouseholds)
-        Panel2.Controls.Add(lblTotalResidents)
-        Panel2.Controls.Add(lblSitioName)
-        Panel2.Controls.Add(Label7)
-        Panel2.Controls.Add(Label6)
+        Panel2.Controls.Add(chrtSitio)
         Panel2.Controls.Add(Label5)
-        Panel2.Controls.Add(Label4)
-        Panel2.Location = New Point(3, 238)
-        Panel2.Margin = New Padding(4, 3, 4, 3)
+        Panel2.Controls.Add(dtpSitioInfo)
+        Panel2.Location = New Point(12, 179)
+        Panel2.Margin = New Padding(3, 2, 3, 2)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(704, 353)
+        Panel2.Size = New Size(500, 640)
         Panel2.TabIndex = 46
-        ' 
-        ' lblHouseholds
-        ' 
-        lblHouseholds.AutoSize = True
-        lblHouseholds.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblHouseholds.Location = New Point(309, 247)
-        lblHouseholds.Margin = New Padding(4, 0, 4, 0)
-        lblHouseholds.Name = "lblHouseholds"
-        lblHouseholds.Size = New Size(33, 38)
-        lblHouseholds.TabIndex = 56
-        lblHouseholds.Text = "0"
-        ' 
-        ' lblTotalResidents
-        ' 
-        lblTotalResidents.AutoSize = True
-        lblTotalResidents.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblTotalResidents.Location = New Point(309, 183)
-        lblTotalResidents.Margin = New Padding(4, 0, 4, 0)
-        lblTotalResidents.Name = "lblTotalResidents"
-        lblTotalResidents.Size = New Size(33, 38)
-        lblTotalResidents.TabIndex = 55
-        lblTotalResidents.Text = "0"
-        ' 
-        ' lblSitioName
-        ' 
-        lblSitioName.AutoSize = True
-        lblSitioName.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblSitioName.Location = New Point(309, 123)
-        lblSitioName.Margin = New Padding(4, 0, 4, 0)
-        lblSitioName.Name = "lblSitioName"
-        lblSitioName.Size = New Size(33, 38)
-        lblSitioName.TabIndex = 54
-        lblSitioName.Text = "0"
-        ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label7.Location = New Point(74, 247)
-        Label7.Margin = New Padding(4, 0, 4, 0)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(178, 38)
-        Label7.TabIndex = 49
-        Label7.Text = "Households:"
-        ' 
-        ' Label6
-        ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label6.Location = New Point(74, 183)
-        Label6.Margin = New Padding(4, 0, 4, 0)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(221, 38)
-        Label6.TabIndex = 48
-        Label6.Text = "Total Residents:"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(193, 18)
-        Label5.Margin = New Padding(4, 0, 4, 0)
+        Label5.Location = New Point(123, 7)
         Label5.Name = "Label5"
-        Label5.Size = New Size(310, 48)
+        Label5.Size = New Size(259, 41)
         Label5.TabIndex = 47
         Label5.Text = "Sitio Information"
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label4.Location = New Point(74, 123)
-        Label4.Margin = New Padding(4, 0, 4, 0)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(171, 38)
-        Label4.TabIndex = 7
-        Label4.Text = "Sitio Name:"
         ' 
         ' MySqlCommand1
         ' 
@@ -238,242 +163,136 @@ Partial Class frmSummary
         ' Panel3
         ' 
         Panel3.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(128))
-        Panel3.Controls.Add(lblSenior)
-        Panel3.Controls.Add(lblAdulthood)
-        Panel3.Controls.Add(lblChildhood)
-        Panel3.Controls.Add(lblFemale)
-        Panel3.Controls.Add(lblMale)
-        Panel3.Controls.Add(Label16)
-        Panel3.Controls.Add(Label15)
-        Panel3.Controls.Add(Label14)
+        Panel3.Controls.Add(Chart2)
         Panel3.Controls.Add(Label12)
-        Panel3.Controls.Add(Label11)
-        Panel3.Controls.Add(Label13)
-        Panel3.Controls.Add(Label10)
-        Panel3.Controls.Add(Label9)
-        Panel3.Location = New Point(717, 238)
-        Panel3.Margin = New Padding(4, 3, 4, 3)
+        Panel3.Controls.Add(dtpResidentInfo)
+        Panel3.Location = New Point(520, 179)
+        Panel3.Margin = New Padding(3, 2, 3, 2)
         Panel3.Name = "Panel3"
-        Panel3.Size = New Size(704, 353)
+        Panel3.Size = New Size(500, 640)
         Panel3.TabIndex = 55
-        ' 
-        ' lblSenior
-        ' 
-        lblSenior.AutoSize = True
-        lblSenior.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblSenior.Location = New Point(564, 248)
-        lblSenior.Margin = New Padding(4, 0, 4, 0)
-        lblSenior.Name = "lblSenior"
-        lblSenior.Size = New Size(33, 38)
-        lblSenior.TabIndex = 61
-        lblSenior.Text = "0"
-        ' 
-        ' lblAdulthood
-        ' 
-        lblAdulthood.AutoSize = True
-        lblAdulthood.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblAdulthood.Location = New Point(564, 193)
-        lblAdulthood.Margin = New Padding(4, 0, 4, 0)
-        lblAdulthood.Name = "lblAdulthood"
-        lblAdulthood.Size = New Size(33, 38)
-        lblAdulthood.TabIndex = 60
-        lblAdulthood.Text = "0"
-        ' 
-        ' lblChildhood
-        ' 
-        lblChildhood.AutoSize = True
-        lblChildhood.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblChildhood.Location = New Point(564, 138)
-        lblChildhood.Margin = New Padding(4, 0, 4, 0)
-        lblChildhood.Name = "lblChildhood"
-        lblChildhood.Size = New Size(33, 38)
-        lblChildhood.TabIndex = 59
-        lblChildhood.Text = "0"
-        ' 
-        ' lblFemale
-        ' 
-        lblFemale.AutoSize = True
-        lblFemale.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblFemale.Location = New Point(146, 220)
-        lblFemale.Margin = New Padding(4, 0, 4, 0)
-        lblFemale.Name = "lblFemale"
-        lblFemale.Size = New Size(33, 38)
-        lblFemale.TabIndex = 58
-        lblFemale.Text = "0"
-        ' 
-        ' lblMale
-        ' 
-        lblMale.AutoSize = True
-        lblMale.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblMale.Location = New Point(146, 162)
-        lblMale.Margin = New Padding(4, 0, 4, 0)
-        lblMale.Name = "lblMale"
-        lblMale.Size = New Size(33, 38)
-        lblMale.TabIndex = 57
-        lblMale.Text = "0"
-        ' 
-        ' Label16
-        ' 
-        Label16.AutoSize = True
-        Label16.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label16.Location = New Point(267, 248)
-        Label16.Margin = New Padding(4, 0, 4, 0)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(232, 38)
-        Label16.TabIndex = 57
-        Label16.Text = "Senior (60-80+):"
-        ' 
-        ' Label15
-        ' 
-        Label15.AutoSize = True
-        Label15.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label15.Location = New Point(267, 193)
-        Label15.Margin = New Padding(4, 0, 4, 0)
-        Label15.Name = "Label15"
-        Label15.Size = New Size(289, 38)
-        Label15.TabIndex = 56
-        Label15.Text = "Adulthood (18-50+):"
-        ' 
-        ' Label14
-        ' 
-        Label14.AutoSize = True
-        Label14.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label14.Location = New Point(267, 138)
-        Label14.Margin = New Padding(4, 0, 4, 0)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(267, 38)
-        Label14.TabIndex = 55
-        Label14.Text = "Childhood (0-13+):"
         ' 
         ' Label12
         ' 
         Label12.AutoSize = True
         Label12.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label12.Location = New Point(146, 18)
-        Label12.Margin = New Padding(4, 0, 4, 0)
+        Label12.Location = New Point(83, 7)
         Label12.Name = "Label12"
-        Label12.Size = New Size(379, 48)
+        Label12.Size = New Size(316, 41)
         Label12.TabIndex = 47
         Label12.Text = "Resident Information"
         ' 
-        ' Label11
+        ' dtpSitioInfo
         ' 
-        Label11.AutoSize = True
-        Label11.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label11.Location = New Point(17, 162)
-        Label11.Margin = New Padding(4, 0, 4, 0)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(90, 38)
-        Label11.TabIndex = 48
-        Label11.Text = "Male:"
+        dtpSitioInfo.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        dtpSitioInfo.Location = New Point(85, 50)
+        dtpSitioInfo.Margin = New Padding(2)
+        dtpSitioInfo.Name = "dtpSitioInfo"
+        dtpSitioInfo.Size = New Size(322, 34)
+        dtpSitioInfo.TabIndex = 57
         ' 
-        ' Label13
+        ' dtpResidentInfo
         ' 
-        Label13.AutoSize = True
-        Label13.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label13.Location = New Point(17, 77)
-        Label13.Margin = New Padding(4, 0, 4, 0)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(112, 38)
-        Label13.TabIndex = 7
-        Label13.Text = "Gender"
-        ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label10.Location = New Point(17, 220)
-        Label10.Margin = New Padding(4, 0, 4, 0)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(119, 38)
-        Label10.TabIndex = 49
-        Label10.Text = "Female:"
-        ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label9.Location = New Point(301, 77)
-        Label9.Margin = New Padding(4, 0, 4, 0)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(159, 38)
-        Label9.TabIndex = 50
-        Label9.Text = "Age Group"
-        ' 
-        ' dtpfrom
-        ' 
-        dtpfrom.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpfrom.Location = New Point(1017, 90)
-        dtpfrom.Name = "dtpfrom"
-        dtpfrom.Size = New Size(401, 39)
-        dtpfrom.TabIndex = 57
-        ' 
-        ' dtpto
-        ' 
-        dtpto.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpto.Location = New Point(1017, 135)
-        dtpto.Name = "dtpto"
-        dtpto.Size = New Size(401, 39)
-        dtpto.TabIndex = 58
-        ' 
-        ' btnfilter
-        ' 
-        btnfilter.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnfilter.Location = New Point(966, 180)
-        btnfilter.Name = "btnfilter"
-        btnfilter.Size = New Size(227, 47)
-        btnfilter.TabIndex = 59
-        btnfilter.Text = "Filter"
-        btnfilter.UseVisualStyleBackColor = True
-        ' 
-        ' btnpdf
-        ' 
-        btnpdf.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnpdf.Location = New Point(1194, 180)
-        btnpdf.Name = "btnpdf"
-        btnpdf.Size = New Size(227, 47)
-        btnpdf.TabIndex = 60
-        btnpdf.Text = "Generate PDF"
-        btnpdf.UseVisualStyleBackColor = True
+        dtpResidentInfo.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        dtpResidentInfo.Location = New Point(82, 50)
+        dtpResidentInfo.Margin = New Padding(2)
+        dtpResidentInfo.Name = "dtpResidentInfo"
+        dtpResidentInfo.Size = New Size(322, 34)
+        dtpResidentInfo.TabIndex = 58
         ' 
         ' Panel4
         ' 
         Panel4.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(128))
+        Panel4.Controls.Add(dtpSitioIncident)
+        Panel4.Controls.Add(Chart3)
         Panel4.Controls.Add(Label22)
-        Panel4.Location = New Point(361, 598)
-        Panel4.Margin = New Padding(4, 3, 4, 3)
+        Panel4.Location = New Point(1027, 179)
+        Panel4.Margin = New Padding(3, 2, 3, 2)
         Panel4.Name = "Panel4"
-        Panel4.Size = New Size(704, 353)
+        Panel4.Size = New Size(500, 640)
         Panel4.TabIndex = 62
         ' 
         ' Label22
         ' 
         Label22.AutoSize = True
         Label22.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label22.Location = New Point(170, 18)
-        Label22.Margin = New Padding(4, 0, 4, 0)
+        Label22.Location = New Point(98, 7)
         Label22.Name = "Label22"
-        Label22.Size = New Size(381, 48)
+        Label22.Size = New Size(319, 41)
         Label22.TabIndex = 47
         Label22.Text = "Sitio Incident Reports"
         ' 
+        ' chrtSitio
+        ' 
+        ChartArea4.Name = "ChartArea1"
+        chrtSitio.ChartAreas.Add(ChartArea4)
+        Legend4.Name = "Legend1"
+        chrtSitio.Legends.Add(Legend4)
+        chrtSitio.Location = New Point(3, 89)
+        chrtSitio.Name = "chrtSitio"
+        Series4.ChartArea = "ChartArea1"
+        Series4.Legend = "Legend1"
+        Series4.Name = "Series1"
+        chrtSitio.Series.Add(Series4)
+        chrtSitio.Size = New Size(494, 548)
+        chrtSitio.TabIndex = 63
+        chrtSitio.Text = "Chart1"
+        ' 
+        ' Chart2
+        ' 
+        ChartArea5.Name = "ChartArea1"
+        Chart2.ChartAreas.Add(ChartArea5)
+        Legend5.Name = "Legend1"
+        Chart2.Legends.Add(Legend5)
+        Chart2.Location = New Point(3, 89)
+        Chart2.Name = "Chart2"
+        Series5.ChartArea = "ChartArea1"
+        Series5.Legend = "Legend1"
+        Series5.Name = "Series1"
+        Chart2.Series.Add(Series5)
+        Chart2.Size = New Size(494, 548)
+        Chart2.TabIndex = 48
+        Chart2.Text = "Chart2"
+        ' 
+        ' Chart3
+        ' 
+        ChartArea6.Name = "ChartArea1"
+        Chart3.ChartAreas.Add(ChartArea6)
+        Legend6.Name = "Legend1"
+        Chart3.Legends.Add(Legend6)
+        Chart3.Location = New Point(3, 89)
+        Chart3.Name = "Chart3"
+        Series6.ChartArea = "ChartArea1"
+        Series6.Legend = "Legend1"
+        Series6.Name = "Series1"
+        Chart3.Series.Add(Series6)
+        Chart3.Size = New Size(494, 548)
+        Chart3.TabIndex = 48
+        Chart3.Text = "Chart3"
+        ' 
+        ' dtpSitioIncident
+        ' 
+        dtpSitioIncident.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        dtpSitioIncident.Location = New Point(95, 50)
+        dtpSitioIncident.Margin = New Padding(2)
+        dtpSitioIncident.Name = "dtpSitioIncident"
+        dtpSitioIncident.Size = New Size(322, 34)
+        dtpSitioIncident.TabIndex = 59
+        ' 
         ' frmSummary
         ' 
-        AutoScaleDimensions = New SizeF(10F, 25F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
-        ClientSize = New Size(2262, 1476)
+        ClientSize = New Size(1539, 844)
         Controls.Add(Panel4)
-        Controls.Add(btnpdf)
-        Controls.Add(btnfilter)
-        Controls.Add(dtpto)
-        Controls.Add(dtpfrom)
         Controls.Add(Panel3)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
         Controls.Add(lblTitle)
         Controls.Add(PictureBox1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Margin = New Padding(2)
         Name = "frmSummary"
         StartPosition = FormStartPosition.CenterScreen
         Text = "frmSummary"
@@ -486,6 +305,9 @@ Partial Class frmSummary
         Panel3.PerformLayout()
         Panel4.ResumeLayout(False)
         Panel4.PerformLayout()
+        CType(chrtSitio, ComponentModel.ISupportInitialize).EndInit()
+        CType(Chart2, ComponentModel.ISupportInitialize).EndInit()
+        CType(Chart3, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -496,32 +318,16 @@ Partial Class frmSummary
     Friend WithEvents cmbSitio As ComboBox
     Friend WithEvents btnGenerate As Button
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents MySqlCommand1 As MySql.Data.MySqlClient.MySqlCommand
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label12 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents lblHouseholds As Label
-    Friend WithEvents lblTotalResidents As Label
-    Friend WithEvents lblSitioName As Label
-    Friend WithEvents lblSenior As Label
-    Friend WithEvents lblAdulthood As Label
-    Friend WithEvents lblChildhood As Label
-    Friend WithEvents lblFemale As Label
-    Friend WithEvents lblMale As Label
-    Friend WithEvents dtpfrom As DateTimePicker
-    Friend WithEvents dtpto As DateTimePicker
-    Friend WithEvents btnfilter As Button
-    Friend WithEvents btnpdf As Button
+    Friend WithEvents dtpSitioInfo As DateTimePicker
+    Friend WithEvents dtpResidentInfo As DateTimePicker
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Label22 As Label
+    Friend WithEvents chrtSitio As DataVisualization.Charting.Chart
+    Friend WithEvents Chart2 As DataVisualization.Charting.Chart
+    Friend WithEvents Chart3 As DataVisualization.Charting.Chart
+    Friend WithEvents dtpSitioIncident As DateTimePicker
 End Class
