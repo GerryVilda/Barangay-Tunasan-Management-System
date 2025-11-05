@@ -333,7 +333,7 @@ Partial Class frmincident
         ' 
         cmbincident.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         cmbincident.FormattingEnabled = True
-        cmbincident.Items.AddRange(New Object() {"Noise Complaint", "Domestic Dispute", "Vandalism", "Theft", "Verbal Altercation", "Traffic Violation", "Harassment", "Minor Injury"})
+        cmbincident.Items.AddRange(New Object() {"Clogged drainage or canal", "Streetlight not working", "Garbage collection delay", "Flooding during heavy rains", "Stray dogs/cats in the area", "Water supply interruption", "Minor road or property damage", "Illegal parking or obstruction", "Broken barangay facilities", "Community noise complaints"})
         cmbincident.Location = New Point(3, 494)
         cmbincident.Name = "cmbincident"
         cmbincident.Size = New Size(485, 36)

@@ -34,7 +34,6 @@ Partial Class frmblotter
         txtincidentdate = New DateTimePicker()
         dtpcreatedat = New DateTimePicker()
         txtremarks = New TextBox()
-        txtincidentype = New TextBox()
         txtrespondent = New TextBox()
         txtcomplaint = New TextBox()
         txtblotterid = New TextBox()
@@ -49,6 +48,7 @@ Partial Class frmblotter
         Label4 = New Label()
         Label3 = New Label()
         Label2 = New Label()
+        cmbincident = New ComboBox()
         Panel1.SuspendLayout()
         CType(dgvblotters, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -66,6 +66,7 @@ Partial Class frmblotter
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(cmbincident)
         Panel1.Controls.Add(ComboBox1)
         Panel1.Controls.Add(btnupdateblotter)
         Panel1.Controls.Add(btnsaveblotter)
@@ -75,7 +76,6 @@ Partial Class frmblotter
         Panel1.Controls.Add(txtincidentdate)
         Panel1.Controls.Add(dtpcreatedat)
         Panel1.Controls.Add(txtremarks)
-        Panel1.Controls.Add(txtincidentype)
         Panel1.Controls.Add(txtrespondent)
         Panel1.Controls.Add(txtcomplaint)
         Panel1.Controls.Add(txtblotterid)
@@ -155,7 +155,7 @@ Partial Class frmblotter
         dtpcreatedat.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         dtpcreatedat.Location = New Point(190, 494)
         dtpcreatedat.Name = "dtpcreatedat"
-        dtpcreatedat.Size = New Size(839, 34)
+        dtpcreatedat.Size = New Size(840, 34)
         dtpcreatedat.TabIndex = 17
         ' 
         ' txtremarks
@@ -166,14 +166,6 @@ Partial Class frmblotter
         txtremarks.Name = "txtremarks"
         txtremarks.Size = New Size(1002, 140)
         txtremarks.TabIndex = 16
-        ' 
-        ' txtincidentype
-        ' 
-        txtincidentype.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtincidentype.Location = New Point(191, 264)
-        txtincidentype.Name = "txtincidentype"
-        txtincidentype.Size = New Size(839, 34)
-        txtincidentype.TabIndex = 14
         ' 
         ' txtrespondent
         ' 
@@ -207,7 +199,7 @@ Partial Class frmblotter
         cbostatus.Items.AddRange(New Object() {"Pending", "Under Investigation", "Resolved"})
         cbostatus.Location = New Point(190, 434)
         cbostatus.Name = "cbostatus"
-        cbostatus.Size = New Size(839, 36)
+        cbostatus.Size = New Size(840, 36)
         cbostatus.TabIndex = 10
         ' 
         ' Label7
@@ -310,6 +302,16 @@ Partial Class frmblotter
         Label2.TabIndex = 0
         Label2.Text = "Blotter ID:"
         ' 
+        ' cmbincident
+        ' 
+        cmbincident.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmbincident.FormattingEnabled = True
+        cmbincident.Items.AddRange(New Object() {"Noise Complaint", "Domestic Dispute", "Vandalism", "Theft", "Verbal Altercation", "Traffic Violation", "Harassment", "Minor Injury"})
+        cmbincident.Location = New Point(191, 264)
+        cmbincident.Name = "cmbincident"
+        cmbincident.Size = New Size(839, 36)
+        cmbincident.TabIndex = 24
+        ' 
         ' frmblotter
         ' 
         AutoScaleDimensions = New SizeF(9F, 20F)
@@ -344,7 +346,6 @@ Partial Class frmblotter
     Friend WithEvents txtincidentdate As DateTimePicker
     Friend WithEvents dtpcreatedat As DateTimePicker
     Friend WithEvents txtremarks As TextBox
-    Friend WithEvents txtincidentype As TextBox
     Friend WithEvents txtrespondent As TextBox
     Friend WithEvents txtcomplaint As TextBox
     Friend WithEvents txtblotterid As TextBox
@@ -354,4 +355,5 @@ Partial Class frmblotter
     Friend WithEvents btnupdateblotter As Button
     Friend WithEvents btnsaveblotter As Button
     Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmbincident As ComboBox
 End Class
