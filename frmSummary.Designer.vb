@@ -68,10 +68,9 @@ Partial Class frmSummary
         ' PictureBox1
         ' 
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(2, 0)
-        PictureBox1.Margin = New Padding(2)
+        PictureBox1.Location = New Point(3, 0)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(151, 113)
+        PictureBox1.Size = New Size(216, 188)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 43
         PictureBox1.TabStop = False
@@ -80,9 +79,10 @@ Partial Class frmSummary
         ' 
         lblTitle.AutoSize = True
         lblTitle.Font = New Font("Segoe UI Black", 19.8000011F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        lblTitle.Location = New Point(158, 14)
+        lblTitle.Location = New Point(226, 23)
+        lblTitle.Margin = New Padding(4, 0, 4, 0)
         lblTitle.Name = "lblTitle"
-        lblTitle.Size = New Size(255, 37)
+        lblTitle.Size = New Size(374, 54)
         lblTitle.TabIndex = 44
         lblTitle.Text = "Reports Summary"
         ' 
@@ -92,10 +92,10 @@ Partial Class frmSummary
         Panel1.Controls.Add(btnGenerate)
         Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(cmbSitio)
-        Panel1.Location = New Point(158, 54)
-        Panel1.Margin = New Padding(3, 2, 3, 2)
+        Panel1.Location = New Point(226, 90)
+        Panel1.Margin = New Padding(4, 3, 4, 3)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(513, 75)
+        Panel1.Size = New Size(733, 125)
         Panel1.TabIndex = 45
         ' 
         ' btnGenerate
@@ -105,10 +105,10 @@ Partial Class frmSummary
         btnGenerate.FlatStyle = FlatStyle.Flat
         btnGenerate.Font = New Font("Segoe UI", 12F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         btnGenerate.ForeColor = Color.Black
-        btnGenerate.Location = New Point(396, 8)
-        btnGenerate.Margin = New Padding(3, 2, 3, 2)
+        btnGenerate.Location = New Point(566, 13)
+        btnGenerate.Margin = New Padding(4, 3, 4, 3)
         btnGenerate.Name = "btnGenerate"
-        btnGenerate.Size = New Size(96, 27)
+        btnGenerate.Size = New Size(137, 45)
         btnGenerate.TabIndex = 6
         btnGenerate.Text = "Generate"
         btnGenerate.UseVisualStyleBackColor = False
@@ -117,9 +117,10 @@ Partial Class frmSummary
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(3, 14)
+        Label1.Location = New Point(4, 23)
+        Label1.Margin = New Padding(4, 0, 4, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(57, 25)
+        Label1.Size = New Size(85, 38)
         Label1.TabIndex = 1
         Label1.Text = "Sitio:"
         ' 
@@ -128,10 +129,10 @@ Partial Class frmSummary
         cmbSitio.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         cmbSitio.FormattingEnabled = True
         cmbSitio.Items.AddRange(New Object() {"Camella Homes III", "Lake Shore Subdivision", "Lindenwood Residences", "Midland II Subdivision", "Parkhomes Subdivision", "Planas", "Sto. Niño Village", "Susana Heights Subdivision", "Villa Carolina I", "Villa Carolina II"})
-        cmbSitio.Location = New Point(69, 10)
-        cmbSitio.Margin = New Padding(3, 2, 3, 2)
+        cmbSitio.Location = New Point(99, 17)
+        cmbSitio.Margin = New Padding(4, 3, 4, 3)
         cmbSitio.Name = "cmbSitio"
-        cmbSitio.Size = New Size(285, 29)
+        cmbSitio.Size = New Size(405, 40)
         cmbSitio.TabIndex = 0
         ' 
         ' Panel2
@@ -144,19 +145,20 @@ Partial Class frmSummary
         Panel2.Controls.Add(Label6)
         Panel2.Controls.Add(Label5)
         Panel2.Controls.Add(Label4)
-        Panel2.Location = New Point(2, 143)
-        Panel2.Margin = New Padding(3, 2, 3, 2)
+        Panel2.Location = New Point(3, 238)
+        Panel2.Margin = New Padding(4, 3, 4, 3)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(493, 212)
+        Panel2.Size = New Size(704, 353)
         Panel2.TabIndex = 46
         ' 
         ' lblHouseholds
         ' 
         lblHouseholds.AutoSize = True
         lblHouseholds.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblHouseholds.Location = New Point(216, 148)
+        lblHouseholds.Location = New Point(309, 247)
+        lblHouseholds.Margin = New Padding(4, 0, 4, 0)
         lblHouseholds.Name = "lblHouseholds"
-        lblHouseholds.Size = New Size(23, 25)
+        lblHouseholds.Size = New Size(33, 38)
         lblHouseholds.TabIndex = 56
         lblHouseholds.Text = "0"
         ' 
@@ -164,9 +166,10 @@ Partial Class frmSummary
         ' 
         lblTotalResidents.AutoSize = True
         lblTotalResidents.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblTotalResidents.Location = New Point(216, 110)
+        lblTotalResidents.Location = New Point(309, 183)
+        lblTotalResidents.Margin = New Padding(4, 0, 4, 0)
         lblTotalResidents.Name = "lblTotalResidents"
-        lblTotalResidents.Size = New Size(23, 25)
+        lblTotalResidents.Size = New Size(33, 38)
         lblTotalResidents.TabIndex = 55
         lblTotalResidents.Text = "0"
         ' 
@@ -174,9 +177,10 @@ Partial Class frmSummary
         ' 
         lblSitioName.AutoSize = True
         lblSitioName.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblSitioName.Location = New Point(216, 74)
+        lblSitioName.Location = New Point(309, 123)
+        lblSitioName.Margin = New Padding(4, 0, 4, 0)
         lblSitioName.Name = "lblSitioName"
-        lblSitioName.Size = New Size(23, 25)
+        lblSitioName.Size = New Size(33, 38)
         lblSitioName.TabIndex = 54
         lblSitioName.Text = "0"
         ' 
@@ -184,9 +188,10 @@ Partial Class frmSummary
         ' 
         Label7.AutoSize = True
         Label7.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label7.Location = New Point(52, 148)
+        Label7.Location = New Point(74, 247)
+        Label7.Margin = New Padding(4, 0, 4, 0)
         Label7.Name = "Label7"
-        Label7.Size = New Size(122, 25)
+        Label7.Size = New Size(178, 38)
         Label7.TabIndex = 49
         Label7.Text = "Households:"
         ' 
@@ -194,9 +199,10 @@ Partial Class frmSummary
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label6.Location = New Point(52, 110)
+        Label6.Location = New Point(74, 183)
+        Label6.Margin = New Padding(4, 0, 4, 0)
         Label6.Name = "Label6"
-        Label6.Size = New Size(149, 25)
+        Label6.Size = New Size(221, 38)
         Label6.TabIndex = 48
         Label6.Text = "Total Residents:"
         ' 
@@ -204,9 +210,10 @@ Partial Class frmSummary
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(135, 11)
+        Label5.Location = New Point(193, 18)
+        Label5.Margin = New Padding(4, 0, 4, 0)
         Label5.Name = "Label5"
-        Label5.Size = New Size(209, 32)
+        Label5.Size = New Size(310, 48)
         Label5.TabIndex = 47
         Label5.Text = "Sitio Information"
         ' 
@@ -214,9 +221,10 @@ Partial Class frmSummary
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label4.Location = New Point(52, 74)
+        Label4.Location = New Point(74, 123)
+        Label4.Margin = New Padding(4, 0, 4, 0)
         Label4.Name = "Label4"
-        Label4.Size = New Size(114, 25)
+        Label4.Size = New Size(171, 38)
         Label4.TabIndex = 7
         Label4.Text = "Sitio Name:"
         ' 
@@ -243,19 +251,20 @@ Partial Class frmSummary
         Panel3.Controls.Add(Label13)
         Panel3.Controls.Add(Label10)
         Panel3.Controls.Add(Label9)
-        Panel3.Location = New Point(502, 143)
-        Panel3.Margin = New Padding(3, 2, 3, 2)
+        Panel3.Location = New Point(717, 238)
+        Panel3.Margin = New Padding(4, 3, 4, 3)
         Panel3.Name = "Panel3"
-        Panel3.Size = New Size(493, 212)
+        Panel3.Size = New Size(704, 353)
         Panel3.TabIndex = 55
         ' 
         ' lblSenior
         ' 
         lblSenior.AutoSize = True
         lblSenior.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblSenior.Location = New Point(395, 149)
+        lblSenior.Location = New Point(564, 248)
+        lblSenior.Margin = New Padding(4, 0, 4, 0)
         lblSenior.Name = "lblSenior"
-        lblSenior.Size = New Size(23, 25)
+        lblSenior.Size = New Size(33, 38)
         lblSenior.TabIndex = 61
         lblSenior.Text = "0"
         ' 
@@ -263,9 +272,10 @@ Partial Class frmSummary
         ' 
         lblAdulthood.AutoSize = True
         lblAdulthood.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblAdulthood.Location = New Point(395, 116)
+        lblAdulthood.Location = New Point(564, 193)
+        lblAdulthood.Margin = New Padding(4, 0, 4, 0)
         lblAdulthood.Name = "lblAdulthood"
-        lblAdulthood.Size = New Size(23, 25)
+        lblAdulthood.Size = New Size(33, 38)
         lblAdulthood.TabIndex = 60
         lblAdulthood.Text = "0"
         ' 
@@ -273,9 +283,10 @@ Partial Class frmSummary
         ' 
         lblChildhood.AutoSize = True
         lblChildhood.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblChildhood.Location = New Point(395, 83)
+        lblChildhood.Location = New Point(564, 138)
+        lblChildhood.Margin = New Padding(4, 0, 4, 0)
         lblChildhood.Name = "lblChildhood"
-        lblChildhood.Size = New Size(23, 25)
+        lblChildhood.Size = New Size(33, 38)
         lblChildhood.TabIndex = 59
         lblChildhood.Text = "0"
         ' 
@@ -283,9 +294,10 @@ Partial Class frmSummary
         ' 
         lblFemale.AutoSize = True
         lblFemale.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblFemale.Location = New Point(102, 132)
+        lblFemale.Location = New Point(146, 220)
+        lblFemale.Margin = New Padding(4, 0, 4, 0)
         lblFemale.Name = "lblFemale"
-        lblFemale.Size = New Size(23, 25)
+        lblFemale.Size = New Size(33, 38)
         lblFemale.TabIndex = 58
         lblFemale.Text = "0"
         ' 
@@ -293,9 +305,10 @@ Partial Class frmSummary
         ' 
         lblMale.AutoSize = True
         lblMale.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblMale.Location = New Point(102, 97)
+        lblMale.Location = New Point(146, 162)
+        lblMale.Margin = New Padding(4, 0, 4, 0)
         lblMale.Name = "lblMale"
-        lblMale.Size = New Size(23, 25)
+        lblMale.Size = New Size(33, 38)
         lblMale.TabIndex = 57
         lblMale.Text = "0"
         ' 
@@ -303,9 +316,10 @@ Partial Class frmSummary
         ' 
         Label16.AutoSize = True
         Label16.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label16.Location = New Point(187, 149)
+        Label16.Location = New Point(267, 248)
+        Label16.Margin = New Padding(4, 0, 4, 0)
         Label16.Name = "Label16"
-        Label16.Size = New Size(159, 25)
+        Label16.Size = New Size(232, 38)
         Label16.TabIndex = 57
         Label16.Text = "Senior (60-80+):"
         ' 
@@ -313,9 +327,10 @@ Partial Class frmSummary
         ' 
         Label15.AutoSize = True
         Label15.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label15.Location = New Point(187, 116)
+        Label15.Location = New Point(267, 193)
+        Label15.Margin = New Padding(4, 0, 4, 0)
         Label15.Name = "Label15"
-        Label15.Size = New Size(197, 25)
+        Label15.Size = New Size(289, 38)
         Label15.TabIndex = 56
         Label15.Text = "Adulthood (18-50+):"
         ' 
@@ -323,9 +338,10 @@ Partial Class frmSummary
         ' 
         Label14.AutoSize = True
         Label14.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label14.Location = New Point(187, 83)
+        Label14.Location = New Point(267, 138)
+        Label14.Margin = New Padding(4, 0, 4, 0)
         Label14.Name = "Label14"
-        Label14.Size = New Size(182, 25)
+        Label14.Size = New Size(267, 38)
         Label14.TabIndex = 55
         Label14.Text = "Childhood (0-13+):"
         ' 
@@ -333,9 +349,10 @@ Partial Class frmSummary
         ' 
         Label12.AutoSize = True
         Label12.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label12.Location = New Point(102, 11)
+        Label12.Location = New Point(146, 18)
+        Label12.Margin = New Padding(4, 0, 4, 0)
         Label12.Name = "Label12"
-        Label12.Size = New Size(252, 32)
+        Label12.Size = New Size(379, 48)
         Label12.TabIndex = 47
         Label12.Text = "Resident Information"
         ' 
@@ -343,9 +360,10 @@ Partial Class frmSummary
         ' 
         Label11.AutoSize = True
         Label11.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label11.Location = New Point(12, 97)
+        Label11.Location = New Point(17, 162)
+        Label11.Margin = New Padding(4, 0, 4, 0)
         Label11.Name = "Label11"
-        Label11.Size = New Size(60, 25)
+        Label11.Size = New Size(90, 38)
         Label11.TabIndex = 48
         Label11.Text = "Male:"
         ' 
@@ -353,9 +371,10 @@ Partial Class frmSummary
         ' 
         Label13.AutoSize = True
         Label13.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label13.Location = New Point(12, 46)
+        Label13.Location = New Point(17, 77)
+        Label13.Margin = New Padding(4, 0, 4, 0)
         Label13.Name = "Label13"
-        Label13.Size = New Size(78, 25)
+        Label13.Size = New Size(112, 38)
         Label13.TabIndex = 7
         Label13.Text = "Gender"
         ' 
@@ -363,9 +382,10 @@ Partial Class frmSummary
         ' 
         Label10.AutoSize = True
         Label10.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label10.Location = New Point(12, 132)
+        Label10.Location = New Point(17, 220)
+        Label10.Margin = New Padding(4, 0, 4, 0)
         Label10.Name = "Label10"
-        Label10.Size = New Size(79, 25)
+        Label10.Size = New Size(119, 38)
         Label10.TabIndex = 49
         Label10.Text = "Female:"
         ' 
@@ -373,37 +393,35 @@ Partial Class frmSummary
         ' 
         Label9.AutoSize = True
         Label9.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold)
-        Label9.Location = New Point(211, 46)
+        Label9.Location = New Point(301, 77)
+        Label9.Margin = New Padding(4, 0, 4, 0)
         Label9.Name = "Label9"
-        Label9.Size = New Size(110, 25)
+        Label9.Size = New Size(159, 38)
         Label9.TabIndex = 50
         Label9.Text = "Age Group"
         ' 
         ' dtpfrom
         ' 
         dtpfrom.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpfrom.Location = New Point(712, 54)
-        dtpfrom.Margin = New Padding(2)
+        dtpfrom.Location = New Point(1017, 90)
         dtpfrom.Name = "dtpfrom"
-        dtpfrom.Size = New Size(282, 29)
+        dtpfrom.Size = New Size(401, 39)
         dtpfrom.TabIndex = 57
         ' 
         ' dtpto
         ' 
         dtpto.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpto.Location = New Point(712, 81)
-        dtpto.Margin = New Padding(2)
+        dtpto.Location = New Point(1017, 135)
         dtpto.Name = "dtpto"
-        dtpto.Size = New Size(282, 29)
+        dtpto.Size = New Size(401, 39)
         dtpto.TabIndex = 58
         ' 
         ' btnfilter
         ' 
         btnfilter.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnfilter.Location = New Point(676, 108)
-        btnfilter.Margin = New Padding(2)
+        btnfilter.Location = New Point(966, 180)
         btnfilter.Name = "btnfilter"
-        btnfilter.Size = New Size(159, 28)
+        btnfilter.Size = New Size(227, 47)
         btnfilter.TabIndex = 59
         btnfilter.Text = "Filter"
         btnfilter.UseVisualStyleBackColor = True
@@ -411,10 +429,9 @@ Partial Class frmSummary
         ' btnpdf
         ' 
         btnpdf.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnpdf.Location = New Point(836, 108)
-        btnpdf.Margin = New Padding(2)
+        btnpdf.Location = New Point(1194, 180)
         btnpdf.Name = "btnpdf"
-        btnpdf.Size = New Size(159, 28)
+        btnpdf.Size = New Size(227, 47)
         btnpdf.TabIndex = 60
         btnpdf.Text = "Generate PDF"
         btnpdf.UseVisualStyleBackColor = True
@@ -423,28 +440,29 @@ Partial Class frmSummary
         ' 
         Panel4.BackColor = Color.FromArgb(CByte(255), CByte(192), CByte(128))
         Panel4.Controls.Add(Label22)
-        Panel4.Location = New Point(253, 359)
-        Panel4.Margin = New Padding(3, 2, 3, 2)
+        Panel4.Location = New Point(361, 598)
+        Panel4.Margin = New Padding(4, 3, 4, 3)
         Panel4.Name = "Panel4"
-        Panel4.Size = New Size(493, 212)
+        Panel4.Size = New Size(704, 353)
         Panel4.TabIndex = 62
         ' 
         ' Label22
         ' 
         Label22.AutoSize = True
         Label22.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label22.Location = New Point(119, 11)
+        Label22.Location = New Point(170, 18)
+        Label22.Margin = New Padding(4, 0, 4, 0)
         Label22.Name = "Label22"
-        Label22.Size = New Size(255, 32)
+        Label22.Size = New Size(381, 48)
         Label22.TabIndex = 47
         Label22.Text = "Sitio Incident Reports"
         ' 
         ' frmSummary
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
-        ClientSize = New Size(1555, 791)
+        ClientSize = New Size(2262, 1476)
         Controls.Add(Panel4)
         Controls.Add(btnpdf)
         Controls.Add(btnfilter)
@@ -456,7 +474,6 @@ Partial Class frmSummary
         Controls.Add(lblTitle)
         Controls.Add(PictureBox1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        Margin = New Padding(2)
         Name = "frmSummary"
         StartPosition = FormStartPosition.CenterScreen
         Text = "frmSummary"

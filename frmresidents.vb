@@ -3,6 +3,11 @@
 Public Class frmresidents
 
     Private Sub frmresidents_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' ✅ Set valid birthdate range (no future dates)
+        dtpbirthdate.MinDate = New Date(1900, 1, 1)
+        dtpbirthdate.MaxDate = DateTime.Today
+
+        ' ✅ Load residents into the grid
         LoadResidents()
     End Sub
 
@@ -25,6 +30,18 @@ Public Class frmresidents
 
     ' ✅ Add new resident
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
+        ' 🧩 Validation: Check if any required field is empty
+        If String.IsNullOrWhiteSpace(txtfirstname.Text) OrElse
+           String.IsNullOrWhiteSpace(txtlastname.Text) OrElse
+           String.IsNullOrWhiteSpace(txtage.Text) OrElse
+           cbogender.SelectedIndex = -1 OrElse
+           cbostatus.SelectedIndex = -1 OrElse
+           cbositio.SelectedIndex = -1 Then
+
+            MessageBox.Show("⚠️ Please fill out all required fields before adding a resident.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
         Try
             Call koneksyon()
             Dim sql As String = "INSERT INTO residents (First_Name, Last_Name, Age, Gender, Birthdate, Sitio, Status)
@@ -35,15 +52,15 @@ Public Class frmresidents
             cmd.Parameters.AddWithValue("@Age", txtage.Text)
             cmd.Parameters.AddWithValue("@Gender", cbogender.Text)
             cmd.Parameters.AddWithValue("@Birthdate", dtpbirthdate.Value)
-            cmd.Parameters.AddWithValue("@Sitio", txtsitio.Text)
+            cmd.Parameters.AddWithValue("@Sitio", cbositio.Text)
             cmd.Parameters.AddWithValue("@Status", cbostatus.Text)
 
             cmd.ExecuteNonQuery()
-            MessageBox.Show("Resident added successfully!")
+            MessageBox.Show("✅ Resident added successfully!")
             ClearFields()
             LoadResidents()
         Catch ex As Exception
-            MessageBox.Show("Error adding resident: " & ex.Message)
+            MessageBox.Show("❌ Error adding resident: " & ex.Message)
         Finally
             cn.Close()
         End Try
@@ -51,30 +68,44 @@ Public Class frmresidents
 
     ' ✅ Update resident
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnupdate.Click
-        Try
-            If txtresidentid.Text = "" Then
-                MessageBox.Show("Please select a resident to update.")
-                Exit Sub
-            End If
+        ' 🧩 Validation
+        If txtresidentid.Text = "" Then
+            MessageBox.Show("Please select a resident to update.")
+            Exit Sub
+        End If
 
+        If String.IsNullOrWhiteSpace(txtfirstname.Text) OrElse
+           String.IsNullOrWhiteSpace(txtlastname.Text) OrElse
+           String.IsNullOrWhiteSpace(txtage.Text) OrElse
+           cbogender.SelectedIndex = -1 OrElse
+           cbostatus.SelectedIndex = -1 OrElse
+           cbositio.SelectedIndex = -1 Then
+
+            MessageBox.Show("⚠️ Please fill out all required fields before updating a resident.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Try
             Call koneksyon()
-            Dim sql As String = "UPDATE residents SET First_Name=@First_Name, Last_Name=@Last_Name, Age=@Age, Gender=@Gender, Birthdate=@Birthdate, Sitio=@Sitio, Status=@Status WHERE Resident_ID=@Resident_ID"
+            Dim sql As String = "UPDATE residents 
+                                 SET First_Name=@First_Name, Last_Name=@Last_Name, Age=@Age, Gender=@Gender, Birthdate=@Birthdate, Sitio=@Sitio, Status=@Status 
+                                 WHERE Resident_ID=@Resident_ID"
             Dim cmd As New MySqlCommand(sql, cn)
             cmd.Parameters.AddWithValue("@First_Name", txtfirstname.Text)
             cmd.Parameters.AddWithValue("@Last_Name", txtlastname.Text)
             cmd.Parameters.AddWithValue("@Age", txtage.Text)
             cmd.Parameters.AddWithValue("@Gender", cbogender.Text)
             cmd.Parameters.AddWithValue("@Birthdate", dtpbirthdate.Value)
-            cmd.Parameters.AddWithValue("@Sitio", txtsitio.Text)
+            cmd.Parameters.AddWithValue("@Sitio", cbositio.Text)
             cmd.Parameters.AddWithValue("@Status", cbostatus.Text)
             cmd.Parameters.AddWithValue("@Resident_ID", txtresidentid.Text)
 
             cmd.ExecuteNonQuery()
-            MessageBox.Show("Resident updated successfully!")
+            MessageBox.Show("✅ Resident updated successfully!")
             ClearFields()
             LoadResidents()
         Catch ex As Exception
-            MessageBox.Show("Error updating resident: " & ex.Message)
+            MessageBox.Show("❌ Error updating resident: " & ex.Message)
         Finally
             cn.Close()
         End Try
@@ -95,12 +126,12 @@ Public Class frmresidents
                 cmd.Parameters.AddWithValue("@Resident_ID", txtresidentid.Text)
                 cmd.ExecuteNonQuery()
 
-                MessageBox.Show("Resident deleted successfully!")
+                MessageBox.Show("✅ Resident deleted successfully!")
                 ClearFields()
                 LoadResidents()
             End If
         Catch ex As Exception
-            MessageBox.Show("Error deleting resident: " & ex.Message)
+            MessageBox.Show("❌ Error deleting resident: " & ex.Message)
         Finally
             cn.Close()
         End Try
@@ -135,7 +166,7 @@ Public Class frmresidents
             txtlastname.Text = row.Cells("Last_Name").Value.ToString()
             txtage.Text = row.Cells("Age").Value.ToString()
             cbogender.Text = row.Cells("Gender").Value.ToString()
-            txtsitio.Text = row.Cells("Sitio").Value.ToString()
+            cbositio.Text = row.Cells("Sitio").Value.ToString()
             cbostatus.Text = row.Cells("Status").Value.ToString()
 
             ' ✅ Fix for empty/null Birthdate
@@ -154,9 +185,9 @@ Public Class frmresidents
         txtlastname.Clear()
         txtage.Clear()
         cbogender.SelectedIndex = -1
-        txtsitio.Clear()
+        cbositio.SelectedIndex = -1
         cbostatus.SelectedIndex = -1
-        dtpbirthdate.Value = DateTime.Now
+        dtpbirthdate.Value = DateTime.Today
     End Sub
 
     ' ✅ Auto compute age based on selected birthdate
@@ -173,5 +204,10 @@ Public Class frmresidents
         If (birthdate > today.AddYears(-age)) Then age -= 1
         Return age
     End Function
+
+    ' ✅ Sitio combobox event (optional handling)
+    Private Sub cbositio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbositio.SelectedIndexChanged
+        ' You can add logic here if Sitio selection affects other fields
+    End Sub
 
 End Class

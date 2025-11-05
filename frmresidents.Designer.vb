@@ -22,14 +22,13 @@ Partial Class frmresidents
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmresidents))
         DataGridView1 = New DataGridView()
         txtresidentid = New TextBox()
         txtfirstname = New TextBox()
         txtlastname = New TextBox()
         txtage = New TextBox()
-        txtsitio = New TextBox()
         Label1 = New Label()
         Label2 = New Label()
         Label3 = New Label()
@@ -47,75 +46,67 @@ Partial Class frmresidents
         btnadd = New Button()
         btnupdate = New Button()
         btndelete = New Button()
+        cbositio = New ComboBox()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' DataGridView1
         ' 
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
+        DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(10, 207)
+        DataGridView1.Location = New Point(12, 259)
         DataGridView1.Margin = New Padding(2)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.RowHeadersWidth = 62
-        DataGridView1.Size = New Size(1524, 837)
+        DataGridView1.Size = New Size(2210, 1206)
         DataGridView1.TabIndex = 0
         ' 
         ' txtresidentid
         ' 
         txtresidentid.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtresidentid.Location = New Point(539, 19)
+        txtresidentid.Location = New Point(674, 24)
         txtresidentid.Margin = New Padding(2)
         txtresidentid.Name = "txtresidentid"
-        txtresidentid.Size = New Size(266, 34)
+        txtresidentid.Size = New Size(332, 39)
         txtresidentid.TabIndex = 1
         ' 
         ' txtfirstname
         ' 
         txtfirstname.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtfirstname.Location = New Point(539, 60)
+        txtfirstname.Location = New Point(674, 75)
         txtfirstname.Margin = New Padding(2)
         txtfirstname.Name = "txtfirstname"
-        txtfirstname.Size = New Size(266, 34)
+        txtfirstname.Size = New Size(332, 39)
         txtfirstname.TabIndex = 2
         ' 
         ' txtlastname
         ' 
         txtlastname.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtlastname.Location = New Point(539, 100)
+        txtlastname.Location = New Point(674, 125)
         txtlastname.Margin = New Padding(2)
         txtlastname.Name = "txtlastname"
-        txtlastname.Size = New Size(266, 34)
+        txtlastname.Size = New Size(332, 39)
         txtlastname.TabIndex = 3
         ' 
         ' txtage
         ' 
         txtage.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtage.Location = New Point(539, 141)
+        txtage.Location = New Point(674, 176)
         txtage.Margin = New Padding(2)
         txtage.Name = "txtage"
-        txtage.Size = New Size(266, 34)
+        txtage.Size = New Size(332, 39)
         txtage.TabIndex = 4
-        ' 
-        ' txtsitio
-        ' 
-        txtsitio.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtsitio.Location = New Point(962, 101)
-        txtsitio.Margin = New Padding(2)
-        txtsitio.Name = "txtsitio"
-        txtsitio.Size = New Size(270, 34)
-        txtsitio.TabIndex = 7
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label1.Location = New Point(418, 26)
+        Label1.Location = New Point(522, 32)
         Label1.Margin = New Padding(2, 0, 2, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(116, 28)
+        Label1.Size = New Size(138, 32)
         Label1.TabIndex = 9
         Label1.Text = "Resident ID"
         ' 
@@ -123,10 +114,10 @@ Partial Class frmresidents
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label2.Location = New Point(417, 66)
+        Label2.Location = New Point(521, 82)
         Label2.Margin = New Padding(2, 0, 2, 0)
         Label2.Name = "Label2"
-        Label2.Size = New Size(110, 28)
+        Label2.Size = New Size(132, 32)
         Label2.TabIndex = 10
         Label2.Text = "First Name"
         ' 
@@ -134,10 +125,10 @@ Partial Class frmresidents
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label3.Location = New Point(418, 106)
+        Label3.Location = New Point(522, 132)
         Label3.Margin = New Padding(2, 0, 2, 0)
         Label3.Name = "Label3"
-        Label3.Size = New Size(108, 28)
+        Label3.Size = New Size(130, 32)
         Label3.TabIndex = 11
         Label3.Text = "Last Name"
         ' 
@@ -145,10 +136,10 @@ Partial Class frmresidents
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label4.Location = New Point(418, 147)
+        Label4.Location = New Point(522, 184)
         Label4.Margin = New Padding(2, 0, 2, 0)
         Label4.Name = "Label4"
-        Label4.Size = New Size(48, 28)
+        Label4.Size = New Size(57, 32)
         Label4.TabIndex = 12
         Label4.Text = "Age"
         ' 
@@ -156,10 +147,10 @@ Partial Class frmresidents
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label5.Location = New Point(864, 152)
+        Label5.Location = New Point(1093, 184)
         Label5.Margin = New Padding(2, 0, 2, 0)
         Label5.Name = "Label5"
-        Label5.Size = New Size(67, 28)
+        Label5.Size = New Size(81, 32)
         Label5.TabIndex = 16
         Label5.Text = "Status"
         ' 
@@ -167,10 +158,10 @@ Partial Class frmresidents
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label6.Location = New Point(864, 104)
+        Label6.Location = New Point(1080, 130)
         Label6.Margin = New Padding(2, 0, 2, 0)
         Label6.Name = "Label6"
-        Label6.Size = New Size(52, 28)
+        Label6.Size = New Size(62, 32)
         Label6.TabIndex = 15
         Label6.Text = "Sitio"
         ' 
@@ -178,10 +169,10 @@ Partial Class frmresidents
         ' 
         Label7.AutoSize = True
         Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label7.Location = New Point(864, 62)
+        Label7.Location = New Point(1080, 78)
         Label7.Margin = New Padding(2, 0, 2, 0)
         Label7.Name = "Label7"
-        Label7.Size = New Size(96, 28)
+        Label7.Size = New Size(117, 32)
         Label7.TabIndex = 14
         Label7.Text = "Birthdate"
         ' 
@@ -189,20 +180,20 @@ Partial Class frmresidents
         ' 
         Label8.AutoSize = True
         Label8.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label8.Location = New Point(864, 22)
+        Label8.Location = New Point(1080, 28)
         Label8.Margin = New Padding(2, 0, 2, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(79, 28)
+        Label8.Size = New Size(94, 32)
         Label8.TabIndex = 13
         Label8.Text = "Gender"
         ' 
         ' dtpbirthdate
         ' 
         dtpbirthdate.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpbirthdate.Location = New Point(962, 58)
+        dtpbirthdate.Location = New Point(1202, 72)
         dtpbirthdate.Margin = New Padding(2)
         dtpbirthdate.Name = "dtpbirthdate"
-        dtpbirthdate.Size = New Size(270, 34)
+        dtpbirthdate.Size = New Size(493, 39)
         dtpbirthdate.TabIndex = 17
         ' 
         ' cbostatus
@@ -210,10 +201,10 @@ Partial Class frmresidents
         cbostatus.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         cbostatus.FormattingEnabled = True
         cbostatus.Items.AddRange(New Object() {"Single ", "Married", "Widowed", "Separated", "Annulled", "Divorced", "Live-in / Common-law"})
-        cbostatus.Location = New Point(962, 143)
+        cbostatus.Location = New Point(1202, 179)
         cbostatus.Margin = New Padding(2)
         cbostatus.Name = "cbostatus"
-        cbostatus.Size = New Size(270, 36)
+        cbostatus.Size = New Size(493, 40)
         cbostatus.TabIndex = 18
         ' 
         ' cbogender
@@ -221,19 +212,19 @@ Partial Class frmresidents
         cbogender.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         cbogender.FormattingEnabled = True
         cbogender.Items.AddRange(New Object() {"Male", "Female"})
-        cbogender.Location = New Point(962, 17)
+        cbogender.Location = New Point(1202, 21)
         cbogender.Margin = New Padding(2)
         cbogender.Name = "cbogender"
-        cbogender.Size = New Size(270, 36)
+        cbogender.Size = New Size(493, 40)
         cbogender.TabIndex = 19
         ' 
         ' PictureBox1
         ' 
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(10, 10)
+        PictureBox1.Location = New Point(12, 12)
         PictureBox1.Margin = New Padding(2)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(173, 151)
+        PictureBox1.Size = New Size(216, 189)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 20
         PictureBox1.TabStop = False
@@ -242,57 +233,69 @@ Partial Class frmresidents
         ' 
         Label9.AutoSize = True
         Label9.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(10, 170)
+        Label9.Location = New Point(12, 212)
         Label9.Margin = New Padding(2, 0, 2, 0)
         Label9.Name = "Label9"
-        Label9.Size = New Size(105, 28)
+        Label9.Size = New Size(127, 32)
         Label9.TabIndex = 21
         Label9.Text = "Search By:"
         ' 
         ' txtsearch
         ' 
-        txtsearch.Location = New Point(117, 170)
+        txtsearch.Location = New Point(146, 212)
         txtsearch.Margin = New Padding(2)
         txtsearch.Name = "txtsearch"
-        txtsearch.Size = New Size(218, 27)
+        txtsearch.Size = New Size(272, 31)
         txtsearch.TabIndex = 22
         ' 
         ' btnadd
         ' 
-        btnadd.Location = New Point(1302, 12)
+        btnadd.Location = New Point(1833, 44)
         btnadd.Margin = New Padding(2)
         btnadd.Name = "btnadd"
-        btnadd.Size = New Size(127, 50)
+        btnadd.Size = New Size(308, 62)
         btnadd.TabIndex = 23
         btnadd.Text = "➕ Add"
         btnadd.UseVisualStyleBackColor = True
         ' 
         ' btnupdate
         ' 
-        btnupdate.Location = New Point(1302, 64)
+        btnupdate.Location = New Point(1833, 110)
         btnupdate.Margin = New Padding(2)
         btnupdate.Name = "btnupdate"
-        btnupdate.Size = New Size(127, 50)
+        btnupdate.Size = New Size(308, 62)
         btnupdate.TabIndex = 24
         btnupdate.Text = "✏️ Update"
         btnupdate.UseVisualStyleBackColor = True
         ' 
         ' btndelete
         ' 
-        btndelete.Location = New Point(1302, 122)
+        btndelete.Location = New Point(1833, 176)
         btndelete.Margin = New Padding(2)
         btndelete.Name = "btndelete"
-        btndelete.Size = New Size(127, 50)
+        btndelete.Size = New Size(308, 62)
         btndelete.TabIndex = 25
         btndelete.Text = "🗑️ Delete"
         btndelete.UseVisualStyleBackColor = True
         ' 
+        ' cbositio
+        ' 
+        cbositio.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        cbositio.FormattingEnabled = True
+        cbositio.Items.AddRange(New Object() {"Camella Homes III", "", "Lake Shore Subdivision", "", "Lindenwood Residences", "", "Midland II Subdivision", "", "Parkhomes Subdivision", "", "Planas", "", "Sto. Niño Village", "", "Susana Heights Subdivision", "", "Villa Carolina I", "", "Villa Carolina II"})
+        cbositio.Location = New Point(1202, 130)
+        cbositio.Margin = New Padding(2)
+        cbositio.Name = "cbositio"
+        cbositio.Size = New Size(493, 40)
+        cbositio.TabIndex = 26
+        ' 
         ' frmresidents
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(214), CByte(153))
-        ClientSize = New Size(1777, 1055)
+        ClientSize = New Size(2262, 1476)
+        Controls.Add(cbositio)
         Controls.Add(btndelete)
         Controls.Add(btnupdate)
         Controls.Add(btnadd)
@@ -310,7 +313,6 @@ Partial Class frmresidents
         Controls.Add(Label3)
         Controls.Add(Label2)
         Controls.Add(Label1)
-        Controls.Add(txtsitio)
         Controls.Add(txtage)
         Controls.Add(txtlastname)
         Controls.Add(txtfirstname)
@@ -334,7 +336,6 @@ Partial Class frmresidents
     Friend WithEvents txtfirstname As TextBox
     Friend WithEvents txtlastname As TextBox
     Friend WithEvents txtage As TextBox
-    Friend WithEvents txtsitio As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
@@ -352,4 +353,5 @@ Partial Class frmresidents
     Friend WithEvents btnadd As Button
     Friend WithEvents btnupdate As Button
     Friend WithEvents btndelete As Button
+    Friend WithEvents cbositio As ComboBox
 End Class
