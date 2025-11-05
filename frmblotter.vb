@@ -52,9 +52,9 @@ Public Class frmblotter
                                     VALUES (@complainant, @respondent, @type, @date, @location, @details, @status, @remarks)", cn)
             cmd.Parameters.AddWithValue("@complainant", txtcomplaint.Text)
             cmd.Parameters.AddWithValue("@respondent", txtrespondent.Text)
-            cmd.Parameters.AddWithValue("@type", txtincidentype.Text)
+            cmd.Parameters.AddWithValue("@type", cmbincident.Text)
             cmd.Parameters.AddWithValue("@date", txtincidentdate.Value)
-            cmd.Parameters.AddWithValue("@location", txtlocation.Text)
+            cmd.Parameters.AddWithValue("@location", cmbLocation.Text)
             cmd.Parameters.AddWithValue("@details", txtdetails.Text)
             cmd.Parameters.AddWithValue("@status", cbostatus.Text)
             cmd.Parameters.AddWithValue("@remarks", txtremarks.Text)
@@ -88,9 +88,9 @@ Public Class frmblotter
                                     Location=@location, Details=@details, Status=@status, Remarks=@remarks WHERE Blotter_ID=@id", cn)
             cmd.Parameters.AddWithValue("@complainant", txtcomplaint.Text)
             cmd.Parameters.AddWithValue("@respondent", txtrespondent.Text)
-            cmd.Parameters.AddWithValue("@type", txtincidentype.Text)
+            cmd.Parameters.AddWithValue("@type", cmbincident.Text)
             cmd.Parameters.AddWithValue("@date", txtincidentdate.Value)
-            cmd.Parameters.AddWithValue("@location", txtlocation.Text)
+            cmd.Parameters.AddWithValue("@location", cmbLocation.Text)
             cmd.Parameters.AddWithValue("@details", txtdetails.Text)
             cmd.Parameters.AddWithValue("@status", cbostatus.Text)
             cmd.Parameters.AddWithValue("@remarks", txtremarks.Text)
@@ -113,7 +113,7 @@ Public Class frmblotter
             txtblotterid.Text = row.Cells("Blotter_ID").Value.ToString()
             txtcomplaint.Text = row.Cells("Complainant_ID").Value.ToString()
             txtrespondent.Text = row.Cells("Respondent_ID").Value.ToString()
-            txtincidentype.Text = row.Cells("Incident_Type").Value.ToString()
+            cmbincident.Text = row.Cells("Incident_Type").Value.ToString()
 
             ' ✅ Ensure date value is valid before assigning
             If Not IsDBNull(row.Cells("Incident_Date").Value) Then
@@ -122,7 +122,7 @@ Public Class frmblotter
                 txtincidentdate.Value = DateTime.Today
             End If
 
-            txtlocation.Text = row.Cells("Location").Value.ToString()
+            cmbLocation.Text = row.Cells("Location").Value.ToString()
             txtdetails.Text = row.Cells("Details").Value.ToString()
             cbostatus.Text = row.Cells("Status").Value.ToString()
             txtremarks.Text = row.Cells("Remarks").Value.ToString()
@@ -134,8 +134,6 @@ Public Class frmblotter
         txtblotterid.Clear()
         txtcomplaint.Clear()
         txtrespondent.Clear()
-        txtincidentype.Clear()
-        txtlocation.Clear()
         txtdetails.Clear()
         txtremarks.Clear()
         cbostatus.SelectedIndex = -1

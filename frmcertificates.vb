@@ -29,9 +29,9 @@ Public Class FrmCertificates
         CboCertificatesSearchBy.SelectedIndex = 0 ' Default selection
 
         ' Certificate Type ComboBox
-        txtcertificatetype.Items.Clear()
-        txtcertificatetype.Items.AddRange(certificateTypes)
-        txtcertificatetype.Text = certificateTypes(0) ' Default displayed value
+        cmbcertificatetype.Items.Clear()
+        cmbcertificatetype.Items.AddRange(certificateTypes)
+        cmbcertificatetype.Text = certificateTypes(0) ' Default displayed value
 
         ' Clear textboxes initially
         txtresident_name.Clear()
@@ -102,7 +102,7 @@ Public Class FrmCertificates
     Private Sub dgvcertifications_SelectionChanged(sender As Object, e As EventArgs) Handles dgvcertifications.SelectionChanged
         If dgvcertifications.SelectedRows.Count = 0 Then
             txtresident_name.Clear()
-            txtcertificatetype.Text = CboCertificatesSearchBy.Text
+            cmbcertificatetype.Text = CboCertificatesSearchBy.Text
             txtissuedby.Clear()
             txtremarks.Clear()
             dtpissueddate.Value = Date.Today
@@ -112,7 +112,7 @@ Public Class FrmCertificates
         Dim row As DataGridViewRow = dgvcertifications.SelectedRows(0)
 
         txtresident_name.Text = If(row.Cells("resident_name").Value, "").ToString()
-        txtcertificatetype.Text = If(row.Cells("cert_type").Value, "").ToString()
+        cmbcertificatetype.Text = If(row.Cells("cert_type").Value, "").ToString()
         txtissuedby.Text = If(row.Cells("issued_by_name").Value, "").ToString()
 
         ' Format date safely
@@ -127,7 +127,7 @@ Public Class FrmCertificates
 
     ' --- Add New Certificate ---
     Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
-        If txtresident_name.Text = "" Or txtcertificatetype.Text = "" Or txtissuedby.Text = "" Then
+        If txtresident_name.Text = "" Or cmbcertificatetype.Text = "" Or txtissuedby.Text = "" Then
             MessageBox.Show("Please fill in all required fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
@@ -141,7 +141,7 @@ Public Class FrmCertificates
         End If
 
         ' --- Check for Barangay Clearance restrictions ---
-        If txtcertificatetype.Text = "Barangay Clearance" Then
+        If cmbcertificatetype.Text = "Barangay Clearance" Then
             ' Check if resident has a blotter
             If HasBlotterReport(residentID) Then
                 MessageBox.Show("Resident has an active blotter report and cannot request a Barangay Clearance.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -163,7 +163,7 @@ Public Class FrmCertificates
 
             Using cmd As New MySqlCommand(query, cn)
                 cmd.Parameters.AddWithValue("@resident_id", residentID)
-                cmd.Parameters.AddWithValue("@type", txtcertificatetype.Text)
+                cmd.Parameters.AddWithValue("@type", cmbcertificatetype.Text)
                 cmd.Parameters.AddWithValue("@issued_by", officialID)
                 cmd.Parameters.AddWithValue("@issue_date", dtpissueddate.Value)
                 cmd.Parameters.AddWithValue("@remarks", txtremarks.Text)
@@ -203,7 +203,7 @@ Public Class FrmCertificates
 
             Using cmd As New MySqlCommand(query, cn)
                 cmd.Parameters.AddWithValue("@resident_id", residentID)
-                cmd.Parameters.AddWithValue("@type", txtcertificatetype.Text)
+                cmd.Parameters.AddWithValue("@type", cmbcertificatetype.Text)
                 cmd.Parameters.AddWithValue("@issued_by", officialID)
                 cmd.Parameters.AddWithValue("@issue_date", dtpissueddate.Value)
                 cmd.Parameters.AddWithValue("@remarks", txtremarks.Text)

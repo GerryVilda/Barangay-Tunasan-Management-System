@@ -22,11 +22,12 @@ Partial Class frmblotter
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmblotter))
         Label1 = New Label()
         Panel1 = New Panel()
-        ComboBox1 = New ComboBox()
+        cmbincident = New ComboBox()
+        cmbLocation = New ComboBox()
         btnupdateblotter = New Button()
         btnsaveblotter = New Button()
         dgvblotters = New DataGridView()
@@ -48,7 +49,6 @@ Partial Class frmblotter
         Label4 = New Label()
         Label3 = New Label()
         Label2 = New Label()
-        cmbincident = New ComboBox()
         Panel1.SuspendLayout()
         CType(dgvblotters, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -67,7 +67,7 @@ Partial Class frmblotter
         ' Panel1
         ' 
         Panel1.Controls.Add(cmbincident)
-        Panel1.Controls.Add(ComboBox1)
+        Panel1.Controls.Add(cmbLocation)
         Panel1.Controls.Add(btnupdateblotter)
         Panel1.Controls.Add(btnsaveblotter)
         Panel1.Controls.Add(dgvblotters)
@@ -95,15 +95,25 @@ Partial Class frmblotter
         Panel1.Size = New Size(2238, 1456)
         Panel1.TabIndex = 3
         ' 
-        ' ComboBox1
+        ' cmbincident
         ' 
-        ComboBox1.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Items.AddRange(New Object() {"Camella Homes III", "Lake Shore Subdivision", "Lindenwood Residences", "Midland II Subdivision", "Parkhomes Subdivision", "Planas", "Sto. Niño Village", "Susana Heights Subdivision", "Villa Carolina I", "Villa Carolina II"})
-        ComboBox1.Location = New Point(191, 375)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(839, 36)
-        ComboBox1.TabIndex = 23
+        cmbincident.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmbincident.FormattingEnabled = True
+        cmbincident.Items.AddRange(New Object() {"Noise Complaint", "Domestic Dispute", "Vandalism", "Theft", "Verbal Altercation", "Traffic Violation", "Harassment", "Minor Injury"})
+        cmbincident.Location = New Point(191, 264)
+        cmbincident.Name = "cmbincident"
+        cmbincident.Size = New Size(839, 36)
+        cmbincident.TabIndex = 24
+        ' 
+        ' cmbLocation
+        ' 
+        cmbLocation.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        cmbLocation.FormattingEnabled = True
+        cmbLocation.Items.AddRange(New Object() {"Camella Homes III", "Lake Shore Subdivision", "Lindenwood Residences", "Midland II Subdivision", "Parkhomes Subdivision", "Planas", "Sto. Niño Village", "Susana Heights Subdivision", "Villa Carolina I", "Villa Carolina II"})
+        cmbLocation.Location = New Point(191, 375)
+        cmbLocation.Name = "cmbLocation"
+        cmbLocation.Size = New Size(839, 36)
+        cmbLocation.TabIndex = 23
         ' 
         ' btnupdateblotter
         ' 
@@ -125,8 +135,8 @@ Partial Class frmblotter
         ' 
         ' dgvblotters
         ' 
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        dgvblotters.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
+        dgvblotters.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         dgvblotters.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvblotters.Location = New Point(18, 609)
         dgvblotters.Name = "dgvblotters"
@@ -302,16 +312,6 @@ Partial Class frmblotter
         Label2.TabIndex = 0
         Label2.Text = "Blotter ID:"
         ' 
-        ' cmbincident
-        ' 
-        cmbincident.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        cmbincident.FormattingEnabled = True
-        cmbincident.Items.AddRange(New Object() {"Noise Complaint", "Domestic Dispute", "Vandalism", "Theft", "Verbal Altercation", "Traffic Violation", "Harassment", "Minor Injury"})
-        cmbincident.Location = New Point(191, 264)
-        cmbincident.Name = "cmbincident"
-        cmbincident.Size = New Size(839, 36)
-        cmbincident.TabIndex = 24
-        ' 
         ' frmblotter
         ' 
         AutoScaleDimensions = New SizeF(9F, 20F)
@@ -354,6 +354,6 @@ Partial Class frmblotter
     Friend WithEvents dgvblotters As DataGridView
     Friend WithEvents btnupdateblotter As Button
     Friend WithEvents btnsaveblotter As Button
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmbLocation As ComboBox
     Friend WithEvents cmbincident As ComboBox
 End Class

@@ -22,7 +22,7 @@ Partial Class frmcertificates
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCertificates))
         Panel1 = New Panel()
         btnadd = New Button()
@@ -44,7 +44,7 @@ Partial Class frmcertificates
         Label1 = New Label()
         txtresidentId = New TextBox()
         Label3 = New Label()
-        ComboBox1 = New ComboBox()
+        cmbcertificatetype = New ComboBox()
         Panel1.SuspendLayout()
         CType(dgvcertifications, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -53,7 +53,7 @@ Partial Class frmcertificates
         ' 
         Panel1.AutoScroll = True
         Panel1.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        Panel1.Controls.Add(ComboBox1)
+        Panel1.Controls.Add(cmbcertificatetype)
         Panel1.Controls.Add(Label3)
         Panel1.Controls.Add(txtresidentId)
         Panel1.Controls.Add(btnadd)
@@ -237,8 +237,8 @@ Partial Class frmcertificates
         ' 
         dgvcertifications.AllowUserToAddRows = False
         dgvcertifications.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        dgvcertifications.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
+        dgvcertifications.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         dgvcertifications.BackgroundColor = Color.White
         dgvcertifications.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvcertifications.Location = New Point(14, 340)
@@ -281,15 +281,15 @@ Partial Class frmcertificates
         Label3.TabIndex = 46
         Label3.Text = "Type:"
         ' 
-        ' ComboBox1
+        ' cmbcertificatetype
         ' 
-        ComboBox1.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Items.AddRange(New Object() {"Residency Certificate", "Barangay Clearance", "Indigency Certificate"})
-        ComboBox1.Location = New Point(156, 155)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(355, 36)
-        ComboBox1.TabIndex = 47
+        cmbcertificatetype.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        cmbcertificatetype.FormattingEnabled = True
+        cmbcertificatetype.Items.AddRange(New Object() {"Residency Certificate", "Barangay Clearance", "Indigency Certificate"})
+        cmbcertificatetype.Location = New Point(156, 155)
+        cmbcertificatetype.Name = "cmbcertificatetype"
+        cmbcertificatetype.Size = New Size(355, 36)
+        cmbcertificatetype.TabIndex = 47
         ' 
         ' FrmCertificates
         ' 
@@ -326,7 +326,7 @@ Partial Class frmcertificates
     Friend WithEvents btnupdate As Button
     Friend WithEvents btndelete As Button
     Friend WithEvents btnadd As Button
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmbcertificatetype As ComboBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txtresidentId As TextBox
 End Class
