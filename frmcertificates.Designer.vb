@@ -22,7 +22,7 @@ Partial Class frmcertificates
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCertificates))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmcertificates))
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Panel1 = New Panel()
         PictureBox1 = New PictureBox()
@@ -76,10 +76,10 @@ Partial Class frmcertificates
         Panel1.Controls.Add(btnGeneratePDF)
         Panel1.Controls.Add(dgvcertifications)
         Panel1.Controls.Add(Label1)
-        Panel1.Location = New Point(26, 30)
+        Panel1.Location = New Point(32, 38)
         Panel1.Margin = New Padding(2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(1775, 1142)
+        Panel1.Size = New Size(2219, 1428)
         Panel1.TabIndex = 4
         ' 
         ' PictureBox1
@@ -88,7 +88,7 @@ Partial Class frmcertificates
         PictureBox1.Location = New Point(2, 2)
         PictureBox1.Margin = New Padding(2)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(173, 151)
+        PictureBox1.Size = New Size(216, 189)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 48
         PictureBox1.TabStop = False
@@ -97,57 +97,58 @@ Partial Class frmcertificates
         ' 
         cmbcertificatetype.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         cmbcertificatetype.FormattingEnabled = True
-        cmbcertificatetype.Location = New Point(313, 153)
+        cmbcertificatetype.Location = New Point(391, 191)
+        cmbcertificatetype.Margin = New Padding(4)
         cmbcertificatetype.Name = "cmbcertificatetype"
-        cmbcertificatetype.Size = New Size(355, 36)
+        cmbcertificatetype.Size = New Size(443, 40)
         cmbcertificatetype.TabIndex = 47
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label3.Location = New Point(181, 156)
+        Label3.Location = New Point(226, 195)
         Label3.Margin = New Padding(2, 0, 2, 0)
         Label3.Name = "Label3"
-        Label3.Size = New Size(60, 28)
+        Label3.Size = New Size(71, 32)
         Label3.TabIndex = 46
         Label3.Text = "Type:"
         ' 
         ' txtresidentId
         ' 
         txtresidentId.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtresidentId.Location = New Point(313, 111)
+        txtresidentId.Location = New Point(391, 139)
         txtresidentId.Margin = New Padding(2)
         txtresidentId.Name = "txtresidentId"
-        txtresidentId.Size = New Size(355, 34)
+        txtresidentId.Size = New Size(443, 39)
         txtresidentId.TabIndex = 45
         ' 
         ' btnadd
         ' 
-        btnadd.Location = New Point(684, 264)
+        btnadd.Location = New Point(855, 330)
         btnadd.Margin = New Padding(2)
         btnadd.Name = "btnadd"
-        btnadd.Size = New Size(162, 58)
+        btnadd.Size = New Size(202, 72)
         btnadd.TabIndex = 44
         btnadd.Text = "Add"
         btnadd.UseVisualStyleBackColor = True
         ' 
         ' btnupdate
         ' 
-        btnupdate.Location = New Point(901, 264)
+        btnupdate.Location = New Point(1126, 330)
         btnupdate.Margin = New Padding(2)
         btnupdate.Name = "btnupdate"
-        btnupdate.Size = New Size(162, 58)
+        btnupdate.Size = New Size(202, 72)
         btnupdate.TabIndex = 43
         btnupdate.Text = "Update"
         btnupdate.UseVisualStyleBackColor = True
         ' 
         ' btndelete
         ' 
-        btndelete.Location = New Point(1110, 264)
+        btndelete.Location = New Point(1388, 330)
         btndelete.Margin = New Padding(2)
         btndelete.Name = "btndelete"
-        btndelete.Size = New Size(162, 58)
+        btndelete.Size = New Size(202, 72)
         btndelete.TabIndex = 42
         btndelete.Text = "Delete"
         btndelete.UseVisualStyleBackColor = True
@@ -156,10 +157,10 @@ Partial Class frmcertificates
         ' 
         Label9.AutoSize = True
         Label9.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label9.Location = New Point(181, 249)
+        Label9.Location = New Point(226, 311)
         Label9.Margin = New Padding(2, 0, 2, 0)
         Label9.Name = "Label9"
-        Label9.Size = New Size(124, 28)
+        Label9.Size = New Size(147, 32)
         Label9.TabIndex = 40
         Label9.Text = "Issued Date:"
         ' 
@@ -167,10 +168,10 @@ Partial Class frmcertificates
         ' 
         Label8.AutoSize = True
         Label8.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label8.Location = New Point(181, 201)
+        Label8.Location = New Point(226, 251)
         Label8.Margin = New Padding(2, 0, 2, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(104, 28)
+        Label8.Size = New Size(122, 32)
         Label8.TabIndex = 39
         Label8.Text = "Issued By:"
         ' 
@@ -178,10 +179,10 @@ Partial Class frmcertificates
         ' 
         Label7.AutoSize = True
         Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label7.Location = New Point(181, 114)
+        Label7.Location = New Point(226, 142)
         Label7.Margin = New Padding(2, 0, 2, 0)
         Label7.Name = "Label7"
-        Label7.Size = New Size(121, 28)
+        Label7.Size = New Size(144, 32)
         Label7.TabIndex = 38
         Label7.Text = "Resident ID:"
         ' 
@@ -189,10 +190,10 @@ Partial Class frmcertificates
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI Semibold", 14F, FontStyle.Bold)
-        Label6.Location = New Point(684, 57)
+        Label6.Location = New Point(855, 71)
         Label6.Margin = New Padding(2, 0, 2, 0)
         Label6.Name = "Label6"
-        Label6.Size = New Size(113, 32)
+        Label6.Size = New Size(132, 38)
         Label6.TabIndex = 37
         Label6.Text = "Remarks:"
         ' 
@@ -200,58 +201,58 @@ Partial Class frmcertificates
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        Label5.Location = New Point(181, 69)
+        Label5.Location = New Point(226, 86)
         Label5.Margin = New Padding(2, 0, 2, 0)
         Label5.Name = "Label5"
-        Label5.Size = New Size(37, 28)
+        Label5.Size = New Size(44, 32)
         Label5.TabIndex = 36
         Label5.Text = "ID:"
         ' 
         ' dtpissueddate
         ' 
         dtpissueddate.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpissueddate.Location = New Point(313, 244)
+        dtpissueddate.Location = New Point(391, 305)
         dtpissueddate.Margin = New Padding(2)
         dtpissueddate.Name = "dtpissueddate"
-        dtpissueddate.Size = New Size(355, 34)
+        dtpissueddate.Size = New Size(443, 39)
         dtpissueddate.TabIndex = 33
         ' 
         ' txtissuedby
         ' 
         txtissuedby.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtissuedby.Location = New Point(313, 198)
+        txtissuedby.Location = New Point(391, 248)
         txtissuedby.Margin = New Padding(2)
         txtissuedby.Name = "txtissuedby"
-        txtissuedby.Size = New Size(355, 34)
+        txtissuedby.Size = New Size(443, 39)
         txtissuedby.TabIndex = 32
         ' 
         ' txtremarks
         ' 
         txtremarks.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtremarks.Location = New Point(684, 92)
+        txtremarks.Location = New Point(855, 115)
         txtremarks.Margin = New Padding(2)
         txtremarks.Multiline = True
         txtremarks.Name = "txtremarks"
-        txtremarks.Size = New Size(588, 163)
+        txtremarks.Size = New Size(734, 203)
         txtremarks.TabIndex = 31
         ' 
         ' txtID
         ' 
         txtID.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtID.Location = New Point(313, 63)
+        txtID.Location = New Point(391, 79)
         txtID.Margin = New Padding(2)
         txtID.Name = "txtID"
-        txtID.Size = New Size(355, 34)
+        txtID.Size = New Size(443, 39)
         txtID.TabIndex = 28
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(181, 289)
+        Label2.Location = New Point(226, 361)
         Label2.Margin = New Padding(2, 0, 2, 0)
         Label2.Name = "Label2"
-        Label2.Size = New Size(109, 28)
+        Label2.Size = New Size(131, 32)
         Label2.TabIndex = 25
         Label2.Text = "Search by:"
         ' 
@@ -259,19 +260,19 @@ Partial Class frmcertificates
         ' 
         CboCertificatesSearchBy.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         CboCertificatesSearchBy.FormattingEnabled = True
-        CboCertificatesSearchBy.Location = New Point(313, 286)
+        CboCertificatesSearchBy.Location = New Point(391, 358)
         CboCertificatesSearchBy.Margin = New Padding(2)
         CboCertificatesSearchBy.Name = "CboCertificatesSearchBy"
-        CboCertificatesSearchBy.Size = New Size(355, 36)
+        CboCertificatesSearchBy.Size = New Size(443, 40)
         CboCertificatesSearchBy.TabIndex = 24
         ' 
         ' btnGeneratePDF
         ' 
         btnGeneratePDF.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnGeneratePDF.Location = New Point(1286, 92)
+        btnGeneratePDF.Location = New Point(1608, 115)
         btnGeneratePDF.Margin = New Padding(2)
         btnGeneratePDF.Name = "btnGeneratePDF"
-        btnGeneratePDF.Size = New Size(178, 225)
+        btnGeneratePDF.Size = New Size(222, 281)
         btnGeneratePDF.TabIndex = 23
         btnGeneratePDF.Text = "📄 Generate PDF"
         btnGeneratePDF.UseVisualStyleBackColor = True
@@ -284,12 +285,12 @@ Partial Class frmcertificates
         dgvcertifications.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         dgvcertifications.BackgroundColor = Color.White
         dgvcertifications.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvcertifications.Location = New Point(14, 342)
+        dgvcertifications.Location = New Point(18, 428)
         dgvcertifications.Margin = New Padding(2)
         dgvcertifications.Name = "dgvcertifications"
         dgvcertifications.ReadOnly = True
         dgvcertifications.RowHeadersWidth = 62
-        dgvcertifications.Size = New Size(1722, 785)
+        dgvcertifications.Size = New Size(2152, 981)
         dgvcertifications.TabIndex = 20
         ' 
         ' Label1
@@ -297,23 +298,23 @@ Partial Class frmcertificates
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        Label1.Location = New Point(179, 7)
+        Label1.Location = New Point(224, 9)
         Label1.Margin = New Padding(2, 0, 2, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(276, 54)
+        Label1.Size = New Size(329, 65)
         Label1.TabIndex = 0
         Label1.Text = "Certifications"
         ' 
-        ' FrmCertificates
+        ' frmcertificates
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
-        ClientSize = New Size(1539, 844)
+        ClientSize = New Size(2262, 1476)
         Controls.Add(Panel1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(2)
-        Name = "FrmCertificates"
+        Name = "frmcertificates"
         Text = "frmcertificates"
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()

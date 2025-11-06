@@ -30,8 +30,8 @@ Public Class payment
 
         ' Default date, time, user
         dtpDate.Value = Date.Now
-        Label12.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
-        Label13.Text = Environment.UserName
+        lblcreatedat.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+        lblupdatedby.Text = Environment.UserName
 
         ' Auto-generate receipt number
         txtReceiptNo.Text = GenerateReceiptNumber()
@@ -68,7 +68,7 @@ Public Class payment
     ' SAVE BUTTON - INSERT TO DATABASE
     '==========================================
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        If txtResidentID.Text = "" Or cmbType.Text = "" Or txtAmount.Text = "" Or cmbStatus.Text = "" Then
+        If txtResidentname.Text = "" Or cmbType.Text = "" Or txtAmount.Text = "" Or cmbStatus.Text = "" Then
             MessageBox.Show("Please fill out all required fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
@@ -84,7 +84,7 @@ Public Class payment
             "
 
             Using cmd As New MySqlCommand(query, cn)
-                cmd.Parameters.AddWithValue("@Resident_ID", txtResidentID.Text)
+                cmd.Parameters.AddWithValue("@Resident_ID", txtResidentname.Text)
                 cmd.Parameters.AddWithValue("@Amount", txtAmount.Text)
                 cmd.Parameters.AddWithValue("@PaymentDate", dtpDate.Value)
                 cmd.Parameters.AddWithValue("@PaymentStatus", cmbStatus.Text)
@@ -92,7 +92,7 @@ Public Class payment
                 cmd.Parameters.AddWithValue("@Purpose", cmbType.Text)
                 cmd.Parameters.AddWithValue("@ProcessedBy", cmbProcessed.Text)
                 cmd.Parameters.AddWithValue("@CreatedAt", DateTime.Now)
-                cmd.Parameters.AddWithValue("@UpdatedBy", Label13.Text)
+                cmd.Parameters.AddWithValue("@UpdatedBy", lblupdatedby.Text)
                 cmd.ExecuteNonQuery()
             End Using
 
@@ -117,7 +117,7 @@ Public Class payment
     ' UPDATE BUTTON - UPDATE CERTIFICATE STATUS
     '==========================================
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        If txtResidentID.Text = "" Then
+        If txtResidentname.Text = "" Then
             MessageBox.Show("Please enter a Resident ID to update.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
@@ -135,7 +135,7 @@ Public Class payment
             "
 
             Using cmd As New MySqlCommand(query, cn)
-                cmd.Parameters.AddWithValue("@Resident_ID", txtResidentID.Text)
+                cmd.Parameters.AddWithValue("@Resident_ID", txtResidentname.Text)
                 cmd.ExecuteNonQuery()
             End Using
 

@@ -47,10 +47,10 @@ Partial Class frmUsers
         ' PictureBox1
         ' 
         PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(11, 11)
+        PictureBox1.Location = New Point(14, 14)
         PictureBox1.Margin = New Padding(2)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(173, 151)
+        PictureBox1.Size = New Size(216, 189)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 24
         PictureBox1.TabStop = False
@@ -60,9 +60,10 @@ Partial Class frmUsers
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        Label1.Location = New Point(201, 57)
+        Label1.Location = New Point(251, 71)
+        Label1.Margin = New Padding(4, 0, 4, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(700, 54)
+        Label1.Size = New Size(834, 65)
         Label1.TabIndex = 25
         Label1.Text = "Barangay Tunasan Users / Accounts"
         ' 
@@ -72,11 +73,12 @@ Partial Class frmUsers
         DataGridView1.AllowUserToDeleteRows = False
         DataGridView1.BackgroundColor = Color.White
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(12, 168)
+        DataGridView1.Location = New Point(15, 210)
+        DataGridView1.Margin = New Padding(4, 4, 4, 4)
         DataGridView1.Name = "DataGridView1"
         DataGridView1.ReadOnly = True
         DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(744, 602)
+        DataGridView1.Size = New Size(930, 752)
         DataGridView1.TabIndex = 26
         ' 
         ' Panel1
@@ -93,9 +95,10 @@ Partial Class frmUsers
         Panel1.Controls.Add(txtFullName)
         Panel1.Controls.Add(Label2)
         Panel1.Controls.Add(Label10)
-        Panel1.Location = New Point(776, 168)
+        Panel1.Location = New Point(970, 210)
+        Panel1.Margin = New Padding(4, 4, 4, 4)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(359, 602)
+        Panel1.Size = New Size(449, 752)
         Panel1.TabIndex = 27
         ' 
         ' btnSaveDB
@@ -105,9 +108,10 @@ Partial Class frmUsers
         btnSaveDB.FlatStyle = FlatStyle.Flat
         btnSaveDB.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnSaveDB.ForeColor = Color.White
-        btnSaveDB.Location = New Point(77, 492)
+        btnSaveDB.Location = New Point(96, 615)
+        btnSaveDB.Margin = New Padding(4, 4, 4, 4)
         btnSaveDB.Name = "btnSaveDB"
-        btnSaveDB.Size = New Size(204, 39)
+        btnSaveDB.Size = New Size(255, 49)
         btnSaveDB.TabIndex = 37
         btnSaveDB.Text = "Save to Database"
         btnSaveDB.UseVisualStyleBackColor = False
@@ -119,9 +123,10 @@ Partial Class frmUsers
         btnClear.FlatStyle = FlatStyle.Flat
         btnClear.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnClear.ForeColor = Color.White
-        btnClear.Location = New Point(203, 439)
+        btnClear.Location = New Point(254, 549)
+        btnClear.Margin = New Padding(4, 4, 4, 4)
         btnClear.Name = "btnClear"
-        btnClear.Size = New Size(78, 39)
+        btnClear.Size = New Size(98, 49)
         btnClear.TabIndex = 36
         btnClear.Text = "Clear"
         btnClear.UseVisualStyleBackColor = False
@@ -133,9 +138,10 @@ Partial Class frmUsers
         btnSave.FlatStyle = FlatStyle.Flat
         btnSave.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnSave.ForeColor = Color.White
-        btnSave.Location = New Point(77, 439)
+        btnSave.Location = New Point(96, 549)
+        btnSave.Margin = New Padding(4, 4, 4, 4)
         btnSave.Name = "btnSave"
-        btnSave.Size = New Size(78, 39)
+        btnSave.Size = New Size(98, 49)
         btnSave.TabIndex = 35
         btnSave.Text = "Save"
         btnSave.UseVisualStyleBackColor = False
@@ -145,72 +151,80 @@ Partial Class frmUsers
         cmbRole.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         cmbRole.FormattingEnabled = True
         cmbRole.Items.AddRange(New Object() {"User", "Admin"})
-        cmbRole.Location = New Point(20, 364)
+        cmbRole.Location = New Point(25, 455)
+        cmbRole.Margin = New Padding(4, 4, 4, 4)
         cmbRole.Name = "cmbRole"
-        cmbRole.Size = New Size(324, 36)
+        cmbRole.Size = New Size(404, 40)
         cmbRole.TabIndex = 22
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(20, 333)
+        Label5.Location = New Point(25, 416)
+        Label5.Margin = New Padding(4, 0, 4, 0)
         Label5.Name = "Label5"
-        Label5.Size = New Size(51, 28)
+        Label5.Size = New Size(61, 32)
         Label5.TabIndex = 21
         Label5.Text = "Role"
         ' 
         ' txtPassword
         ' 
         txtPassword.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtPassword.Location = New Point(20, 270)
+        txtPassword.Location = New Point(25, 338)
+        txtPassword.Margin = New Padding(4, 4, 4, 4)
         txtPassword.Name = "txtPassword"
-        txtPassword.Size = New Size(324, 34)
+        txtPassword.Size = New Size(404, 39)
         txtPassword.TabIndex = 20
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(20, 239)
+        Label4.Location = New Point(25, 299)
+        Label4.Margin = New Padding(4, 0, 4, 0)
         Label4.Name = "Label4"
-        Label4.Size = New Size(96, 28)
+        Label4.Size = New Size(116, 32)
         Label4.TabIndex = 19
         Label4.Text = "Password"
         ' 
         ' txtUsername
         ' 
         txtUsername.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtUsername.Location = New Point(20, 176)
+        txtUsername.Location = New Point(25, 220)
+        txtUsername.Margin = New Padding(4, 4, 4, 4)
         txtUsername.Name = "txtUsername"
-        txtUsername.Size = New Size(324, 34)
+        txtUsername.Size = New Size(404, 39)
         txtUsername.TabIndex = 18
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(20, 145)
+        Label3.Location = New Point(25, 181)
+        Label3.Margin = New Padding(4, 0, 4, 0)
         Label3.Name = "Label3"
-        Label3.Size = New Size(103, 28)
+        Label3.Size = New Size(123, 32)
         Label3.TabIndex = 17
         Label3.Text = "Username"
         ' 
         ' txtFullName
         ' 
         txtFullName.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtFullName.Location = New Point(20, 88)
+        txtFullName.Location = New Point(25, 110)
+        txtFullName.Margin = New Padding(4, 4, 4, 4)
         txtFullName.Name = "txtFullName"
-        txtFullName.Size = New Size(324, 34)
+        txtFullName.Size = New Size(404, 39)
         txtFullName.TabIndex = 16
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(20, 57)
+        Label2.Location = New Point(25, 71)
+        Label2.Margin = New Padding(4, 0, 4, 0)
         Label2.Name = "Label2"
-        Label2.Size = New Size(105, 28)
+        Label2.Size = New Size(127, 32)
         Label2.TabIndex = 13
         Label2.Text = "Full Name"
         ' 
@@ -218,18 +232,19 @@ Partial Class frmUsers
         ' 
         Label10.AutoSize = True
         Label10.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label10.Location = New Point(12, 12)
+        Label10.Location = New Point(15, 15)
+        Label10.Margin = New Padding(4, 0, 4, 0)
         Label10.Name = "Label10"
-        Label10.Size = New Size(156, 31)
+        Label10.Size = New Size(190, 38)
         Label10.TabIndex = 12
         Label10.Text = "Manage User"
         ' 
         ' frmUsers
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        ClientSize = New Size(1777, 1055)
+        ClientSize = New Size(2262, 1476)
         Controls.Add(Panel1)
         Controls.Add(DataGridView1)
         Controls.Add(Label1)
