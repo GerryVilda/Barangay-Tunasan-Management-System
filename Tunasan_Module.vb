@@ -3,7 +3,7 @@
 Module Connection
     Public LoggedInUser As String
     Public LoggedInRole As String
-    Public cn As New MySqlConnection("server=localhost;user=root;password=;database=tunasan_management_db")
+    Public cn As New MySqlConnection("server=localhost;user=root;password=;database=tunasan_records_management_db")
     Public cmd As MySqlCommand
     Public dr As MySqlDataReader
     Public da As MySqlDataAdapter

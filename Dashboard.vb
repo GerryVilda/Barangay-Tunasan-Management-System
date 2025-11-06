@@ -63,17 +63,22 @@ Public Class Dashboard
         LoadFormIntoPanel(New frmblotter())
     End Sub
 
+    ' Certifications
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles btncertifications.Click
+        LoadFormIntoPanel(New frmcertificates)
+    End Sub
+
+    ' Request Form
+    Private Sub btnRequest_Click(sender As Object, e As EventArgs) Handles btnRequest.Click
+        LoadFormIntoPanel(New RequestForm)
+    End Sub
+
     ' 💵 Payment
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles btnpayment.Click
-        LoadFormIntoPanel(New Payment())
+        LoadFormIntoPanel(New Payment)
     End Sub
 
-    ' 👴 Senior Records
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles btncertifications.Click
-        LoadFormIntoPanel(New frmcertificates())
-    End Sub
-
-    ' 📍 Sitio Problems
+    ' Reports Summary
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles btnsummary.Click
         LoadFormIntoPanel(New frmSummary())
     End Sub
@@ -83,7 +88,7 @@ Public Class Dashboard
         LoadFormIntoPanel(New frmOfficials())
     End Sub
 
-    ' 🔑 Users
+    ' 🔑 Users/Accounts
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles btnusers.Click
         LoadFormIntoPanel(New frmUsers())
     End Sub

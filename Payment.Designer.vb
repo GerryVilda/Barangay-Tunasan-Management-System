@@ -22,30 +22,41 @@ Partial Class Payment
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(payment))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Payment))
         PictureBox1 = New PictureBox()
         Label1 = New Label()
         Label2 = New Label()
         Label3 = New Label()
         Label4 = New Label()
         Label5 = New Label()
-        Label7 = New Label()
         Label6 = New Label()
         Label8 = New Label()
         Label9 = New Label()
         Panel1 = New Panel()
+        cmbSitio = New ComboBox()
+        Label11 = New Label()
+        Label10 = New Label()
+        txtResidentname = New TextBox()
+        cmbpaymentType = New ComboBox()
         btnUpdate = New Button()
-        btnSave = New Button()
+        btnPaid = New Button()
         cmbProcessedby = New ComboBox()
         txtReceiptNo = New TextBox()
         dtpDate = New DateTimePicker()
-        cmbStatus = New ComboBox()
         txtAmount = New TextBox()
-        cmbpaymentType = New ComboBox()
-        txtResidentname = New TextBox()
         txtPaymentID = New TextBox()
+        Panel3 = New Panel()
+        Label12 = New Label()
+        Panel2 = New Panel()
+        lblNotes = New Label()
+        Label14 = New Label()
+        lblFeeRange = New Label()
+        Label13 = New Label()
+        Label7 = New Label()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
+        Panel3.SuspendLayout()
+        Panel2.SuspendLayout()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -54,7 +65,7 @@ Partial Class Payment
         PictureBox1.Location = New Point(1, 1)
         PictureBox1.Margin = New Padding(2)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(216, 189)
+        PictureBox1.Size = New Size(173, 151)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 43
         PictureBox1.TabStop = False
@@ -64,10 +75,9 @@ Partial Class Payment
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        Label1.Location = New Point(224, 52)
-        Label1.Margin = New Padding(4, 0, 4, 0)
+        Label1.Location = New Point(179, 23)
         Label1.Name = "Label1"
-        Label1.Size = New Size(228, 65)
+        Label1.Size = New Size(190, 54)
         Label1.TabIndex = 44
         Label1.Text = "Payment"
         ' 
@@ -75,10 +85,9 @@ Partial Class Payment
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(14, 18)
-        Label2.Margin = New Padding(4, 0, 4, 0)
+        Label2.Location = New Point(19, 48)
         Label2.Name = "Label2"
-        Label2.Size = New Size(146, 32)
+        Label2.Size = New Size(122, 28)
         Label2.TabIndex = 45
         Label2.Text = "Payment ID:"
         ' 
@@ -86,10 +95,9 @@ Partial Class Payment
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(14, 72)
-        Label3.Margin = New Padding(4, 0, 4, 0)
+        Label3.Location = New Point(19, 40)
         Label3.Name = "Label3"
-        Label3.Size = New Size(185, 32)
+        Label3.Size = New Size(155, 28)
         Label3.TabIndex = 46
         Label3.Text = "Resident Name:"
         ' 
@@ -97,54 +105,39 @@ Partial Class Payment
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(14, 131)
-        Label4.Margin = New Padding(4, 0, 4, 0)
+        Label4.Location = New Point(19, 40)
         Label4.Name = "Label4"
-        Label4.Size = New Size(173, 32)
+        Label4.Size = New Size(158, 28)
         Label4.TabIndex = 47
-        Label4.Text = "Payment Type:"
+        Label4.Text = "Certificate Type:"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(14, 194)
-        Label5.Margin = New Padding(4, 0, 4, 0)
+        Label5.Location = New Point(19, 96)
         Label5.Name = "Label5"
-        Label5.Size = New Size(108, 32)
+        Label5.Size = New Size(91, 28)
         Label5.TabIndex = 48
         Label5.Text = "Amount:"
-        ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(14, 316)
-        Label7.Margin = New Padding(4, 0, 4, 0)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(189, 32)
-        Label7.TabIndex = 49
-        Label7.Text = "Payment Status:"
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(14, 254)
-        Label6.Margin = New Padding(4, 0, 4, 0)
+        Label6.Location = New Point(19, 145)
         Label6.Name = "Label6"
-        Label6.Size = New Size(174, 32)
+        Label6.Size = New Size(59, 28)
         Label6.TabIndex = 50
-        Label6.Text = "Payment Date:"
+        Label6.Text = "Date:"
         ' 
         ' Label8
         ' 
         Label8.AutoSize = True
         Label8.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label8.Location = New Point(14, 376)
-        Label8.Margin = New Padding(4, 0, 4, 0)
+        Label8.Location = New Point(19, 192)
         Label8.Name = "Label8"
-        Label8.Size = New Size(197, 32)
+        Label8.Size = New Size(165, 28)
         Label8.TabIndex = 52
         Label8.Text = "Receipt Number:"
         ' 
@@ -152,38 +145,71 @@ Partial Class Payment
         ' 
         Label9.AutoSize = True
         Label9.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(14, 431)
-        Label9.Margin = New Padding(4, 0, 4, 0)
+        Label9.Location = New Point(19, 244)
         Label9.Name = "Label9"
-        Label9.Size = New Size(162, 32)
+        Label9.Size = New Size(137, 28)
         Label9.TabIndex = 53
         Label9.Text = "Processed By:"
         ' 
         ' Panel1
         ' 
-        Panel1.Controls.Add(btnUpdate)
-        Panel1.Controls.Add(btnSave)
-        Panel1.Controls.Add(cmbProcessedby)
-        Panel1.Controls.Add(txtReceiptNo)
-        Panel1.Controls.Add(dtpDate)
-        Panel1.Controls.Add(cmbStatus)
-        Panel1.Controls.Add(Label9)
-        Panel1.Controls.Add(txtAmount)
-        Panel1.Controls.Add(cmbpaymentType)
-        Panel1.Controls.Add(Label8)
+        Panel1.Controls.Add(cmbSitio)
+        Panel1.Controls.Add(Label11)
+        Panel1.Controls.Add(Label10)
         Panel1.Controls.Add(txtResidentname)
-        Panel1.Controls.Add(txtPaymentID)
-        Panel1.Controls.Add(Label2)
-        Panel1.Controls.Add(Label6)
         Panel1.Controls.Add(Label3)
-        Panel1.Controls.Add(Label4)
-        Panel1.Controls.Add(Label7)
-        Panel1.Controls.Add(Label5)
-        Panel1.Location = New Point(224, 190)
-        Panel1.Margin = New Padding(4)
+        Panel1.Location = New Point(458, 150)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(1495, 622)
+        Panel1.Size = New Size(622, 134)
         Panel1.TabIndex = 56
+        ' 
+        ' cmbSitio
+        ' 
+        cmbSitio.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        cmbSitio.FormattingEnabled = True
+        cmbSitio.Items.AddRange(New Object() {"Camella Homes III", "Lake Shore Subdivision", "Lindenwood Residences", "Midland II Subdivision", "Parkhomes Subdivision", "Planas", "Sto. Niño Village", "Susana Heights Subdivision", "Villa Carolina I", "Villa Carolina II"})
+        cmbSitio.Location = New Point(190, 82)
+        cmbSitio.Name = "cmbSitio"
+        cmbSitio.Size = New Size(394, 36)
+        cmbSitio.TabIndex = 59
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label11.Location = New Point(19, 85)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(57, 28)
+        Label11.TabIndex = 58
+        Label11.Text = "Sitio:"
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label10.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        Label10.Location = New Point(3, 3)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(243, 31)
+        Label10.TabIndex = 57
+        Label10.Text = "Resident Information"
+        ' 
+        ' txtResidentname
+        ' 
+        txtResidentname.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtResidentname.Location = New Point(190, 37)
+        txtResidentname.Name = "txtResidentname"
+        txtResidentname.Size = New Size(394, 34)
+        txtResidentname.TabIndex = 48
+        ' 
+        ' cmbpaymentType
+        ' 
+        cmbpaymentType.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        cmbpaymentType.FormattingEnabled = True
+        cmbpaymentType.Location = New Point(190, 37)
+        cmbpaymentType.Name = "cmbpaymentType"
+        cmbpaymentType.Size = New Size(394, 36)
+        cmbpaymentType.TabIndex = 49
         ' 
         ' btnUpdate
         ' 
@@ -192,119 +218,187 @@ Partial Class Payment
         btnUpdate.FlatStyle = FlatStyle.Flat
         btnUpdate.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnUpdate.ForeColor = Color.Black
-        btnUpdate.Location = New Point(476, 512)
-        btnUpdate.Margin = New Padding(4)
+        btnUpdate.Location = New Point(986, 835)
         btnUpdate.Name = "btnUpdate"
-        btnUpdate.Size = New Size(118, 59)
+        btnUpdate.Size = New Size(94, 47)
         btnUpdate.TabIndex = 58
         btnUpdate.Text = "Update"
         btnUpdate.UseVisualStyleBackColor = False
         ' 
-        ' btnSave
+        ' btnPaid
         ' 
-        btnSave.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(128))
-        btnSave.FlatAppearance.BorderSize = 0
-        btnSave.FlatStyle = FlatStyle.Flat
-        btnSave.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnSave.ForeColor = Color.Black
-        btnSave.Location = New Point(602, 512)
-        btnSave.Margin = New Padding(4)
-        btnSave.Name = "btnSave"
-        btnSave.Size = New Size(118, 59)
-        btnSave.TabIndex = 57
-        btnSave.Text = "Save"
-        btnSave.UseVisualStyleBackColor = False
+        btnPaid.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(128))
+        btnPaid.FlatAppearance.BorderSize = 0
+        btnPaid.FlatStyle = FlatStyle.Flat
+        btnPaid.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnPaid.ForeColor = Color.Black
+        btnPaid.Location = New Point(886, 835)
+        btnPaid.Name = "btnPaid"
+        btnPaid.Size = New Size(94, 47)
+        btnPaid.TabIndex = 57
+        btnPaid.Text = "Paid"
+        btnPaid.UseVisualStyleBackColor = False
         ' 
         ' cmbProcessedby
         ' 
         cmbProcessedby.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         cmbProcessedby.FormattingEnabled = True
-        cmbProcessedby.Location = New Point(228, 428)
-        cmbProcessedby.Margin = New Padding(4)
+        cmbProcessedby.Items.AddRange(New Object() {"Admin", "Barangay Staff"})
+        cmbProcessedby.Location = New Point(190, 241)
         cmbProcessedby.Name = "cmbProcessedby"
-        cmbProcessedby.Size = New Size(492, 40)
+        cmbProcessedby.Size = New Size(394, 36)
         cmbProcessedby.TabIndex = 54
         ' 
         ' txtReceiptNo
         ' 
         txtReceiptNo.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtReceiptNo.Location = New Point(228, 372)
-        txtReceiptNo.Margin = New Padding(4)
+        txtReceiptNo.Location = New Point(190, 189)
         txtReceiptNo.Name = "txtReceiptNo"
-        txtReceiptNo.Size = New Size(492, 39)
+        txtReceiptNo.ReadOnly = True
+        txtReceiptNo.Size = New Size(394, 34)
         txtReceiptNo.TabIndex = 53
         ' 
         ' dtpDate
         ' 
         dtpDate.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        dtpDate.Location = New Point(228, 250)
-        dtpDate.Margin = New Padding(4)
+        dtpDate.Location = New Point(190, 140)
         dtpDate.Name = "dtpDate"
-        dtpDate.Size = New Size(492, 39)
+        dtpDate.Size = New Size(394, 34)
         dtpDate.TabIndex = 52
-        ' 
-        ' cmbStatus
-        ' 
-        cmbStatus.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        cmbStatus.FormattingEnabled = True
-        cmbStatus.Location = New Point(228, 312)
-        cmbStatus.Margin = New Padding(4)
-        cmbStatus.Name = "cmbStatus"
-        cmbStatus.Size = New Size(492, 40)
-        cmbStatus.TabIndex = 51
         ' 
         ' txtAmount
         ' 
         txtAmount.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtAmount.Location = New Point(228, 190)
-        txtAmount.Margin = New Padding(4)
+        txtAmount.Location = New Point(190, 93)
         txtAmount.Name = "txtAmount"
-        txtAmount.Size = New Size(492, 39)
+        txtAmount.Size = New Size(394, 34)
         txtAmount.TabIndex = 50
-        ' 
-        ' cmbpaymentType
-        ' 
-        cmbpaymentType.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        cmbpaymentType.FormattingEnabled = True
-        cmbpaymentType.Location = New Point(228, 128)
-        cmbpaymentType.Margin = New Padding(4)
-        cmbpaymentType.Name = "cmbpaymentType"
-        cmbpaymentType.Size = New Size(492, 40)
-        cmbpaymentType.TabIndex = 49
-        ' 
-        ' txtResidentname
-        ' 
-        txtResidentname.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtResidentname.Location = New Point(228, 69)
-        txtResidentname.Margin = New Padding(4)
-        txtResidentname.Name = "txtResidentname"
-        txtResidentname.Size = New Size(492, 39)
-        txtResidentname.TabIndex = 48
         ' 
         ' txtPaymentID
         ' 
         txtPaymentID.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtPaymentID.Location = New Point(228, 14)
-        txtPaymentID.Margin = New Padding(4)
+        txtPaymentID.Location = New Point(190, 45)
         txtPaymentID.Name = "txtPaymentID"
-        txtPaymentID.Size = New Size(492, 39)
+        txtPaymentID.ReadOnly = True
+        txtPaymentID.Size = New Size(394, 34)
         txtPaymentID.TabIndex = 46
         ' 
-        ' payment
+        ' Panel3
         ' 
-        AutoScaleDimensions = New SizeF(10F, 25F)
+        Panel3.Controls.Add(Label12)
+        Panel3.Controls.Add(cmbProcessedby)
+        Panel3.Controls.Add(Label2)
+        Panel3.Controls.Add(txtPaymentID)
+        Panel3.Controls.Add(txtReceiptNo)
+        Panel3.Controls.Add(txtAmount)
+        Panel3.Controls.Add(Label5)
+        Panel3.Controls.Add(dtpDate)
+        Panel3.Controls.Add(Label6)
+        Panel3.Controls.Add(Label9)
+        Panel3.Controls.Add(Label8)
+        Panel3.Location = New Point(458, 534)
+        Panel3.Name = "Panel3"
+        Panel3.Size = New Size(622, 291)
+        Panel3.TabIndex = 59
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label12.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        Label12.Location = New Point(3, 3)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(192, 31)
+        Label12.TabIndex = 60
+        Label12.Text = "Payment Details"
+        ' 
+        ' Panel2
+        ' 
+        Panel2.Controls.Add(lblNotes)
+        Panel2.Controls.Add(Label14)
+        Panel2.Controls.Add(lblFeeRange)
+        Panel2.Controls.Add(Label13)
+        Panel2.Controls.Add(Label7)
+        Panel2.Controls.Add(cmbpaymentType)
+        Panel2.Controls.Add(Label4)
+        Panel2.Location = New Point(458, 318)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(622, 183)
+        Panel2.TabIndex = 61
+        ' 
+        ' lblNotes
+        ' 
+        lblNotes.AutoSize = True
+        lblNotes.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblNotes.Location = New Point(190, 144)
+        lblNotes.Name = "lblNotes"
+        lblNotes.Size = New Size(0, 28)
+        lblNotes.TabIndex = 64
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label14.Location = New Point(19, 144)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(71, 28)
+        Label14.TabIndex = 63
+        Label14.Text = "Notes:"
+        ' 
+        ' lblFeeRange
+        ' 
+        lblFeeRange.AutoSize = True
+        lblFeeRange.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblFeeRange.Location = New Point(190, 96)
+        lblFeeRange.Name = "lblFeeRange"
+        lblFeeRange.Size = New Size(0, 28)
+        lblFeeRange.TabIndex = 62
+        ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label13.Location = New Point(19, 96)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(112, 28)
+        Label13.TabIndex = 61
+        Label13.Text = "Fee Range:"
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label7.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        Label7.Location = New Point(3, 3)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(210, 31)
+        Label7.TabIndex = 60
+        Label7.Text = "Certificate Details"
+        ' 
+        ' Payment
+        ' 
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        ClientSize = New Size(2262, 1476)
+        ClientSize = New Size(1539, 844)
+        Controls.Add(Panel2)
+        Controls.Add(Panel3)
+        Controls.Add(btnUpdate)
+        Controls.Add(btnPaid)
         Controls.Add(Panel1)
         Controls.Add(Label1)
         Controls.Add(PictureBox1)
         Margin = New Padding(2)
-        Name = "payment"
+        Name = "Payment"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Payment"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
+        Panel3.ResumeLayout(False)
+        Panel3.PerformLayout()
+        Panel2.ResumeLayout(False)
+        Panel2.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -314,7 +408,6 @@ Partial Class Payment
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
@@ -323,10 +416,20 @@ Partial Class Payment
     Friend WithEvents txtResidentname As TextBox
     Friend WithEvents txtPaymentID As TextBox
     Friend WithEvents txtAmount As TextBox
-    Friend WithEvents cmbStatus As ComboBox
     Friend WithEvents dtpDate As DateTimePicker
     Friend WithEvents cmbProcessedby As ComboBox
     Friend WithEvents txtReceiptNo As TextBox
-    Friend WithEvents btnSave As Button
+    Friend WithEvents btnPaid As Button
     Friend WithEvents btnUpdate As Button
+    Friend WithEvents Label10 As Label
+    Friend WithEvents cmbSitio As ComboBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents lblNotes As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents lblFeeRange As Label
 End Class

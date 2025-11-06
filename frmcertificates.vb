@@ -10,16 +10,17 @@ Public Class frmcertificates
 
         ' Certificate Types
         Dim certificateTypes() As String = {
-            "Barangay Clearance",
-            "Residency Certificate",
-            "Indigency Certificate",
-            "Good Moral Certificate",
-            "Barangay Business Clearance",
-            "Senior Citizen/PWD Certificate",
-            "Community Tax Certificate / Cedula",
-            "Solo Parent Certificate",
-            "Certificate of Occupancy / Lot Clearance",
-            "Certificate of Barangay Employment"
+        "Barangay Clearance (Personal Use)",
+        "Barangay Clearance (Business)",
+        "Residency Certificate",
+        "Indigency Certificate",
+        "Community Tax Certificate / Cedula",
+        "Barangay Business Clearance",
+        "Good Moral Certificate",
+        "Senior Citizen / PWD Certificate",
+        "Solo Parent Certificate",
+        "Certificate of Occupancy / Lot Clearance",
+        "Certificate of Barangay Employment"
         }
 
         ' Populate ComboBoxes
@@ -194,7 +195,4 @@ Public Class frmcertificates
         End Try
     End Sub
 
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
-
-    End Sub
 End Class
