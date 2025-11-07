@@ -2,246 +2,233 @@
 
 Public Class Payment
 
-    '-----------------------------'
-    '   FORM LOAD
-    '-----------------------------'
+    ' Current logged-in user (set this when user logs in)
+    Private currentUser As String = "Admin" ' <-- Replace dynamically at login
+
+    '======================
+    ' FORM LOAD
+    '======================
     Private Sub Payment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call koneksyon()
+        ' Set the date to current date and make it read-only
+        dtpDate.Value = Date.Now
+        dtpDate.Enabled = False
 
-        ' Auto-generate Receipt Number
-        GenerateReceiptNumber()
-
-        ' Populate Certificate Type
-        cmbpaymentType.Items.AddRange(New String() {
-            "Barangay Clearance (Personal Use)",
-            "Barangay Clearance (Business)",
-            "Residency Certificate",
-            "Indigency Certificate",
-            "Community Tax Certificate / Cedula",
-            "Barangay Business Clearance",
-            "Good Moral Certificate",
-            "Senior Citizen / PWD Certificate",
-            "Solo Parent Certificate",
-            "Certificate of Occupancy / Lot Clearance",
-            "Certificate of Barangay Employment"
-        })
+        LoadPendingRequests()
+        LoadCertificateTypes()
+        LoadStatusOptions()
     End Sub
 
-
-    '-----------------------------'
-    '   AUTO-FILL AMOUNT & NOTES
-    '-----------------------------'
-    Private Sub cmbpaymentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbpaymentType.SelectedIndexChanged
-        Select Case cmbpaymentType.Text
-            Case "Barangay Clearance (Personal Use)"
-                txtAmount.Text = "50"
-                lblFeeRange.Text = "₱20 – ₱100"
-                lblNotes.Text = "Free for first-jobseekers."
-
-            Case "Barangay Clearance (Business)"
-                txtAmount.Text = "500"
-                lblFeeRange.Text = "₱200 – ₱1,000+"
-                lblNotes.Text = "Depends on business size and location."
-
-            Case "Residency Certificate"
-                txtAmount.Text = "50"
-                lblFeeRange.Text = "₱20 – ₱100"
-                lblNotes.Text = "Standard fee in many barangays."
-
-            Case "Indigency Certificate"
-                txtAmount.Text = "100"
-                lblFeeRange.Text = "₱100"
-                lblNotes.Text = "May vary depending on barangay."
-
-            Case "Community Tax Certificate / Cedula"
-                txtAmount.Text = "5"
-                lblFeeRange.Text = "₱5 basic + additional tax"
-                lblNotes.Text = "Depends on income or property."
-
-            Case "Barangay Business Clearance"
-                txtAmount.Text = "500"
-                lblFeeRange.Text = "₱200 – ₱1,000+"
-                lblNotes.Text = "Part of business clearance process."
-
-            Case "Good Moral Certificate"
-                txtAmount.Text = "0"
-                lblFeeRange.Text = "₱0 – ₱50"
-                lblNotes.Text = "Often free or minimal fee."
-
-            Case "Senior Citizen / PWD Certificate"
-                txtAmount.Text = "0"
-                lblFeeRange.Text = "Free"
-                lblNotes.Text = "Usually free or minimal fee."
-
-            Case "Solo Parent Certificate"
-                txtAmount.Text = "0"
-                lblFeeRange.Text = "₱0 – ₱50"
-                lblNotes.Text = "Often free or low-cost."
-
-            Case "Certificate of Occupancy / Lot Clearance"
-                txtAmount.Text = "1000"
-                lblFeeRange.Text = "₱500 – ₱2,000+"
-                lblNotes.Text = "May require inspection."
-
-            Case "Certificate of Barangay Employment"
-                txtAmount.Text = "50"
-                lblFeeRange.Text = "₱20 – ₱100"
-                lblNotes.Text = "Depends on barangay policy."
-
-            Case Else
-                txtAmount.Clear()
-                lblFeeRange.Text = ""
-                lblNotes.Text = ""
-        End Select
-    End Sub
-
-
-    '-----------------------------'
-    '   GENERATE RECEIPT NUMBER
-    '-----------------------------'
-    Private Sub GenerateReceiptNumber()
+    '======================
+    ' LOAD PENDING REQUESTS WITH FEE
+    '======================
+    Private Sub LoadPendingRequests()
         Try
-            ' Format: RCPT-YYYYMMDD-XXXX
-            Dim today As String = DateTime.Now.ToString("yyyyMMdd")
+            koneksyon()
+            Dim query As String = "
+                SELECT 
+                    r.Request_ID, 
+                    r.Resident_ID, 
+                    CONCAT(res.First_Name,' ',res.Last_Name) AS Resident_Name, 
+                    res.Sitio, 
+                    r.Request_Type, 
+                    r.Purpose, 
+                    r.Date_Requested, 
+                    r.Status,
+                    f.Amount AS Fee
+                FROM request_form r
+                JOIN residents res ON r.Resident_ID = res.Resident_ID
+                LEFT JOIN fees f ON r.Request_Type = f.Certificate_Type
+                WHERE r.Status = 'Pending'
+            "
+            da = New MySqlDataAdapter(query, cn)
+            dt = New DataTable()
+            da.Fill(dt)
+            dtgforpayments.DataSource = dt
 
-            ' Get next count for today
-            Dim cmdCount As New MySqlCommand("SELECT COUNT(*) FROM payments WHERE DATE(payment_date) = CURDATE()", cn)
-            cn.Open()
-            Dim countToday As Integer = Convert.ToInt32(cmdCount.ExecuteScalar()) + 1
+            ' Auto-select first row if available
+            If dtgforpayments.Rows.Count > 0 Then
+                dtgforpayments.Rows(0).Selected = True
+                dtgforpayments_CellClick(Me, New DataGridViewCellEventArgs(0, 0))
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error loading pending requests: " & ex.Message)
+        Finally
             cn.Close()
-
-            txtReceiptNo.Text = $"RCPT-{today}-{countToday.ToString("0000")}"
-        Catch ex As Exception
-            MessageBox.Show("Error generating receipt number: " & ex.Message)
-            If cn.State = ConnectionState.Open Then cn.Close()
         End Try
     End Sub
 
-
-    '-----------------------------'
-    '   BTN PAID (SAVE + CERTIFICATE)
-    '-----------------------------'
-    Private Sub btnPaid_Click(sender As Object, e As EventArgs) Handles btnPaid.Click
-        If String.IsNullOrWhiteSpace(txtResidentname.Text) OrElse
-           String.IsNullOrWhiteSpace(cmbSitio.Text) OrElse
-           String.IsNullOrWhiteSpace(cmbpaymentType.Text) OrElse
-           String.IsNullOrWhiteSpace(txtAmount.Text) OrElse
-           String.IsNullOrWhiteSpace(cmbProcessedby.Text) Then
-
-            MessageBox.Show("Please fill in all required fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Exit Sub
-        End If
-
+    '======================
+    ' LOAD CERTIFICATE TYPES
+    '======================
+    Private Sub LoadCertificateTypes()
         Try
-            Dim residentId As Integer
-
-            ' Get Resident_ID from residents table
-            Using cmdResident As New MySqlCommand("SELECT Resident_ID FROM residents WHERE CONCAT(First_Name,' ',Last_Name)=@name", cn)
-                cmdResident.Parameters.AddWithValue("@name", txtResidentname.Text.Trim())
-                cn.Open()
-                Dim result = cmdResident.ExecuteScalar()
-                cn.Close()
-
-                If result Is Nothing Then
-                    MessageBox.Show("Resident not found! Please check the name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
+            koneksyon()
+            Dim query As String = "SELECT Certificate_Type FROM fees"
+            cmd = New MySqlCommand(query, cn)
+            dr = cmd.ExecuteReader()
+            cmbcertificateType.Items.Clear()
+            While dr.Read()
+                Dim cert As Object = dr("Certificate_Type")
+                If cert IsNot DBNull.Value AndAlso Not String.IsNullOrWhiteSpace(cert.ToString()) Then
+                    cmbcertificateType.Items.Add(cert.ToString())
                 End If
-                residentId = CInt(result)
-            End Using
-
-            ' Insert Payment record
-            Dim paymentId As Integer
-            Using cmdPayment As New MySqlCommand("INSERT INTO payments (resident_id, amount, purpose, payment_date, status, receipt_no, processed_by) 
-                                                  VALUES (@resId, @amt, @purpose, @date, 'Paid', @receipt, @processed);
-                                                  SELECT LAST_INSERT_ID();", cn)
-                cmdPayment.Parameters.AddWithValue("@resId", residentId)
-                cmdPayment.Parameters.AddWithValue("@amt", txtAmount.Text)
-                cmdPayment.Parameters.AddWithValue("@purpose", cmbpaymentType.Text)
-                cmdPayment.Parameters.AddWithValue("@date", dtpDate.Value.ToString("yyyy-MM-dd"))
-                cmdPayment.Parameters.AddWithValue("@receipt", txtReceiptNo.Text)
-                cmdPayment.Parameters.AddWithValue("@processed", cmbProcessedby.Text)
-                cn.Open()
-                paymentId = Convert.ToInt32(cmdPayment.ExecuteScalar())
-                cn.Close()
-            End Using
-
-            ' Display the generated Payment ID
-            txtPaymentID.Text = paymentId.ToString()
-
-            ' Insert Certificate record automatically
-            Using cmdCert As New MySqlCommand("INSERT INTO certifications (resident_id, type, issued_by, issue_date, remarks) 
-                                               VALUES (@resId, @type, @issuedBy, @issueDate, @remarks)", cn)
-                cmdCert.Parameters.AddWithValue("@resId", residentId)
-                cmdCert.Parameters.AddWithValue("@type", cmbpaymentType.Text)
-                cmdCert.Parameters.AddWithValue("@issuedBy", cmbProcessedby.Text)
-                cmdCert.Parameters.AddWithValue("@issueDate", DateTime.Now.ToString("yyyy-MM-dd"))
-                cmdCert.Parameters.AddWithValue("@remarks", "Certificate issued upon payment.")
-                cn.Open()
-                cmdCert.ExecuteNonQuery()
-                cn.Close()
-            End Using
-
-            MessageBox.Show("Payment and certificate saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            ' Generate new receipt for next transaction
-            GenerateReceiptNumber()
-            ClearFields()
-
+            End While
+            dr.Close()
         Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message)
-            If cn.State = ConnectionState.Open Then cn.Close()
+            MessageBox.Show("Error loading certificate types: " & ex.Message)
+        Finally
+            cn.Close()
         End Try
     End Sub
 
+    '======================
+    ' LOAD STATUS OPTIONS
+    '======================
+    Private Sub LoadStatusOptions()
+        cbostatus.Items.Clear()
+        cbostatus.Items.Add("Pending")
+        cbostatus.Items.Add("Paid")
+        cbostatus.Items.Add("Cancelled")
+        cbostatus.SelectedIndex = 0
+    End Sub
 
-    '-----------------------------'
-    '   BTN UPDATE
-    '-----------------------------'
-    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        If txtPaymentID.Text = "" Then
-            MessageBox.Show("Enter Payment ID to update.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+    '======================
+    ' DATA GRID ROW CLICK
+    '======================
+    Private Sub dtgforpayments_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgforpayments.CellClick
+        If e.RowIndex >= 0 Then
+            Dim row As DataGridViewRow = dtgforpayments.Rows(e.RowIndex)
+            txtrequestid.Text = row.Cells("Request_ID").Value.ToString()
+            txtResidentid.Text = row.Cells("Resident_ID").Value.ToString()
+            txtresidentname.Text = row.Cells("Resident_Name").Value.ToString()
+            cmbSitio.Text = row.Cells("Sitio").Value.ToString()
+            cmbcertificateType.Text = row.Cells("Request_Type").Value.ToString()
+            txtpurpose.Text = row.Cells("Purpose").Value.ToString()
+            cbostatus.Text = row.Cells("Status").Value.ToString()
+
+            ' Auto-fill fee from join or fallback to fees table
+            If row.Cells("Fee").Value IsNot DBNull.Value Then
+                txtfee.Text = row.Cells("Fee").Value.ToString()
+                txtAmount.Text = row.Cells("Fee").Value.ToString()
+            Else
+                ' If Fee column is empty, load from fees table
+                LoadFee(cmbcertificateType.Text)
+            End If
+        End If
+    End Sub
+
+    '======================
+    ' CERTIFICATE TYPE CHANGED
+    '======================
+    Private Sub cmbcertificateType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbcertificateType.SelectedIndexChanged
+        ' Load fee automatically whenever certificate type changes
+        If Not String.IsNullOrEmpty(cmbcertificateType.Text) Then
+            LoadFee(cmbcertificateType.Text)
+        End If
+    End Sub
+
+    '======================
+    ' LOAD FEE FROM FEES TABLE
+    '======================
+    Private Sub LoadFee(certificateType As String)
+        Try
+            koneksyon()
+            Dim query As String = "SELECT Amount FROM fees WHERE Certificate_Type = @Certificate_Type LIMIT 1"
+            cmd = New MySqlCommand(query, cn)
+            cmd.Parameters.AddWithValue("@Certificate_Type", certificateType)
+            Dim result As Object = cmd.ExecuteScalar()
+            If result IsNot Nothing AndAlso result IsNot DBNull.Value Then
+                txtfee.Text = result.ToString()
+                txtAmount.Text = result.ToString()
+            Else
+                txtfee.Text = ""
+                txtAmount.Text = ""
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error loading fee: " & ex.Message)
+        Finally
+            cn.Close()
+        End Try
+    End Sub
+
+    '======================
+    ' PROCESS PAYMENT
+    '======================
+    Private Sub btnPaid_Click(sender As Object, e As EventArgs) Handles btnPaid.Click
+        If String.IsNullOrWhiteSpace(txtResidentid.Text) OrElse
+           String.IsNullOrWhiteSpace(cmbcertificateType.Text) OrElse
+           String.IsNullOrWhiteSpace(txtfee.Text) Then
+            MessageBox.Show("Please select a request and ensure all fields are filled.", "Missing Data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
         Try
-            Using cmdUpdate As New MySqlCommand("UPDATE payments 
-                                                 SET amount=@amt, purpose=@purpose, payment_date=@date, 
-                                                     receipt_no=@receipt, processed_by=@processed 
-                                                 WHERE payment_id=@id", cn)
-                cmdUpdate.Parameters.AddWithValue("@amt", txtAmount.Text)
-                cmdUpdate.Parameters.AddWithValue("@purpose", cmbpaymentType.Text)
-                cmdUpdate.Parameters.AddWithValue("@date", dtpDate.Value.ToString("yyyy-MM-dd"))
-                cmdUpdate.Parameters.AddWithValue("@receipt", txtReceiptNo.Text)
-                cmdUpdate.Parameters.AddWithValue("@processed", cmbProcessedby.Text)
-                cmdUpdate.Parameters.AddWithValue("@id", txtPaymentID.Text)
+            koneksyon()
 
-                cn.Open()
-                cmdUpdate.ExecuteNonQuery()
-                cn.Close()
-            End Using
+            ' Insert payment
+            Dim insertPayment As String = "INSERT INTO payment (Resident_ID, Sitio, Certificate_Type, Fee_Range, Amount, Date, Receipt_Number, Processed_By) " &
+                                          "VALUES (@Resident_ID, @Sitio, @Certificate_Type, @Fee_Range, @Amount, @Date, @Receipt_Number, @Processed_By)"
+            cmd = New MySqlCommand(insertPayment, cn)
+            cmd.Parameters.AddWithValue("@Resident_ID", txtResidentid.Text)
+            cmd.Parameters.AddWithValue("@Sitio", cmbSitio.Text)
+            cmd.Parameters.AddWithValue("@Certificate_Type", cmbcertificateType.Text)
+            cmd.Parameters.AddWithValue("@Fee_Range", txtfee.Text)
+            cmd.Parameters.AddWithValue("@Amount", txtAmount.Text)
+            cmd.Parameters.AddWithValue("@Date", Date.Now)
+            cmd.Parameters.AddWithValue("@Receipt_Number", GenerateReceiptNumber())
+            cmd.Parameters.AddWithValue("@Processed_By", currentUser)
+            cmd.ExecuteNonQuery()
 
-            MessageBox.Show("Payment updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ' Update request status
+            Dim updateRequest As String = "UPDATE request_form SET Status = 'Paid' WHERE Request_ID = @Request_ID"
+            cmd = New MySqlCommand(updateRequest, cn)
+            cmd.Parameters.AddWithValue("@Request_ID", txtrequestid.Text)
+            cmd.ExecuteNonQuery()
+
+            ' Insert certification record
+            Dim insertCert As String = "INSERT INTO certifications (Resident_Name, Type, Issued_By, Issued_Date, Remarks) " &
+                                       "VALUES (@Resident_Name, @Type, @Issued_By, @Issued_Date, @Remarks)"
+            cmd = New MySqlCommand(insertCert, cn)
+            cmd.Parameters.AddWithValue("@Resident_Name", txtresidentname.Text)
+            cmd.Parameters.AddWithValue("@Type", cmbcertificateType.Text)
+            cmd.Parameters.AddWithValue("@Issued_By", currentUser) ' Automatically set current user
+            cmd.Parameters.AddWithValue("@Issued_Date", Date.Now)
+            cmd.Parameters.AddWithValue("@Remarks", "Paid & ready for printing")
+            cmd.ExecuteNonQuery()
+
+            MessageBox.Show("Payment completed! Certificate is ready for printing.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
             ClearFields()
+            LoadPendingRequests()
 
         Catch ex As Exception
-            MessageBox.Show("Error updating record: " & ex.Message)
-            If cn.State = ConnectionState.Open Then cn.Close()
+            MessageBox.Show("Error processing payment: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            cn.Close()
         End Try
     End Sub
 
-
-    '-----------------------------'
-    '   CLEAR FORM
-    '-----------------------------'
+    '======================
+    ' CLEAR ALL INPUTS
+    '======================
     Private Sub ClearFields()
-        txtPaymentID.Clear()
-        txtResidentname.Clear()
+        txtrequestid.Clear()
+        txtResidentid.Clear()
+        txtresidentname.Clear()
         cmbSitio.SelectedIndex = -1
-        cmbpaymentType.SelectedIndex = -1
+        cmbcertificateType.SelectedIndex = -1
+        txtpurpose.Clear()
+        cbostatus.SelectedIndex = 0
+        txtfee.Clear()
         txtAmount.Clear()
-        lblFeeRange.Text = ""
-        lblNotes.Text = ""
-        cmbProcessedby.SelectedIndex = -1
+        dtpDate.Value = Date.Now
     End Sub
+
+    '======================
+    ' GENERATE RECEIPT NUMBER
+    '======================
+    Private Function GenerateReceiptNumber() As String
+        Return "RCPT-" & DateTime.Now.ToString("yyyyMMddHHmmss")
+    End Function
 
 End Class

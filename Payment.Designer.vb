@@ -33,12 +33,15 @@ Partial Class Payment
         Label8 = New Label()
         Label9 = New Label()
         Panel1 = New Panel()
+        txtresidentname = New TextBox()
+        Label14 = New Label()
+        txtrequestid = New TextBox()
+        Label17 = New Label()
         cmbSitio = New ComboBox()
         Label11 = New Label()
         Label10 = New Label()
-        txtResidentname = New TextBox()
-        cmbpaymentType = New ComboBox()
-        btnUpdate = New Button()
+        txtResidentid = New TextBox()
+        cmbcertificateType = New ComboBox()
         btnPaid = New Button()
         cmbProcessedby = New ComboBox()
         txtReceiptNo = New TextBox()
@@ -48,17 +51,19 @@ Partial Class Payment
         Panel3 = New Panel()
         Label12 = New Label()
         Panel2 = New Panel()
-        lblNotes = New Label()
-        Label14 = New Label()
-        lblFeeRange = New Label()
-        Label13 = New Label()
+        cbostatus = New ComboBox()
+        txtfee = New TextBox()
+        txtpurpose = New TextBox()
+        Label16 = New Label()
+        Label15 = New Label()
         Label7 = New Label()
-        DataGridView1 = New DataGridView()
+        Label13 = New Label()
+        dtgforpayments = New DataGridView()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         Panel3.SuspendLayout()
         Panel2.SuspendLayout()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dtgforpayments, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -102,9 +107,9 @@ Partial Class Payment
         Label3.Location = New Point(24, 50)
         Label3.Margin = New Padding(4, 0, 4, 0)
         Label3.Name = "Label3"
-        Label3.Size = New Size(185, 32)
+        Label3.Size = New Size(144, 32)
         Label3.TabIndex = 46
-        Label3.Text = "Resident Name:"
+        Label3.Text = "Resident ID:"
         ' 
         ' Label4
         ' 
@@ -163,23 +168,68 @@ Partial Class Payment
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(txtresidentname)
+        Panel1.Controls.Add(Label14)
+        Panel1.Controls.Add(txtrequestid)
+        Panel1.Controls.Add(Label17)
         Panel1.Controls.Add(cmbSitio)
         Panel1.Controls.Add(Label11)
         Panel1.Controls.Add(Label10)
-        Panel1.Controls.Add(txtResidentname)
+        Panel1.Controls.Add(txtResidentid)
         Panel1.Controls.Add(Label3)
-        Panel1.Location = New Point(188, 210)
+        Panel1.Location = New Point(218, 161)
         Panel1.Margin = New Padding(4)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(778, 168)
+        Panel1.Size = New Size(778, 288)
         Panel1.TabIndex = 56
+        ' 
+        ' txtresidentname
+        ' 
+        txtresidentname.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtresidentname.Location = New Point(238, 103)
+        txtresidentname.Margin = New Padding(4)
+        txtresidentname.Name = "txtresidentname"
+        txtresidentname.ReadOnly = True
+        txtresidentname.Size = New Size(492, 39)
+        txtresidentname.TabIndex = 63
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label14.Location = New Point(24, 107)
+        Label14.Margin = New Padding(4, 0, 4, 0)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(185, 32)
+        Label14.TabIndex = 62
+        Label14.Text = "Resident Name:"
+        ' 
+        ' txtrequestid
+        ' 
+        txtrequestid.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtrequestid.Location = New Point(238, 222)
+        txtrequestid.Margin = New Padding(4)
+        txtrequestid.Name = "txtrequestid"
+        txtrequestid.Size = New Size(492, 39)
+        txtrequestid.TabIndex = 61
+        ' 
+        ' Label17
+        ' 
+        Label17.AutoSize = True
+        Label17.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label17.Location = New Point(24, 225)
+        Label17.Margin = New Padding(4, 0, 4, 0)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(138, 32)
+        Label17.TabIndex = 60
+        Label17.Text = "Request ID:"
         ' 
         ' cmbSitio
         ' 
         cmbSitio.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         cmbSitio.FormattingEnabled = True
         cmbSitio.Items.AddRange(New Object() {"Camella Homes III", "Lake Shore Subdivision", "Lindenwood Residences", "Midland II Subdivision", "Parkhomes Subdivision", "Planas", "Sto. Niño Village", "Susana Heights Subdivision", "Villa Carolina I", "Villa Carolina II"})
-        cmbSitio.Location = New Point(238, 102)
+        cmbSitio.Location = New Point(238, 161)
         cmbSitio.Margin = New Padding(4)
         cmbSitio.Name = "cmbSitio"
         cmbSitio.Size = New Size(492, 40)
@@ -189,7 +239,7 @@ Partial Class Payment
         ' 
         Label11.AutoSize = True
         Label11.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label11.Location = New Point(24, 106)
+        Label11.Location = New Point(24, 164)
         Label11.Margin = New Padding(4, 0, 4, 0)
         Label11.Name = "Label11"
         Label11.Size = New Size(68, 32)
@@ -208,39 +258,25 @@ Partial Class Payment
         Label10.TabIndex = 57
         Label10.Text = "Resident Information"
         ' 
-        ' txtResidentname
+        ' txtResidentid
         ' 
-        txtResidentname.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtResidentname.Location = New Point(238, 46)
-        txtResidentname.Margin = New Padding(4)
-        txtResidentname.Name = "txtResidentname"
-        txtResidentname.Size = New Size(492, 39)
-        txtResidentname.TabIndex = 48
+        txtResidentid.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtResidentid.Location = New Point(238, 46)
+        txtResidentid.Margin = New Padding(4)
+        txtResidentid.Name = "txtResidentid"
+        txtResidentid.ReadOnly = True
+        txtResidentid.Size = New Size(492, 39)
+        txtResidentid.TabIndex = 48
         ' 
-        ' cmbpaymentType
+        ' cmbcertificateType
         ' 
-        cmbpaymentType.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        cmbpaymentType.FormattingEnabled = True
-        cmbpaymentType.Location = New Point(238, 46)
-        cmbpaymentType.Margin = New Padding(4)
-        cmbpaymentType.Name = "cmbpaymentType"
-        cmbpaymentType.Size = New Size(492, 40)
-        cmbpaymentType.TabIndex = 49
-        ' 
-        ' btnUpdate
-        ' 
-        btnUpdate.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(128))
-        btnUpdate.FlatAppearance.BorderSize = 0
-        btnUpdate.FlatStyle = FlatStyle.Flat
-        btnUpdate.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnUpdate.ForeColor = Color.Black
-        btnUpdate.Location = New Point(848, 794)
-        btnUpdate.Margin = New Padding(4)
-        btnUpdate.Name = "btnUpdate"
-        btnUpdate.Size = New Size(118, 59)
-        btnUpdate.TabIndex = 58
-        btnUpdate.Text = "Update"
-        btnUpdate.UseVisualStyleBackColor = False
+        cmbcertificateType.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        cmbcertificateType.FormattingEnabled = True
+        cmbcertificateType.Location = New Point(238, 46)
+        cmbcertificateType.Margin = New Padding(4)
+        cmbcertificateType.Name = "cmbcertificateType"
+        cmbcertificateType.Size = New Size(492, 40)
+        cmbcertificateType.TabIndex = 49
         ' 
         ' btnPaid
         ' 
@@ -249,7 +285,7 @@ Partial Class Payment
         btnPaid.FlatStyle = FlatStyle.Flat
         btnPaid.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnPaid.ForeColor = Color.Black
-        btnPaid.Location = New Point(722, 794)
+        btnPaid.Location = New Point(1664, 94)
         btnPaid.Margin = New Padding(4)
         btnPaid.Name = "btnPaid"
         btnPaid.Size = New Size(118, 59)
@@ -299,7 +335,7 @@ Partial Class Payment
         ' txtPaymentID
         ' 
         txtPaymentID.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        txtPaymentID.Location = New Point(238, 56)
+        txtPaymentID.Location = New Point(238, 53)
         txtPaymentID.Margin = New Padding(4)
         txtPaymentID.Name = "txtPaymentID"
         txtPaymentID.ReadOnly = True
@@ -319,10 +355,10 @@ Partial Class Payment
         Panel3.Controls.Add(Label6)
         Panel3.Controls.Add(Label9)
         Panel3.Controls.Add(Label8)
-        Panel3.Location = New Point(188, 422)
+        Panel3.Location = New Point(1004, 161)
         Panel3.Margin = New Padding(4)
         Panel3.Name = "Panel3"
-        Panel3.Size = New Size(778, 364)
+        Panel3.Size = New Size(778, 445)
         Panel3.TabIndex = 59
         ' 
         ' Label12
@@ -339,60 +375,71 @@ Partial Class Payment
         ' 
         ' Panel2
         ' 
-        Panel2.Controls.Add(lblNotes)
-        Panel2.Controls.Add(Label14)
-        Panel2.Controls.Add(lblFeeRange)
-        Panel2.Controls.Add(Label13)
+        Panel2.Controls.Add(cbostatus)
+        Panel2.Controls.Add(txtfee)
+        Panel2.Controls.Add(txtpurpose)
+        Panel2.Controls.Add(Label16)
+        Panel2.Controls.Add(Label15)
         Panel2.Controls.Add(Label7)
-        Panel2.Controls.Add(cmbpaymentType)
+        Panel2.Controls.Add(cmbcertificateType)
         Panel2.Controls.Add(Label4)
-        Panel2.Location = New Point(1004, 210)
+        Panel2.Controls.Add(Label13)
+        Panel2.Location = New Point(188, 469)
         Panel2.Margin = New Padding(4)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(778, 229)
+        Panel2.Size = New Size(778, 640)
         Panel2.TabIndex = 61
         ' 
-        ' lblNotes
+        ' cbostatus
         ' 
-        lblNotes.AutoSize = True
-        lblNotes.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblNotes.Location = New Point(238, 180)
-        lblNotes.Margin = New Padding(4, 0, 4, 0)
-        lblNotes.Name = "lblNotes"
-        lblNotes.Size = New Size(0, 32)
-        lblNotes.TabIndex = 64
+        cbostatus.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        cbostatus.FormattingEnabled = True
+        cbostatus.Location = New Point(238, 127)
+        cbostatus.Margin = New Padding(4)
+        cbostatus.Name = "cbostatus"
+        cbostatus.Size = New Size(492, 40)
+        cbostatus.TabIndex = 62
         ' 
-        ' Label14
+        ' txtfee
         ' 
-        Label14.AutoSize = True
-        Label14.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label14.Location = New Point(24, 180)
-        Label14.Margin = New Padding(4, 0, 4, 0)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(84, 32)
-        Label14.TabIndex = 63
-        Label14.Text = "Notes:"
+        txtfee.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtfee.Location = New Point(238, 206)
+        txtfee.Margin = New Padding(4)
+        txtfee.Name = "txtfee"
+        txtfee.Size = New Size(492, 39)
+        txtfee.TabIndex = 60
         ' 
-        ' lblFeeRange
+        ' txtpurpose
         ' 
-        lblFeeRange.AutoSize = True
-        lblFeeRange.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblFeeRange.Location = New Point(238, 120)
-        lblFeeRange.Margin = New Padding(4, 0, 4, 0)
-        lblFeeRange.Name = "lblFeeRange"
-        lblFeeRange.Size = New Size(0, 32)
-        lblFeeRange.TabIndex = 62
+        txtpurpose.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtpurpose.Location = New Point(201, 414)
+        txtpurpose.Margin = New Padding(4)
+        txtpurpose.Multiline = True
+        txtpurpose.Name = "txtpurpose"
+        txtpurpose.Size = New Size(529, 194)
+        txtpurpose.TabIndex = 60
         ' 
-        ' Label13
+        ' Label16
         ' 
-        Label13.AutoSize = True
-        Label13.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label13.Location = New Point(24, 120)
-        Label13.Margin = New Padding(4, 0, 4, 0)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(134, 32)
-        Label13.TabIndex = 61
-        Label13.Text = "Fee Range:"
+        Label16.AutoSize = True
+        Label16.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label16.Location = New Point(30, 417)
+        Label16.Margin = New Padding(4, 0, 4, 0)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(108, 32)
+        Label16.TabIndex = 67
+        Label16.Text = "Purpose:"
+        ' 
+        ' Label15
+        ' 
+        Label15.AutoSize = True
+        Label15.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label15.Location = New Point(24, 135)
+        Label15.Margin = New Padding(4, 0, 4, 0)
+        Label15.Name = "Label15"
+        Label15.Size = New Size(87, 32)
+        Label15.TabIndex = 65
+        Label15.Text = "Status:"
         ' 
         ' Label7
         ' 
@@ -406,14 +453,25 @@ Partial Class Payment
         Label7.TabIndex = 60
         Label7.Text = "Certificate Details"
         ' 
-        ' DataGridView1
+        ' Label13
         ' 
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(1005, 457)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.RowHeadersWidth = 62
-        DataGridView1.Size = New Size(779, 447)
-        DataGridView1.TabIndex = 62
+        Label13.AutoSize = True
+        Label13.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label13.Location = New Point(24, 213)
+        Label13.Margin = New Padding(4, 0, 4, 0)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(134, 32)
+        Label13.TabIndex = 61
+        Label13.Text = "Fee Range:"
+        ' 
+        ' dtgforpayments
+        ' 
+        dtgforpayments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dtgforpayments.Location = New Point(994, 662)
+        dtgforpayments.Name = "dtgforpayments"
+        dtgforpayments.RowHeadersWidth = 62
+        dtgforpayments.Size = New Size(779, 447)
+        dtgforpayments.TabIndex = 62
         ' 
         ' Payment
         ' 
@@ -421,10 +479,9 @@ Partial Class Payment
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(1924, 1219)
-        Controls.Add(DataGridView1)
+        Controls.Add(dtgforpayments)
         Controls.Add(Panel2)
         Controls.Add(Panel3)
-        Controls.Add(btnUpdate)
         Controls.Add(btnPaid)
         Controls.Add(Panel1)
         Controls.Add(Label1)
@@ -440,7 +497,7 @@ Partial Class Payment
         Panel3.PerformLayout()
         Panel2.ResumeLayout(False)
         Panel2.PerformLayout()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(dtgforpayments, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -454,8 +511,8 @@ Partial Class Payment
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents cmbpaymentType As ComboBox
-    Friend WithEvents txtResidentname As TextBox
+    Friend WithEvents cmbcertificateType As ComboBox
+    Friend WithEvents txtResidentid As TextBox
     Friend WithEvents txtPaymentID As TextBox
     Friend WithEvents txtAmount As TextBox
     Friend WithEvents dtpDate As DateTimePicker
@@ -471,8 +528,14 @@ Partial Class Payment
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label7 As Label
     Friend WithEvents Label13 As Label
-    Friend WithEvents lblNotes As Label
+    Friend WithEvents dtgforpayments As DataGridView
+    Friend WithEvents txtpurpose As TextBox
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents txtfee As TextBox
+    Friend WithEvents txtrequestid As TextBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents cbostatus As ComboBox
+    Friend WithEvents txtresidentname As TextBox
     Friend WithEvents Label14 As Label
-    Friend WithEvents lblFeeRange As Label
-    Friend WithEvents DataGridView1 As DataGridView
 End Class
