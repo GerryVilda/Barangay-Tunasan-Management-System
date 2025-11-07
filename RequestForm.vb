@@ -11,7 +11,7 @@ Public Class RequestForm
 
     Private Sub GenerateRequestID()
         Try
-            Dim cmd As New MySqlCommand("SELECT MAX(Request_ID) FROM request_form", koneksyon)
+            Dim cmd As New MySqlCommand("SELECT MAX(Request_ID) FROM request_form")
             Dim result = cmd.ExecuteScalar()
             Dim newID As Integer = If(IsDBNull(result), 1, Convert.ToInt32(result) + 1)
             txtRequestID.Text = "REQ" & newID.ToString("0000")
@@ -31,7 +31,7 @@ Public Class RequestForm
             ' Insert query
             Dim sql As String = "INSERT INTO request_form (Request_Type, Purpose, Date_Requested, Status) 
                                  VALUES (@Request_Type, @Purpose, @Date_Requested, @Status)"
-            Dim cmd As New MySqlCommand(sql, koneksyon)
+            Dim cmd As New MySqlCommand(sql)
             cmd.Parameters.AddWithValue("@Request_Type", cmbRequestType.Text)
             cmd.Parameters.AddWithValue("@Purpose", txtPurpose.Text)
             cmd.Parameters.AddWithValue("@Date_Requested", dtpDateRequested.Value)
