@@ -41,7 +41,7 @@ Public Class frmincident
             If filterStatus <> "All" Then
                 query &= " WHERE LOWER(status)=@status"
             End If
-            query &= " ORDER BY incident_id ASC"
+            query &= " ORDER BY ID ASC"
 
             cmd = New MySqlCommand(query, cn)
             If filterStatus <> "All" Then
@@ -124,7 +124,7 @@ Public Class frmincident
     ' Edit Incident
     '===========================
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-        If txtIncidentID.Text.Trim() = "" Then
+        If txtincidentid.Text.Trim() = "" Then
             MessageBox.Show("Please select an incident to edit.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
@@ -138,7 +138,7 @@ Public Class frmincident
         Try
             koneksyon()
 
-            Dim query As String = "UPDATE incident_reports SET complainant=@complainant, respondent=@respondent, incident_type=@type, incident_date=@date, status=@status, action_taken=@action WHERE incident_id=@id"
+            Dim query As String = "UPDATE incident_reports SET complainant=@complainant, respondent=@respondent, incident_type=@type, incident_date=@date, status=@status, action_taken=@action WHERE ID=@id"
             cmd = New MySqlCommand(query, cn)
 
             cmd.Parameters.AddWithValue("@complainant", txtComplainant.Text)
@@ -146,7 +146,7 @@ Public Class frmincident
             cmd.Parameters.AddWithValue("@type", cmbincident.Text)
             cmd.Parameters.AddWithValue("@date", dtpIncidents.Value.ToString("yyyy-MM-dd"))
             cmd.Parameters.AddWithValue("@status", cmbStatus.Text)
-            cmd.Parameters.AddWithValue("@id", txtIncidentID.Text)
+            cmd.Parameters.AddWithValue("@id", txtincidentid.Text)
 
             cmd.ExecuteNonQuery()
             MessageBox.Show("Incident updated successfully!")
@@ -164,7 +164,7 @@ Public Class frmincident
     ' Delete Incident
     '===========================
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        If txtIncidentID.Text.Trim() = "" Then
+        If txtincidentid.Text.Trim() = "" Then
             MessageBox.Show("Please select an incident to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
@@ -172,7 +172,7 @@ Public Class frmincident
         If MessageBox.Show("Are you sure you want to delete this record?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             Try
                 koneksyon()
-                Dim query As String = "DELETE FROM incident_reports WHERE incident_id=@id"
+                Dim query As String = "DELETE FROM incident_reports WHERE ID=@id"
                 cmd = New MySqlCommand(query, cn)
                 cmd.Parameters.AddWithValue("@id", txtIncidentID.Text)
                 cmd.ExecuteNonQuery()
