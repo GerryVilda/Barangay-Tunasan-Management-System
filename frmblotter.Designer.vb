@@ -23,14 +23,13 @@ Partial Class frmblotter
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmblotter))
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Label1 = New Label()
         Panel1 = New Panel()
         PictureBox1 = New PictureBox()
         cmbincident = New ComboBox()
         cmbLocation = New ComboBox()
         btnupdateblotter = New Button()
-        btnsaveblotter = New Button()
         dgvblotters = New DataGridView()
         txtdetails = New TextBox()
         dtpincidentdate = New DateTimePicker()
@@ -62,7 +61,7 @@ Partial Class frmblotter
         Label1.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
         Label1.Location = New Point(180, 28)
         Label1.Name = "Label1"
-        Label1.Size = New Size(306, 54)
+        Label1.Size = New Size(365, 65)
         Label1.TabIndex = 0
         Label1.Text = "Blotter Reports"
         ' 
@@ -72,7 +71,6 @@ Partial Class frmblotter
         Panel1.Controls.Add(cmbincident)
         Panel1.Controls.Add(cmbLocation)
         Panel1.Controls.Add(btnupdateblotter)
-        Panel1.Controls.Add(btnsaveblotter)
         Panel1.Controls.Add(dgvblotters)
         Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(txtdetails)
@@ -116,7 +114,7 @@ Partial Class frmblotter
         cmbincident.Items.AddRange(New Object() {"Noise Complaint", "Domestic Dispute", "Vandalism", "Theft", "Verbal Altercation", "Traffic Violation", "Harassment", "Minor Injury"})
         cmbincident.Location = New Point(191, 316)
         cmbincident.Name = "cmbincident"
-        cmbincident.Size = New Size(396, 36)
+        cmbincident.Size = New Size(396, 40)
         cmbincident.TabIndex = 24
         ' 
         ' cmbLocation
@@ -126,33 +124,23 @@ Partial Class frmblotter
         cmbLocation.Items.AddRange(New Object() {"Camella Homes III", "Lake Shore Subdivision", "Lindenwood Residences", "Midland II Subdivision", "Parkhomes Subdivision", "Planas", "Sto. Niño Village", "Susana Heights Subdivision", "Villa Carolina I", "Villa Carolina II"})
         cmbLocation.Location = New Point(191, 427)
         cmbLocation.Name = "cmbLocation"
-        cmbLocation.Size = New Size(396, 36)
+        cmbLocation.Size = New Size(396, 40)
         cmbLocation.TabIndex = 23
         ' 
         ' btnupdateblotter
         ' 
         btnupdateblotter.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnupdateblotter.Location = New Point(1188, 497)
+        btnupdateblotter.Location = New Point(901, 489)
         btnupdateblotter.Name = "btnupdateblotter"
         btnupdateblotter.Size = New Size(430, 101)
         btnupdateblotter.TabIndex = 22
         btnupdateblotter.Text = "✏️ Update"
         btnupdateblotter.UseVisualStyleBackColor = True
         ' 
-        ' btnsaveblotter
-        ' 
-        btnsaveblotter.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnsaveblotter.Location = New Point(696, 497)
-        btnsaveblotter.Name = "btnsaveblotter"
-        btnsaveblotter.Size = New Size(430, 101)
-        btnsaveblotter.TabIndex = 21
-        btnsaveblotter.Text = "➕ Save"
-        btnsaveblotter.UseVisualStyleBackColor = True
-        ' 
         ' dgvblotters
         ' 
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        dgvblotters.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
+        dgvblotters.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         dgvblotters.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvblotters.Location = New Point(18, 609)
         dgvblotters.Name = "dgvblotters"
@@ -173,7 +161,7 @@ Partial Class frmblotter
         dtpincidentdate.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         dtpincidentdate.Location = New Point(191, 370)
         dtpincidentdate.Name = "dtpincidentdate"
-        dtpincidentdate.Size = New Size(396, 34)
+        dtpincidentdate.Size = New Size(396, 39)
         dtpincidentdate.TabIndex = 18
         ' 
         ' dtpcreatedat
@@ -181,7 +169,7 @@ Partial Class frmblotter
         dtpcreatedat.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         dtpcreatedat.Location = New Point(190, 546)
         dtpcreatedat.Name = "dtpcreatedat"
-        dtpcreatedat.Size = New Size(397, 34)
+        dtpcreatedat.Size = New Size(397, 39)
         dtpcreatedat.TabIndex = 17
         ' 
         ' txtremarks
@@ -198,7 +186,7 @@ Partial Class frmblotter
         txtrespondent.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         txtrespondent.Location = New Point(191, 262)
         txtrespondent.Name = "txtrespondent"
-        txtrespondent.Size = New Size(396, 34)
+        txtrespondent.Size = New Size(396, 39)
         txtrespondent.TabIndex = 13
         ' 
         ' txtcomplaint
@@ -206,7 +194,7 @@ Partial Class frmblotter
         txtcomplaint.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         txtcomplaint.Location = New Point(191, 208)
         txtcomplaint.Name = "txtcomplaint"
-        txtcomplaint.Size = New Size(396, 34)
+        txtcomplaint.Size = New Size(396, 39)
         txtcomplaint.TabIndex = 12
         ' 
         ' txtblotterid
@@ -215,7 +203,7 @@ Partial Class frmblotter
         txtblotterid.Location = New Point(191, 153)
         txtblotterid.Name = "txtblotterid"
         txtblotterid.ReadOnly = True
-        txtblotterid.Size = New Size(396, 34)
+        txtblotterid.Size = New Size(396, 39)
         txtblotterid.TabIndex = 11
         ' 
         ' cmbstatus
@@ -225,7 +213,7 @@ Partial Class frmblotter
         cmbstatus.Items.AddRange(New Object() {"Pending", "Under Investigation", "Resolved"})
         cmbstatus.Location = New Point(190, 486)
         cmbstatus.Name = "cmbstatus"
-        cmbstatus.Size = New Size(397, 36)
+        cmbstatus.Size = New Size(397, 40)
         cmbstatus.TabIndex = 10
         ' 
         ' Label7
@@ -234,7 +222,7 @@ Partial Class frmblotter
         Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label7.Location = New Point(17, 551)
         Label7.Name = "Label7"
-        Label7.Size = New Size(113, 28)
+        Label7.Size = New Size(138, 32)
         Label7.TabIndex = 9
         Label7.Text = "Created At:"
         ' 
@@ -244,7 +232,7 @@ Partial Class frmblotter
         Label8.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label8.Location = New Point(637, 308)
         Label8.Name = "Label8"
-        Label8.Size = New Size(94, 28)
+        Label8.Size = New Size(113, 32)
         Label8.TabIndex = 8
         Label8.Text = "Remarks:"
         ' 
@@ -254,7 +242,7 @@ Partial Class frmblotter
         Label9.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label9.Location = New Point(17, 486)
         Label9.Name = "Label9"
-        Label9.Size = New Size(72, 28)
+        Label9.Size = New Size(87, 32)
         Label9.TabIndex = 7
         Label9.Text = "Status:"
         ' 
@@ -264,7 +252,7 @@ Partial Class frmblotter
         Label10.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label10.Location = New Point(17, 375)
         Label10.Name = "Label10"
-        Label10.Size = New Size(139, 28)
+        Label10.Size = New Size(167, 32)
         Label10.TabIndex = 6
         Label10.Text = "Incident Date:"
         ' 
@@ -274,7 +262,7 @@ Partial Class frmblotter
         Label11.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label11.Location = New Point(17, 211)
         Label11.Name = "Label11"
-        Label11.Size = New Size(158, 28)
+        Label11.Size = New Size(190, 32)
         Label11.TabIndex = 5
         Label11.Text = "Complainant ID:"
         ' 
@@ -284,7 +272,7 @@ Partial Class frmblotter
         Label6.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label6.Location = New Point(635, 15)
         Label6.Name = "Label6"
-        Label6.Size = New Size(78, 28)
+        Label6.Size = New Size(94, 32)
         Label6.TabIndex = 4
         Label6.Text = "Details:"
         ' 
@@ -294,7 +282,7 @@ Partial Class frmblotter
         Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label5.Location = New Point(18, 430)
         Label5.Name = "Label5"
-        Label5.Size = New Size(94, 28)
+        Label5.Size = New Size(113, 32)
         Label5.TabIndex = 3
         Label5.Text = "Location:"
         ' 
@@ -304,7 +292,7 @@ Partial Class frmblotter
         Label4.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label4.Location = New Point(18, 319)
         Label4.Name = "Label4"
-        Label4.Size = New Size(140, 28)
+        Label4.Size = New Size(166, 32)
         Label4.TabIndex = 2
         Label4.Text = "Incident Type:"
         ' 
@@ -314,7 +302,7 @@ Partial Class frmblotter
         Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label3.Location = New Point(18, 265)
         Label3.Name = "Label3"
-        Label3.Size = New Size(152, 28)
+        Label3.Size = New Size(180, 32)
         Label3.TabIndex = 1
         Label3.Text = "Respondent ID:"
         ' 
@@ -324,13 +312,13 @@ Partial Class frmblotter
         Label2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Label2.Location = New Point(18, 156)
         Label2.Name = "Label2"
-        Label2.Size = New Size(104, 28)
+        Label2.Size = New Size(126, 32)
         Label2.TabIndex = 0
         Label2.Text = "Blotter ID:"
         ' 
         ' frmblotter
         ' 
-        AutoScaleDimensions = New SizeF(9F, 20F)
+        AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
@@ -370,7 +358,6 @@ Partial Class frmblotter
     Friend WithEvents txtdetails As TextBox
     Friend WithEvents dgvblotters As DataGridView
     Friend WithEvents btnupdateblotter As Button
-    Friend WithEvents btnsaveblotter As Button
     Friend WithEvents cmbLocation As ComboBox
     Friend WithEvents cmbincident As ComboBox
     Friend WithEvents PictureBox1 As PictureBox

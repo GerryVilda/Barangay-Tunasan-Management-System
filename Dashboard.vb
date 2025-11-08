@@ -3,6 +3,7 @@ Imports System.Globalization
 Imports MySql.Data.MySqlClient
 
 Public Class Dashboard
+
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Timer1.Start()
         UpdateGreetingAndTime()
@@ -10,7 +11,7 @@ Public Class Dashboard
         ' Load default form (Residents)
         LoadFormIntoPanel(New frmresidents())
 
-        ' ✅ Set button access based on role
+        ' Set button access and layout
         SetButtonAccess()
     End Sub
 
@@ -26,9 +27,9 @@ Public Class Dashboard
         lbltime.Text = Date.Now.ToString("hh:mm:ss tt")
 
         Dim hour As Integer = Date.Now.Hour
-        If hour >= 5 And hour < 12 Then
+        If hour >= 5 AndAlso hour < 12 Then
             lblgreet.Text = "Good Morning"
-        ElseIf hour >= 12 And hour < 18 Then
+        ElseIf hour >= 12 AndAlso hour < 18 Then
             lblgreet.Text = "Good Afternoon"
         Else
             lblgreet.Text = "Good Evening"
@@ -48,7 +49,7 @@ Public Class Dashboard
     End Sub
 
     ' ===============================
-    ' DASHBOARD BUTTONS
+    ' DASHBOARD BUTTONS EVENTS
     ' ===============================
     Private Sub btnresidents_Click(sender As Object, e As EventArgs) Handles btnresidents.Click
         LoadFormIntoPanel(New frmresidents())
@@ -100,58 +101,79 @@ Public Class Dashboard
     End Sub
 
     ' ===============================
-    ' ROLE-BASED BUTTON ACCESS (Fixed for DB roles)
+    ' ROLE-BASED BUTTON VISIBILITY AND SPACING
     ' ===============================
     Private Sub SetButtonAccess()
         Dim role As String = Connection.LoggedInRole.Trim().ToLower()
 
+        ' List all buttons in the order they should appear
+        Dim allButtons As New List(Of Button) From {
+            btnresidents, btncomplaints, btnincidents, btnblotter,
+            btncertifications, btnRequest, btnpayment, btnsummary,
+            btnofficials, btnusers, btnlogout
+        }
+
+        ' First hide all (except logout)
+        For Each btn In allButtons
+            btn.Visible = False
+        Next
+        btnlogout.Visible = True ' logout always visible
+
+        ' Make buttons visible based on role
         Select Case role
             Case "admin"
-                EnableAllButtons(True)
+                btnresidents.Visible = True
+                btncomplaints.Visible = True
+                btnincidents.Visible = True
+                btnblotter.Visible = True
+                btncertifications.Visible = True
+                btnRequest.Visible = True
+                btnpayment.Visible = True
+                btnsummary.Visible = True
+                btnofficials.Visible = True
+                btnusers.Visible = True
 
             Case "barangay official"
-                btnresidents.Enabled = True
-                btncomplaints.Enabled = False
-                btnincidents.Enabled = False
-                btnblotter.Enabled = False
-                btncertifications.Enabled = False
-                btnRequest.Enabled = False
-                btnpayment.Enabled = False
-                btnsummary.Enabled = True
-                btnofficials.Enabled = False
-                btnusers.Enabled = False
-                btnlogout.Enabled = True
+                btnresidents.Visible = True
+                btnsummary.Visible = True
 
             Case "staff"
-                btnresidents.Enabled = True
-                btncomplaints.Enabled = True
-                btnincidents.Enabled = True
-                btnblotter.Enabled = True
-                btncertifications.Enabled = True
-                btnRequest.Enabled = True
-                btnpayment.Enabled = True
-                btnsummary.Enabled = False
-                btnofficials.Enabled = False
-                btnusers.Enabled = False
-                btnlogout.Enabled = True
+                btnresidents.Visible = True
+                btncomplaints.Visible = True
+                btnincidents.Visible = True
+                btnblotter.Visible = True
+                btncertifications.Visible = True
+                btnRequest.Visible = True
+                btnpayment.Visible = True
 
             Case Else
-                EnableAllButtons(False)
-                btnlogout.Enabled = True
+                ' maybe minimal or default
+                btnresidents.Visible = True
         End Select
+
+        ' Dynamically reposition visible buttons vertically
+        ' Start below the image, greeting, date/time labels
+        ' Replace PictureBox1 with your actual PictureBox control name (logo image)
+        ' And adjust Label names if needed (lblgreet, lbldate, lbltime)
+        Dim sidebar As Panel = Panel1   ' Use the panel that holds the logo + buttons
+        Dim topPosition As Integer = PictureBox1.Bottom + 20
+        topPosition = Math.Max(topPosition, lblgreet.Bottom + 10)
+        topPosition = Math.Max(topPosition, lbldate.Bottom + 5)
+        topPosition = Math.Max(topPosition, lbltime.Bottom + 5)
+
+        Dim spacing As Integer = 10 ' space between buttons
+        Dim leftMargin As Integer = 5
+        Dim rightMargin As Integer = 5
+
+        For Each btn In allButtons
+            If btn.Visible Then
+                btn.Top = topPosition
+                btn.Left = leftMargin
+                btn.Width = sidebar.ClientSize.Width - (leftMargin + rightMargin)
+                btn.Anchor = AnchorStyles.Left Or AnchorStyles.Top Or AnchorStyles.Right
+                topPosition += btn.Height + spacing
+            End If
+        Next
     End Sub
 
-    Private Sub EnableAllButtons(status As Boolean)
-        btnresidents.Enabled = status
-        btncomplaints.Enabled = status
-        btnincidents.Enabled = status
-        btnblotter.Enabled = status
-        btncertifications.Enabled = status
-        btnRequest.Enabled = status
-        btnpayment.Enabled = status
-        btnsummary.Enabled = status
-        btnofficials.Enabled = status
-        btnusers.Enabled = status
-        btnlogout.Enabled = True
-    End Sub
 End Class
