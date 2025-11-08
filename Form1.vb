@@ -27,18 +27,19 @@ Public Class Form1
         End If
 
         Try
-            ' ✅ Use your existing Connection() Sub
-            Call koneksyon()
+            ' Open database connection
+            Call Connection.koneksyon()
 
             Dim sql As String = "SELECT fullname, role FROM users WHERE username=@user AND password=@pass"
-            cmd = New MySqlCommand(sql, cn)
+            cmd = New MySqlCommand(sql, Connection.cn)
             cmd.Parameters.AddWithValue("@user", txtusername.Text)
             cmd.Parameters.AddWithValue("@pass", txtpassword.Text)
             dr = cmd.ExecuteReader()
 
             If dr.Read() Then
-                LoggedInUser = dr("fullname").ToString()
-                LoggedInRole = dr("role").ToString()
+                ' ✅ Assign to global variables
+                Connection.LoggedInUser = dr("fullname").ToString()
+                Connection.LoggedInRole = dr("role").ToString()
 
                 ProgressBar1.Visible = True
                 progressValue = 0
@@ -50,7 +51,7 @@ Public Class Form1
         Catch ex As Exception
             MessageBox.Show("Database Error: " & ex.Message)
         Finally
-            If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then cn.Close()
+            If Connection.cn IsNot Nothing AndAlso Connection.cn.State = ConnectionState.Open Then Connection.cn.Close()
         End Try
     End Sub
 
@@ -60,8 +61,11 @@ Public Class Form1
 
         If progressValue >= 100 Then
             tmrlogin.Stop()
-            MessageBox.Show("Welcome " & LoggedInUser & "!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Dashboard.Show()
+            MessageBox.Show("Welcome " & Connection.LoggedInUser & "!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' ✅ Properly create a new dashboard instance
+            Dim dash As New Dashboard()
+            dash.Show()
             Me.Hide()
         End If
     End Sub

@@ -6,11 +6,17 @@ Public Class Dashboard
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Timer1.Start()
         UpdateGreetingAndTime()
-        ' Load default form (e.g., Residents)
-        LoadFormIntoPanel(New frmResidents())
+
+        ' Load default form (Residents)
+        LoadFormIntoPanel(New frmresidents())
+
+        ' ✅ Set button access based on role
+        SetButtonAccess()
     End Sub
 
-    ' ✅ Time + Greeting
+    ' ===============================
+    ' TIME + GREETING
+    ' ===============================
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         UpdateGreetingAndTime()
     End Sub
@@ -29,9 +35,11 @@ Public Class Dashboard
         End If
     End Sub
 
-    ' ✅ Function to load forms into the main panel
+    ' ===============================
+    ' LOAD FORM INTO PANEL
+    ' ===============================
     Private Sub LoadFormIntoPanel(form As Form)
-        PanelMain.Controls.Clear() ' Remove current form
+        PanelMain.Controls.Clear()
         form.TopLevel = False
         form.FormBorderStyle = FormBorderStyle.None
         form.Dock = DockStyle.Fill
@@ -39,71 +47,111 @@ Public Class Dashboard
         form.Show()
     End Sub
 
-    ' ==============================
+    ' ===============================
     ' DASHBOARD BUTTONS
-    ' ==============================
-
-    ' 👨‍👩‍👧‍👦 Residents
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnresidents.Click
-        LoadFormIntoPanel(New frmresidents)
+    ' ===============================
+    Private Sub btnresidents_Click(sender As Object, e As EventArgs) Handles btnresidents.Click
+        LoadFormIntoPanel(New frmresidents())
     End Sub
 
-    ' 💬 Complaints
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btncomplaints.Click
-        LoadFormIntoPanel(New frmComplaints())
+    Private Sub btncomplaints_Click(sender As Object, e As EventArgs) Handles btncomplaints.Click
+        LoadFormIntoPanel(New frmcomplaints())
     End Sub
 
-    ' 🧾 Blotter
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnincidents.Click
+    Private Sub btnincidents_Click(sender As Object, e As EventArgs) Handles btnincidents.Click
         LoadFormIntoPanel(New frmincident())
     End Sub
 
-    ' ⚠️ Incident Reports
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles btnblotter.Click
+    Private Sub btnblotter_Click(sender As Object, e As EventArgs) Handles btnblotter.Click
         LoadFormIntoPanel(New frmblotter())
     End Sub
 
-    ' Certifications
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles btncertifications.Click
-        LoadFormIntoPanel(New frmcertificates)
+    Private Sub btncertifications_Click(sender As Object, e As EventArgs) Handles btncertifications.Click
+        LoadFormIntoPanel(New frmcertificates())
     End Sub
 
-    ' Request Form
     Private Sub btnRequest_Click(sender As Object, e As EventArgs) Handles btnRequest.Click
-        LoadFormIntoPanel(New RequestForm)
+        LoadFormIntoPanel(New RequestForm())
     End Sub
 
-    ' 💵 Payment
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles btnpayment.Click
-        LoadFormIntoPanel(New Payment)
+    Private Sub btnpayment_Click(sender As Object, e As EventArgs) Handles btnpayment.Click
+        LoadFormIntoPanel(New Payment())
     End Sub
 
-    ' Reports Summary
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles btnsummary.Click
+    Private Sub btnsummary_Click(sender As Object, e As EventArgs) Handles btnsummary.Click
         LoadFormIntoPanel(New frmSummary())
     End Sub
 
-    ' 🧑‍💼 Officials
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles btnofficials.Click
+    Private Sub btnofficials_Click(sender As Object, e As EventArgs) Handles btnofficials.Click
         LoadFormIntoPanel(New frmOfficials())
     End Sub
 
-    ' 🔑 Users/Accounts
-    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles btnusers.Click
+    Private Sub btnusers_Click(sender As Object, e As EventArgs) Handles btnusers.Click
         LoadFormIntoPanel(New frmUsers())
     End Sub
 
-    ' 🚪 Logout / Exit
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles btnlogout.Click
+    Private Sub btnlogout_Click(sender As Object, e As EventArgs) Handles btnlogout.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
-            ' ✅ Close the dashboard
             Me.Hide()
-
-            ' ✅ Reset login form (Form1)
             Form1.ResetLoginForm()
             Form1.Show()
         End If
     End Sub
 
+    ' ===============================
+    ' ROLE-BASED BUTTON ACCESS (Fixed for DB roles)
+    ' ===============================
+    Private Sub SetButtonAccess()
+        Dim role As String = Connection.LoggedInRole.Trim().ToLower()
+
+        Select Case role
+            Case "admin"
+                EnableAllButtons(True)
+
+            Case "barangay official"
+                btnresidents.Enabled = True
+                btncomplaints.Enabled = False
+                btnincidents.Enabled = False
+                btnblotter.Enabled = False
+                btncertifications.Enabled = False
+                btnRequest.Enabled = False
+                btnpayment.Enabled = False
+                btnsummary.Enabled = True
+                btnofficials.Enabled = False
+                btnusers.Enabled = False
+                btnlogout.Enabled = True
+
+            Case "staff"
+                btnresidents.Enabled = True
+                btncomplaints.Enabled = True
+                btnincidents.Enabled = True
+                btnblotter.Enabled = True
+                btncertifications.Enabled = True
+                btnRequest.Enabled = True
+                btnpayment.Enabled = True
+                btnsummary.Enabled = False
+                btnofficials.Enabled = False
+                btnusers.Enabled = False
+                btnlogout.Enabled = True
+
+            Case Else
+                EnableAllButtons(False)
+                btnlogout.Enabled = True
+        End Select
+    End Sub
+
+    Private Sub EnableAllButtons(status As Boolean)
+        btnresidents.Enabled = status
+        btncomplaints.Enabled = status
+        btnincidents.Enabled = status
+        btnblotter.Enabled = status
+        btncertifications.Enabled = status
+        btnRequest.Enabled = status
+        btnpayment.Enabled = status
+        btnsummary.Enabled = status
+        btnofficials.Enabled = status
+        btnusers.Enabled = status
+        btnlogout.Enabled = True
+    End Sub
 End Class

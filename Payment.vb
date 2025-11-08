@@ -2,14 +2,14 @@
 
 Public Class Payment
 
-    ' Current logged-in user (set this when user logs in)
-    Private currentUser As String = "Admin" ' <-- Replace dynamically at login
+    ' Current logged-in user (set this dynamically at login)
+    Private currentUser As String = "Admin" ' Replace dynamically if needed
 
     '======================
     ' FORM LOAD
     '======================
     Private Sub Payment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Set the date to current date and make it read-only
+        ' Set date to current date and make read-only
         dtpDate.Value = Date.Now
         dtpDate.Enabled = False
 
@@ -45,15 +45,16 @@ Public Class Payment
             da.Fill(dt)
             dtgforpayments.DataSource = dt
 
-            ' Auto-select first row if available
-            If dtgforpayments.Rows.Count > 0 Then
+            ' Safely select first row
+            If dt.Rows.Count > 0 AndAlso dtgforpayments.Rows.Count > 0 Then
+                dtgforpayments.ClearSelection()
                 dtgforpayments.Rows(0).Selected = True
                 dtgforpayments_CellClick(Me, New DataGridViewCellEventArgs(0, 0))
             End If
         Catch ex As Exception
             MessageBox.Show("Error loading pending requests: " & ex.Message)
         Finally
-            cn.Close()
+            If cn.State = ConnectionState.Open Then cn.Close()
         End Try
     End Sub
 
@@ -77,7 +78,7 @@ Public Class Payment
         Catch ex As Exception
             MessageBox.Show("Error loading certificate types: " & ex.Message)
         Finally
-            cn.Close()
+            If cn.State = ConnectionState.Open Then cn.Close()
         End Try
     End Sub
 
@@ -96,23 +97,25 @@ Public Class Payment
     ' DATA GRID ROW CLICK
     '======================
     Private Sub dtgforpayments_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgforpayments.CellClick
-        If e.RowIndex >= 0 Then
+        If e.RowIndex >= 0 AndAlso dtgforpayments.Rows.Count > 0 Then
             Dim row As DataGridViewRow = dtgforpayments.Rows(e.RowIndex)
-            txtrequestid.Text = row.Cells("Request_ID").Value.ToString()
-            txtResidentid.Text = row.Cells("Resident_ID").Value.ToString()
-            txtresidentname.Text = row.Cells("Resident_Name").Value.ToString()
-            cmbSitio.Text = row.Cells("Sitio").Value.ToString()
-            cmbcertificateType.Text = row.Cells("Request_Type").Value.ToString()
-            txtpurpose.Text = row.Cells("Purpose").Value.ToString()
-            cbostatus.Text = row.Cells("Status").Value.ToString()
+            txtrequestid.Text = If(row.Cells("Request_ID").Value?.ToString(), "")
+            txtResidentid.Text = If(row.Cells("Resident_ID").Value?.ToString(), "")
+            txtresidentname.Text = If(row.Cells("Resident_Name").Value?.ToString(), "")
+            cmbSitio.Text = If(row.Cells("Sitio").Value?.ToString(), "")
+            cmbcertificateType.Text = If(row.Cells("Request_Type").Value?.ToString(), "")
+            txtpurpose.Text = If(row.Cells("Purpose").Value?.ToString(), "")
+            cbostatus.Text = If(row.Cells("Status").Value?.ToString(), "Pending")
 
             ' Auto-fill fee from join or fallback to fees table
-            If row.Cells("Fee").Value IsNot DBNull.Value Then
+            If row.Cells("Fee").Value IsNot DBNull.Value AndAlso row.Cells("Fee").Value IsNot Nothing Then
                 txtfee.Text = row.Cells("Fee").Value.ToString()
                 txtAmount.Text = row.Cells("Fee").Value.ToString()
-            Else
-                ' If Fee column is empty, load from fees table
+            ElseIf Not String.IsNullOrEmpty(cmbcertificateType.Text) Then
                 LoadFee(cmbcertificateType.Text)
+            Else
+                txtfee.Clear()
+                txtAmount.Clear()
             End If
         End If
     End Sub
@@ -121,7 +124,6 @@ Public Class Payment
     ' CERTIFICATE TYPE CHANGED
     '======================
     Private Sub cmbcertificateType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbcertificateType.SelectedIndexChanged
-        ' Load fee automatically whenever certificate type changes
         If Not String.IsNullOrEmpty(cmbcertificateType.Text) Then
             LoadFee(cmbcertificateType.Text)
         End If
@@ -141,13 +143,13 @@ Public Class Payment
                 txtfee.Text = result.ToString()
                 txtAmount.Text = result.ToString()
             Else
-                txtfee.Text = ""
-                txtAmount.Text = ""
+                txtfee.Clear()
+                txtAmount.Clear()
             End If
         Catch ex As Exception
             MessageBox.Show("Error loading fee: " & ex.Message)
         Finally
-            cn.Close()
+            If cn.State = ConnectionState.Open Then cn.Close()
         End Try
     End Sub
 
@@ -166,8 +168,9 @@ Public Class Payment
             koneksyon()
 
             ' Insert payment
-            Dim insertPayment As String = "INSERT INTO payment (Resident_ID, Sitio, Certificate_Type, Fee_Range, Amount, Date, Receipt_Number, Processed_By) " &
-                                          "VALUES (@Resident_ID, @Sitio, @Certificate_Type, @Fee_Range, @Amount, @Date, @Receipt_Number, @Processed_By)"
+            Dim insertPayment As String = "
+                INSERT INTO payment (Resident_ID, Sitio, Certificate_Type, Fee_Range, Amount, Date, Receipt_Number, Processed_By)
+                VALUES (@Resident_ID, @Sitio, @Certificate_Type, @Fee_Range, @Amount, @Date, @Receipt_Number, @Processed_By)"
             cmd = New MySqlCommand(insertPayment, cn)
             cmd.Parameters.AddWithValue("@Resident_ID", txtResidentid.Text)
             cmd.Parameters.AddWithValue("@Sitio", cmbSitio.Text)
@@ -186,12 +189,13 @@ Public Class Payment
             cmd.ExecuteNonQuery()
 
             ' Insert certification record
-            Dim insertCert As String = "INSERT INTO certifications (Resident_Name, Type, Issued_By, Issued_Date, Remarks) " &
-                                       "VALUES (@Resident_Name, @Type, @Issued_By, @Issued_Date, @Remarks)"
+            Dim insertCert As String = "
+                INSERT INTO certifications (Resident_Name, Type, Issued_By, Issued_Date, Remarks)
+                VALUES (@Resident_Name, @Type, @Issued_By, @Issued_Date, @Remarks)"
             cmd = New MySqlCommand(insertCert, cn)
             cmd.Parameters.AddWithValue("@Resident_Name", txtresidentname.Text)
             cmd.Parameters.AddWithValue("@Type", cmbcertificateType.Text)
-            cmd.Parameters.AddWithValue("@Issued_By", currentUser) ' Automatically set current user
+            cmd.Parameters.AddWithValue("@Issued_By", currentUser)
             cmd.Parameters.AddWithValue("@Issued_Date", Date.Now)
             cmd.Parameters.AddWithValue("@Remarks", "Paid & ready for printing")
             cmd.ExecuteNonQuery()
@@ -204,7 +208,7 @@ Public Class Payment
         Catch ex As Exception
             MessageBox.Show("Error processing payment: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            cn.Close()
+            If cn.State = ConnectionState.Open Then cn.Close()
         End Try
     End Sub
 

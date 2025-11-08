@@ -25,9 +25,8 @@ Partial Class frmUsers
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUsers))
         PictureBox1 = New PictureBox()
         Label1 = New Label()
-        DataGridView1 = New DataGridView()
+        dgvusersaccounts = New DataGridView()
         Panel1 = New Panel()
-        btnSaveDB = New Button()
         btnClear = New Button()
         btnSave = New Button()
         cmbRole = New ComboBox()
@@ -39,8 +38,9 @@ Partial Class frmUsers
         txtFullName = New TextBox()
         Label2 = New Label()
         Label10 = New Label()
+        btnupdate = New Button()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgvusersaccounts, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -67,23 +67,23 @@ Partial Class frmUsers
         Label1.TabIndex = 25
         Label1.Text = "Barangay Tunasan Users / Accounts"
         ' 
-        ' DataGridView1
+        ' dgvusersaccounts
         ' 
-        DataGridView1.AllowUserToAddRows = False
-        DataGridView1.AllowUserToDeleteRows = False
-        DataGridView1.BackgroundColor = Color.White
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(15, 210)
-        DataGridView1.Margin = New Padding(4, 4, 4, 4)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.ReadOnly = True
-        DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(930, 752)
-        DataGridView1.TabIndex = 26
+        dgvusersaccounts.AllowUserToAddRows = False
+        dgvusersaccounts.AllowUserToDeleteRows = False
+        dgvusersaccounts.BackgroundColor = Color.White
+        dgvusersaccounts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgvusersaccounts.Location = New Point(15, 210)
+        dgvusersaccounts.Margin = New Padding(4)
+        dgvusersaccounts.Name = "dgvusersaccounts"
+        dgvusersaccounts.ReadOnly = True
+        dgvusersaccounts.RowHeadersWidth = 51
+        dgvusersaccounts.Size = New Size(930, 752)
+        dgvusersaccounts.TabIndex = 26
         ' 
         ' Panel1
         ' 
-        Panel1.Controls.Add(btnSaveDB)
+        Panel1.Controls.Add(btnupdate)
         Panel1.Controls.Add(btnClear)
         Panel1.Controls.Add(btnSave)
         Panel1.Controls.Add(cmbRole)
@@ -96,25 +96,10 @@ Partial Class frmUsers
         Panel1.Controls.Add(Label2)
         Panel1.Controls.Add(Label10)
         Panel1.Location = New Point(970, 210)
-        Panel1.Margin = New Padding(4, 4, 4, 4)
+        Panel1.Margin = New Padding(4)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(449, 752)
         Panel1.TabIndex = 27
-        ' 
-        ' btnSaveDB
-        ' 
-        btnSaveDB.BackColor = Color.Chocolate
-        btnSaveDB.FlatAppearance.BorderSize = 0
-        btnSaveDB.FlatStyle = FlatStyle.Flat
-        btnSaveDB.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnSaveDB.ForeColor = Color.White
-        btnSaveDB.Location = New Point(96, 615)
-        btnSaveDB.Margin = New Padding(4, 4, 4, 4)
-        btnSaveDB.Name = "btnSaveDB"
-        btnSaveDB.Size = New Size(255, 49)
-        btnSaveDB.TabIndex = 37
-        btnSaveDB.Text = "Save to Database"
-        btnSaveDB.UseVisualStyleBackColor = False
         ' 
         ' btnClear
         ' 
@@ -124,7 +109,7 @@ Partial Class frmUsers
         btnClear.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnClear.ForeColor = Color.White
         btnClear.Location = New Point(254, 549)
-        btnClear.Margin = New Padding(4, 4, 4, 4)
+        btnClear.Margin = New Padding(4)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(98, 49)
         btnClear.TabIndex = 36
@@ -139,7 +124,7 @@ Partial Class frmUsers
         btnSave.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnSave.ForeColor = Color.White
         btnSave.Location = New Point(96, 549)
-        btnSave.Margin = New Padding(4, 4, 4, 4)
+        btnSave.Margin = New Padding(4)
         btnSave.Name = "btnSave"
         btnSave.Size = New Size(98, 49)
         btnSave.TabIndex = 35
@@ -152,7 +137,7 @@ Partial Class frmUsers
         cmbRole.FormattingEnabled = True
         cmbRole.Items.AddRange(New Object() {"User", "Admin"})
         cmbRole.Location = New Point(25, 455)
-        cmbRole.Margin = New Padding(4, 4, 4, 4)
+        cmbRole.Margin = New Padding(4)
         cmbRole.Name = "cmbRole"
         cmbRole.Size = New Size(404, 40)
         cmbRole.TabIndex = 22
@@ -172,7 +157,7 @@ Partial Class frmUsers
         ' 
         txtPassword.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         txtPassword.Location = New Point(25, 338)
-        txtPassword.Margin = New Padding(4, 4, 4, 4)
+        txtPassword.Margin = New Padding(4)
         txtPassword.Name = "txtPassword"
         txtPassword.Size = New Size(404, 39)
         txtPassword.TabIndex = 20
@@ -192,7 +177,7 @@ Partial Class frmUsers
         ' 
         txtUsername.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         txtUsername.Location = New Point(25, 220)
-        txtUsername.Margin = New Padding(4, 4, 4, 4)
+        txtUsername.Margin = New Padding(4)
         txtUsername.Name = "txtUsername"
         txtUsername.Size = New Size(404, 39)
         txtUsername.TabIndex = 18
@@ -212,7 +197,7 @@ Partial Class frmUsers
         ' 
         txtFullName.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         txtFullName.Location = New Point(25, 110)
-        txtFullName.Margin = New Padding(4, 4, 4, 4)
+        txtFullName.Margin = New Padding(4)
         txtFullName.Name = "txtFullName"
         txtFullName.Size = New Size(404, 39)
         txtFullName.TabIndex = 16
@@ -239,6 +224,21 @@ Partial Class frmUsers
         Label10.TabIndex = 12
         Label10.Text = "Manage User"
         ' 
+        ' btnupdate
+        ' 
+        btnupdate.BackColor = Color.Chocolate
+        btnupdate.FlatAppearance.BorderSize = 0
+        btnupdate.FlatStyle = FlatStyle.Flat
+        btnupdate.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnupdate.ForeColor = Color.White
+        btnupdate.Location = New Point(165, 620)
+        btnupdate.Margin = New Padding(4)
+        btnupdate.Name = "btnupdate"
+        btnupdate.Size = New Size(119, 49)
+        btnupdate.TabIndex = 37
+        btnupdate.Text = "Update"
+        btnupdate.UseVisualStyleBackColor = False
+        ' 
         ' frmUsers
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
@@ -246,14 +246,14 @@ Partial Class frmUsers
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(2262, 1476)
         Controls.Add(Panel1)
-        Controls.Add(DataGridView1)
+        Controls.Add(dgvusersaccounts)
         Controls.Add(Label1)
         Controls.Add(PictureBox1)
         Margin = New Padding(2)
         Name = "frmUsers"
         Text = "frmUsers"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgvusersaccounts, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         ResumeLayout(False)
@@ -262,7 +262,7 @@ Partial Class frmUsers
 
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dgvusersaccounts As DataGridView
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label2 As Label
     Friend WithEvents Label10 As Label
@@ -273,7 +273,7 @@ Partial Class frmUsers
     Friend WithEvents Label3 As Label
     Friend WithEvents txtFullName As TextBox
     Friend WithEvents cmbRole As ComboBox
-    Friend WithEvents btnSaveDB As Button
     Friend WithEvents btnClear As Button
     Friend WithEvents btnSave As Button
+    Friend WithEvents btnupdate As Button
 End Class
