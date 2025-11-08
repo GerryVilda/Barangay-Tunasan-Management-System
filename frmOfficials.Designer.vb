@@ -25,50 +25,41 @@ Partial Class frmOfficials
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmOfficials))
         Panel1 = New Panel()
         PictureBox1 = New PictureBox()
-        Panel19 = New Panel()
-        Panel17 = New Panel()
-        Panel18 = New Panel()
         Panel16 = New Panel()
         Panel15 = New Panel()
-        Panel14 = New Panel()
-        Panel13 = New Panel()
-        Panel12 = New Panel()
-        Panel11 = New Panel()
-        Panel10 = New Panel()
         Panel9 = New Panel()
-        Panel8 = New Panel()
-        Panel7 = New Panel()
         Panel6 = New Panel()
-        Panel5 = New Panel()
+        sbm7 = New Label()
+        sbm6 = New Label()
+        sbm5 = New Label()
+        sbm4 = New Label()
+        sbm3 = New Label()
+        sbm2 = New Label()
+        sbm1 = New Label()
+        Label1 = New Label()
         Panel4 = New Panel()
-        Panel3 = New Panel()
+        bs1 = New Label()
+        Label12 = New Label()
         Panel2 = New Panel()
+        pb1 = New Label()
+        Label3 = New Label()
         Label2 = New Label()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        Panel6.SuspendLayout()
+        Panel4.SuspendLayout()
+        Panel2.SuspendLayout()
         SuspendLayout()
         ' 
         ' Panel1
         ' 
         Panel1.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         Panel1.Controls.Add(PictureBox1)
-        Panel1.Controls.Add(Panel19)
-        Panel1.Controls.Add(Panel17)
-        Panel1.Controls.Add(Panel18)
         Panel1.Controls.Add(Panel16)
         Panel1.Controls.Add(Panel15)
-        Panel1.Controls.Add(Panel14)
-        Panel1.Controls.Add(Panel13)
-        Panel1.Controls.Add(Panel12)
-        Panel1.Controls.Add(Panel11)
-        Panel1.Controls.Add(Panel10)
         Panel1.Controls.Add(Panel9)
-        Panel1.Controls.Add(Panel8)
-        Panel1.Controls.Add(Panel7)
         Panel1.Controls.Add(Panel6)
-        Panel1.Controls.Add(Panel5)
         Panel1.Controls.Add(Panel4)
-        Panel1.Controls.Add(Panel3)
         Panel1.Controls.Add(Panel2)
         Panel1.Controls.Add(Label2)
         Panel1.Location = New Point(11, 42)
@@ -88,167 +79,185 @@ Partial Class frmOfficials
         PictureBox1.TabIndex = 44
         PictureBox1.TabStop = False
         ' 
-        ' Panel19
-        ' 
-        Panel19.BackColor = Color.Black
-        Panel19.Location = New Point(608, 488)
-        Panel19.Margin = New Padding(4, 5, 4, 5)
-        Panel19.Name = "Panel19"
-        Panel19.Size = New Size(14, 32)
-        Panel19.TabIndex = 6
-        ' 
-        ' Panel17
-        ' 
-        Panel17.BackColor = Color.Black
-        Panel17.Location = New Point(194, 502)
-        Panel17.Margin = New Padding(4, 5, 4, 5)
-        Panel17.Name = "Panel17"
-        Panel17.Size = New Size(428, 25)
-        Panel17.TabIndex = 6
-        ' 
-        ' Panel18
-        ' 
-        Panel18.BackColor = Color.Black
-        Panel18.Location = New Point(184, 502)
-        Panel18.Margin = New Padding(4, 5, 4, 5)
-        Panel18.Name = "Panel18"
-        Panel18.Size = New Size(14, 62)
-        Panel18.TabIndex = 6
-        ' 
         ' Panel16
         ' 
         Panel16.BackColor = Color.Black
-        Panel16.Location = New Point(608, 290)
+        Panel16.Location = New Point(605, 290)
         Panel16.Margin = New Padding(4, 5, 4, 5)
         Panel16.Name = "Panel16"
-        Panel16.Size = New Size(14, 62)
+        Panel16.Size = New Size(10, 62)
         Panel16.TabIndex = 5
         ' 
         ' Panel15
         ' 
         Panel15.BackColor = Color.Black
-        Panel15.Location = New Point(608, 290)
+        Panel15.Location = New Point(605, 290)
         Panel15.Margin = New Padding(4, 5, 4, 5)
         Panel15.Name = "Panel15"
-        Panel15.Size = New Size(429, 18)
+        Panel15.Size = New Size(409, 11)
         Panel15.TabIndex = 5
-        ' 
-        ' Panel14
-        ' 
-        Panel14.BackColor = Color.Black
-        Panel14.Location = New Point(619, 545)
-        Panel14.Margin = New Padding(4, 5, 4, 5)
-        Panel14.Name = "Panel14"
-        Panel14.Size = New Size(14, 70)
-        Panel14.TabIndex = 5
-        ' 
-        ' Panel13
-        ' 
-        Panel13.BackColor = Color.Black
-        Panel13.Location = New Point(616, 538)
-        Panel13.Margin = New Padding(4, 5, 4, 5)
-        Panel13.Name = "Panel13"
-        Panel13.Size = New Size(400, 18)
-        Panel13.TabIndex = 5
-        ' 
-        ' Panel12
-        ' 
-        Panel12.BackColor = Color.Black
-        Panel12.Location = New Point(1944, 310)
-        Panel12.Margin = New Padding(4, 5, 4, 5)
-        Panel12.Name = "Panel12"
-        Panel12.Size = New Size(14, 70)
-        Panel12.TabIndex = 5
-        ' 
-        ' Panel11
-        ' 
-        Panel11.BackColor = Color.Black
-        Panel11.Location = New Point(1540, 310)
-        Panel11.Margin = New Padding(4, 5, 4, 5)
-        Panel11.Name = "Panel11"
-        Panel11.Size = New Size(14, 70)
-        Panel11.TabIndex = 4
-        ' 
-        ' Panel10
-        ' 
-        Panel10.BackColor = Color.Black
-        Panel10.Location = New Point(1016, 290)
-        Panel10.Margin = New Padding(4, 5, 4, 5)
-        Panel10.Name = "Panel10"
-        Panel10.Size = New Size(942, 22)
-        Panel10.TabIndex = 4
         ' 
         ' Panel9
         ' 
         Panel9.BackColor = Color.Black
-        Panel9.Location = New Point(999, 242)
+        Panel9.Location = New Point(1006, 242)
         Panel9.Margin = New Padding(4, 5, 4, 5)
         Panel9.Name = "Panel9"
-        Panel9.Size = New Size(18, 368)
+        Panel9.Size = New Size(10, 368)
         Panel9.TabIndex = 3
-        ' 
-        ' Panel8
-        ' 
-        Panel8.BackColor = Color.Gold
-        Panel8.Location = New Point(1782, 382)
-        Panel8.Margin = New Padding(4, 5, 4, 5)
-        Panel8.Name = "Panel8"
-        Panel8.Size = New Size(338, 522)
-        Panel8.TabIndex = 5
-        ' 
-        ' Panel7
-        ' 
-        Panel7.BackColor = Color.Gold
-        Panel7.Location = New Point(1380, 382)
-        Panel7.Margin = New Padding(4, 5, 4, 5)
-        Panel7.Name = "Panel7"
-        Panel7.Size = New Size(338, 522)
-        Panel7.TabIndex = 5
         ' 
         ' Panel6
         ' 
         Panel6.BackColor = Color.Gold
-        Panel6.Location = New Point(838, 608)
+        Panel6.Controls.Add(sbm7)
+        Panel6.Controls.Add(sbm6)
+        Panel6.Controls.Add(sbm5)
+        Panel6.Controls.Add(sbm4)
+        Panel6.Controls.Add(sbm3)
+        Panel6.Controls.Add(sbm2)
+        Panel6.Controls.Add(sbm1)
+        Panel6.Controls.Add(Label1)
+        Panel6.Location = New Point(760, 608)
         Panel6.Margin = New Padding(4, 5, 4, 5)
         Panel6.Name = "Panel6"
-        Panel6.Size = New Size(338, 522)
+        Panel6.Size = New Size(502, 527)
         Panel6.TabIndex = 4
         ' 
-        ' Panel5
+        ' sbm7
         ' 
-        Panel5.BackColor = Color.Gold
-        Panel5.Location = New Point(461, 612)
-        Panel5.Margin = New Padding(4, 5, 4, 5)
-        Panel5.Name = "Panel5"
-        Panel5.Size = New Size(338, 522)
-        Panel5.TabIndex = 3
+        sbm7.AutoSize = True
+        sbm7.Location = New Point(26, 427)
+        sbm7.Name = "sbm7"
+        sbm7.Size = New Size(73, 25)
+        sbm7.TabIndex = 8
+        sbm7.Text = "Label10"
+        ' 
+        ' sbm6
+        ' 
+        sbm6.AutoSize = True
+        sbm6.Location = New Point(26, 374)
+        sbm6.Name = "sbm6"
+        sbm6.Size = New Size(63, 25)
+        sbm6.TabIndex = 7
+        sbm6.Text = "Label9"
+        ' 
+        ' sbm5
+        ' 
+        sbm5.AutoSize = True
+        sbm5.Location = New Point(26, 322)
+        sbm5.Name = "sbm5"
+        sbm5.Size = New Size(63, 25)
+        sbm5.TabIndex = 6
+        sbm5.Text = "Label8"
+        ' 
+        ' sbm4
+        ' 
+        sbm4.AutoSize = True
+        sbm4.Location = New Point(26, 276)
+        sbm4.Name = "sbm4"
+        sbm4.Size = New Size(63, 25)
+        sbm4.TabIndex = 5
+        sbm4.Text = "Label7"
+        ' 
+        ' sbm3
+        ' 
+        sbm3.AutoSize = True
+        sbm3.Location = New Point(26, 220)
+        sbm3.Name = "sbm3"
+        sbm3.Size = New Size(63, 25)
+        sbm3.TabIndex = 4
+        sbm3.Text = "Label6"
+        ' 
+        ' sbm2
+        ' 
+        sbm2.AutoSize = True
+        sbm2.Location = New Point(26, 162)
+        sbm2.Name = "sbm2"
+        sbm2.Size = New Size(63, 25)
+        sbm2.TabIndex = 3
+        sbm2.Text = "Label5"
+        ' 
+        ' sbm1
+        ' 
+        sbm1.AutoSize = True
+        sbm1.Location = New Point(26, 111)
+        sbm1.Name = "sbm1"
+        sbm1.Size = New Size(63, 25)
+        sbm1.TabIndex = 2
+        sbm1.Text = "Label4"
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        Label1.Location = New Point(13, 16)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(473, 41)
+        Label1.TabIndex = 0
+        Label1.Text = "Sangguniang Barangay Members"
         ' 
         ' Panel4
         ' 
         Panel4.BackColor = Color.Gold
-        Panel4.Location = New Point(461, 350)
+        Panel4.Controls.Add(bs1)
+        Panel4.Controls.Add(Label12)
+        Panel4.Location = New Point(441, 350)
         Panel4.Margin = New Padding(4, 5, 4, 5)
         Panel4.Name = "Panel4"
         Panel4.Size = New Size(338, 138)
         Panel4.TabIndex = 3
         ' 
-        ' Panel3
+        ' bs1
         ' 
-        Panel3.BackColor = Color.Gold
-        Panel3.Location = New Point(22, 565)
-        Panel3.Margin = New Padding(4, 5, 4, 5)
-        Panel3.Name = "Panel3"
-        Panel3.Size = New Size(338, 138)
-        Panel3.TabIndex = 3
+        bs1.AutoSize = True
+        bs1.Location = New Point(26, 62)
+        bs1.Name = "bs1"
+        bs1.Size = New Size(73, 25)
+        bs1.TabIndex = 4
+        bs1.Text = "Label13"
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI Semibold", 16F, FontStyle.Bold)
+        Label12.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        Label12.Location = New Point(17, 0)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(301, 45)
+        Label12.TabIndex = 3
+        Label12.Text = "Barangay Secretary"
         ' 
         ' Panel2
         ' 
         Panel2.BackColor = Color.Gold
+        Panel2.Controls.Add(pb1)
+        Panel2.Controls.Add(Label3)
         Panel2.Location = New Point(848, 28)
         Panel2.Margin = New Padding(4, 5, 4, 5)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(338, 212)
         Panel2.TabIndex = 2
+        ' 
+        ' pb1
+        ' 
+        pb1.AutoSize = True
+        pb1.Location = New Point(33, 107)
+        pb1.Name = "pb1"
+        pb1.Size = New Size(73, 25)
+        pb1.TabIndex = 2
+        pb1.Text = "Label11"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        Label3.Location = New Point(33, 6)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(279, 45)
+        Label3.TabIndex = 1
+        Label3.Text = "Punong Barangay"
         ' 
         ' Label2
         ' 
@@ -277,28 +286,34 @@ Partial Class frmOfficials
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        Panel6.ResumeLayout(False)
+        Panel6.PerformLayout()
+        Panel4.ResumeLayout(False)
+        Panel4.PerformLayout()
+        Panel2.ResumeLayout(False)
+        Panel2.PerformLayout()
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label2 As Label
-    Friend WithEvents Panel12 As Panel
-    Friend WithEvents Panel11 As Panel
-    Friend WithEvents Panel10 As Panel
     Friend WithEvents Panel9 As Panel
-    Friend WithEvents Panel8 As Panel
-    Friend WithEvents Panel7 As Panel
     Friend WithEvents Panel6 As Panel
-    Friend WithEvents Panel5 As Panel
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Panel19 As Panel
-    Friend WithEvents Panel17 As Panel
-    Friend WithEvents Panel18 As Panel
     Friend WithEvents Panel16 As Panel
     Friend WithEvents Panel15 As Panel
-    Friend WithEvents Panel14 As Panel
-    Friend WithEvents Panel13 As Panel
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents sbm7 As Label
+    Friend WithEvents sbm6 As Label
+    Friend WithEvents sbm5 As Label
+    Friend WithEvents sbm4 As Label
+    Friend WithEvents sbm3 As Label
+    Friend WithEvents sbm2 As Label
+    Friend WithEvents sbm1 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents bs1 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents pb1 As Label
 End Class
