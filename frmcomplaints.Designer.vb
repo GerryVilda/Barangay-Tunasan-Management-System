@@ -44,9 +44,7 @@ Partial Class frmcomplaints
         Label5 = New Label()
         Label6 = New Label()
         Label7 = New Label()
-        btnSaveDb = New Button()
-        btnClear = New Button()
-        btnCancel = New Button()
+        btnResolved = New Button()
         txtComplaintID = New TextBox()
         txtResidentID = New TextBox()
         txtSubject = New TextBox()
@@ -55,11 +53,14 @@ Partial Class frmcomplaints
         dtpComplaintDate = New DateTimePicker()
         cmbStatus = New ComboBox()
         dgvComplaints = New DataGridView()
+        btnBlotter = New Button()
+        dgvResolved = New DataGridView()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         panelPending.SuspendLayout()
         panelResolved.SuspendLayout()
         panelTotal.SuspendLayout()
         CType(dgvComplaints, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgvResolved, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -87,19 +88,20 @@ Partial Class frmcomplaints
         ' lblSearch
         ' 
         lblSearch.AutoSize = True
-        lblSearch.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblSearch.Font = New Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblSearch.Location = New Point(185, 88)
         lblSearch.Name = "lblSearch"
-        lblSearch.Size = New Size(77, 28)
+        lblSearch.Size = New Size(132, 46)
         lblSearch.TabIndex = 24
         lblSearch.Text = "Search:"
         ' 
         ' txtSearch
         ' 
-        txtSearch.Location = New Point(267, 89)
+        txtSearch.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtSearch.Location = New Point(322, 91)
         txtSearch.Margin = New Padding(2)
         txtSearch.Name = "txtSearch"
-        txtSearch.Size = New Size(218, 27)
+        txtSearch.Size = New Size(293, 43)
         txtSearch.TabIndex = 25
         ' 
         ' btnAdd
@@ -107,10 +109,10 @@ Partial Class frmcomplaints
         btnAdd.BackColor = Color.Khaki
         btnAdd.FlatAppearance.BorderSize = 0
         btnAdd.FlatStyle = FlatStyle.Popup
-        btnAdd.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnAdd.Location = New Point(185, 644)
+        btnAdd.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
+        btnAdd.Location = New Point(493, 1037)
         btnAdd.Name = "btnAdd"
-        btnAdd.Size = New Size(162, 39)
+        btnAdd.Size = New Size(195, 51)
         btnAdd.TabIndex = 26
         btnAdd.Text = "Add Complaint"
         btnAdd.UseVisualStyleBackColor = False
@@ -120,28 +122,28 @@ Partial Class frmcomplaints
         panelPending.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(128))
         panelPending.Controls.Add(lblPendingCount)
         panelPending.Controls.Add(lblPending)
-        panelPending.Location = New Point(389, 142)
+        panelPending.Location = New Point(148, 181)
         panelPending.Name = "panelPending"
-        panelPending.Size = New Size(250, 125)
+        panelPending.Size = New Size(286, 162)
         panelPending.TabIndex = 28
         ' 
         ' lblPendingCount
         ' 
         lblPendingCount.AutoSize = True
-        lblPendingCount.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblPendingCount.Location = New Point(114, 64)
+        lblPendingCount.Font = New Font("Segoe UI", 19.8000011F, FontStyle.Bold)
+        lblPendingCount.Location = New Point(120, 78)
         lblPendingCount.Name = "lblPendingCount"
-        lblPendingCount.Size = New Size(23, 28)
+        lblPendingCount.Size = New Size(40, 46)
         lblPendingCount.TabIndex = 1
         lblPendingCount.Text = "0"
         ' 
         ' lblPending
         ' 
         lblPending.AutoSize = True
-        lblPending.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblPending.Location = New Point(82, 21)
+        lblPending.Font = New Font("Segoe UI", 19.8000011F, FontStyle.Bold)
+        lblPending.Location = New Point(67, 21)
         lblPending.Name = "lblPending"
-        lblPending.Size = New Size(87, 28)
+        lblPending.Size = New Size(152, 46)
         lblPending.TabIndex = 0
         lblPending.Text = "Pending"
         ' 
@@ -150,28 +152,28 @@ Partial Class frmcomplaints
         panelResolved.BackColor = Color.FromArgb(CByte(40), CByte(167), CByte(69))
         panelResolved.Controls.Add(lblResolvedCount)
         panelResolved.Controls.Add(lblResolved)
-        panelResolved.Location = New Point(714, 142)
+        panelResolved.Location = New Point(634, 181)
         panelResolved.Name = "panelResolved"
-        panelResolved.Size = New Size(250, 125)
+        panelResolved.Size = New Size(286, 162)
         panelResolved.TabIndex = 29
         ' 
         ' lblResolvedCount
         ' 
         lblResolvedCount.AutoSize = True
-        lblResolvedCount.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblResolvedCount.Location = New Point(118, 64)
+        lblResolvedCount.Font = New Font("Segoe UI", 19.8000011F, FontStyle.Bold)
+        lblResolvedCount.Location = New Point(119, 78)
         lblResolvedCount.Name = "lblResolvedCount"
-        lblResolvedCount.Size = New Size(23, 28)
+        lblResolvedCount.Size = New Size(40, 46)
         lblResolvedCount.TabIndex = 2
         lblResolvedCount.Text = "0"
         ' 
         ' lblResolved
         ' 
         lblResolved.AutoSize = True
-        lblResolved.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblResolved.Location = New Point(80, 21)
+        lblResolved.Font = New Font("Segoe UI", 19.8000011F, FontStyle.Bold)
+        lblResolved.Location = New Point(61, 21)
         lblResolved.Name = "lblResolved"
-        lblResolved.Size = New Size(93, 28)
+        lblResolved.Size = New Size(162, 46)
         lblResolved.TabIndex = 1
         lblResolved.Text = "Resolved"
         ' 
@@ -180,201 +182,176 @@ Partial Class frmcomplaints
         panelTotal.BackColor = Color.FromArgb(CByte(23), CByte(162), CByte(184))
         panelTotal.Controls.Add(lblTotalCount)
         panelTotal.Controls.Add(lblTotalComplaints)
-        panelTotal.Location = New Point(1036, 142)
+        panelTotal.Location = New Point(1122, 181)
         panelTotal.Name = "panelTotal"
-        panelTotal.Size = New Size(250, 125)
+        panelTotal.Size = New Size(286, 162)
         panelTotal.TabIndex = 30
         ' 
         ' lblTotalCount
         ' 
         lblTotalCount.AutoSize = True
-        lblTotalCount.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblTotalCount.Location = New Point(113, 64)
+        lblTotalCount.Font = New Font("Segoe UI", 19.8000011F, FontStyle.Bold)
+        lblTotalCount.Location = New Point(125, 78)
         lblTotalCount.Name = "lblTotalCount"
-        lblTotalCount.Size = New Size(23, 28)
+        lblTotalCount.Size = New Size(40, 46)
         lblTotalCount.TabIndex = 3
         lblTotalCount.Text = "0"
         ' 
         ' lblTotalComplaints
         ' 
         lblTotalComplaints.AutoSize = True
-        lblTotalComplaints.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblTotalComplaints.Location = New Point(47, 21)
+        lblTotalComplaints.Font = New Font("Segoe UI", 19.8000011F, FontStyle.Bold)
+        lblTotalComplaints.Location = New Point(1, 21)
         lblTotalComplaints.Name = "lblTotalComplaints"
-        lblTotalComplaints.Size = New Size(163, 28)
+        lblTotalComplaints.Size = New Size(289, 46)
         lblTotalComplaints.TabIndex = 2
         lblTotalComplaints.Text = "Total Complaints"
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(185, 309)
+        Label1.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(24, 377)
         Label1.Name = "Label1"
-        Label1.Size = New Size(136, 28)
+        Label1.Size = New Size(191, 38)
         Label1.TabIndex = 31
         Label1.Text = "Complaint ID:"
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(185, 356)
+        Label2.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold)
+        Label2.Location = New Point(24, 430)
         Label2.Name = "Label2"
-        Label2.Size = New Size(121, 28)
+        Label2.Size = New Size(168, 38)
         Label2.TabIndex = 32
         Label2.Text = "Resident ID:"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(185, 400)
+        Label3.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold)
+        Label3.Location = New Point(24, 484)
         Label3.Name = "Label3"
-        Label3.Size = New Size(183, 28)
+        Label3.Size = New Size(256, 38)
         Label3.TabIndex = 33
         Label3.Text = "Complaint Subject:"
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(185, 445)
+        Label4.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold)
+        Label4.Location = New Point(24, 538)
         Label4.Name = "Label4"
-        Label4.Size = New Size(177, 28)
+        Label4.Size = New Size(249, 38)
         Label4.TabIndex = 34
         Label4.Text = "Complaint Details:"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(185, 493)
+        Label5.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold)
+        Label5.Location = New Point(775, 379)
         Label5.Name = "Label5"
-        Label5.Size = New Size(158, 28)
+        Label5.Size = New Size(223, 38)
         Label5.TabIndex = 35
         Label5.Text = "Complaint Date:"
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(185, 539)
+        Label6.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold)
+        Label6.Location = New Point(775, 433)
         Label6.Name = "Label6"
-        Label6.Size = New Size(72, 28)
+        Label6.Size = New Size(101, 38)
         Label6.TabIndex = 36
         Label6.Text = "Status:"
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(185, 582)
+        Label7.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold)
+        Label7.Location = New Point(775, 483)
         Label7.Name = "Label7"
-        Label7.Size = New Size(134, 28)
+        Label7.Size = New Size(187, 38)
         Label7.TabIndex = 37
         Label7.Text = "Action Taken:"
         ' 
-        ' btnSaveDb
+        ' btnResolved
         ' 
-        btnSaveDb.BackColor = Color.Khaki
-        btnSaveDb.FlatAppearance.BorderSize = 0
-        btnSaveDb.FlatStyle = FlatStyle.Popup
-        btnSaveDb.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnSaveDb.Location = New Point(353, 644)
-        btnSaveDb.Name = "btnSaveDb"
-        btnSaveDb.Size = New Size(186, 39)
-        btnSaveDb.TabIndex = 38
-        btnSaveDb.Text = "Save to Database"
-        btnSaveDb.UseVisualStyleBackColor = False
-        ' 
-        ' btnClear
-        ' 
-        btnClear.BackColor = Color.Khaki
-        btnClear.FlatAppearance.BorderSize = 0
-        btnClear.FlatStyle = FlatStyle.Popup
-        btnClear.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnClear.Location = New Point(545, 644)
-        btnClear.Name = "btnClear"
-        btnClear.Size = New Size(87, 39)
-        btnClear.TabIndex = 39
-        btnClear.Text = "Clear"
-        btnClear.UseVisualStyleBackColor = False
-        ' 
-        ' btnCancel
-        ' 
-        btnCancel.BackColor = Color.Khaki
-        btnCancel.FlatAppearance.BorderSize = 0
-        btnCancel.FlatStyle = FlatStyle.Popup
-        btnCancel.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnCancel.Location = New Point(638, 644)
-        btnCancel.Name = "btnCancel"
-        btnCancel.Size = New Size(98, 39)
-        btnCancel.TabIndex = 40
-        btnCancel.Text = "Cancel"
-        btnCancel.UseVisualStyleBackColor = False
+        btnResolved.BackColor = Color.Khaki
+        btnResolved.FlatAppearance.BorderSize = 0
+        btnResolved.FlatStyle = FlatStyle.Popup
+        btnResolved.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
+        btnResolved.Location = New Point(716, 1037)
+        btnResolved.Name = "btnResolved"
+        btnResolved.Size = New Size(125, 51)
+        btnResolved.TabIndex = 40
+        btnResolved.Text = "Resolved"
+        btnResolved.UseVisualStyleBackColor = False
         ' 
         ' txtComplaintID
         ' 
-        txtComplaintID.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtComplaintID.Location = New Point(393, 303)
+        txtComplaintID.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtComplaintID.Location = New Point(321, 377)
         txtComplaintID.Margin = New Padding(2)
         txtComplaintID.Name = "txtComplaintID"
-        txtComplaintID.Size = New Size(343, 34)
+        txtComplaintID.Size = New Size(443, 38)
         txtComplaintID.TabIndex = 41
         ' 
         ' txtResidentID
         ' 
-        txtResidentID.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtResidentID.Location = New Point(393, 350)
+        txtResidentID.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
+        txtResidentID.Location = New Point(321, 430)
         txtResidentID.Margin = New Padding(2)
         txtResidentID.Name = "txtResidentID"
-        txtResidentID.Size = New Size(343, 34)
+        txtResidentID.Size = New Size(443, 38)
         txtResidentID.TabIndex = 42
         ' 
         ' txtSubject
         ' 
-        txtSubject.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtSubject.Location = New Point(393, 394)
+        txtSubject.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
+        txtSubject.Location = New Point(321, 484)
         txtSubject.Margin = New Padding(2)
         txtSubject.Name = "txtSubject"
-        txtSubject.Size = New Size(343, 34)
+        txtSubject.Size = New Size(443, 38)
         txtSubject.TabIndex = 43
         ' 
         ' txtDetails
         ' 
-        txtDetails.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtDetails.Location = New Point(393, 439)
+        txtDetails.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
+        txtDetails.Location = New Point(321, 538)
         txtDetails.Margin = New Padding(2)
         txtDetails.Name = "txtDetails"
-        txtDetails.Size = New Size(343, 34)
+        txtDetails.Size = New Size(443, 38)
         txtDetails.TabIndex = 44
         ' 
         ' txtActionTaken
         ' 
-        txtActionTaken.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        txtActionTaken.Location = New Point(393, 576)
+        txtActionTaken.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
+        txtActionTaken.Location = New Point(1072, 485)
         txtActionTaken.Margin = New Padding(2)
         txtActionTaken.Name = "txtActionTaken"
-        txtActionTaken.Size = New Size(343, 34)
+        txtActionTaken.Size = New Size(443, 38)
         txtActionTaken.TabIndex = 45
         ' 
         ' dtpComplaintDate
         ' 
         dtpComplaintDate.CalendarFont = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        dtpComplaintDate.Location = New Point(393, 495)
+        dtpComplaintDate.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
+        dtpComplaintDate.Location = New Point(1072, 379)
         dtpComplaintDate.Name = "dtpComplaintDate"
-        dtpComplaintDate.Size = New Size(343, 27)
+        dtpComplaintDate.Size = New Size(443, 38)
         dtpComplaintDate.TabIndex = 46
         ' 
         ' cmbStatus
         ' 
-        cmbStatus.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        cmbStatus.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
         cmbStatus.FormattingEnabled = True
         cmbStatus.Items.AddRange(New Object() {"Pending", "Resolved"})
-        cmbStatus.Location = New Point(393, 531)
+        cmbStatus.Location = New Point(1072, 432)
         cmbStatus.Name = "cmbStatus"
-        cmbStatus.Size = New Size(343, 36)
+        cmbStatus.Size = New Size(443, 39)
         cmbStatus.TabIndex = 47
         ' 
         ' dgvComplaints
@@ -383,12 +360,38 @@ Partial Class frmcomplaints
         dgvComplaints.AllowUserToDeleteRows = False
         dgvComplaints.BackgroundColor = Color.White
         dgvComplaints.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvComplaints.Location = New Point(773, 303)
+        dgvComplaints.Location = New Point(148, 610)
         dgvComplaints.Name = "dgvComplaints"
         dgvComplaints.ReadOnly = True
         dgvComplaints.RowHeadersWidth = 51
-        dgvComplaints.Size = New Size(542, 380)
+        dgvComplaints.Size = New Size(583, 414)
         dgvComplaints.TabIndex = 48
+        ' 
+        ' btnBlotter
+        ' 
+        btnBlotter.BackColor = Color.Khaki
+        btnBlotter.FlatAppearance.BorderSize = 0
+        btnBlotter.FlatStyle = FlatStyle.Popup
+        btnBlotter.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
+        btnBlotter.Location = New Point(866, 1037)
+        btnBlotter.Name = "btnBlotter"
+        btnBlotter.Size = New Size(182, 51)
+        btnBlotter.TabIndex = 49
+        btnBlotter.Text = "Set to Blotter"
+        btnBlotter.UseVisualStyleBackColor = False
+        ' 
+        ' dgvResolved
+        ' 
+        dgvResolved.AllowUserToAddRows = False
+        dgvResolved.AllowUserToDeleteRows = False
+        dgvResolved.BackgroundColor = Color.White
+        dgvResolved.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgvResolved.Location = New Point(825, 610)
+        dgvResolved.Name = "dgvResolved"
+        dgvResolved.ReadOnly = True
+        dgvResolved.RowHeadersWidth = 51
+        dgvResolved.Size = New Size(583, 414)
+        dgvResolved.TabIndex = 50
         ' 
         ' frmcomplaints
         ' 
@@ -396,6 +399,8 @@ Partial Class frmcomplaints
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(1539, 844)
+        Controls.Add(dgvResolved)
+        Controls.Add(btnBlotter)
         Controls.Add(dgvComplaints)
         Controls.Add(cmbStatus)
         Controls.Add(dtpComplaintDate)
@@ -404,9 +409,7 @@ Partial Class frmcomplaints
         Controls.Add(txtSubject)
         Controls.Add(txtResidentID)
         Controls.Add(txtComplaintID)
-        Controls.Add(btnCancel)
-        Controls.Add(btnClear)
-        Controls.Add(btnSaveDb)
+        Controls.Add(btnResolved)
         Controls.Add(Label7)
         Controls.Add(Label6)
         Controls.Add(Label5)
@@ -435,6 +438,7 @@ Partial Class frmcomplaints
         panelTotal.ResumeLayout(False)
         panelTotal.PerformLayout()
         CType(dgvComplaints, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgvResolved, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -460,9 +464,7 @@ Partial Class frmcomplaints
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents btnSaveDb As Button
-    Friend WithEvents btnClear As Button
-    Friend WithEvents btnCancel As Button
+    Friend WithEvents btnResolved As Button
     Friend WithEvents txtComplaintID As TextBox
     Friend WithEvents txtResidentID As TextBox
     Friend WithEvents txtSubject As TextBox
@@ -471,4 +473,6 @@ Partial Class frmcomplaints
     Friend WithEvents dtpComplaintDate As DateTimePicker
     Friend WithEvents cmbStatus As ComboBox
     Friend WithEvents dgvComplaints As DataGridView
+    Friend WithEvents btnBlotter As Button
+    Friend WithEvents dgvResolved As DataGridView
 End Class
