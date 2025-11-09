@@ -484,7 +484,7 @@ Partial Class frmincident
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        ClientSize = New Size(1924, 844)
+        ClientSize = New Size(1539, 844)
         Controls.Add(dgvIncidents)
         Controls.Add(Panel4)
         Controls.Add(Panel2)
