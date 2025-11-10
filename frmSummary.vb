@@ -39,4 +39,8 @@ Public Class frmSummary
     Private Sub btnrefreshcertifications_Click(sender As Object, e As EventArgs) Handles btnrefreshcertifications.Click
 
     End Sub
+
+    Private Sub frmSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
