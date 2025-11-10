@@ -6,21 +6,49 @@ Public Class frmSummary
     ' === Form Load ===
     Private Sub frmSummary_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
+            koneksyon()
+
+            ' Load Sitio dropdown
+            LoadSitioComboBox()
+
+            ' Load data into charts
             LoadPaymentChart()
             LoadResidentChart()
             LoadComplaintChart()
             LoadCertificationChart()
+
         Catch ex As Exception
             MessageBox.Show("Error loading summary: " & ex.Message)
+        Finally
+            If cn.State = ConnectionState.Open Then cn.Close()
         End Try
+    End Sub
+
+    ' === Load Sitio ComboBox ===
+    Private Sub LoadSitioComboBox()
+        cboresident.Items.Clear()
+        cboresident.Items.Add("All Sitios") ' Default option to show all
+
+        ' Add all sitios
+        cboresident.Items.Add("Camella Homes III")
+        cboresident.Items.Add("Lake Shore Subdivision")
+        cboresident.Items.Add("Lindenwood Residences")
+        cboresident.Items.Add("Midland II Subdivision")
+        cboresident.Items.Add("Parkhomes Subdivision")
+        cboresident.Items.Add("Planas")
+        cboresident.Items.Add("Sto. Niño Village")
+        cboresident.Items.Add("Susana Heights Subdivision")
+        cboresident.Items.Add("Villa Carolina I")
+        cboresident.Items.Add("Villa Carolina II")
+
+        cboresident.SelectedIndex = 0 ' Select "All Sitios" by default
     End Sub
 
     ' === Load Payment Revenue Chart ===
     Private Sub LoadPaymentChart()
         Try
-            If cn.State = ConnectionState.Open Then cn.Close()
-            koneksyon()
-            cn.Open()
+            chartpaymentrevenue.Series.Clear()
+            chartpaymentrevenue.Titles.Clear()
 
             Dim query As String = "
                 SELECT Certificate_Type, SUM(Amount) AS TotalAmount 
@@ -29,77 +57,120 @@ Public Class frmSummary
                 GROUP BY Certificate_Type
             "
 
-            cmd = New MySqlCommand(query, cn)
-            cmd.Parameters.AddWithValue("@selectedDate", dtppayment.Value.Date)
+            Using cmd As New MySqlCommand(query, cn)
+                cmd.Parameters.AddWithValue("@selectedDate", dtppayment.Value.Date)
 
-            Dim reader = cmd.ExecuteReader()
+                Using adapter As New MySqlDataAdapter(cmd)
+                    Dim table As New DataTable()
+                    adapter.Fill(table)
 
-            chartpaymentrevenue.Series.Clear()
-            Dim series As New Series("Payments")
-            series.ChartType = SeriesChartType.Column
-            series("PointWidth") = "0.6"
-            series.IsValueShownAsLabel = True
-            series.Color = Color.FromArgb(52, 152, 219)
+                    If table.Rows.Count = 0 Then
+                        chartpaymentrevenue.Titles.Add("No data available for this date.")
+                        Exit Sub
+                    End If
 
-            While reader.Read()
-                series.Points.AddXY(reader("Certificate_Type").ToString(), Convert.ToDouble(reader("TotalAmount")))
-            End While
-            reader.Close()
+                    Dim series As New Series("Payments") With {
+                        .ChartType = SeriesChartType.Column,
+                        .IsValueShownAsLabel = True,
+                        .Color = Color.FromArgb(52, 152, 219)
+                    }
+                    series("PointWidth") = "0.4"
 
-            chartpaymentrevenue.Series.Add(series)
-            SetupChartAppearance(chartpaymentrevenue)
+                    For Each row As DataRow In table.Rows
+                        series.Points.AddXY(row("Certificate_Type").ToString(), Convert.ToDouble(row("TotalAmount")))
+                    Next
+
+                    chartpaymentrevenue.Series.Add(series)
+                    SetupChartAppearance(chartpaymentrevenue)
+                End Using
+            End Using
 
         Catch ex As Exception
             MessageBox.Show("Error loading payment chart: " & ex.Message)
-        Finally
-            cn.Close()
         End Try
     End Sub
 
     ' === Load Resident Info Chart ===
     Private Sub LoadResidentChart()
         Try
-            If cn.State = ConnectionState.Open Then cn.Close()
-            koneksyon()
-            cn.Open()
-
-            Dim query As String = "
-                SELECT Sitio, COUNT(*) AS ResidentCount 
-                FROM residents 
-                GROUP BY Sitio
-            "
-
-            cmd = New MySqlCommand(query, cn)
-            Dim reader = cmd.ExecuteReader()
-
             chartresidentinfo.Series.Clear()
-            Dim series As New Series("Residents")
-            series.ChartType = SeriesChartType.Column
-            series("PointWidth") = "0.6"
-            series.IsValueShownAsLabel = True
-            series.Color = Color.FromArgb(46, 204, 113)
+            chartresidentinfo.Titles.Clear()
 
-            While reader.Read()
-                series.Points.AddXY(reader("Sitio").ToString(), Convert.ToInt32(reader("ResidentCount")))
-            End While
-            reader.Close()
+            Dim query As String = ""
+            Dim selectedSitio As String = If(cboresident.SelectedItem IsNot Nothing, cboresident.SelectedItem.ToString(), "All Sitios")
 
-            chartresidentinfo.Series.Add(series)
-            SetupChartAppearance(chartresidentinfo)
+            ' Build query based on selection
+            If selectedSitio = "All Sitios" Then
+                ' Show count per sitio
+                query = "
+                    SELECT Sitio, COUNT(*) AS ResidentCount 
+                    FROM residents 
+                    GROUP BY Sitio
+                    ORDER BY Sitio
+                "
+            Else
+                ' Show detailed count for specific sitio
+                query = "
+                    SELECT 
+                        CASE 
+                            WHEN Gender = 'Male' THEN 'Male'
+                            WHEN Gender = 'Female' THEN 'Female'
+                            ELSE 'Others'
+                        END AS Category,
+                        COUNT(*) AS ResidentCount 
+                    FROM residents 
+                    WHERE Sitio = @sitio
+                    GROUP BY Category
+                "
+            End If
+
+            Using cmd As New MySqlCommand(query, cn)
+                If selectedSitio <> "All Sitios" Then
+                    cmd.Parameters.AddWithValue("@sitio", selectedSitio)
+                End If
+
+                Using adapter As New MySqlDataAdapter(cmd)
+                    Dim table As New DataTable()
+                    adapter.Fill(table)
+
+                    If table.Rows.Count = 0 Then
+                        chartresidentinfo.Titles.Add("No resident data available.")
+                        Exit Sub
+                    End If
+
+                    ' Set title based on selection
+                    If selectedSitio = "All Sitios" Then
+                        chartresidentinfo.Titles.Add("Residents per Sitio")
+                    Else
+                        chartresidentinfo.Titles.Add($"Residents in {selectedSitio}")
+                    End If
+
+                    Dim series As New Series("Residents") With {
+                        .ChartType = SeriesChartType.Column,
+                        .IsValueShownAsLabel = True,
+                        .Color = Color.FromArgb(46, 204, 113)
+                    }
+
+                    For Each row As DataRow In table.Rows
+                        Dim xValue As String = If(selectedSitio = "All Sitios", row("Sitio").ToString(), row("Category").ToString())
+                        series.Points.AddXY(xValue, Convert.ToInt32(row("ResidentCount")))
+                    Next
+
+                    chartresidentinfo.Series.Add(series)
+                    SetupChartAppearance(chartresidentinfo)
+                End Using
+            End Using
 
         Catch ex As Exception
             MessageBox.Show("Error loading resident chart: " & ex.Message)
-        Finally
-            cn.Close()
         End Try
     End Sub
 
     ' === Load Complaints Chart ===
     Private Sub LoadComplaintChart()
         Try
-            If cn.State = ConnectionState.Open Then cn.Close()
-            koneksyon()
-            cn.Open()
+            chartcomplaintincident.Series.Clear()
+            chartcomplaintincident.Titles.Clear()
 
             Dim query As String = "
                 SELECT Status, COUNT(*) AS Total 
@@ -108,39 +179,43 @@ Public Class frmSummary
                 GROUP BY Status
             "
 
-            cmd = New MySqlCommand(query, cn)
-            cmd.Parameters.AddWithValue("@selectedDate", dtpComplaints.Value.Date)
+            Using cmd As New MySqlCommand(query, cn)
+                cmd.Parameters.AddWithValue("@selectedDate", dtpComplaints.Value.Date)
 
-            Dim reader = cmd.ExecuteReader()
+                Using adapter As New MySqlDataAdapter(cmd)
+                    Dim table As New DataTable()
+                    adapter.Fill(table)
 
-            chartcomplaintincident.Series.Clear()
-            Dim series As New Series("Complaints")
-            series.ChartType = SeriesChartType.Column
-            series("PointWidth") = "0.6"
-            series.IsValueShownAsLabel = True
-            series.Color = Color.FromArgb(231, 76, 60)
+                    If table.Rows.Count = 0 Then
+                        chartcomplaintincident.Titles.Add("No complaints for this date.")
+                        Exit Sub
+                    End If
 
-            While reader.Read()
-                series.Points.AddXY(reader("Status").ToString(), Convert.ToInt32(reader("Total")))
-            End While
-            reader.Close()
+                    Dim series As New Series("Complaints") With {
+                        .ChartType = SeriesChartType.Column,
+                        .IsValueShownAsLabel = True,
+                        .Color = Color.FromArgb(231, 76, 60)
+                    }
 
-            chartcomplaintincident.Series.Add(series)
-            SetupChartAppearance(chartcomplaintincident)
+                    For Each row As DataRow In table.Rows
+                        series.Points.AddXY(row("Status").ToString(), Convert.ToInt32(row("Total")))
+                    Next
+
+                    chartcomplaintincident.Series.Add(series)
+                    SetupChartAppearance(chartcomplaintincident)
+                End Using
+            End Using
 
         Catch ex As Exception
             MessageBox.Show("Error loading complaint chart: " & ex.Message)
-        Finally
-            cn.Close()
         End Try
     End Sub
 
     ' === Load Certification Requests Chart ===
     Private Sub LoadCertificationChart()
         Try
-            If cn.State = ConnectionState.Open Then cn.Close()
-            koneksyon()
-            cn.Open()
+            chartcertificationsrequest.Series.Clear()
+            chartcertificationsrequest.Titles.Clear()
 
             Dim query As String = "
                 SELECT Request_Type, COUNT(*) AS Total 
@@ -149,46 +224,57 @@ Public Class frmSummary
                 GROUP BY Request_Type
             "
 
-            cmd = New MySqlCommand(query, cn)
-            cmd.Parameters.AddWithValue("@selectedDate", dtpCertificates.Value.Date)
+            Using cmd As New MySqlCommand(query, cn)
+                cmd.Parameters.AddWithValue("@selectedDate", dtpCertificates.Value.Date)
 
-            Dim reader = cmd.ExecuteReader()
+                Using adapter As New MySqlDataAdapter(cmd)
+                    Dim table As New DataTable()
+                    adapter.Fill(table)
 
-            chartcertificationsrequest.Series.Clear()
-            Dim series As New Series("Certificates")
-            series.ChartType = SeriesChartType.Column
-            series("PointWidth") = "0.6"
-            series.IsValueShownAsLabel = True
-            series.Color = Color.FromArgb(155, 89, 182)
+                    If table.Rows.Count = 0 Then
+                        chartcertificationsrequest.Titles.Add("No certifications for this date.")
+                        Exit Sub
+                    End If
 
-            While reader.Read()
-                series.Points.AddXY(reader("Request_Type").ToString(), Convert.ToInt32(reader("Total")))
-            End While
-            reader.Close()
+                    Dim series As New Series("Certificates") With {
+                        .ChartType = SeriesChartType.Column,
+                        .IsValueShownAsLabel = True,
+                        .Color = Color.FromArgb(155, 89, 182)
+                    }
 
-            chartcertificationsrequest.Series.Add(series)
-            SetupChartAppearance(chartcertificationsrequest)
+                    For Each row As DataRow In table.Rows
+                        series.Points.AddXY(row("Request_Type").ToString(), Convert.ToInt32(row("Total")))
+                    Next
+
+                    chartcertificationsrequest.Series.Add(series)
+                    SetupChartAppearance(chartcertificationsrequest)
+                End Using
+            End Using
 
         Catch ex As Exception
             MessageBox.Show("Error loading certification chart: " & ex.Message)
-        Finally
-            cn.Close()
         End Try
     End Sub
 
     ' === Common Chart Appearance ===
     Private Sub SetupChartAppearance(chart As Chart)
         With chart.ChartAreas(0)
+            .BackColor = Color.White
             .AxisX.LabelStyle.Angle = -45
             .AxisX.Interval = 1
-            .AxisX.IsMarginVisible = True
-            .BackColor = Color.White
             .AxisX.MajorGrid.LineColor = Color.LightGray
             .AxisY.MajorGrid.LineColor = Color.LightGray
+            .AxisX.LabelStyle.Font = New Font("Segoe UI", 8, FontStyle.Regular)
+            .AxisY.LabelStyle.Font = New Font("Segoe UI", 8, FontStyle.Regular)
+            .InnerPlotPosition.Auto = False
+            .InnerPlotPosition.Width = 90
+            .InnerPlotPosition.Height = 80
+            .InnerPlotPosition.X = 5
+            .InnerPlotPosition.Y = 5
         End With
     End Sub
 
-    ' === Refresh Button Clicks ===
+    ' === Individual Refresh Buttons ===
     Private Sub btnPaymentRefresh_Click(sender As Object, e As EventArgs) Handles btnPaymentRefresh.Click
         LoadPaymentChart()
     End Sub
@@ -203,6 +289,18 @@ Public Class frmSummary
 
     Private Sub btnCertificateRefresh_Click(sender As Object, e As EventArgs) Handles btnCertificateRefresh.Click
         LoadCertificationChart()
+    End Sub
+
+    ' === ComboBox Selection Changed ===
+    Private Sub cboresident_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboresident.SelectedIndexChanged
+        LoadResidentChart() ' Automatically reload chart when sitio changes
+    End Sub
+
+    ' === Unused Event Handlers (can be removed) ===
+    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
+    End Sub
+
+    Private Sub chartresidentinfo_Click(sender As Object, e As EventArgs) Handles chartresidentinfo.Click
     End Sub
 
 End Class

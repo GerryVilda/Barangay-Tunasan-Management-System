@@ -25,7 +25,6 @@ Public Class frmBlotter
         cmbstatus.Items.Clear()
         cmbstatus.Items.Add("Pending")
         cmbstatus.Items.Add("Resolved")
-        cmbstatus.Items.Add("Closed")
 
         LoadBlotter()
 
@@ -104,5 +103,9 @@ Public Class frmBlotter
         Catch ex As Exception
             MessageBox.Show("Error updating blotter: " & ex.Message)
         End Try
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
     End Sub
 End Class

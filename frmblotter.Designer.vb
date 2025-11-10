@@ -67,6 +67,7 @@ Partial Class frmblotter
         ' 
         ' Panel1
         ' 
+        Panel1.AutoSize = True
         Panel1.Controls.Add(PictureBox1)
         Panel1.Controls.Add(cmbincident)
         Panel1.Controls.Add(cmbLocation)
@@ -91,9 +92,9 @@ Partial Class frmblotter
         Panel1.Controls.Add(Label4)
         Panel1.Controls.Add(Label3)
         Panel1.Controls.Add(Label2)
-        Panel1.Location = New Point(12, 12)
+        Panel1.Location = New Point(2, 2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(2238, 1456)
+        Panel1.Size = New Size(2248, 1466)
         Panel1.TabIndex = 3
         ' 
         ' PictureBox1
@@ -320,6 +321,7 @@ Partial Class frmblotter
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
+        AutoSize = True
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
         BackgroundImageLayout = ImageLayout.Stretch
@@ -335,6 +337,7 @@ Partial Class frmblotter
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         CType(dgvblotters, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel1 As Panel

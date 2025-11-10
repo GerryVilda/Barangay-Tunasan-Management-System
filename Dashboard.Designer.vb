@@ -40,10 +40,10 @@ Partial Class Dashboard
         lblgreet = New Label()
         PictureBox1 = New PictureBox()
         Panel2 = New Panel()
+        lblfullname = New Label()
         Label1 = New Label()
         Timer1 = New Timer(components)
         PanelMain = New Panel()
-        lblfullname = New Label()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel2.SuspendLayout()
@@ -88,6 +88,7 @@ Partial Class Dashboard
         btnRequest.Size = New Size(276, 94)
         btnRequest.TabIndex = 15
         btnRequest.Text = "📄 Request Form"
+        btnRequest.TextAlign = ContentAlignment.MiddleLeft
         btnRequest.UseVisualStyleBackColor = False
         ' 
         ' btnlogout
@@ -104,6 +105,7 @@ Partial Class Dashboard
         btnlogout.Size = New Size(276, 94)
         btnlogout.TabIndex = 14
         btnlogout.Text = "🚪 Logout / Exit"
+        btnlogout.TextAlign = ContentAlignment.MiddleLeft
         btnlogout.UseVisualStyleBackColor = False
         ' 
         ' btnusers
@@ -120,6 +122,7 @@ Partial Class Dashboard
         btnusers.Size = New Size(276, 94)
         btnusers.TabIndex = 13
         btnusers.Text = "🔑 Users / Accounts"
+        btnusers.TextAlign = ContentAlignment.MiddleLeft
         btnusers.UseVisualStyleBackColor = False
         ' 
         ' btnofficials
@@ -136,6 +139,7 @@ Partial Class Dashboard
         btnofficials.Size = New Size(276, 94)
         btnofficials.TabIndex = 12
         btnofficials.Text = ChrW(55358) & ChrW(56785) & "‍💼 Officials"
+        btnofficials.TextAlign = ContentAlignment.MiddleLeft
         btnofficials.UseVisualStyleBackColor = False
         ' 
         ' btnsummary
@@ -152,6 +156,7 @@ Partial Class Dashboard
         btnsummary.Size = New Size(276, 115)
         btnsummary.TabIndex = 11
         btnsummary.Text = "📊 Reports Summary"
+        btnsummary.TextAlign = ContentAlignment.MiddleLeft
         btnsummary.UseVisualStyleBackColor = False
         ' 
         ' btnpayment
@@ -168,6 +173,7 @@ Partial Class Dashboard
         btnpayment.Size = New Size(276, 94)
         btnpayment.TabIndex = 10
         btnpayment.Text = "💵 Payment"
+        btnpayment.TextAlign = ContentAlignment.MiddleLeft
         btnpayment.UseVisualStyleBackColor = False
         ' 
         ' btncertifications
@@ -184,6 +190,7 @@ Partial Class Dashboard
         btncertifications.Size = New Size(276, 94)
         btncertifications.TabIndex = 8
         btncertifications.Text = ChrW(55358) & ChrW(57002) & " Certifications"
+        btncertifications.TextAlign = ContentAlignment.MiddleLeft
         btncertifications.UseVisualStyleBackColor = False
         ' 
         ' btnblotter
@@ -200,6 +207,7 @@ Partial Class Dashboard
         btnblotter.Size = New Size(276, 94)
         btnblotter.TabIndex = 6
         btnblotter.Text = ChrW(55358) & ChrW(56830) & " Blotter Reports"
+        btnblotter.TextAlign = ContentAlignment.MiddleLeft
         btnblotter.UseVisualStyleBackColor = False
         ' 
         ' btncomplaints
@@ -216,6 +224,7 @@ Partial Class Dashboard
         btncomplaints.Size = New Size(276, 94)
         btncomplaints.TabIndex = 5
         btncomplaints.Text = "💬 Complaints"
+        btncomplaints.TextAlign = ContentAlignment.MiddleLeft
         btncomplaints.UseVisualStyleBackColor = False
         ' 
         ' btnresidents
@@ -232,6 +241,7 @@ Partial Class Dashboard
         btnresidents.Size = New Size(276, 94)
         btnresidents.TabIndex = 4
         btnresidents.Text = "👨‍👩‍👧‍👦 Residents"
+        btnresidents.TextAlign = ContentAlignment.MiddleLeft
         btnresidents.UseVisualStyleBackColor = False
         ' 
         ' lbltime
@@ -296,6 +306,18 @@ Partial Class Dashboard
         Panel2.Size = New Size(1670, 70)
         Panel2.TabIndex = 1
         ' 
+        ' lblfullname
+        ' 
+        lblfullname.AutoSize = True
+        lblfullname.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        lblfullname.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        lblfullname.Location = New Point(1287, 9)
+        lblfullname.Margin = New Padding(2, 0, 2, 0)
+        lblfullname.Name = "lblfullname"
+        lblfullname.Size = New Size(62, 48)
+        lblfullname.TabIndex = 1
+        lblfullname.Text = "---"
+        ' 
         ' Label1
         ' 
         Label1.AutoSize = True
@@ -322,22 +344,11 @@ Partial Class Dashboard
         PanelMain.Size = New Size(2284, 1534)
         PanelMain.TabIndex = 2
         ' 
-        ' lblfullname
-        ' 
-        lblfullname.AutoSize = True
-        lblfullname.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        lblfullname.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        lblfullname.Location = New Point(1287, 9)
-        lblfullname.Margin = New Padding(2, 0, 2, 0)
-        lblfullname.Name = "lblfullname"
-        lblfullname.Size = New Size(62, 48)
-        lblfullname.TabIndex = 1
-        lblfullname.Text = "---"
-        ' 
         ' Dashboard
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
+        AutoSize = True
         AutoSizeMode = AutoSizeMode.GrowAndShrink
         ClientSize = New Size(1946, 1104)
         Controls.Add(PanelMain)

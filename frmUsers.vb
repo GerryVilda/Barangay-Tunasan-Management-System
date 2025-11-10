@@ -40,16 +40,33 @@ Public Class frmUsers
     End Sub
 
     '========================
-    ' FILL TEXTBOXES WHEN CLICKING DATAGRIDVIEW
+    ' FILL TEXTBOXES WHEN CLICKING DATAGRIDVIEW - FIXED!
     '========================
-    Private Sub dgvusersaccounts_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvusersaccounts.CellContentClick
-        If e.RowIndex >= 0 Then
-            Dim row As DataGridViewRow = dgvusersaccounts.Rows(e.RowIndex)
-            txtFullName.Text = row.Cells("Fullname").Value.ToString()
-            txtUsername.Text = row.Cells("Username").Value.ToString()
-            txtPassword.Text = row.Cells("Password").Value.ToString()
-            cmbRole.Text = row.Cells("Role").Value.ToString()
-        End If
+    Private Sub dgvusersaccounts_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvusersaccounts.CellClick
+        Try
+            If e.RowIndex >= 0 Then
+                Dim row As DataGridViewRow = dgvusersaccounts.Rows(e.RowIndex)
+
+                ' Check if cells have values before accessing them
+                If row.Cells("Fullname").Value IsNot Nothing Then
+                    txtFullName.Text = row.Cells("Fullname").Value.ToString()
+                End If
+
+                If row.Cells("Username").Value IsNot Nothing Then
+                    txtUsername.Text = row.Cells("Username").Value.ToString()
+                End If
+
+                If row.Cells("Password").Value IsNot Nothing Then
+                    txtPassword.Text = row.Cells("Password").Value.ToString()
+                End If
+
+                If row.Cells("Role").Value IsNot Nothing Then
+                    cmbRole.Text = row.Cells("Role").Value.ToString()
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error selecting user: " & ex.Message)
+        End Try
     End Sub
 
     '========================
@@ -86,6 +103,12 @@ Public Class frmUsers
         Try
             If txtFullName.Text = "" Or txtUsername.Text = "" Or txtPassword.Text = "" Or cmbRole.Text = "" Then
                 MessageBox.Show("Please fill all fields!")
+                Exit Sub
+            End If
+
+            ' Make sure a row is selected
+            If dgvusersaccounts.CurrentRow Is Nothing Then
+                MessageBox.Show("Please select a user to update!")
                 Exit Sub
             End If
 

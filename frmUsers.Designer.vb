@@ -27,6 +27,7 @@ Partial Class frmUsers
         Label1 = New Label()
         dgvusersaccounts = New DataGridView()
         Panel1 = New Panel()
+        btnupdate = New Button()
         btnClear = New Button()
         btnSave = New Button()
         cmbRole = New ComboBox()
@@ -38,7 +39,6 @@ Partial Class frmUsers
         txtFullName = New TextBox()
         Label2 = New Label()
         Label10 = New Label()
-        btnupdate = New Button()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgvusersaccounts, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -101,6 +101,21 @@ Partial Class frmUsers
         Panel1.Size = New Size(449, 752)
         Panel1.TabIndex = 27
         ' 
+        ' btnupdate
+        ' 
+        btnupdate.BackColor = Color.Chocolate
+        btnupdate.FlatAppearance.BorderSize = 0
+        btnupdate.FlatStyle = FlatStyle.Flat
+        btnupdate.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnupdate.ForeColor = Color.White
+        btnupdate.Location = New Point(165, 620)
+        btnupdate.Margin = New Padding(4)
+        btnupdate.Name = "btnupdate"
+        btnupdate.Size = New Size(119, 49)
+        btnupdate.TabIndex = 37
+        btnupdate.Text = "Update"
+        btnupdate.UseVisualStyleBackColor = False
+        ' 
         ' btnClear
         ' 
         btnClear.BackColor = Color.Chocolate
@@ -135,7 +150,7 @@ Partial Class frmUsers
         ' 
         cmbRole.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         cmbRole.FormattingEnabled = True
-        cmbRole.Items.AddRange(New Object() {"User", "Admin"})
+        cmbRole.Items.AddRange(New Object() {"Barangay Official", "Staff", "Admin"})
         cmbRole.Location = New Point(25, 455)
         cmbRole.Margin = New Padding(4)
         cmbRole.Name = "cmbRole"
@@ -223,21 +238,6 @@ Partial Class frmUsers
         Label10.Size = New Size(190, 38)
         Label10.TabIndex = 12
         Label10.Text = "Manage User"
-        ' 
-        ' btnupdate
-        ' 
-        btnupdate.BackColor = Color.Chocolate
-        btnupdate.FlatAppearance.BorderSize = 0
-        btnupdate.FlatStyle = FlatStyle.Flat
-        btnupdate.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnupdate.ForeColor = Color.White
-        btnupdate.Location = New Point(165, 620)
-        btnupdate.Margin = New Padding(4)
-        btnupdate.Name = "btnupdate"
-        btnupdate.Size = New Size(119, 49)
-        btnupdate.TabIndex = 37
-        btnupdate.Text = "Update"
-        btnupdate.UseVisualStyleBackColor = False
         ' 
         ' frmUsers
         ' 
