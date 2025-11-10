@@ -32,13 +32,12 @@ Public Class frmComplaints
     Private Sub LoadComplaints()
         Try
             Call koneksyon()
-            Dim query As String = "SELECT Complaint_ID, Complainant_ID, Complainant_Name, Respondent_ID, Respondent_Name, Complaint_Subject, Complaint_Details, Complaint_Date, Status, Action_Taken FROM complaints WHERE Status = 'Pending'"
+            Dim query As String = "SELECT Complaint_ID, Complainant_ID, Complainant_Name, Respondent_ID, Respondent_Name, Complaint_Subject, Complaint_Details, Location, Incident_Description, Complaint_Date, Status, Action_Taken FROM complaints WHERE Status = 'Pending'"
             Dim adapter As New MySqlDataAdapter(query, cn)
             Dim dt As New DataTable()
             adapter.Fill(dt)
             dgvComplaints.DataSource = dt
 
-            ' Adjust DataGridView to show all text
             dgvComplaints.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
             dgvComplaints.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
             dgvComplaints.DefaultCellStyle.WrapMode = DataGridViewTriState.True
@@ -54,13 +53,12 @@ Public Class frmComplaints
     Private Sub LoadResolvedComplaints()
         Try
             Call koneksyon()
-            Dim query As String = "SELECT Complaint_ID, Complainant_ID, Complainant_Name, Respondent_ID, Respondent_Name, Complaint_Subject, Complaint_Details, Complaint_Date, Status, Action_Taken FROM complaints WHERE Status = 'Resolved'"
+            Dim query As String = "SELECT Complaint_ID, Complainant_ID, Complainant_Name, Respondent_ID, Respondent_Name, Complaint_Subject, Complaint_Details, Location, Incident_Description, Complaint_Date, Status, Action_Taken FROM complaints WHERE Status = 'Resolved'"
             Dim adapter As New MySqlDataAdapter(query, cn)
             Dim dt As New DataTable()
             adapter.Fill(dt)
             dgvResolved.DataSource = dt
 
-            ' Adjust DataGridView to show all text
             dgvResolved.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
             dgvResolved.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
             dgvResolved.DefaultCellStyle.WrapMode = DataGridViewTriState.True
@@ -93,8 +91,8 @@ Public Class frmComplaints
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         Try
             Call koneksyon()
-            Dim query As String = "INSERT INTO complaints (Complainant_ID, Complainant_Name, Respondent_ID, Respondent_Name, Complaint_Subject, Complaint_Details, Complaint_Date, Status, Action_Taken) " &
-                                  "VALUES (@cid, @cname, @rid, @rname, @subject, @details, @date, 'Pending', @action)"
+            Dim query As String = "INSERT INTO complaints (Complainant_ID, Complainant_Name, Respondent_ID, Respondent_Name, Complaint_Subject, Complaint_Details, Location, Incident_Description, Complaint_Date, Status, Action_Taken) " &
+                                  "VALUES (@cid, @cname, @rid, @rname, @subject, @details, @location, @incident_desc, @date, 'Pending', @action)"
             Dim cmd As New MySqlCommand(query, cn)
 
             ' Complainant
@@ -129,6 +127,8 @@ Public Class frmComplaints
             ' Other fields
             cmd.Parameters.AddWithValue("@subject", txtSubject.Text)
             cmd.Parameters.AddWithValue("@details", txtDetails.Text)
+            cmd.Parameters.AddWithValue("@location", txtLocation.Text)
+            cmd.Parameters.AddWithValue("@incident_desc", txtIncidentDescription.Text)
             cmd.Parameters.AddWithValue("@date", dtpComplaintDate.Value)
             cmd.Parameters.AddWithValue("@action", txtActionTaken.Text)
 
@@ -178,22 +178,19 @@ Public Class frmComplaints
 
             Dim row As DataGridViewRow = dgvComplaints.SelectedRows(0)
 
-            Dim location As String = InputBox("Enter the location of the incident:", "Incident Location")
-            If String.IsNullOrWhiteSpace(location) Then
-                MessageBox.Show("Location is required to file a blotter case.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Exit Sub
-            End If
-
             Call koneksyon()
-            Dim query As String = "INSERT INTO blotter_reports (Complainant_ID, Respondent_ID, Incident_Type, Incident_Date, Location, Details, Status, Remarks, Created_At) " &
-                                  "VALUES (@cid, @rid, @type, @date, @location, @details, 'Pending', '', NOW())"
+            Dim query As String = "INSERT INTO blotter_reports 
+            (Complaint_ID, Complainant_ID, Respondent_ID, Incident_Type, Incident_Date, Location, Details, Status, Remarks, Created_At)
+            VALUES (@complaintid, @cid, @rid, @type, @date, @location, @details, 'Pending', '', NOW())"
+
             Dim cmd As New MySqlCommand(query, cn)
+            cmd.Parameters.AddWithValue("@complaintid", row.Cells("Complaint_ID").Value)
             cmd.Parameters.AddWithValue("@cid", row.Cells("Complainant_ID").Value)
             cmd.Parameters.AddWithValue("@rid", If(row.Cells("Respondent_ID").Value IsNot Nothing, row.Cells("Respondent_ID").Value, DBNull.Value))
             cmd.Parameters.AddWithValue("@type", row.Cells("Complaint_Subject").Value)
             cmd.Parameters.AddWithValue("@date", row.Cells("Complaint_Date").Value)
-            cmd.Parameters.AddWithValue("@location", location)
-            cmd.Parameters.AddWithValue("@details", row.Cells("Complaint_Details").Value)
+            cmd.Parameters.AddWithValue("@location", row.Cells("Location").Value)
+            cmd.Parameters.AddWithValue("@details", row.Cells("Incident_Description").Value)
             cmd.ExecuteNonQuery()
 
             ' Remove from pending complaints
@@ -207,7 +204,6 @@ Public Class frmComplaints
             LoadComplaints()
             LoadResolvedComplaints()
 
-            ' Open Blotter form
             Dim blotterForm As New frmblotter
             blotterForm.Show()
 
@@ -227,15 +223,16 @@ Public Class frmComplaints
 
     '=== Helper to fill textboxes ===
     Private Sub FillTextboxes(row As DataGridViewRow)
-        txtComplaintID.Text = If(row.Cells("Complainant_ID").Value IsNot Nothing, row.Cells("Complainant_ID").Value.ToString(), "")
+        txtComplaintID.Text = If(row.Cells("Complaint_ID").Value IsNot Nothing, row.Cells("Complaint_ID").Value.ToString(), "")
         txtcomplaintname.Text = If(row.Cells("Complainant_Name").Value IsNot Nothing, row.Cells("Complainant_Name").Value.ToString(), "")
         txtResidentID.Text = If(row.Cells("Respondent_ID").Value IsNot Nothing, row.Cells("Respondent_ID").Value.ToString(), "")
         txtrespondentname.Text = If(row.Cells("Respondent_Name").Value IsNot Nothing, row.Cells("Respondent_Name").Value.ToString(), "")
         txtSubject.Text = If(row.Cells("Complaint_Subject").Value IsNot Nothing, row.Cells("Complaint_Subject").Value.ToString(), "")
         txtDetails.Text = If(row.Cells("Complaint_Details").Value IsNot Nothing, row.Cells("Complaint_Details").Value.ToString(), "")
+        txtLocation.Text = If(row.Cells("Location").Value IsNot Nothing, row.Cells("Location").Value.ToString(), "")
+        txtIncidentDescription.Text = If(row.Cells("Incident_Description").Value IsNot Nothing, row.Cells("Incident_Description").Value.ToString(), "")
         txtActionTaken.Text = If(row.Cells("Action_Taken").Value IsNot Nothing, row.Cells("Action_Taken").Value.ToString(), "")
 
-        ' Status combobox
         If row.Cells("Status").Value IsNot Nothing Then
             cmbStatus.SelectedItem = row.Cells("Status").Value.ToString()
         Else
@@ -255,6 +252,8 @@ Public Class frmComplaints
         txtrespondentname.Clear()
         txtSubject.Clear()
         txtDetails.Clear()
+        txtLocation.Clear()
+        txtIncidentDescription.Clear()
         txtActionTaken.Clear()
         cmbStatus.SelectedIndex = 0
         dtpComplaintDate.Value = Date.Today

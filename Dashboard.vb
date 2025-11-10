@@ -59,10 +59,6 @@ Public Class Dashboard
         LoadFormIntoPanel(New frmcomplaints())
     End Sub
 
-    Private Sub btnincidents_Click(sender As Object, e As EventArgs) Handles btnincidents.Click
-        LoadFormIntoPanel(New frmincident())
-    End Sub
-
     Private Sub btnblotter_Click(sender As Object, e As EventArgs) Handles btnblotter.Click
         LoadFormIntoPanel(New frmblotter())
     End Sub
@@ -108,7 +104,7 @@ Public Class Dashboard
 
         ' List all buttons in the order they should appear
         Dim allButtons As New List(Of Button) From {
-            btnresidents, btncomplaints, btnincidents, btnblotter,
+            btnresidents, btncomplaints, btnblotter,
             btncertifications, btnRequest, btnpayment, btnsummary,
             btnofficials, btnusers, btnlogout
         }
@@ -124,7 +120,6 @@ Public Class Dashboard
             Case "admin"
                 btnresidents.Visible = True
                 btncomplaints.Visible = True
-                btnincidents.Visible = True
                 btnblotter.Visible = True
                 btncertifications.Visible = True
                 btnRequest.Visible = True
@@ -140,7 +135,6 @@ Public Class Dashboard
             Case "staff"
                 btnresidents.Visible = True
                 btncomplaints.Visible = True
-                btnincidents.Visible = True
                 btnblotter.Visible = True
                 btncertifications.Visible = True
                 btnRequest.Visible = True
@@ -176,4 +170,7 @@ Public Class Dashboard
         Next
     End Sub
 
+    Private Sub PanelMain_Paint(sender As Object, e As PaintEventArgs) Handles PanelMain.Paint
+
+    End Sub
 End Class

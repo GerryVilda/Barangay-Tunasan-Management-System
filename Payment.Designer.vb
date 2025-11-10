@@ -31,7 +31,6 @@ Partial Class Payment
         Label5 = New Label()
         Label6 = New Label()
         Label8 = New Label()
-        Label9 = New Label()
         Panel1 = New Panel()
         txtresidentname = New TextBox()
         Label14 = New Label()
@@ -43,7 +42,6 @@ Partial Class Payment
         txtResidentid = New TextBox()
         cmbcertificateType = New ComboBox()
         btnPaid = New Button()
-        cmbProcessedby = New ComboBox()
         txtReceiptNo = New TextBox()
         dtpDate = New DateTimePicker()
         txtAmount = New TextBox()
@@ -59,11 +57,13 @@ Partial Class Payment
         Label7 = New Label()
         Label13 = New Label()
         dtgforpayments = New DataGridView()
+        dgvtransactions_history = New DataGridView()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         Panel3.SuspendLayout()
         Panel2.SuspendLayout()
         CType(dtgforpayments, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgvtransactions_history, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -155,17 +155,6 @@ Partial Class Payment
         Label8.TabIndex = 52
         Label8.Text = "Receipt Number:"
         ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(24, 305)
-        Label9.Margin = New Padding(4, 0, 4, 0)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(162, 32)
-        Label9.TabIndex = 53
-        Label9.Text = "Processed By:"
-        ' 
         ' Panel1
         ' 
         Panel1.Controls.Add(txtresidentname)
@@ -177,7 +166,7 @@ Partial Class Payment
         Panel1.Controls.Add(Label10)
         Panel1.Controls.Add(txtResidentid)
         Panel1.Controls.Add(Label3)
-        Panel1.Location = New Point(218, 161)
+        Panel1.Location = New Point(127, 196)
         Panel1.Margin = New Padding(4)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(778, 288)
@@ -293,17 +282,6 @@ Partial Class Payment
         btnPaid.Text = "Paid"
         btnPaid.UseVisualStyleBackColor = False
         ' 
-        ' cmbProcessedby
-        ' 
-        cmbProcessedby.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        cmbProcessedby.FormattingEnabled = True
-        cmbProcessedby.Items.AddRange(New Object() {"Admin", "Barangay Staff"})
-        cmbProcessedby.Location = New Point(238, 301)
-        cmbProcessedby.Margin = New Padding(4)
-        cmbProcessedby.Name = "cmbProcessedby"
-        cmbProcessedby.Size = New Size(492, 40)
-        cmbProcessedby.TabIndex = 54
-        ' 
         ' txtReceiptNo
         ' 
         txtReceiptNo.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
@@ -345,7 +323,6 @@ Partial Class Payment
         ' Panel3
         ' 
         Panel3.Controls.Add(Label12)
-        Panel3.Controls.Add(cmbProcessedby)
         Panel3.Controls.Add(Label2)
         Panel3.Controls.Add(txtPaymentID)
         Panel3.Controls.Add(txtReceiptNo)
@@ -353,12 +330,11 @@ Partial Class Payment
         Panel3.Controls.Add(Label5)
         Panel3.Controls.Add(dtpDate)
         Panel3.Controls.Add(Label6)
-        Panel3.Controls.Add(Label9)
         Panel3.Controls.Add(Label8)
         Panel3.Location = New Point(1004, 161)
         Panel3.Margin = New Padding(4)
         Panel3.Name = "Panel3"
-        Panel3.Size = New Size(778, 445)
+        Panel3.Size = New Size(778, 292)
         Panel3.TabIndex = 59
         ' 
         ' Label12
@@ -384,7 +360,7 @@ Partial Class Payment
         Panel2.Controls.Add(cmbcertificateType)
         Panel2.Controls.Add(Label4)
         Panel2.Controls.Add(Label13)
-        Panel2.Location = New Point(188, 469)
+        Panel2.Location = New Point(127, 492)
         Panel2.Margin = New Padding(4)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(778, 640)
@@ -467,11 +443,20 @@ Partial Class Payment
         ' dtgforpayments
         ' 
         dtgforpayments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dtgforpayments.Location = New Point(994, 662)
+        dtgforpayments.Location = New Point(1003, 460)
         dtgforpayments.Name = "dtgforpayments"
         dtgforpayments.RowHeadersWidth = 62
-        dtgforpayments.Size = New Size(779, 447)
+        dtgforpayments.Size = New Size(779, 354)
         dtgforpayments.TabIndex = 62
+        ' 
+        ' dgvtransactions_history
+        ' 
+        dgvtransactions_history.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgvtransactions_history.Location = New Point(1003, 820)
+        dgvtransactions_history.Name = "dgvtransactions_history"
+        dgvtransactions_history.RowHeadersWidth = 62
+        dgvtransactions_history.Size = New Size(779, 354)
+        dgvtransactions_history.TabIndex = 63
         ' 
         ' Payment
         ' 
@@ -479,6 +464,7 @@ Partial Class Payment
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(1924, 1219)
+        Controls.Add(dgvtransactions_history)
         Controls.Add(dtgforpayments)
         Controls.Add(Panel2)
         Controls.Add(Panel3)
@@ -498,6 +484,7 @@ Partial Class Payment
         Panel2.ResumeLayout(False)
         Panel2.PerformLayout()
         CType(dtgforpayments, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgvtransactions_history, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -509,14 +496,12 @@ Partial Class Payment
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents Label9 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents cmbcertificateType As ComboBox
     Friend WithEvents txtResidentid As TextBox
     Friend WithEvents txtPaymentID As TextBox
     Friend WithEvents txtAmount As TextBox
     Friend WithEvents dtpDate As DateTimePicker
-    Friend WithEvents cmbProcessedby As ComboBox
     Friend WithEvents txtReceiptNo As TextBox
     Friend WithEvents btnPaid As Button
     Friend WithEvents btnUpdate As Button
@@ -538,4 +523,5 @@ Partial Class Payment
     Friend WithEvents cbostatus As ComboBox
     Friend WithEvents txtresidentname As TextBox
     Friend WithEvents Label14 As Label
+    Friend WithEvents dgvtransactions_history As DataGridView
 End Class

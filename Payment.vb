@@ -16,6 +16,7 @@ Public Class Payment
         LoadPendingRequests()
         LoadCertificateTypes()
         LoadStatusOptions()
+        LoadTransactionHistory() ' Load history on form load
     End Sub
 
     '======================
@@ -204,6 +205,7 @@ Public Class Payment
 
             ClearFields()
             LoadPendingRequests()
+            LoadTransactionHistory() ' Refresh history after payment
 
         Catch ex As Exception
             MessageBox.Show("Error processing payment: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -234,5 +236,55 @@ Public Class Payment
     Private Function GenerateReceiptNumber() As String
         Return "RCPT-" & DateTime.Now.ToString("yyyyMMddHHmmss")
     End Function
+
+    '======================
+    ' LOAD TRANSACTION HISTORY
+    '======================
+    Private Sub LoadTransactionHistory()
+        Try
+            koneksyon()
+            Dim query As String = "
+            SELECT 
+            p.Payment_ID,
+            p.Resident_ID,
+            CONCAT(res.First_Name, ' ', res.Last_Name) AS Resident_Name,
+            p.Sitio,
+            p.Certificate_Type,
+            p.Fee_Range,
+            p.Amount,
+            p.Date AS Payment_Date,
+            p.Receipt_Number,
+            p.Processed_By
+            FROM payment p
+            JOIN residents res ON p.Resident_ID = res.Resident_ID
+            ORDER BY p.Date DESC
+
+
+        "
+            da = New MySqlDataAdapter(query, cn)
+            dt = New DataTable()
+            da.Fill(dt)
+            dgvtransactions_history.DataSource = dt
+
+            ' Make DataGridView read-only
+            dgvtransactions_history.ReadOnly = True
+
+            ' Format columns nicely
+            dgvtransactions_history.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+            dgvtransactions_history.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+            dgvtransactions_history.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            dgvtransactions_history.MultiSelect = False
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading transaction history: " & ex.Message)
+        Finally
+            If cn.State = ConnectionState.Open Then cn.Close()
+        End Try
+    End Sub
+
+
+    Private Sub dgvtransactions_history_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvtransactions_history.CellContentClick
+        ' Optional: Handle clicks if needed
+    End Sub
 
 End Class

@@ -6,6 +6,7 @@ Public Class Form1
     Dim cmd As MySqlCommand
     Dim dr As MySqlDataReader
 
+    ' Reset login form
     Public Sub ResetLoginForm()
         tmrlogin.Stop()
         ProgressBar1.Value = 0
@@ -15,11 +16,18 @@ Public Class Form1
         txtusername.Focus()
     End Sub
 
+    ' Form load
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ProgressBar1.Value = 0
         ProgressBar1.Visible = False
+
+        ' Make Label2 clickable like a hyperlink
+        Label2.Cursor = Cursors.Hand
+        Label2.ForeColor = Color.Blue
+        Label2.Font = New Font(Label2.Font, FontStyle.Underline)
     End Sub
 
+    ' Login button click
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnlogin.Click
         If txtusername.Text = "" Or txtpassword.Text = "" Then
             MessageBox.Show("Please enter username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -37,7 +45,7 @@ Public Class Form1
             dr = cmd.ExecuteReader()
 
             If dr.Read() Then
-                ' ✅ Assign to global variables
+                ' Assign to global variables
                 Connection.LoggedInUser = dr("fullname").ToString()
                 Connection.LoggedInRole = dr("role").ToString()
 
@@ -55,6 +63,7 @@ Public Class Form1
         End Try
     End Sub
 
+    ' Timer tick for progress bar
     Private Sub tmrlogin_Tick(sender As Object, e As EventArgs) Handles tmrlogin.Tick
         progressValue += 5
         ProgressBar1.Value = progressValue
@@ -63,14 +72,18 @@ Public Class Form1
             tmrlogin.Stop()
             MessageBox.Show("Welcome " & Connection.LoggedInUser & "!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            ' ✅ Properly create a new dashboard instance
+            ' Open dashboard
             Dim dash As New Dashboard()
             dash.Show()
             Me.Hide()
         End If
     End Sub
 
+    ' Label2 click to close form
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-        Me.Close()
+        ' Optional: ask for confirmation before closing
+        If MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Me.Close()
+        End If
     End Sub
 End Class

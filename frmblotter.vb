@@ -9,7 +9,7 @@ Public Class frmBlotter
         txtrespondent.ReadOnly = True
         dtpcreatedat.Enabled = False
 
-        ' Populate ComboBoxes (adjust items as needed)
+        ' Populate ComboBoxes (optional, can match complaint subjects)
         cmbincident.Items.Clear()
         cmbincident.Items.Add("Theft")
         cmbincident.Items.Add("Assault")
@@ -27,36 +27,30 @@ Public Class frmBlotter
         cmbstatus.Items.Add("Resolved")
         cmbstatus.Items.Add("Closed")
 
-        ' Load blotter data
         LoadBlotter()
 
-        ' Make DataGridView read-only to force updates via controls
         dgvblotters.ReadOnly = True
         dgvblotters.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgvblotters.MultiSelect = False
     End Sub
 
     ' Load all blotter entries into DataGridView
-    ' Load all blotter entries into DataGridView
     Private Sub LoadBlotter()
         Try
             Call koneksyon()
-            Dim query As String = "SELECT Blotter_ID, Complainant_ID, Respondent_ID, Incident_Type, Incident_Date, Location, Details, Status, Remarks, Created_At FROM blotter_reports"
+            Dim query As String = "SELECT Blotter_ID, Complaint_ID, Complainant_ID, Respondent_ID, Incident_Type, Incident_Date, Location, Details, Status, Remarks, Created_At FROM blotter_reports"
             Dim adapter As New MySqlDataAdapter(query, cn)
             Dim dt As New DataTable()
             adapter.Fill(dt)
             dgvblotters.DataSource = dt
 
-            ' Make DataGridView columns adjust to content
             dgvblotters.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
             dgvblotters.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
             dgvblotters.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
 
-            ' Optional: wrap text in cells
             For Each col As DataGridViewColumn In dgvblotters.Columns
                 col.DefaultCellStyle.WrapMode = DataGridViewTriState.True
             Next
-
         Catch ex As Exception
             MessageBox.Show("Error loading blotter: " & ex.Message)
         Finally
@@ -64,19 +58,16 @@ Public Class frmBlotter
         End Try
     End Sub
 
-
-    ' When a DGV row is clicked, fill controls
+    ' Fill controls when a DGV row is clicked
     Private Sub dgvblotters_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvblotters.CellClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = dgvblotters.Rows(e.RowIndex)
 
-            ' Read-only fields
             txtblotterid.Text = row.Cells("Blotter_ID").Value.ToString()
             txtcomplaint.Text = row.Cells("Complainant_ID").Value.ToString()
             txtrespondent.Text = If(row.Cells("Respondent_ID").Value IsNot DBNull.Value, row.Cells("Respondent_ID").Value.ToString(), "")
             dtpcreatedat.Value = Convert.ToDateTime(row.Cells("Created_At").Value)
 
-            ' Editable fields
             cmbincident.Text = If(row.Cells("Incident_Type").Value IsNot DBNull.Value, row.Cells("Incident_Type").Value.ToString(), "")
             dtpincidentdate.Value = Convert.ToDateTime(row.Cells("Incident_Date").Value)
             cmbLocation.Text = If(row.Cells("Location").Value IsNot DBNull.Value, row.Cells("Location").Value.ToString(), "")
@@ -98,7 +89,6 @@ Public Class frmBlotter
             Dim query As String = "UPDATE blotter_reports SET Incident_Type=@type, Incident_Date=@date, Location=@location, Details=@details, Status=@status, Remarks=@remarks WHERE Blotter_ID=@id"
             Dim cmd As New MySqlCommand(query, cn)
 
-            ' Use Text property to avoid null reference
             cmd.Parameters.AddWithValue("@type", If(String.IsNullOrWhiteSpace(cmbincident.Text), DBNull.Value, cmbincident.Text))
             cmd.Parameters.AddWithValue("@date", dtpincidentdate.Value)
             cmd.Parameters.AddWithValue("@location", If(String.IsNullOrWhiteSpace(cmbLocation.Text), DBNull.Value, cmbLocation.Text))
@@ -115,5 +105,4 @@ Public Class frmBlotter
             MessageBox.Show("Error updating blotter: " & ex.Message)
         End Try
     End Sub
-
 End Class

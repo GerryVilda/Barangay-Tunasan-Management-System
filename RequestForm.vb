@@ -119,6 +119,7 @@ Public Class RequestForm
 
     ' === Submit Request ===
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        ' === Validate fields ===
         If txtresidentname.Text.Trim() = "" Or cmbcertificateType.Text.Trim() = "" Or txtPurpose.Text.Trim() = "" Then
             MessageBox.Show("Please complete all required fields.", "Missing Data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
@@ -130,55 +131,68 @@ Public Class RequestForm
             Exit Sub
         End If
 
-        ' Define limits / expiration rules
+        ' === Certificate Expiration Rules (Months) ===
         Dim certificateRules As New Dictionary(Of String, Integer?) From {
             {"Barangay Clearance (Personal)", 6},
             {"Barangay Clearance (Business)", 6},
-            {"Barangay Clearance (First Job)", Nothing}, ' First-time only
+            {"Barangay Clearance (First Job)", Nothing}, ' One-time only
             {"Residency Certificate", 6},
             {"Indigency Certificate", 6},
-            {"Good Moral Certificate", Nothing},
-            {"Community Tax Certificate (Cedula)", Nothing}
+            {"Good Moral Certificate", 12},
+            {"Community Tax Certificate (Cedula)", 12},
+            {"Senior Citizen/PWD Certificate", Nothing},
+            {"Solo Parent Certificate", 12},
+            {"Certificate of Occupancy / Lot Clearance", 12},
+            {"Certificate of Barangay Employment", 6}
         }
 
         Try
             koneksyon()
 
-            ' First-time job seeker logic
+            ' === (1) SPECIAL RULE: First Job Clearance (Only Once Ever) ===
             If cmbcertificateType.Text = "Barangay Clearance (First Job)" Then
-                Dim checkQuery As String =
-                    "SELECT COUNT(*) FROM request_form WHERE Resident_ID=@Resident_ID AND Request_Type='Barangay Clearance (First Job)'"
+                Dim checkQuery As String = "
+                SELECT COUNT(*) 
+                FROM request_form 
+                WHERE Resident_ID=@Resident_ID 
+                  AND Request_Type='Barangay Clearance (First Job')"
                 cmd = New MySqlCommand(checkQuery, cn)
                 cmd.Parameters.AddWithValue("@Resident_ID", residentID)
                 Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                 If count > 0 Then
-                    MessageBox.Show("First Job Clearance is only free for first-time applicants.", "Request Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    MessageBox.Show("The Barangay Clearance (First Job) can only be requested once per resident.",
+                                    "Request Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Exit Sub
                 End If
             End If
 
-            ' Expiring certificate validation
+            ' === (2) EXPIRATION CHECK FOR OTHER CERTIFICATES ===
             If certificateRules.ContainsKey(cmbcertificateType.Text) AndAlso certificateRules(cmbcertificateType.Text).HasValue Then
                 Dim months As Integer = certificateRules(cmbcertificateType.Text).Value
-                Dim checkQuery As String =
-                    "SELECT COUNT(*) FROM request_form " &
-                    "WHERE Resident_ID=@Resident_ID AND Request_Type=@Request_Type " &
-                    "AND Date_Requested >= DATE_SUB(CURDATE(), INTERVAL @Months MONTH)"
+                Dim checkQuery As String = "
+                SELECT COUNT(*) 
+                FROM request_form 
+                WHERE Resident_ID=@Resident_ID 
+                  AND Request_Type=@Request_Type 
+                  AND Date_Requested >= DATE_SUB(CURDATE(), INTERVAL @Months MONTH)"
                 cmd = New MySqlCommand(checkQuery, cn)
                 cmd.Parameters.AddWithValue("@Resident_ID", residentID)
                 cmd.Parameters.AddWithValue("@Request_Type", cmbcertificateType.Text)
                 cmd.Parameters.AddWithValue("@Months", months)
                 Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
                 If count > 0 Then
-                    MessageBox.Show($"You have already requested this certificate in the past {months} month(s). Please wait until it expires.", "Request Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    MessageBox.Show($"You already requested this certificate within the last {months} month(s). Please wait until it expires.",
+                                    "Request Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Exit Sub
                 End If
             End If
 
-            ' Insert request
-            Dim insertQuery As String =
-                "INSERT INTO request_form (Resident_ID, Request_Type, Purpose, Date_Requested, Status) " &
-                "VALUES (@Resident_ID, @Request_Type, @Purpose, @Date_Requested, 'Pending')"
+            ' === (3) Insert New Request ===
+            Dim insertQuery As String = "
+            INSERT INTO request_form 
+                (Resident_ID, Request_Type, Purpose, Date_Requested, Status)
+            VALUES 
+                (@Resident_ID, @Request_Type, @Purpose, @Date_Requested, 'Pending')"
             cmd = New MySqlCommand(insertQuery, cn)
             cmd.Parameters.AddWithValue("@Resident_ID", residentID)
             cmd.Parameters.AddWithValue("@Request_Type", cmbcertificateType.Text)
@@ -188,7 +202,7 @@ Public Class RequestForm
 
             MessageBox.Show("Certificate request submitted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            ' Clear fields
+            ' === (4) Reset Fields ===
             txtresidentname.Clear()
             cmbcertificateType.SelectedIndex = -1
             txtPurpose.Clear()
@@ -200,5 +214,6 @@ Public Class RequestForm
             cn.Close()
         End Try
     End Sub
+
 
 End Class
