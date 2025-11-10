@@ -13,6 +13,9 @@ Public Class Dashboard
 
         ' Set button access and layout
         SetButtonAccess()
+
+        ' Set current logged-in user label
+        UpdateLoggedInUser()
     End Sub
 
     ' ===============================
@@ -146,9 +149,6 @@ Public Class Dashboard
         End Select
 
         ' Dynamically reposition visible buttons vertically
-        ' Start below the image, greeting, date/time labels
-        ' Replace PictureBox1 with your actual PictureBox control name (logo image)
-        ' And adjust Label names if needed (lblgreet, lbldate, lbltime)
         Dim sidebar As Panel = Panel1   ' Use the panel that holds the logo + buttons
         Dim topPosition As Integer = PictureBox1.Bottom + 20
         topPosition = Math.Max(topPosition, lblgreet.Bottom + 10)
@@ -170,7 +170,46 @@ Public Class Dashboard
         Next
     End Sub
 
-    Private Sub PanelMain_Paint(sender As Object, e As PaintEventArgs) Handles PanelMain.Paint
+    ' ===============================
+    ' SET LOGGED-IN USER LABEL
+    ' ===============================
+    ' ===============================
+    ' SET LOGGED-IN USER LABEL
+    ' ===============================
+    Private Sub UpdateLoggedInUser()
+        ' Make sure you set these values at login
+        Dim name As String = Connection.LoggedInUser
+        Dim role As String = Connection.LoggedInRole
 
+        If String.IsNullOrEmpty(name) Then
+            lblfullname.Text = "Welcome, Guest"
+            Return
+        End If
+
+        ' Capitalize the first letter of each word in role
+        Dim displayRole As String = If(String.IsNullOrEmpty(role), "User", System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(role.ToLower()))
+
+        ' Optional: Replace internal role strings with nicer display
+        Select Case role.Trim().ToLower()
+            Case "barangay official"
+                displayRole = "Barangay Official"
+            Case "admin"
+                displayRole = "Administrator"
+            Case "staff"
+                displayRole = "Staff"
+            Case Else
+                displayRole = displayRole ' use as-is
+        End Select
+
+        lblfullname.Text = $"Welcome, {name} ({displayRole})"
+    End Sub
+
+
+    Private Sub PanelMain_Paint(sender As Object, e As PaintEventArgs) Handles PanelMain.Paint
+        ' Optional custom painting
+    End Sub
+
+    Private Sub lblfullname_Click(sender As Object, e As EventArgs) Handles lblfullname.Click
+        ' Optional click event
     End Sub
 End Class

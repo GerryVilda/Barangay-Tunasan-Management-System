@@ -43,6 +43,7 @@ Partial Class Dashboard
         Label1 = New Label()
         Timer1 = New Timer(components)
         PanelMain = New Panel()
+        lblfullname = New Label()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel2.SuspendLayout()
@@ -286,6 +287,7 @@ Partial Class Dashboard
         ' Panel2
         ' 
         Panel2.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
+        Panel2.Controls.Add(lblfullname)
         Panel2.Controls.Add(Label1)
         Panel2.Dock = DockStyle.Top
         Panel2.Location = New Point(276, 0)
@@ -319,6 +321,18 @@ Partial Class Dashboard
         PanelMain.Name = "PanelMain"
         PanelMain.Size = New Size(2284, 1534)
         PanelMain.TabIndex = 2
+        ' 
+        ' lblfullname
+        ' 
+        lblfullname.AutoSize = True
+        lblfullname.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        lblfullname.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
+        lblfullname.Location = New Point(1287, 9)
+        lblfullname.Margin = New Padding(2, 0, 2, 0)
+        lblfullname.Name = "lblfullname"
+        lblfullname.Size = New Size(62, 48)
+        lblfullname.TabIndex = 1
+        lblfullname.Text = "---"
         ' 
         ' Dashboard
         ' 
@@ -363,4 +377,5 @@ Partial Class Dashboard
     Friend WithEvents btnofficials As Button
     Friend WithEvents PanelMain As Panel
     Friend WithEvents btnRequest As Button
+    Friend WithEvents lblfullname As Label
 End Class
