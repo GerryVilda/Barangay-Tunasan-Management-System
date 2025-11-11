@@ -35,7 +35,7 @@ Public Class frmcertificates
             Dim row As DataGridViewRow = dgvcertifications.Rows(e.RowIndex)
             txtID.Text = row.Cells("ID").Value.ToString()
             txtresidentname.Text = row.Cells("Resident_Name").Value.ToString()
-            txtcerttype.Text = row.Cells("Type").Value.ToString()
+            txtSearchBy.Text = row.Cells("Type").Value.ToString()
             txtissuedby.Text = row.Cells("Issued_By").Value.ToString()
             txtdate.Text = Convert.ToDateTime(row.Cells("Issued_Date").Value).ToString("yyyy-MM-dd")
         End If
@@ -54,7 +54,7 @@ Public Class frmcertificates
             ' Choose save location
             Dim sfd As New SaveFileDialog()
             sfd.Filter = "PDF Files (*.pdf)|*.pdf"
-            sfd.FileName = $"{txtresidentname.Text}_{txtcerttype.Text}.pdf"
+            sfd.FileName = $"{txtresidentname.Text}_{txtSearchBy.Text}.pdf"
             If sfd.ShowDialog() <> DialogResult.OK Then Exit Sub
 
             ' Create PDF document
@@ -92,11 +92,11 @@ Public Class frmcertificates
 
             ' Resident Info
             doc.Add(New Paragraph($"Name: {txtresidentname.Text}", subtitleFont))
-            doc.Add(New Paragraph($"Certificate Type: {txtcerttype.Text}", subtitleFont))
+            doc.Add(New Paragraph($"Certificate Type: {txtSearchBy.Text}", subtitleFont))
             doc.Add(New Paragraph(Environment.NewLine))
 
             ' Statement of purpose
-            Dim purpose As New Paragraph($"The above-named person is hereby granted this {txtcerttype.Text} for official purposes as required by law and Barangay regulations.", bodyFont)
+            Dim purpose As New Paragraph($"The above-named person is hereby granted this {txtSearchBy.Text} for official purposes as required by law and Barangay regulations.", bodyFont)
             purpose.Alignment = Element.ALIGN_LEFT
             doc.Add(purpose)
             doc.Add(New Paragraph(Environment.NewLine))
