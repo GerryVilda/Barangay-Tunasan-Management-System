@@ -23,7 +23,7 @@ Partial Class frmcertificates
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmcertificates))
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Panel1 = New Panel()
         txtcerttype = New TextBox()
         txtdate = New TextBox()
@@ -216,7 +216,7 @@ Partial Class frmcertificates
         btnGeneratecertificate.Location = New Point(1028, 92)
         btnGeneratecertificate.Margin = New Padding(2)
         btnGeneratecertificate.Name = "btnGeneratecertificate"
-        btnGeneratecertificate.Size = New Size(189, 266)
+        btnGeneratecertificate.Size = New Size(425, 212)
         btnGeneratecertificate.TabIndex = 23
         btnGeneratecertificate.Text = "📄 Generate PDF"
         btnGeneratecertificate.UseVisualStyleBackColor = True
@@ -225,8 +225,8 @@ Partial Class frmcertificates
         ' 
         dgvcertifications.AllowUserToAddRows = False
         dgvcertifications.AllowUserToDeleteRows = False
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        dgvcertifications.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
+        dgvcertifications.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         dgvcertifications.BackgroundColor = Color.White
         dgvcertifications.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvcertifications.Location = New Point(18, 433)
