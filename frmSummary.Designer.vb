@@ -98,19 +98,19 @@ Partial Class frmSummary
         ' 
         ' chartpaymentrevenue
         ' 
-        chartpaymentrevenue.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         ChartArea1.Name = "ChartArea1"
         chartpaymentrevenue.ChartAreas.Add(ChartArea1)
+        chartpaymentrevenue.Dock = DockStyle.Fill
         Legend1.Name = "Legend1"
         chartpaymentrevenue.Legends.Add(Legend1)
-        chartpaymentrevenue.Location = New Point(4, 113)
+        chartpaymentrevenue.Location = New Point(4, 4)
         chartpaymentrevenue.Margin = New Padding(4)
         chartpaymentrevenue.Name = "chartpaymentrevenue"
         Series1.ChartArea = "ChartArea1"
         Series1.Legend = "Legend1"
         Series1.Name = "Series1"
         chartpaymentrevenue.Series.Add(Series1)
-        chartpaymentrevenue.Size = New Size(958, 375)
+        chartpaymentrevenue.Size = New Size(958, 442)
         chartpaymentrevenue.TabIndex = 63
         chartpaymentrevenue.Text = "Chart1"
         ' 
@@ -162,19 +162,19 @@ Partial Class frmSummary
         ' 
         ' chartresidentinfo
         ' 
-        chartresidentinfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         ChartArea2.Name = "ChartArea1"
         chartresidentinfo.ChartAreas.Add(ChartArea2)
+        chartresidentinfo.Dock = DockStyle.Fill
         Legend2.Name = "Legend1"
         chartresidentinfo.Legends.Add(Legend2)
-        chartresidentinfo.Location = New Point(970, 113)
+        chartresidentinfo.Location = New Point(970, 4)
         chartresidentinfo.Margin = New Padding(4)
         chartresidentinfo.Name = "chartresidentinfo"
         Series2.ChartArea = "ChartArea1"
         Series2.Legend = "Legend1"
         Series2.Name = "Series1"
         chartresidentinfo.Series.Add(Series2)
-        chartresidentinfo.Size = New Size(958, 375)
+        chartresidentinfo.Size = New Size(958, 442)
         chartresidentinfo.TabIndex = 48
         chartresidentinfo.Text = "Chart2"
         ' 
@@ -227,19 +227,19 @@ Partial Class frmSummary
         ' 
         ' chartcomplaintincident
         ' 
-        chartcomplaintincident.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         ChartArea3.Name = "ChartArea1"
         chartcomplaintincident.ChartAreas.Add(ChartArea3)
+        chartcomplaintincident.Dock = DockStyle.Fill
         Legend3.Name = "Legend1"
         chartcomplaintincident.Legends.Add(Legend3)
-        chartcomplaintincident.Location = New Point(970, 683)
+        chartcomplaintincident.Location = New Point(970, 454)
         chartcomplaintincident.Margin = New Padding(4)
         chartcomplaintincident.Name = "chartcomplaintincident"
         Series3.ChartArea = "ChartArea1"
         Series3.Legend = "Legend1"
         Series3.Name = "Series1"
         chartcomplaintincident.Series.Add(Series3)
-        chartcomplaintincident.Size = New Size(958, 297)
+        chartcomplaintincident.Size = New Size(958, 442)
         chartcomplaintincident.TabIndex = 48
         chartcomplaintincident.Text = "Chart3"
         ' 
@@ -275,19 +275,19 @@ Partial Class frmSummary
         ' 
         ' chartcertificationsrequest
         ' 
-        chartcertificationsrequest.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         ChartArea4.Name = "ChartArea1"
         chartcertificationsrequest.ChartAreas.Add(ChartArea4)
+        chartcertificationsrequest.Dock = DockStyle.Fill
         Legend4.Name = "Legend1"
         chartcertificationsrequest.Legends.Add(Legend4)
-        chartcertificationsrequest.Location = New Point(4, 605)
+        chartcertificationsrequest.Location = New Point(4, 454)
         chartcertificationsrequest.Margin = New Padding(4)
         chartcertificationsrequest.Name = "chartcertificationsrequest"
         Series4.ChartArea = "ChartArea1"
         Series4.Legend = "Legend1"
         Series4.Name = "Series1"
         chartcertificationsrequest.Series.Add(Series4)
-        chartcertificationsrequest.Size = New Size(958, 375)
+        chartcertificationsrequest.Size = New Size(958, 442)
         chartcertificationsrequest.TabIndex = 63
         chartcertificationsrequest.Text = "Chart1"
         ' 
@@ -320,12 +320,12 @@ Partial Class frmSummary
         TableLayoutPanel1.Controls.Add(chartpaymentrevenue, 0, 0)
         TableLayoutPanel1.Controls.Add(chartcertificationsrequest, 0, 1)
         TableLayoutPanel1.Controls.Add(chartresidentinfo, 1, 0)
-        TableLayoutPanel1.Location = New Point(6, 88)
+        TableLayoutPanel1.Location = New Point(6, 180)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 2
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        TableLayoutPanel1.Size = New Size(1932, 984)
+        TableLayoutPanel1.Size = New Size(1932, 900)
         TableLayoutPanel1.TabIndex = 66
         ' 
         ' frmSummary

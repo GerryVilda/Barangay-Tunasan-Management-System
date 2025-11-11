@@ -21,13 +21,12 @@ Public Class frmresidents
     Private Sub LoadResidents()
         Try
             Call koneksyon()
-            Dim sql As String = "SELECT * FROM residents"
+            Dim sql As String = "SELECT Resident_ID, First_Name, Last_Name, Age, Gender, Birthdate, Sitio, Status, Date_Registered FROM residents ORDER BY Resident_ID DESC"
             Dim da As New MySqlDataAdapter(sql, cn)
             Dim dt As New DataTable()
             da.Fill(dt)
             DataGridView1.DataSource = dt
 
-            ' ✅ Adjust columns automatically after loading data
             DataGridView1.AutoResizeColumns()
             DataGridView1.AutoResizeRows()
         Catch ex As Exception
@@ -53,8 +52,9 @@ Public Class frmresidents
 
         Try
             Call koneksyon()
-            Dim sql As String = "INSERT INTO residents (First_Name, Last_Name, Age, Gender, Birthdate, Sitio, Status)
-                                 VALUES (@First_Name, @Last_Name, @Age, @Gender, @Birthdate, @Sitio, @Status)"
+            ' ✅ Include Date_Registered with current date automatically
+            Dim sql As String = "INSERT INTO residents (First_Name, Last_Name, Age, Gender, Birthdate, Sitio, Status, Date_Registered)
+                                 VALUES (@First_Name, @Last_Name, @Age, @Gender, @Birthdate, @Sitio, @Status, CURDATE())"
             Dim cmd As New MySqlCommand(sql, cn)
             cmd.Parameters.AddWithValue("@First_Name", txtfirstname.Text)
             cmd.Parameters.AddWithValue("@Last_Name", txtlastname.Text)
@@ -77,7 +77,6 @@ Public Class frmresidents
 
     ' ✅ Update resident
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnupdate.Click
-        ' 🧩 Validation
         If txtresidentid.Text = "" Then
             MessageBox.Show("Please select a resident to update.")
             Exit Sub
@@ -150,7 +149,7 @@ Public Class frmresidents
     Private Sub txtsearch_TextChanged(sender As Object, e As EventArgs) Handles txtsearch.TextChanged
         Try
             Call koneksyon()
-            Dim sql As String = "SELECT Resident_ID, First_Name, Last_Name, Age, Gender, Birthdate, Sitio, Status 
+            Dim sql As String = "SELECT Resident_ID, First_Name, Last_Name, Age, Gender, Birthdate, Sitio, Status, Date_Registered
                                  FROM residents 
                                  WHERE Resident_ID LIKE @search OR First_Name LIKE @search OR Last_Name LIKE @search"
             Dim da As New MySqlDataAdapter(sql, cn)
@@ -167,7 +166,7 @@ Public Class frmresidents
         End Try
     End Sub
 
-    ' ✅ When clicking a row in DataGridView
+    ' ✅ Populate textboxes when a row is clicked
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
@@ -180,7 +179,6 @@ Public Class frmresidents
             cbositio.Text = row.Cells("Sitio").Value.ToString()
             cbostatus.Text = row.Cells("Status").Value.ToString()
 
-            ' ✅ Fix for empty/null Birthdate
             If Not IsDBNull(row.Cells("Birthdate").Value) Then
                 dtpbirthdate.Value = Convert.ToDateTime(row.Cells("Birthdate").Value)
             Else
@@ -201,30 +199,18 @@ Public Class frmresidents
         dtpbirthdate.Value = DateTime.Today
     End Sub
 
-    ' ✅ Auto compute age based on selected birthdate
+    ' ✅ Auto compute age
     Private Sub dtpbirthdate_ValueChanged(sender As Object, e As EventArgs) Handles dtpbirthdate.ValueChanged
         Dim birthdate As DateTime = dtpbirthdate.Value
         Dim age As Integer = CalculateAge(birthdate)
         txtage.Text = age.ToString()
     End Sub
 
-    ' ✅ Calculate age based on birthdate
+    ' ✅ Compute age formula
     Private Function CalculateAge(birthdate As DateTime) As Integer
         Dim today As DateTime = DateTime.Today
         Dim age As Integer = today.Year - birthdate.Year
         If (birthdate > today.AddYears(-age)) Then age -= 1
         Return age
     End Function
-
-    ' ✅ Sitio combobox event (optional handling)
-    Private Sub cbositio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbositio.SelectedIndexChanged
-        ' You can add logic here if Sitio selection affects other fields
-    End Sub
-
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-    End Sub
-
-    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
-
-    End Sub
 End Class
