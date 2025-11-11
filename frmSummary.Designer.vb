@@ -22,20 +22,19 @@ Partial Class frmSummary
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend3 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend4 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSummary))
-        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
-        Dim Legend5 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
-        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
-        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
-        Dim Legend6 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
-        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
-        Dim ChartArea7 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
-        Dim Legend7 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
-        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
-        Dim ChartArea8 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
-        Dim Legend8 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
-        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
-        PictureBox1 = New PictureBox()
         lblTitle = New Label()
         cbopayments = New ComboBox()
         btnPaymentRefresh = New Button()
@@ -59,7 +58,6 @@ Partial Class frmSummary
         Label2 = New Label()
         dtpCertificates = New DateTimePicker()
         TableLayoutPanel1 = New TableLayoutPanel()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         CType(chartpaymentrevenue, ComponentModel.ISupportInitialize).BeginInit()
         CType(chartresidentinfo, ComponentModel.ISupportInitialize).BeginInit()
         CType(chartcomplaintincident, ComponentModel.ISupportInitialize).BeginInit()
@@ -67,23 +65,12 @@ Partial Class frmSummary
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
         ' 
-        ' PictureBox1
-        ' 
-        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(2, 0)
-        PictureBox1.Margin = New Padding(2)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(216, 188)
-        PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox1.TabIndex = 43
-        PictureBox1.TabStop = False
-        ' 
         ' lblTitle
         ' 
         lblTitle.AutoSize = True
         lblTitle.Font = New Font("Segoe UI Black", 19.8000011F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblTitle.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        lblTitle.Location = New Point(226, 22)
+        lblTitle.Location = New Point(6, 9)
         lblTitle.Margin = New Padding(4, 0, 4, 0)
         lblTitle.Name = "lblTitle"
         lblTitle.Size = New Size(374, 54)
@@ -93,7 +80,7 @@ Partial Class frmSummary
         ' cbopayments
         ' 
         cbopayments.FormattingEnabled = True
-        cbopayments.Location = New Point(398, 281)
+        cbopayments.Location = New Point(402, 161)
         cbopayments.Name = "cbopayments"
         cbopayments.Size = New Size(214, 33)
         cbopayments.TabIndex = 65
@@ -101,7 +88,7 @@ Partial Class frmSummary
         ' btnPaymentRefresh
         ' 
         btnPaymentRefresh.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnPaymentRefresh.Location = New Point(466, 224)
+        btnPaymentRefresh.Location = New Point(470, 104)
         btnPaymentRefresh.Margin = New Padding(2)
         btnPaymentRefresh.Name = "btnPaymentRefresh"
         btnPaymentRefresh.Size = New Size(146, 42)
@@ -112,17 +99,17 @@ Partial Class frmSummary
         ' chartpaymentrevenue
         ' 
         chartpaymentrevenue.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        ChartArea5.Name = "ChartArea1"
-        chartpaymentrevenue.ChartAreas.Add(ChartArea5)
-        Legend5.Name = "Legend1"
-        chartpaymentrevenue.Legends.Add(Legend5)
+        ChartArea1.Name = "ChartArea1"
+        chartpaymentrevenue.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        chartpaymentrevenue.Legends.Add(Legend1)
         chartpaymentrevenue.Location = New Point(4, 113)
         chartpaymentrevenue.Margin = New Padding(4)
         chartpaymentrevenue.Name = "chartpaymentrevenue"
-        Series5.ChartArea = "ChartArea1"
-        Series5.Legend = "Legend1"
-        Series5.Name = "Series1"
-        chartpaymentrevenue.Series.Add(Series5)
+        Series1.ChartArea = "ChartArea1"
+        Series1.Legend = "Legend1"
+        Series1.Name = "Series1"
+        chartpaymentrevenue.Series.Add(Series1)
         chartpaymentrevenue.Size = New Size(958, 375)
         chartpaymentrevenue.TabIndex = 63
         chartpaymentrevenue.Text = "Chart1"
@@ -131,7 +118,7 @@ Partial Class frmSummary
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(8, 216)
+        Label5.Location = New Point(12, 96)
         Label5.Margin = New Padding(4, 0, 4, 0)
         Label5.Name = "Label5"
         Label5.Size = New Size(414, 48)
@@ -141,7 +128,7 @@ Partial Class frmSummary
         ' dtppayment
         ' 
         dtppayment.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtppayment.Location = New Point(8, 278)
+        dtppayment.Location = New Point(12, 158)
         dtppayment.Margin = New Padding(2)
         dtppayment.Name = "dtppayment"
         dtppayment.Size = New Size(385, 39)
@@ -176,17 +163,17 @@ Partial Class frmSummary
         ' chartresidentinfo
         ' 
         chartresidentinfo.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        ChartArea6.Name = "ChartArea1"
-        chartresidentinfo.ChartAreas.Add(ChartArea6)
-        Legend6.Name = "Legend1"
-        chartresidentinfo.Legends.Add(Legend6)
+        ChartArea2.Name = "ChartArea1"
+        chartresidentinfo.ChartAreas.Add(ChartArea2)
+        Legend2.Name = "Legend1"
+        chartresidentinfo.Legends.Add(Legend2)
         chartresidentinfo.Location = New Point(970, 113)
         chartresidentinfo.Margin = New Padding(4)
         chartresidentinfo.Name = "chartresidentinfo"
-        Series6.ChartArea = "ChartArea1"
-        Series6.Legend = "Legend1"
-        Series6.Name = "Series1"
-        chartresidentinfo.Series.Add(Series6)
+        Series2.ChartArea = "ChartArea1"
+        Series2.Legend = "Legend1"
+        Series2.Name = "Series1"
+        chartresidentinfo.Series.Add(Series2)
         chartresidentinfo.Size = New Size(958, 375)
         chartresidentinfo.TabIndex = 48
         chartresidentinfo.Text = "Chart2"
@@ -195,7 +182,7 @@ Partial Class frmSummary
         ' 
         Label12.AutoSize = True
         Label12.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label12.Location = New Point(974, 214)
+        Label12.Location = New Point(978, 94)
         Label12.Margin = New Padding(4, 0, 4, 0)
         Label12.Name = "Label12"
         Label12.Size = New Size(379, 48)
@@ -205,7 +192,7 @@ Partial Class frmSummary
         ' dtpResidentInfo
         ' 
         dtpResidentInfo.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpResidentInfo.Location = New Point(974, 276)
+        dtpResidentInfo.Location = New Point(978, 156)
         dtpResidentInfo.Margin = New Padding(2)
         dtpResidentInfo.Name = "dtpResidentInfo"
         dtpResidentInfo.Size = New Size(402, 39)
@@ -232,7 +219,7 @@ Partial Class frmSummary
         ' dtpComplaints
         ' 
         dtpComplaints.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpComplaints.Location = New Point(973, 775)
+        dtpComplaints.Location = New Point(977, 655)
         dtpComplaints.Margin = New Padding(2)
         dtpComplaints.Name = "dtpComplaints"
         dtpComplaints.Size = New Size(402, 39)
@@ -241,17 +228,17 @@ Partial Class frmSummary
         ' chartcomplaintincident
         ' 
         chartcomplaintincident.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        ChartArea7.Name = "ChartArea1"
-        chartcomplaintincident.ChartAreas.Add(ChartArea7)
-        Legend7.Name = "Legend1"
-        chartcomplaintincident.Legends.Add(Legend7)
+        ChartArea3.Name = "ChartArea1"
+        chartcomplaintincident.ChartAreas.Add(ChartArea3)
+        Legend3.Name = "Legend1"
+        chartcomplaintincident.Legends.Add(Legend3)
         chartcomplaintincident.Location = New Point(970, 683)
         chartcomplaintincident.Margin = New Padding(4)
         chartcomplaintincident.Name = "chartcomplaintincident"
-        Series7.ChartArea = "ChartArea1"
-        Series7.Legend = "Legend1"
-        Series7.Name = "Series1"
-        chartcomplaintincident.Series.Add(Series7)
+        Series3.ChartArea = "ChartArea1"
+        Series3.Legend = "Legend1"
+        Series3.Name = "Series1"
+        chartcomplaintincident.Series.Add(Series3)
         chartcomplaintincident.Size = New Size(958, 297)
         chartcomplaintincident.TabIndex = 48
         chartcomplaintincident.Text = "Chart3"
@@ -260,7 +247,7 @@ Partial Class frmSummary
         ' 
         Label22.AutoSize = True
         Label22.Font = New Font("Segoe UI", 16.8000011F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label22.Location = New Point(973, 708)
+        Label22.Location = New Point(977, 588)
         Label22.Margin = New Padding(4, 0, 4, 0)
         Label22.Name = "Label22"
         Label22.Size = New Size(425, 46)
@@ -270,7 +257,7 @@ Partial Class frmSummary
         ' cbocertificaterequest
         ' 
         cbocertificaterequest.FormattingEnabled = True
-        cbocertificaterequest.Location = New Point(421, 771)
+        cbocertificaterequest.Location = New Point(425, 651)
         cbocertificaterequest.Name = "cbocertificaterequest"
         cbocertificaterequest.Size = New Size(195, 33)
         cbocertificaterequest.TabIndex = 67
@@ -278,7 +265,7 @@ Partial Class frmSummary
         ' btnCertificateRefresh
         ' 
         btnCertificateRefresh.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        btnCertificateRefresh.Location = New Point(470, 713)
+        btnCertificateRefresh.Location = New Point(474, 593)
         btnCertificateRefresh.Margin = New Padding(2)
         btnCertificateRefresh.Name = "btnCertificateRefresh"
         btnCertificateRefresh.Size = New Size(146, 42)
@@ -289,17 +276,17 @@ Partial Class frmSummary
         ' chartcertificationsrequest
         ' 
         chartcertificationsrequest.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        ChartArea8.Name = "ChartArea1"
-        chartcertificationsrequest.ChartAreas.Add(ChartArea8)
-        Legend8.Name = "Legend1"
-        chartcertificationsrequest.Legends.Add(Legend8)
+        ChartArea4.Name = "ChartArea1"
+        chartcertificationsrequest.ChartAreas.Add(ChartArea4)
+        Legend4.Name = "Legend1"
+        chartcertificationsrequest.Legends.Add(Legend4)
         chartcertificationsrequest.Location = New Point(4, 605)
         chartcertificationsrequest.Margin = New Padding(4)
         chartcertificationsrequest.Name = "chartcertificationsrequest"
-        Series8.ChartArea = "ChartArea1"
-        Series8.Legend = "Legend1"
-        Series8.Name = "Series1"
-        chartcertificationsrequest.Series.Add(Series8)
+        Series4.ChartArea = "ChartArea1"
+        Series4.Legend = "Legend1"
+        Series4.Name = "Series1"
+        chartcertificationsrequest.Series.Add(Series4)
         chartcertificationsrequest.Size = New Size(958, 375)
         chartcertificationsrequest.TabIndex = 63
         chartcertificationsrequest.Text = "Chart1"
@@ -308,7 +295,7 @@ Partial Class frmSummary
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(8, 707)
+        Label2.Location = New Point(12, 587)
         Label2.Margin = New Padding(4, 0, 4, 0)
         Label2.Name = "Label2"
         Label2.Size = New Size(392, 48)
@@ -318,7 +305,7 @@ Partial Class frmSummary
         ' dtpCertificates
         ' 
         dtpCertificates.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpCertificates.Location = New Point(6, 765)
+        dtpCertificates.Location = New Point(10, 645)
         dtpCertificates.Margin = New Padding(2)
         dtpCertificates.Name = "dtpCertificates"
         dtpCertificates.Size = New Size(405, 39)
@@ -333,7 +320,7 @@ Partial Class frmSummary
         TableLayoutPanel1.Controls.Add(chartpaymentrevenue, 0, 0)
         TableLayoutPanel1.Controls.Add(chartcertificationsrequest, 0, 1)
         TableLayoutPanel1.Controls.Add(chartresidentinfo, 1, 0)
-        TableLayoutPanel1.Location = New Point(2, 208)
+        TableLayoutPanel1.Location = New Point(6, 88)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 2
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
@@ -365,7 +352,6 @@ Partial Class frmSummary
         Controls.Add(Label12)
         Controls.Add(dtpResidentInfo)
         Controls.Add(lblTitle)
-        Controls.Add(PictureBox1)
         Controls.Add(TableLayoutPanel1)
         FormBorderStyle = FormBorderStyle.None
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -373,7 +359,6 @@ Partial Class frmSummary
         Name = "frmSummary"
         StartPosition = FormStartPosition.CenterScreen
         Text = "frmSummary"
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         CType(chartpaymentrevenue, ComponentModel.ISupportInitialize).EndInit()
         CType(chartresidentinfo, ComponentModel.ISupportInitialize).EndInit()
         CType(chartcomplaintincident, ComponentModel.ISupportInitialize).EndInit()
@@ -382,7 +367,6 @@ Partial Class frmSummary
         ResumeLayout(False)
         PerformLayout()
     End Sub
-    Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblTitle As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents MySqlCommand1 As MySql.Data.MySqlClient.MySqlCommand

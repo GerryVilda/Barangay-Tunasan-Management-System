@@ -22,8 +22,6 @@ Partial Class frmUsers
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUsers))
-        PictureBox1 = New PictureBox()
         Label1 = New Label()
         dgvusersaccounts = New DataGridView()
         Panel1 = New Panel()
@@ -39,28 +37,16 @@ Partial Class frmUsers
         txtFullName = New TextBox()
         Label2 = New Label()
         Label10 = New Label()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgvusersaccounts, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         SuspendLayout()
-        ' 
-        ' PictureBox1
-        ' 
-        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
-        PictureBox1.Location = New Point(14, 14)
-        PictureBox1.Margin = New Padding(2)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(216, 189)
-        PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox1.TabIndex = 24
-        PictureBox1.TabStop = False
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 24F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        Label1.Location = New Point(251, 71)
+        Label1.Location = New Point(13, 9)
         Label1.Margin = New Padding(4, 0, 4, 0)
         Label1.Name = "Label1"
         Label1.Size = New Size(834, 65)
@@ -248,19 +234,15 @@ Partial Class frmUsers
         Controls.Add(Panel1)
         Controls.Add(dgvusersaccounts)
         Controls.Add(Label1)
-        Controls.Add(PictureBox1)
         Margin = New Padding(2)
         Name = "frmUsers"
         Text = "frmUsers"
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         CType(dgvusersaccounts, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
-
-    Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label1 As Label
     Friend WithEvents dgvusersaccounts As DataGridView
     Friend WithEvents Panel1 As Panel

@@ -66,30 +66,31 @@ Partial Class frmcertificates
         Panel1.Controls.Add(btnGeneratecertificate)
         Panel1.Controls.Add(dgvcertifications)
         Panel1.Controls.Add(Label1)
-        Panel1.Location = New Point(11, 11)
+        Panel1.Dock = DockStyle.Top
+        Panel1.Location = New Point(0, 0)
         Panel1.Margin = New Padding(2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(1895, 1428)
+        Panel1.Size = New Size(1924, 1428)
         Panel1.TabIndex = 4
         ' 
         ' txtcerttype
         ' 
-        txtcerttype.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtcerttype.Location = New Point(430, 192)
+        txtcerttype.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
+        txtcerttype.Location = New Point(492, 200)
         txtcerttype.Margin = New Padding(2)
         txtcerttype.Name = "txtcerttype"
         txtcerttype.ReadOnly = True
-        txtcerttype.Size = New Size(404, 39)
+        txtcerttype.Size = New Size(523, 50)
         txtcerttype.TabIndex = 50
         ' 
         ' txtdate
         ' 
-        txtdate.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtdate.Location = New Point(430, 304)
+        txtdate.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
+        txtdate.Location = New Point(492, 308)
         txtdate.Margin = New Padding(2)
         txtdate.Name = "txtdate"
         txtdate.ReadOnly = True
-        txtdate.Size = New Size(404, 39)
+        txtdate.Size = New Size(523, 50)
         txtdate.TabIndex = 49
         ' 
         ' PictureBox1
@@ -106,116 +107,116 @@ Partial Class frmcertificates
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        Label3.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
         Label3.Location = New Point(226, 195)
         Label3.Margin = New Padding(2, 0, 2, 0)
         Label3.Name = "Label3"
-        Label3.Size = New Size(71, 32)
+        Label3.Size = New Size(101, 45)
         Label3.TabIndex = 46
         Label3.Text = "Type:"
         ' 
         ' txtresidentname
         ' 
-        txtresidentname.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtresidentname.Location = New Point(430, 139)
+        txtresidentname.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
+        txtresidentname.Location = New Point(492, 146)
         txtresidentname.Margin = New Padding(2)
         txtresidentname.Name = "txtresidentname"
         txtresidentname.ReadOnly = True
-        txtresidentname.Size = New Size(404, 39)
+        txtresidentname.Size = New Size(523, 50)
         txtresidentname.TabIndex = 45
         ' 
         ' Label9
         ' 
         Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        Label9.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
         Label9.Location = New Point(226, 311)
         Label9.Margin = New Padding(2, 0, 2, 0)
         Label9.Name = "Label9"
-        Label9.Size = New Size(147, 32)
+        Label9.Size = New Size(202, 45)
         Label9.TabIndex = 40
         Label9.Text = "Issued Date:"
         ' 
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        Label8.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
         Label8.Location = New Point(226, 251)
         Label8.Margin = New Padding(2, 0, 2, 0)
         Label8.Name = "Label8"
-        Label8.Size = New Size(122, 32)
+        Label8.Size = New Size(170, 45)
         Label8.TabIndex = 39
         Label8.Text = "Issued By:"
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        Label7.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
         Label7.Location = New Point(226, 142)
         Label7.Margin = New Padding(2, 0, 2, 0)
         Label7.Name = "Label7"
-        Label7.Size = New Size(185, 32)
+        Label7.Size = New Size(254, 45)
         Label7.TabIndex = 38
         Label7.Text = "Resident Name:"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        Label5.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
         Label5.Location = New Point(226, 86)
         Label5.Margin = New Padding(2, 0, 2, 0)
         Label5.Name = "Label5"
-        Label5.Size = New Size(44, 32)
+        Label5.Size = New Size(63, 45)
         Label5.TabIndex = 36
         Label5.Text = "ID:"
         ' 
         ' txtissuedby
         ' 
-        txtissuedby.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtissuedby.Location = New Point(430, 248)
+        txtissuedby.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
+        txtissuedby.Location = New Point(492, 254)
         txtissuedby.Margin = New Padding(2)
         txtissuedby.Name = "txtissuedby"
         txtissuedby.ReadOnly = True
-        txtissuedby.Size = New Size(404, 39)
+        txtissuedby.Size = New Size(523, 50)
         txtissuedby.TabIndex = 32
         ' 
         ' txtID
         ' 
-        txtID.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        txtID.Location = New Point(430, 79)
+        txtID.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
+        txtID.Location = New Point(492, 92)
         txtID.Margin = New Padding(2)
         txtID.Name = "txtID"
         txtID.ReadOnly = True
-        txtID.Size = New Size(404, 39)
+        txtID.Size = New Size(523, 50)
         txtID.TabIndex = 28
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Font = New Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label2.Location = New Point(24, 380)
         Label2.Margin = New Padding(2, 0, 2, 0)
         Label2.Name = "Label2"
-        Label2.Size = New Size(131, 32)
+        Label2.Size = New Size(174, 45)
         Label2.TabIndex = 25
         Label2.Text = "Search by:"
         ' 
         ' CboCertificatesSearchBy
         ' 
-        CboCertificatesSearchBy.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        CboCertificatesSearchBy.Font = New Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         CboCertificatesSearchBy.FormattingEnabled = True
-        CboCertificatesSearchBy.Location = New Point(189, 377)
+        CboCertificatesSearchBy.Location = New Point(202, 376)
         CboCertificatesSearchBy.Margin = New Padding(2)
         CboCertificatesSearchBy.Name = "CboCertificatesSearchBy"
-        CboCertificatesSearchBy.Size = New Size(443, 40)
+        CboCertificatesSearchBy.Size = New Size(443, 53)
         CboCertificatesSearchBy.TabIndex = 24
         ' 
         ' btnGeneratecertificate
         ' 
         btnGeneratecertificate.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnGeneratecertificate.Location = New Point(1138, 265)
+        btnGeneratecertificate.Location = New Point(1028, 92)
         btnGeneratecertificate.Margin = New Padding(2)
         btnGeneratecertificate.Name = "btnGeneratecertificate"
-        btnGeneratecertificate.Size = New Size(222, 125)
+        btnGeneratecertificate.Size = New Size(189, 266)
         btnGeneratecertificate.TabIndex = 23
         btnGeneratecertificate.Text = "📄 Generate PDF"
         btnGeneratecertificate.UseVisualStyleBackColor = True

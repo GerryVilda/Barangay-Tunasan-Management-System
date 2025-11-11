@@ -144,4 +144,7 @@ Public Class frmcertificates
         End Try
     End Sub
 
+    Private Sub txtissuedby_TextChanged(sender As Object, e As EventArgs) Handles txtissuedby.TextChanged
+
+    End Sub
 End Class
