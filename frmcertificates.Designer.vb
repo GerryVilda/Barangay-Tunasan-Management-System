@@ -24,10 +24,7 @@ Partial Class frmcertificates
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmcertificates))
-<<<<<<< HEAD
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-=======
->>>>>>> 4be1e4c7450f47e3700e6b6de429a7b0272faf0d
+
         Panel1 = New Panel()
         txtSearchBy = New TextBox()
         txtdate = New TextBox()
@@ -207,11 +204,11 @@ Partial Class frmcertificates
         btnGeneratecertificate.Location = New Point(263, 578)
         btnGeneratecertificate.Margin = New Padding(2)
         btnGeneratecertificate.Name = "btnGeneratecertificate"
-<<<<<<< HEAD
+
         btnGeneratecertificate.Size = New Size(425, 212)
-=======
+
         btnGeneratecertificate.Size = New Size(151, 213)
->>>>>>> 4be1e4c7450f47e3700e6b6de429a7b0272faf0d
+
         btnGeneratecertificate.TabIndex = 23
         btnGeneratecertificate.Text = "📄 Generate PDF"
         btnGeneratecertificate.UseVisualStyleBackColor = True
