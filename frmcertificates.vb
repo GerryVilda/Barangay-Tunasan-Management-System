@@ -58,7 +58,7 @@ Public Class frmcertificates
             If sfd.ShowDialog() <> DialogResult.OK Then Exit Sub
 
             ' Create PDF document
-            Dim doc As New Document(PageSize.A4, 50, 50, 50, 50)
+            Dim doc As New Document(PageSize.HALFLETTER, 50, 50, 50, 50)
             PdfWriter.GetInstance(doc, New FileStream(sfd.FileName, FileMode.Create))
             doc.Open()
 
@@ -145,6 +145,10 @@ Public Class frmcertificates
     End Sub
 
     Private Sub txtissuedby_TextChanged(sender As Object, e As EventArgs) Handles txtissuedby.TextChanged
+
+    End Sub
+
+    Private Sub txtSearchBy_TextChanged(sender As Object, e As EventArgs) Handles txtSearchBy.TextChanged
 
     End Sub
 End Class

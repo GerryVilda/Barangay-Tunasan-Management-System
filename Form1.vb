@@ -38,22 +38,70 @@ Public Class Form1
             ' Open database connection
             Call Connection.koneksyon()
 
-            Dim sql As String = "SELECT fullname, role FROM users WHERE username=@user AND password=@pass"
-            cmd = New MySqlCommand(sql, Connection.cn)
+            ' Check if user exists and get current attempts and status
+            Dim sqlCheck As String = "SELECT ID, Fullname, Role, Attempts, Status, Password FROM users WHERE username=@user"
+            cmd = New MySqlCommand(sqlCheck, Connection.cn)
             cmd.Parameters.AddWithValue("@user", txtusername.Text)
-            cmd.Parameters.AddWithValue("@pass", txtpassword.Text)
             dr = cmd.ExecuteReader()
 
             If dr.Read() Then
-                ' Assign to global variables
-                Connection.LoggedInUser = dr("fullname").ToString()
-                Connection.LoggedInRole = dr("role").ToString()
+                Dim userID As Integer = Convert.ToInt32(dr("ID"))
+                Dim fullname As String = dr("Fullname").ToString()
+                Dim role As String = dr("Role").ToString()
+                Dim attempts As Integer = Convert.ToInt32(dr("Attempts"))
+                Dim status As String = dr("Status").ToString()
+                Dim correctPassword As String = dr("Password").ToString()
 
-                ProgressBar1.Visible = True
-                progressValue = 0
-                tmrlogin.Start()
+                dr.Close() ' Close reader before updating
+
+                ' Check if account is deactivated
+                If status.ToLower() = "deactivated" Then
+                    MessageBox.Show("This account is deactivated. Please contact administrator.", "Account Deactivated", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Exit Sub
+                End If
+
+                ' Check password
+                If txtpassword.Text = correctPassword Then
+                    ' Successful login
+                    Connection.LoggedInUser = fullname
+                    Connection.LoggedInRole = role
+
+                    ' Reset attempts to 3 if it is less than 3
+                    If attempts < 3 Then
+                        Dim sqlResetAttempts As String = "UPDATE users SET Attempts=3 WHERE ID=@id"
+                        cmd = New MySqlCommand(sqlResetAttempts, Connection.cn)
+                        cmd.Parameters.AddWithValue("@id", userID)
+                        cmd.ExecuteNonQuery()
+                    End If
+
+                    ProgressBar1.Visible = True
+                    progressValue = 0
+                    tmrlogin.Start()
+                Else
+                    ' Wrong password
+                    attempts -= 1
+                    Dim newStatus As String = If(attempts <= 0, "Deactivated", status)
+
+                    ' Update attempts and possibly status in DB
+                    Dim sqlUpdate As String = "UPDATE users SET Attempts=@attempts, Status=@status WHERE ID=@id"
+                    cmd = New MySqlCommand(sqlUpdate, Connection.cn)
+                    cmd.Parameters.AddWithValue("@attempts", attempts)
+                    cmd.Parameters.AddWithValue("@status", newStatus)
+                    cmd.Parameters.AddWithValue("@id", userID)
+                    cmd.ExecuteNonQuery()
+
+                    If attempts <= 0 Then
+                        MessageBox.Show("Wrong password. Your account is now deactivated.", "Account Deactivated", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Else
+                        MessageBox.Show("Wrong password. Attempts remaining: " & attempts, "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+
+                    ResetLoginForm()
+                End If
+
             Else
-                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Invalid username.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ResetLoginForm()
             End If
 
         Catch ex As Exception
@@ -81,7 +129,6 @@ Public Class Form1
 
     ' Label2 click to close form
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-        ' Optional: ask for confirmation before closing
         If MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             Me.Close()
         End If

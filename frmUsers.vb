@@ -2,6 +2,8 @@
 
 Public Class frmUsers
 
+    Private selectedUserID As Integer = 0 ' Store the currently selected user ID
+
     '========================
     ' FORM LOAD
     '========================
@@ -15,7 +17,7 @@ Public Class frmUsers
     Private Sub LoadUsers()
         Try
             koneksyon()
-            Dim query As String = "SELECT ID, Fullname, Username, Password, Role FROM users"
+            Dim query As String = "SELECT ID, Fullname, Username, Password, Role, Attempts, Status FROM users"
             da = New MySqlDataAdapter(query, cn)
             dt = New DataTable()
             da.Fill(dt)
@@ -33,6 +35,9 @@ Public Class frmUsers
         txtUsername.Clear()
         txtPassword.Clear()
         cmbRole.SelectedIndex = -1
+        cbostatus.SelectedIndex = -1
+        txtattempts.Clear()
+        selectedUserID = 0 ' Reset selected user ID
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
@@ -40,28 +45,33 @@ Public Class frmUsers
     End Sub
 
     '========================
-    ' FILL TEXTBOXES WHEN CLICKING DATAGRIDVIEW - FIXED!
+    ' FILL TEXTBOXES WHEN CLICKING DATAGRIDVIEW
     '========================
     Private Sub dgvusersaccounts_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvusersaccounts.CellClick
         Try
             If e.RowIndex >= 0 Then
                 Dim row As DataGridViewRow = dgvusersaccounts.Rows(e.RowIndex)
 
-                ' Check if cells have values before accessing them
+                If row.Cells("ID").Value IsNot Nothing Then
+                    selectedUserID = Convert.ToInt32(row.Cells("ID").Value)
+                End If
                 If row.Cells("Fullname").Value IsNot Nothing Then
                     txtFullName.Text = row.Cells("Fullname").Value.ToString()
                 End If
-
                 If row.Cells("Username").Value IsNot Nothing Then
                     txtUsername.Text = row.Cells("Username").Value.ToString()
                 End If
-
                 If row.Cells("Password").Value IsNot Nothing Then
                     txtPassword.Text = row.Cells("Password").Value.ToString()
                 End If
-
                 If row.Cells("Role").Value IsNot Nothing Then
                     cmbRole.Text = row.Cells("Role").Value.ToString()
+                End If
+                If row.Cells("Status").Value IsNot Nothing Then
+                    cbostatus.Text = row.Cells("Status").Value.ToString()
+                End If
+                If row.Cells("Attempts").Value IsNot Nothing Then
+                    txtattempts.Text = row.Cells("Attempts").Value.ToString()
                 End If
             End If
         Catch ex As Exception
@@ -80,7 +90,12 @@ Public Class frmUsers
             End If
 
             koneksyon()
-            Dim query As String = "INSERT INTO users (Fullname, Username, Password, Role) VALUES (@fullname, @username, @password, @role)"
+            ' Default Attempts = 3, Status = 'Deactivated'
+            Dim query As String = "
+                INSERT INTO users 
+                    (Fullname, Username, Password, Role, Attempts, Status) 
+                VALUES 
+                    (@fullname, @username, @password, @role, 3, 'Deactivated')"
             cmd = New MySqlCommand(query, cn)
             cmd.Parameters.AddWithValue("@fullname", txtFullName.Text)
             cmd.Parameters.AddWithValue("@username", txtUsername.Text)
@@ -88,7 +103,7 @@ Public Class frmUsers
             cmd.Parameters.AddWithValue("@role", cmbRole.Text)
             cmd.ExecuteNonQuery()
 
-            MessageBox.Show("User saved successfully!")
+            MessageBox.Show("User saved successfully with 3 attempts and deactivated status!")
             LoadUsers()
             ClearFields()
         Catch ex As Exception
@@ -101,25 +116,29 @@ Public Class frmUsers
     '========================
     Private Sub btnupdate_Click(sender As Object, e As EventArgs) Handles btnupdate.Click
         Try
+            If selectedUserID = 0 Then
+                MessageBox.Show("Please select a user to update!")
+                Exit Sub
+            End If
+
             If txtFullName.Text = "" Or txtUsername.Text = "" Or txtPassword.Text = "" Or cmbRole.Text = "" Then
                 MessageBox.Show("Please fill all fields!")
                 Exit Sub
             End If
 
-            ' Make sure a row is selected
-            If dgvusersaccounts.CurrentRow Is Nothing Then
-                MessageBox.Show("Please select a user to update!")
-                Exit Sub
-            End If
-
             koneksyon()
-            Dim query As String = "UPDATE users SET Fullname=@fullname, Username=@username, Password=@password, Role=@role WHERE ID=@id"
+            Dim query As String = "
+                UPDATE users 
+                SET Fullname=@fullname, Username=@username, Password=@password, Role=@role, Attempts=@attempts, Status=@status 
+                WHERE ID=@id"
             cmd = New MySqlCommand(query, cn)
             cmd.Parameters.AddWithValue("@fullname", txtFullName.Text)
             cmd.Parameters.AddWithValue("@username", txtUsername.Text)
             cmd.Parameters.AddWithValue("@password", txtPassword.Text)
             cmd.Parameters.AddWithValue("@role", cmbRole.Text)
-            cmd.Parameters.AddWithValue("@id", dgvusersaccounts.CurrentRow.Cells("ID").Value)
+            cmd.Parameters.AddWithValue("@attempts", Convert.ToInt32(txtattempts.Text))
+            cmd.Parameters.AddWithValue("@status", cbostatus.Text)
+            cmd.Parameters.AddWithValue("@id", selectedUserID)
             cmd.ExecuteNonQuery()
 
             MessageBox.Show("User updated successfully!")

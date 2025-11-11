@@ -37,6 +37,10 @@ Partial Class frmUsers
         txtFullName = New TextBox()
         Label2 = New Label()
         Label10 = New Label()
+        cbostatus = New ComboBox()
+        Label6 = New Label()
+        txtattempts = New TextBox()
+        Label7 = New Label()
         CType(dgvusersaccounts, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         SuspendLayout()
@@ -64,11 +68,15 @@ Partial Class frmUsers
         dgvusersaccounts.Name = "dgvusersaccounts"
         dgvusersaccounts.ReadOnly = True
         dgvusersaccounts.RowHeadersWidth = 51
-        dgvusersaccounts.Size = New Size(930, 752)
+        dgvusersaccounts.Size = New Size(930, 901)
         dgvusersaccounts.TabIndex = 26
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(cbostatus)
+        Panel1.Controls.Add(Label6)
+        Panel1.Controls.Add(txtattempts)
+        Panel1.Controls.Add(Label7)
         Panel1.Controls.Add(btnupdate)
         Panel1.Controls.Add(btnClear)
         Panel1.Controls.Add(btnSave)
@@ -84,7 +92,7 @@ Partial Class frmUsers
         Panel1.Location = New Point(970, 210)
         Panel1.Margin = New Padding(4)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(449, 752)
+        Panel1.Size = New Size(449, 901)
         Panel1.TabIndex = 27
         ' 
         ' btnupdate
@@ -94,7 +102,7 @@ Partial Class frmUsers
         btnupdate.FlatStyle = FlatStyle.Flat
         btnupdate.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnupdate.ForeColor = Color.White
-        btnupdate.Location = New Point(165, 620)
+        btnupdate.Location = New Point(165, 831)
         btnupdate.Margin = New Padding(4)
         btnupdate.Name = "btnupdate"
         btnupdate.Size = New Size(119, 49)
@@ -109,7 +117,7 @@ Partial Class frmUsers
         btnClear.FlatStyle = FlatStyle.Flat
         btnClear.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnClear.ForeColor = Color.White
-        btnClear.Location = New Point(254, 549)
+        btnClear.Location = New Point(254, 760)
         btnClear.Margin = New Padding(4)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(98, 49)
@@ -124,7 +132,7 @@ Partial Class frmUsers
         btnSave.FlatStyle = FlatStyle.Flat
         btnSave.Font = New Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnSave.ForeColor = Color.White
-        btnSave.Location = New Point(96, 549)
+        btnSave.Location = New Point(96, 760)
         btnSave.Margin = New Padding(4)
         btnSave.Name = "btnSave"
         btnSave.Size = New Size(98, 49)
@@ -225,6 +233,48 @@ Partial Class frmUsers
         Label10.TabIndex = 12
         Label10.Text = "Manage User"
         ' 
+        ' cbostatus
+        ' 
+        cbostatus.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        cbostatus.FormattingEnabled = True
+        cbostatus.Items.AddRange(New Object() {"Active ", "Deactivated"})
+        cbostatus.Location = New Point(25, 674)
+        cbostatus.Margin = New Padding(4)
+        cbostatus.Name = "cbostatus"
+        cbostatus.Size = New Size(404, 40)
+        cbostatus.TabIndex = 41
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label6.Location = New Point(25, 635)
+        Label6.Margin = New Padding(4, 0, 4, 0)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(61, 32)
+        Label6.TabIndex = 40
+        Label6.Text = "Role"
+        ' 
+        ' txtattempts
+        ' 
+        txtattempts.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        txtattempts.Location = New Point(25, 557)
+        txtattempts.Margin = New Padding(4)
+        txtattempts.Name = "txtattempts"
+        txtattempts.Size = New Size(404, 39)
+        txtattempts.TabIndex = 39
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label7.Location = New Point(25, 518)
+        Label7.Margin = New Padding(4, 0, 4, 0)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(116, 32)
+        Label7.TabIndex = 38
+        Label7.Text = "Password"
+        ' 
         ' frmUsers
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
@@ -258,4 +308,8 @@ Partial Class frmUsers
     Friend WithEvents btnClear As Button
     Friend WithEvents btnSave As Button
     Friend WithEvents btnupdate As Button
+    Friend WithEvents cbostatus As ComboBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents txtattempts As TextBox
+    Friend WithEvents Label7 As Label
 End Class

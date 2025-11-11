@@ -1,5 +1,6 @@
-﻿Imports MySql.Data.MySqlClient
-Imports System.Windows.Forms.DataVisualization.Charting
+﻿Imports System.Windows.Forms.DataVisualization.Charting
+Imports MySql.Data.MySqlClient
+Imports Org.BouncyCastle.Asn1.Cmp
 
 Public Class frmSummary
 
@@ -11,23 +12,16 @@ Public Class frmSummary
             ' Set all DTPs to Month/Year only and prevent future dates
             SetDTPMonthYear(Me)
 
-            ' Bring layout to front
-            TableLayoutPanel1.BringToFront()
-
             ' Load Sitio dropdown
             LoadSitioComboBox()
 
-            ' Build quadrants
-            BuildQuadrant(0, 0, Label5, dtppayment, cbopayments, btnPaymentRefresh, chartpaymentrevenue)
-            BuildQuadrant(0, 1, Label12, dtpResidentInfo, cboresident, btnResidentRefresh, chartresidentinfo)
-            BuildQuadrant(1, 0, Label2, dtpCertificates, cbocertificaterequest, btnCertificateRefresh, chartcertificationsrequest)
-            BuildQuadrant(1, 1, Label22, dtpComplaints, cbocomplaints, btnComplaintRefresh, chartcomplaintincident)
+            ' Load Certificate dropdown
+            LoadCertificateComboBox()
 
             ' Load all charts initially
             LoadPaymentChart()
             LoadResidentChart()
             LoadComplaintChart()
-            LoadCertificationChart()
 
         Catch ex As Exception
             MessageBox.Show("Error loading summary: " & ex.Message)
@@ -70,44 +64,29 @@ Public Class frmSummary
         cboresident.SelectedIndex = 0
     End Sub
 
-    ' === Build Quadrant ===
-    Private Sub BuildQuadrant(row As Integer, col As Integer, title As Label, dtp As DateTimePicker, combo As ComboBox, refreshBtn As Button, chart As Chart)
-        If TableLayoutPanel1.Controls.Contains(chart) Then TableLayoutPanel1.Controls.Remove(chart)
+    ' === Load Certificate ComboBox ===
+    Private Sub LoadCertificateComboBox()
+        cboCertificate.Items.Clear()
+        cboCertificate.Items.Add("All Certificates")
 
-        Dim container As New TableLayoutPanel() With {.Dock = DockStyle.Fill, .RowCount = 3, .ColumnCount = 1, .Padding = New Padding(8)}
-        container.RowStyles.Add(New RowStyle(SizeType.AutoSize))
-        container.RowStyles.Add(New RowStyle(SizeType.AutoSize))
-        container.RowStyles.Add(New RowStyle(SizeType.Percent, 100))
+        ' Add all your certificates
+        Dim certificates As String() = {
+            "Barangay Clearance (Personal Use)",
+            "Barangay Clearance (Business)",
+            "Barangay Clearance (First Job)",
+            "Residency Certificate",
+            "Indigency Certificate",
+            "Community Tax Certificate / Cedula",
+            "Barangay Business Clearance",
+            "Good Moral Certificate",
+            "Senior Citizen / PWD Certificate",
+            "Solo Parent Certificate",
+            "Certificate of Occupancy / Lot Clearance",
+            "Certificate of Barangay Employment"
+        }
 
-        title.Margin = New Padding(0, 0, 0, 4)
-        title.AutoSize = True
-        title.Dock = DockStyle.Top
-
-        Dim filters As New FlowLayoutPanel() With {.Dock = DockStyle.Top, .AutoSize = True, .AutoSizeMode = AutoSizeMode.GrowAndShrink, .WrapContents = False, .Margin = New Padding(0, 0, 0, 6)}
-
-        If dtp IsNot Nothing Then
-            dtp.Width = Math.Max(280, dtp.Width)
-            dtp.Margin = New Padding(0, 0, 8, 0)
-            filters.Controls.Add(dtp)
-        End If
-        If combo IsNot Nothing Then
-            combo.Width = Math.Max(180, combo.Width)
-            combo.Margin = New Padding(0, 0, 8, 0)
-            filters.Controls.Add(combo)
-        End If
-        If refreshBtn IsNot Nothing Then
-            refreshBtn.Margin = New Padding(0)
-            filters.Controls.Add(refreshBtn)
-        End If
-
-        chart.Dock = DockStyle.Fill
-        chart.Margin = New Padding(0)
-
-        container.Controls.Add(title, 0, 0)
-        container.Controls.Add(filters, 0, 1)
-        container.Controls.Add(chart, 0, 2)
-
-        TableLayoutPanel1.Controls.Add(container, col, row)
+        cboCertificate.Items.AddRange(certificates)
+        cboCertificate.SelectedIndex = 0
     End Sub
 
     ' === Load Resident Chart ===
@@ -159,7 +138,7 @@ Public Class frmSummary
         End Try
     End Sub
 
-    ' === Load Payment Chart (monthly) ===
+    ' === Load Payment Chart ===
     Private Sub LoadPaymentChart()
         Try
             chartpaymentrevenue.Series.Clear()
@@ -168,12 +147,19 @@ Public Class frmSummary
 
             Dim month As Integer = dtppayment.Value.Month
             Dim year As Integer = dtppayment.Value.Year
+            Dim selectedCert As String = If(cboCertificate.SelectedItem IsNot Nothing, cboCertificate.SelectedItem.ToString(), "All Certificates")
 
-            Dim query As String = "SELECT Certificate_Type, SUM(Amount) AS TotalAmount FROM payment WHERE MONTH(Date)=@month AND YEAR(Date)=@year GROUP BY Certificate_Type"
+            Dim query As String
+            If selectedCert = "All Certificates" Then
+                query = "SELECT 'All Certificates' AS Certificate_Type, SUM(Amount) AS TotalAmount FROM payment WHERE MONTH(Date)=@month AND YEAR(Date)=@year"
+            Else
+                query = "SELECT Certificate_Type, SUM(Amount) AS TotalAmount FROM payment WHERE Certificate_Type=@cert AND MONTH(Date)=@month AND YEAR(Date)=@year GROUP BY Certificate_Type"
+            End If
 
             Using cmd As New MySqlCommand(query, cn)
                 cmd.Parameters.AddWithValue("@month", month)
                 cmd.Parameters.AddWithValue("@year", year)
+                If selectedCert <> "All Certificates" Then cmd.Parameters.AddWithValue("@cert", selectedCert)
 
                 Using adapter As New MySqlDataAdapter(cmd)
                     Dim table As New DataTable()
@@ -189,8 +175,11 @@ Public Class frmSummary
                     series.LabelForeColor = Color.Black
 
                     For Each row As DataRow In table.Rows
-                        series.Points.AddXY(row("Certificate_Type").ToString(), Convert.ToDecimal(row("TotalAmount")))
+                        Dim amount As Decimal = Convert.ToDecimal(row("TotalAmount"))
+                        series.Points.AddXY(row("Certificate_Type").ToString(), amount)
+                        series.Points(series.Points.Count - 1).Label = "₱" & amount.ToString("N2") ' Format as currency
                     Next
+
 
                     chartpaymentrevenue.Series.Add(series)
                     SetupChartAppearance(chartpaymentrevenue)
@@ -202,37 +191,47 @@ Public Class frmSummary
     End Sub
 
     ' === Load Complaint Chart (monthly) ===
+    ' === Load Complaint Chart (monthly, filterable by Sitio) ===
+    ' === Load total complaints & blotters chart (monthly) ===
     Private Sub LoadComplaintChart()
         Try
             chartcomplaintincident.Series.Clear()
             chartcomplaintincident.Titles.Clear()
             chartcomplaintincident.Legends.Clear()
 
-            Dim month As Integer = dtpComplaints.Value.Month
-            Dim year As Integer = dtpComplaints.Value.Year
+            Dim selectedMonth As Integer = dtpComplaints.Value.Month
+            Dim selectedYear As Integer = dtpComplaints.Value.Year
 
-            Dim query As String = "SELECT Status, COUNT(*) AS Total FROM complaints WHERE MONTH(Complaint_Date)=@month AND YEAR(Complaint_Date)=@year GROUP BY Status"
+            Dim query As String = "
+            SELECT COUNT(*) AS TotalCount
+            FROM (
+                SELECT Complaint_ID AS ID, Complaint_Date AS Date_Entry FROM complaints
+                UNION ALL
+                SELECT Blotter_ID AS ID, Incident_Date AS Date_Entry FROM blotter_reports
+            ) AS combined
+            WHERE MONTH(Date_Entry)=@month AND YEAR(Date_Entry)=@year"
 
             Using cmd As New MySqlCommand(query, cn)
-                cmd.Parameters.AddWithValue("@month", month)
-                cmd.Parameters.AddWithValue("@year", year)
+                cmd.Parameters.AddWithValue("@month", selectedMonth)
+                cmd.Parameters.AddWithValue("@year", selectedYear)
 
                 Using adapter As New MySqlDataAdapter(cmd)
                     Dim table As New DataTable()
                     adapter.Fill(table)
 
-                    If table.Rows.Count = 0 Then
-                        chartcomplaintincident.Titles.Add("No complaints for this month.")
+                    If table.Rows.Count = 0 OrElse table.Rows(0)("TotalCount") Is DBNull.Value Then
+                        chartcomplaintincident.Titles.Add("No complaints or blotters for this month.")
                         Exit Sub
                     End If
 
-                    Dim series As New Series("Complaints") With {.ChartType = SeriesChartType.Column, .Color = Color.FromArgb(231, 76, 60)}
+                    Dim total As Integer = Convert.ToInt32(table.Rows(0)("TotalCount"))
+                    Dim series As New Series("Total") With {
+                    .ChartType = SeriesChartType.Column,
+                    .Color = Color.FromArgb(231, 76, 60)
+                }
+                    series.Points.AddXY("Total", total)
                     series.IsValueShownAsLabel = True
                     series.LabelForeColor = Color.Black
-
-                    For Each row As DataRow In table.Rows
-                        series.Points.AddXY(row("Status").ToString(), Convert.ToInt32(row("Total")))
-                    Next
 
                     chartcomplaintincident.Series.Add(series)
                     SetupChartAppearance(chartcomplaintincident)
@@ -243,47 +242,7 @@ Public Class frmSummary
         End Try
     End Sub
 
-    ' === Load Certification Chart (monthly) ===
-    Private Sub LoadCertificationChart()
-        Try
-            chartcertificationsrequest.Series.Clear()
-            chartcertificationsrequest.Titles.Clear()
-            chartcertificationsrequest.Legends.Clear()
 
-            Dim month As Integer = dtpCertificates.Value.Month
-            Dim year As Integer = dtpCertificates.Value.Year
-
-            Dim query As String = "SELECT Request_Type, COUNT(*) AS Total FROM request_form WHERE MONTH(Date_Requested)=@month AND YEAR(Date_Requested)=@year GROUP BY Request_Type"
-
-            Using cmd As New MySqlCommand(query, cn)
-                cmd.Parameters.AddWithValue("@month", month)
-                cmd.Parameters.AddWithValue("@year", year)
-
-                Using adapter As New MySqlDataAdapter(cmd)
-                    Dim table As New DataTable()
-                    adapter.Fill(table)
-
-                    If table.Rows.Count = 0 Then
-                        chartcertificationsrequest.Titles.Add("No certifications for this month.")
-                        Exit Sub
-                    End If
-
-                    Dim series As New Series("Certificates") With {.ChartType = SeriesChartType.Column, .Color = Color.FromArgb(155, 89, 182)}
-                    series.IsValueShownAsLabel = True
-                    series.LabelForeColor = Color.Black
-
-                    For Each row As DataRow In table.Rows
-                        series.Points.AddXY(row("Request_Type").ToString(), Convert.ToInt32(row("Total")))
-                    Next
-
-                    chartcertificationsrequest.Series.Add(series)
-                    SetupChartAppearance(chartcertificationsrequest)
-                End Using
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("Error loading certification chart: " & ex.Message)
-        End Try
-    End Sub
 
     ' === Chart Appearance Helper ===
     Private Sub SetupChartAppearance(chart As Chart)
@@ -309,13 +268,16 @@ Public Class frmSummary
         LoadComplaintChart()
     End Sub
 
-    Private Sub btnCertificateRefresh_Click(sender As Object, e As EventArgs) Handles btnCertificateRefresh.Click
-        LoadCertificationChart()
-    End Sub
-
-    ' === ComboBox selection ===
+    ' === ComboBox selection changes ===
     Private Sub cboresident_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboresident.SelectedIndexChanged
         LoadResidentChart()
     End Sub
 
+    Private Sub cboCertificate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCertificate.SelectedIndexChanged
+        LoadPaymentChart()
+    End Sub
+
+    Private Sub chartcomplaintincident_Click(sender As Object, e As EventArgs) Handles chartcomplaintincident.Click
+
+    End Sub
 End Class

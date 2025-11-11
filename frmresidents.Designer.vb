@@ -47,6 +47,7 @@ Partial Class frmresidents
         btndelete = New Button()
         cbositio = New ComboBox()
         Label10 = New Label()
+        Button1 = New Button()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -60,6 +61,7 @@ Partial Class frmresidents
         DataGridView1.Location = New Point(698, 182)
         DataGridView1.Margin = New Padding(2)
         DataGridView1.Name = "DataGridView1"
+        DataGridView1.ReadOnly = True
         DataGridView1.RowHeadersWidth = 62
         DataGridView1.Size = New Size(1198, 1206)
         DataGridView1.TabIndex = 0
@@ -98,6 +100,7 @@ Partial Class frmresidents
         txtage.Location = New Point(92, 531)
         txtage.Margin = New Padding(2)
         txtage.Name = "txtage"
+        txtage.ReadOnly = True
         txtage.Size = New Size(493, 50)
         txtage.TabIndex = 4
         ' 
@@ -261,7 +264,7 @@ Partial Class frmresidents
         btnupdate.FlatAppearance.BorderSize = 0
         btnupdate.FlatStyle = FlatStyle.Flat
         btnupdate.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
-        btnupdate.Location = New Point(183, 1171)
+        btnupdate.Location = New Point(26, 1171)
         btnupdate.Margin = New Padding(2)
         btnupdate.Name = "btnupdate"
         btnupdate.Size = New Size(308, 74)
@@ -306,12 +309,27 @@ Partial Class frmresidents
         Label10.TabIndex = 45
         Label10.Text = "Resident Records"
         ' 
+        ' Button1
+        ' 
+        Button1.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(192))
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.Font = New Font("Segoe UI", 12F, FontStyle.Bold)
+        Button1.Location = New Point(348, 1171)
+        Button1.Margin = New Padding(2)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(308, 74)
+        Button1.TabIndex = 46
+        Button1.Text = "🗑️ Clear"
+        Button1.UseVisualStyleBackColor = False
+        ' 
         ' frmresidents
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
         ClientSize = New Size(1924, 1333)
+        Controls.Add(Button1)
         Controls.Add(Label10)
         Controls.Add(cbositio)
         Controls.Add(btndelete)
@@ -370,4 +388,5 @@ Partial Class frmresidents
     Friend WithEvents btndelete As Button
     Friend WithEvents cbositio As ComboBox
     Friend WithEvents Label10 As Label
+    Friend WithEvents Button1 As Button
 End Class

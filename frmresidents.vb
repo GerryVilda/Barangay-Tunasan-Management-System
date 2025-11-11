@@ -122,14 +122,28 @@ Public Class frmresidents
     ' ✅ Delete resident
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btndelete.Click
         Try
+            ' Check if a resident is selected
             If txtresidentid.Text = "" Then
                 MessageBox.Show("Please select a resident to delete.")
                 Exit Sub
             End If
 
+            ' Confirm deletion after correct password
             If MessageBox.Show("Are you sure you want to delete this resident?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
-                Call koneksyon()
-                Dim sql As String = "DELETE FROM residents WHERE Resident_ID=@Resident_ID"
+                ' Ask for official password before proceeding
+                Dim password = InputBox("Enter Barangay Official Password to confirm deletion:", "Authentication Required")
+
+                If password = "" Then
+                    MessageBox.Show("Deletion cancelled. Password input was empty.")
+                    Exit Sub
+                End If
+
+                If password <> "gerry123" Then
+                    MessageBox.Show("❌ Incorrect password. Deletion not authorized.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                koneksyon()
+                Dim sql = "DELETE FROM residents WHERE Resident_ID=@Resident_ID"
                 Dim cmd As New MySqlCommand(sql, cn)
                 cmd.Parameters.AddWithValue("@Resident_ID", txtresidentid.Text)
                 cmd.ExecuteNonQuery()
@@ -138,12 +152,14 @@ Public Class frmresidents
                 ClearFields()
                 LoadResidents()
             End If
+
         Catch ex As Exception
             MessageBox.Show("❌ Error deleting resident: " & ex.Message)
         Finally
             cn.Close()
         End Try
     End Sub
+
 
     ' ✅ Search by ID or Name
     Private Sub txtsearch_TextChanged(sender As Object, e As EventArgs) Handles txtsearch.TextChanged
@@ -213,4 +229,18 @@ Public Class frmresidents
         If (birthdate > today.AddYears(-age)) Then age -= 1
         Return age
     End Function
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        ' Clear all input fields
+        ClearFields()
+
+        ' Clear the search box
+        txtsearch.Clear()
+
+        ' Reload all residents to reset the DataGridView
+        LoadResidents()
+
+        ' Optional: Show a message
+        MessageBox.Show("✅ All fields cleared successfully!", "Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
 End Class

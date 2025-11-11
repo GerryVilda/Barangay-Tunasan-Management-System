@@ -2,8 +2,8 @@
 
 Public Class Payment
 
-    ' Current logged-in user (set this dynamically at login)
-    Private currentUser As String = "Admin" ' Replace dynamically if needed
+    ' Use the logged-in user's full name from the Connection module
+    Private currentUser As String = LoggedInUser
 
     '======================
     ' FORM LOAD
@@ -12,6 +12,10 @@ Public Class Payment
         ' Set date to current date and make read-only
         dtpDate.Value = Date.Now
         dtpDate.Enabled = False
+
+        ' Make comboboxes fully read-only (disable)
+        cmbSitio.Enabled = False
+        cmbcertificateType.Enabled = False
 
         LoadPendingRequests()
         LoadCertificateTypes()
@@ -169,7 +173,7 @@ Public Class Payment
             koneksyon()
 
             ' Insert payment
-            Dim insertPayment As String = "
+            Dim insertPayment = "
                 INSERT INTO payment (Resident_ID, Sitio, Certificate_Type, Fee_Range, Amount, Date, Receipt_Number, Processed_By)
                 VALUES (@Resident_ID, @Sitio, @Certificate_Type, @Fee_Range, @Amount, @Date, @Receipt_Number, @Processed_By)"
             cmd = New MySqlCommand(insertPayment, cn)
@@ -179,18 +183,18 @@ Public Class Payment
             cmd.Parameters.AddWithValue("@Fee_Range", txtfee.Text)
             cmd.Parameters.AddWithValue("@Amount", txtAmount.Text)
             cmd.Parameters.AddWithValue("@Date", Date.Now)
-            cmd.Parameters.AddWithValue("@Receipt_Number", GenerateReceiptNumber())
+            cmd.Parameters.AddWithValue("@Receipt_Number", GenerateReceiptNumber)
             cmd.Parameters.AddWithValue("@Processed_By", currentUser)
             cmd.ExecuteNonQuery()
 
             ' Update request status
-            Dim updateRequest As String = "UPDATE request_form SET Status = 'Paid' WHERE Request_ID = @Request_ID"
+            Dim updateRequest = "UPDATE request_form SET Status = 'Paid' WHERE Request_ID = @Request_ID"
             cmd = New MySqlCommand(updateRequest, cn)
             cmd.Parameters.AddWithValue("@Request_ID", txtrequestid.Text)
             cmd.ExecuteNonQuery()
 
             ' Insert certification record
-            Dim insertCert As String = "
+            Dim insertCert = "
                 INSERT INTO certifications (Resident_Name, Type, Issued_By, Issued_Date, Remarks)
                 VALUES (@Resident_Name, @Type, @Issued_By, @Issued_Date, @Remarks)"
             cmd = New MySqlCommand(insertCert, cn)
@@ -215,12 +219,48 @@ Public Class Payment
     End Sub
 
     '======================
+    ' DELETE PAYMENT
+    '======================
+    Private Sub btnDeletePending_Click(sender As Object, e As EventArgs) Handles btnDeletePending.Click
+        If String.IsNullOrWhiteSpace(txtrequestid.Text) Then
+            MessageBox.Show("Please select a pending request to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Dim confirm = MessageBox.Show("Are you sure you want to delete this pending request?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If confirm = DialogResult.Yes Then
+            Try
+                koneksyon()
+                ' Only delete if the request is still pending
+                Dim query As String = "DELETE FROM request_form WHERE Request_ID = @Request_ID AND Status = 'Pending'"
+                cmd = New MySqlCommand(query, cn)
+                cmd.Parameters.AddWithValue("@Request_ID", txtrequestid.Text)
+                Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+
+                If rowsAffected > 0 Then
+                    MessageBox.Show("Pending request deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ClearFields()
+                    LoadPendingRequests()
+                Else
+                    MessageBox.Show("Cannot delete request. It may have already been processed.", "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error deleting pending request: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                If cn.State = ConnectionState.Open Then cn.Close()
+            End Try
+        End If
+    End Sub
+
+
+    '======================
     ' CLEAR ALL INPUTS
     '======================
     Private Sub ClearFields()
         txtrequestid.Clear()
         txtResidentid.Clear()
         txtresidentname.Clear()
+        txtReceiptNumber.Clear()
         cmbSitio.SelectedIndex = -1
         cmbcertificateType.SelectedIndex = -1
         txtpurpose.Clear()
@@ -245,31 +285,26 @@ Public Class Payment
             koneksyon()
             Dim query As String = "
             SELECT 
-            p.Payment_ID,
-            p.Resident_ID,
-            CONCAT(res.First_Name, ' ', res.Last_Name) AS Resident_Name,
-            p.Sitio,
-            p.Certificate_Type,
-            p.Fee_Range,
-            p.Amount,
-            p.Date AS Payment_Date,
-            p.Receipt_Number,
-            p.Processed_By
+                p.Payment_ID,
+                p.Resident_ID,
+                CONCAT(res.First_Name, ' ', res.Last_Name) AS Resident_Name,
+                p.Sitio,
+                p.Certificate_Type,
+                p.Fee_Range,
+                p.Amount,
+                p.Date AS Payment_Date,
+                p.Receipt_Number,
+                p.Processed_By
             FROM payment p
             JOIN residents res ON p.Resident_ID = res.Resident_ID
             ORDER BY p.Date DESC
-
-
-        "
+            "
             da = New MySqlDataAdapter(query, cn)
             dt = New DataTable()
             da.Fill(dt)
             dgvtransactions_history.DataSource = dt
 
-            ' Make DataGridView read-only
             dgvtransactions_history.ReadOnly = True
-
-            ' Format columns nicely
             dgvtransactions_history.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
             dgvtransactions_history.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
             dgvtransactions_history.SelectionMode = DataGridViewSelectionMode.FullRowSelect
@@ -282,9 +317,7 @@ Public Class Payment
         End Try
     End Sub
 
+    Private Sub dtgforpayments_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgforpayments.CellContentClick
 
-    Private Sub dgvtransactions_history_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvtransactions_history.CellContentClick
-        ' Optional: Handle clicks if needed
     End Sub
-
 End Class

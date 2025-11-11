@@ -5,16 +5,12 @@ Public Class RequestForm
     ' === Load Event ===
     Private Sub RequestForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            ' Safe date initialization
             dtpDate.MinDate = New DateTime(2000, 1, 1)
             dtpDate.MaxDate = Date.Today
             dtpDate.Value = Date.Today
             dtpDate.Enabled = False
 
-            ' Load certificate types
             LoadCertificateTypes()
-
-            ' Load residents for autocomplete
             LoadResidentAutoComplete()
 
         Catch ex As Exception
@@ -47,7 +43,7 @@ Public Class RequestForm
             Case "Barangay Clearance (Business)"
                 txtfee.Text = "500"
             Case "Barangay Clearance (First Job)"
-                txtfee.Text = "0"  ' Free for first-time
+                txtfee.Text = "0"
             Case "Residency Certificate"
                 txtfee.Text = "50"
             Case "Indigency Certificate"
@@ -117,9 +113,30 @@ Public Class RequestForm
         End Try
     End Function
 
+    ' === Check if resident has pending blotter record ===
+    Private Function HasBlotterRecord(residentId As Integer) As Boolean
+        Try
+            koneksyon()
+            Dim query As String = "
+                SELECT COUNT(*) 
+                FROM blotter_reports 
+                WHERE (Complainant_ID = @id OR Respondent_ID = @id)
+                  AND Status = 'Pending'"
+            cmd = New MySqlCommand(query, cn)
+            cmd.Parameters.AddWithValue("@id", residentId)
+            Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+            Return count > 0
+        Catch ex As Exception
+            MessageBox.Show("Error checking blotter records: " & ex.Message)
+            Return True
+        Finally
+            cn.Close()
+        End Try
+    End Function
+
     ' === Submit Request ===
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        ' === Validate fields ===
+        ' Validate required fields
         If txtresidentname.Text.Trim() = "" Or cmbcertificateType.Text.Trim() = "" Or txtPurpose.Text.Trim() = "" Then
             MessageBox.Show("Please complete all required fields.", "Missing Data", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
@@ -131,11 +148,17 @@ Public Class RequestForm
             Exit Sub
         End If
 
-        ' === Certificate Expiration Rules (Months) ===
+        ' === BLOCK RESIDENT WITH PENDING BLOTTER FOR ANY CERTIFICATE ===
+        If HasBlotterRecord(residentID) Then
+            MessageBox.Show("❌ This resident has a pending blotter record and cannot request any certificate, including Good Moral Certificate.", "Request Denied", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        ' Certificate expiration rules
         Dim certificateRules As New Dictionary(Of String, Integer?) From {
             {"Barangay Clearance (Personal)", 6},
             {"Barangay Clearance (Business)", 6},
-            {"Barangay Clearance (First Job)", Nothing}, ' One-time only
+            {"Barangay Clearance (First Job)", Nothing},
             {"Residency Certificate", 6},
             {"Indigency Certificate", 6},
             {"Good Moral Certificate", 12},
@@ -149,13 +172,13 @@ Public Class RequestForm
         Try
             koneksyon()
 
-            ' === (1) SPECIAL RULE: First Job Clearance (Only Once Ever) ===
+            ' First Job special rule
             If cmbcertificateType.Text = "Barangay Clearance (First Job)" Then
                 Dim checkQuery As String = "
-                SELECT COUNT(*) 
-                FROM request_form 
-                WHERE Resident_ID=@Resident_ID 
-                  AND Request_Type='Barangay Clearance (First Job')"
+                    SELECT COUNT(*) 
+                    FROM request_form 
+                    WHERE Resident_ID=@Resident_ID 
+                      AND Request_Type='Barangay Clearance (First Job)'"
                 cmd = New MySqlCommand(checkQuery, cn)
                 cmd.Parameters.AddWithValue("@Resident_ID", residentID)
                 Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
@@ -166,15 +189,15 @@ Public Class RequestForm
                 End If
             End If
 
-            ' === (2) EXPIRATION CHECK FOR OTHER CERTIFICATES ===
+            ' Check certificate expiration
             If certificateRules.ContainsKey(cmbcertificateType.Text) AndAlso certificateRules(cmbcertificateType.Text).HasValue Then
                 Dim months As Integer = certificateRules(cmbcertificateType.Text).Value
                 Dim checkQuery As String = "
-                SELECT COUNT(*) 
-                FROM request_form 
-                WHERE Resident_ID=@Resident_ID 
-                  AND Request_Type=@Request_Type 
-                  AND Date_Requested >= DATE_SUB(CURDATE(), INTERVAL @Months MONTH)"
+                    SELECT COUNT(*) 
+                    FROM request_form 
+                    WHERE Resident_ID=@Resident_ID 
+                      AND Request_Type=@Request_Type 
+                      AND Date_Requested >= DATE_SUB(CURDATE(), INTERVAL @Months MONTH)"
                 cmd = New MySqlCommand(checkQuery, cn)
                 cmd.Parameters.AddWithValue("@Resident_ID", residentID)
                 cmd.Parameters.AddWithValue("@Request_Type", cmbcertificateType.Text)
@@ -187,12 +210,12 @@ Public Class RequestForm
                 End If
             End If
 
-            ' === (3) Insert New Request ===
+            ' Insert request
             Dim insertQuery As String = "
-            INSERT INTO request_form 
-                (Resident_ID, Request_Type, Purpose, Date_Requested, Status)
-            VALUES 
-                (@Resident_ID, @Request_Type, @Purpose, @Date_Requested, 'Pending')"
+                INSERT INTO request_form 
+                    (Resident_ID, Request_Type, Purpose, Date_Requested, Status)
+                VALUES 
+                    (@Resident_ID, @Request_Type, @Purpose, @Date_Requested, 'Pending')"
             cmd = New MySqlCommand(insertQuery, cn)
             cmd.Parameters.AddWithValue("@Resident_ID", residentID)
             cmd.Parameters.AddWithValue("@Request_Type", cmbcertificateType.Text)
@@ -200,9 +223,8 @@ Public Class RequestForm
             cmd.Parameters.AddWithValue("@Date_Requested", Date.Today)
             cmd.ExecuteNonQuery()
 
-            MessageBox.Show("Certificate request submitted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("✅ Certificate request submitted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            ' === (4) Reset Fields ===
             txtresidentname.Clear()
             cmbcertificateType.SelectedIndex = -1
             txtPurpose.Clear()
@@ -214,6 +236,5 @@ Public Class RequestForm
             cn.Close()
         End Try
     End Sub
-
 
 End Class
