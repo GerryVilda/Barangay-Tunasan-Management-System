@@ -58,28 +58,28 @@ Partial Class frmSummary
         lblTitle.AutoSize = True
         lblTitle.Font = New Font("Segoe UI Black", 19.8000011F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         lblTitle.ForeColor = Color.FromArgb(CByte(46), CByte(49), CByte(146))
-        lblTitle.Location = New Point(6, 9)
-        lblTitle.Margin = New Padding(4, 0, 4, 0)
+        lblTitle.Location = New Point(5, 7)
         lblTitle.Name = "lblTitle"
-        lblTitle.Size = New Size(374, 54)
+        lblTitle.Size = New Size(318, 46)
         lblTitle.TabIndex = 44
         lblTitle.Text = "Reports Summary"
         ' 
         ' cbocertificate
         ' 
         cbocertificate.FormattingEnabled = True
-        cbocertificate.Location = New Point(233, 139)
+        cbocertificate.Location = New Point(107, 107)
+        cbocertificate.Margin = New Padding(2, 2, 2, 2)
         cbocertificate.Name = "cbocertificate"
-        cbocertificate.Size = New Size(385, 33)
+        cbocertificate.Size = New Size(309, 28)
         cbocertificate.TabIndex = 65
         ' 
         ' btnPaymentRefresh
         ' 
         btnPaymentRefresh.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnPaymentRefresh.Location = New Point(233, 177)
+        btnPaymentRefresh.Location = New Point(107, 138)
         btnPaymentRefresh.Margin = New Padding(2)
         btnPaymentRefresh.Name = "btnPaymentRefresh"
-        btnPaymentRefresh.Size = New Size(385, 42)
+        btnPaymentRefresh.Size = New Size(308, 34)
         btnPaymentRefresh.TabIndex = 64
         btnPaymentRefresh.Text = "Refresh"
         btnPaymentRefresh.UseVisualStyleBackColor = True
@@ -90,14 +90,13 @@ Partial Class frmSummary
         chartpaymentrevenue.ChartAreas.Add(ChartArea1)
         Legend1.Name = "Legend1"
         chartpaymentrevenue.Legends.Add(Legend1)
-        chartpaymentrevenue.Location = New Point(6, 221)
-        chartpaymentrevenue.Margin = New Padding(4)
+        chartpaymentrevenue.Location = New Point(5, 177)
         chartpaymentrevenue.Name = "chartpaymentrevenue"
         Series1.ChartArea = "ChartArea1"
         Series1.Legend = "Legend1"
         Series1.Name = "Series1"
         chartpaymentrevenue.Series.Add(Series1)
-        chartpaymentrevenue.Size = New Size(636, 641)
+        chartpaymentrevenue.Size = New Size(509, 513)
         chartpaymentrevenue.TabIndex = 63
         chartpaymentrevenue.Text = "Chart1"
         ' 
@@ -105,20 +104,19 @@ Partial Class frmSummary
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(168, 884)
-        Label5.Margin = New Padding(4, 0, 4, 0)
+        Label5.Location = New Point(134, 707)
         Label5.Name = "Label5"
-        Label5.Size = New Size(187, 48)
+        Label5.Size = New Size(156, 41)
         Label5.TabIndex = 47
         Label5.Text = "Payments"
         ' 
         ' dtppayment
         ' 
         dtppayment.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtppayment.Location = New Point(233, 95)
+        dtppayment.Location = New Point(107, 72)
         dtppayment.Margin = New Padding(2)
         dtppayment.Name = "dtppayment"
-        dtppayment.Size = New Size(385, 39)
+        dtppayment.Size = New Size(309, 34)
         dtppayment.TabIndex = 57
         ' 
         ' MySqlCommand1
@@ -131,18 +129,19 @@ Partial Class frmSummary
         ' cboresident
         ' 
         cboresident.FormattingEnabled = True
-        cboresident.Location = New Point(1510, 139)
+        cboresident.Location = New Point(1127, 111)
+        cboresident.Margin = New Padding(2, 2, 2, 2)
         cboresident.Name = "cboresident"
-        cboresident.Size = New Size(402, 33)
+        cboresident.Size = New Size(322, 28)
         cboresident.TabIndex = 66
         ' 
         ' btnResidentRefresh
         ' 
         btnResidentRefresh.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        btnResidentRefresh.Location = New Point(1511, 178)
+        btnResidentRefresh.Location = New Point(1128, 142)
         btnResidentRefresh.Margin = New Padding(2)
         btnResidentRefresh.Name = "btnResidentRefresh"
-        btnResidentRefresh.Size = New Size(401, 42)
+        btnResidentRefresh.Size = New Size(321, 34)
         btnResidentRefresh.TabIndex = 65
         btnResidentRefresh.Text = "Refresh"
         btnResidentRefresh.UseVisualStyleBackColor = True
@@ -153,14 +152,13 @@ Partial Class frmSummary
         chartresidentinfo.ChartAreas.Add(ChartArea2)
         Legend2.Name = "Legend1"
         chartresidentinfo.Legends.Add(Legend2)
-        chartresidentinfo.Location = New Point(1291, 221)
-        chartresidentinfo.Margin = New Padding(4)
+        chartresidentinfo.Location = New Point(1033, 177)
         chartresidentinfo.Name = "chartresidentinfo"
         Series2.ChartArea = "ChartArea1"
         Series2.Legend = "Legend1"
         Series2.Name = "Series1"
         chartresidentinfo.Series.Add(Series2)
-        chartresidentinfo.Size = New Size(621, 641)
+        chartresidentinfo.Size = New Size(497, 513)
         chartresidentinfo.TabIndex = 48
         chartresidentinfo.Text = "Chart2"
         ' 
@@ -168,28 +166,27 @@ Partial Class frmSummary
         ' 
         Label12.AutoSize = True
         Label12.Font = New Font("Segoe UI", 18F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label12.Location = New Point(1392, 884)
-        Label12.Margin = New Padding(4, 0, 4, 0)
+        Label12.Location = New Point(1114, 707)
         Label12.Name = "Label12"
-        Label12.Size = New Size(379, 48)
+        Label12.Size = New Size(316, 41)
         Label12.TabIndex = 47
         Label12.Text = "Resident Information"
         ' 
         ' dtpResidentInfo
         ' 
         dtpResidentInfo.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpResidentInfo.Location = New Point(1510, 95)
+        dtpResidentInfo.Location = New Point(1127, 76)
         dtpResidentInfo.Margin = New Padding(2)
         dtpResidentInfo.Name = "dtpResidentInfo"
-        dtpResidentInfo.Size = New Size(402, 39)
+        dtpResidentInfo.Size = New Size(322, 34)
         dtpResidentInfo.TabIndex = 58
         ' 
         ' btnComplaintRefresh
         ' 
-        btnComplaintRefresh.Location = New Point(763, 178)
+        btnComplaintRefresh.Location = New Point(610, 142)
         btnComplaintRefresh.Margin = New Padding(2)
         btnComplaintRefresh.Name = "btnComplaintRefresh"
-        btnComplaintRefresh.Size = New Size(402, 42)
+        btnComplaintRefresh.Size = New Size(322, 34)
         btnComplaintRefresh.TabIndex = 66
         btnComplaintRefresh.Text = "Refresh"
         btnComplaintRefresh.UseVisualStyleBackColor = True
@@ -197,10 +194,10 @@ Partial Class frmSummary
         ' dtpComplaints
         ' 
         dtpComplaints.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
-        dtpComplaints.Location = New Point(763, 133)
+        dtpComplaints.Location = New Point(610, 106)
         dtpComplaints.Margin = New Padding(2)
         dtpComplaints.Name = "dtpComplaints"
-        dtpComplaints.Size = New Size(402, 39)
+        dtpComplaints.Size = New Size(322, 34)
         dtpComplaints.TabIndex = 59
         ' 
         ' chartcomplaintincident
@@ -209,14 +206,13 @@ Partial Class frmSummary
         chartcomplaintincident.ChartAreas.Add(ChartArea3)
         Legend3.Name = "Legend1"
         chartcomplaintincident.Legends.Add(Legend3)
-        chartcomplaintincident.Location = New Point(650, 221)
-        chartcomplaintincident.Margin = New Padding(4)
+        chartcomplaintincident.Location = New Point(520, 177)
         chartcomplaintincident.Name = "chartcomplaintincident"
         Series3.ChartArea = "ChartArea1"
         Series3.Legend = "Legend1"
         Series3.Name = "Series1"
         chartcomplaintincident.Series.Add(Series3)
-        chartcomplaintincident.Size = New Size(633, 641)
+        chartcomplaintincident.Size = New Size(506, 513)
         chartcomplaintincident.TabIndex = 48
         chartcomplaintincident.Text = "Chart3"
         ' 
@@ -224,20 +220,19 @@ Partial Class frmSummary
         ' 
         Label22.AutoSize = True
         Label22.Font = New Font("Segoe UI", 16.8000011F, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label22.Location = New Point(738, 886)
-        Label22.Margin = New Padding(4, 0, 4, 0)
+        Label22.Location = New Point(590, 709)
         Label22.Name = "Label22"
-        Label22.Size = New Size(425, 46)
+        Label22.Size = New Size(359, 40)
         Label22.TabIndex = 47
         Label22.Text = "Complaints and Incidents"
         ' 
         ' frmSummary
         ' 
-        AutoScaleDimensions = New SizeF(10F, 25F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         AutoScroll = True
         BackColor = Color.FromArgb(CByte(255), CByte(184), CByte(77))
-        ClientSize = New Size(1946, 1114)
+        ClientSize = New Size(1554, 882)
         Controls.Add(chartcomplaintincident)
         Controls.Add(chartresidentinfo)
         Controls.Add(chartpaymentrevenue)
