@@ -52,6 +52,20 @@ Public Class frmresidents
 
         Try
             Call koneksyon()
+
+            ' 🔎 Check if resident already exists (same first name, last name, and birthdate)
+            Dim checkSql As String = "SELECT COUNT(*) FROM residents WHERE First_Name=@First_Name AND Last_Name=@Last_Name AND Birthdate=@Birthdate"
+            Dim checkCmd As New MySqlCommand(checkSql, cn)
+            checkCmd.Parameters.AddWithValue("@First_Name", txtfirstname.Text)
+            checkCmd.Parameters.AddWithValue("@Last_Name", txtlastname.Text)
+            checkCmd.Parameters.AddWithValue("@Birthdate", dtpbirthdate.Value)
+            Dim exists As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+
+            If exists > 0 Then
+                MessageBox.Show("⚠️ Resident already exists!", "Duplicate Record", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
             ' ✅ Include Date_Registered with current date automatically
             Dim sql As String = "INSERT INTO residents (First_Name, Last_Name, Age, Gender, Birthdate, Sitio, Status, Date_Registered)
                                  VALUES (@First_Name, @Last_Name, @Age, @Gender, @Birthdate, @Sitio, @Status, CURDATE())"
@@ -75,7 +89,7 @@ Public Class frmresidents
         End Try
     End Sub
 
-    ' ✅ Update resident
+    ' ✅ Update resident (with password authentication)
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnupdate.Click
         If txtresidentid.Text = "" Then
             MessageBox.Show("Please select a resident to update.")
@@ -90,6 +104,28 @@ Public Class frmresidents
            cbositio.SelectedIndex = -1 Then
 
             MessageBox.Show("⚠️ Please fill out all required fields before updating a resident.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        ' 🔐 Ask for password before updating
+        Dim passwordForm As New Form()
+        Dim lbl As New Label() With {.Text = "Enter Barangay Official Password:", .AutoSize = True, .Top = 10, .Left = 10}
+        Dim txtPass As New TextBox() With {.Top = 35, .Left = 10, .Width = 200, .PasswordChar = "*"c}
+        Dim btnOk As New Button() With {.Text = "OK", .Top = 70, .Left = 10, .DialogResult = DialogResult.OK}
+        passwordForm.Text = "Authentication Required"
+        passwordForm.StartPosition = FormStartPosition.CenterScreen
+        passwordForm.FormBorderStyle = FormBorderStyle.FixedDialog
+        passwordForm.AcceptButton = btnOk
+        passwordForm.ClientSize = New Size(230, 110)
+        passwordForm.Controls.AddRange({lbl, txtPass, btnOk})
+
+        If passwordForm.ShowDialog() <> DialogResult.OK Then
+            MessageBox.Show("Update cancelled. Authentication window closed.")
+            Exit Sub
+        End If
+
+        If txtPass.Text <> "gerry123" Then
+            MessageBox.Show("❌ Incorrect password. Update not authorized.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -122,15 +158,12 @@ Public Class frmresidents
     ' ✅ Delete resident
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btndelete.Click
         Try
-            ' Check if a resident is selected
             If txtresidentid.Text = "" Then
                 MessageBox.Show("Please select a resident to delete.")
                 Exit Sub
             End If
 
-            ' Confirm deletion after correct password
             If MessageBox.Show("Are you sure you want to delete this resident?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
-                ' Ask for official password before proceeding
                 Dim password = InputBox("Enter Barangay Official Password to confirm deletion:", "Authentication Required")
 
                 If password = "" Then
@@ -231,16 +264,9 @@ Public Class frmresidents
     End Function
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ' Clear all input fields
         ClearFields()
-
-        ' Clear the search box
         txtsearch.Clear()
-
-        ' Reload all residents to reset the DataGridView
         LoadResidents()
-
-        ' Optional: Show a message
         MessageBox.Show("✅ All fields cleared successfully!", "Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 End Class

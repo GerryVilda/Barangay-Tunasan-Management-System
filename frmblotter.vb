@@ -116,7 +116,7 @@ Public Class frmBlotter
                 UPDATE blotter_reports 
                 SET 
                     Incident_Type=@type, 
-                    Incident_Date=@date, 
+                    Incident_Date=@date, x
                     Location=@location, 
                     Details=@details, 
                     Status=@status, 
@@ -145,6 +145,10 @@ Public Class frmBlotter
     End Sub
 
     Private Sub txtlocation_TextChanged(sender As Object, e As EventArgs) Handles txtlocation.TextChanged
+
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
 
     End Sub
 End Class
